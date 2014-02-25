@@ -1,23 +1,34 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+ruby '2.0.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.2'
 
 gem 'sqlite3'
 
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
+
+gem 'apipie-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+end
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
 
-  gem 'uglifier', '>= 1.0.3'
+
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 gem 'jquery-rails'
@@ -25,14 +36,12 @@ gem 'jquery-rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
+group :test do
+  gem 'delorean'
+end
+
+gem 'byebug', group: [:development, :test]
