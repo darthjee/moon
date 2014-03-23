@@ -27,6 +27,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+  gem 'rubocop', require: false
+end
 
 group :development, :test do
   gem 'rspec'
@@ -41,7 +44,6 @@ gem 'jquery-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
-
 
 group :test do
   gem 'delorean'

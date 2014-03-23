@@ -1,0 +1,7 @@
+inherit_from: rubocop-todo.yml
+
+AllCops:
+  RunRailsCops: true
+  Includes:
+    - 'Gemfile'
+    - 'Rakefile'
