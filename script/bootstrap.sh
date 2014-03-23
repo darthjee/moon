@@ -33,8 +33,7 @@ test_dependency() {
 }
 
 config_heroku(){
-  git remote add prod git@heroku.com:marryon.git
-  git remote add qa git@heroku.com:marryon-qa.git
+  script/heroku.sh configure
 }
 
 install_gems(){

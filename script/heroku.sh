@@ -1,5 +1,9 @@
 #!/bin/bash
 
+declare -A ENVS
+ENVS[prod]=git@heroku.com:marryon.git
+ENVS[qa]=git@heroku.com:marryon-qa.git
+
 push_it(){
   ENV=$1
   git push $ENV $ENV:master
@@ -20,7 +24,14 @@ cmd_help(){
   echo "push: Pushes to server"
 }
 
-CMDS="push help"
+cmd_configure(){
+  for ENV in "${!ENVS[@]}"; do
+    GIT_URL="${ENVS[$ENV]}"
+    git remote add $ENV $GIT_URL
+  done
+}
+
+CMDS="push help configure"
 
 if [ $1 ]; then
   CMD=$1
