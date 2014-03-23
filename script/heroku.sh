@@ -21,7 +21,10 @@ cmd_push(){
 }
 
 cmd_help(){
-  echo "push: Pushes to server"
+  echo "push ENV:"
+  echo "    Pushes to ENV"
+  echo "configure:"
+  echo "    configure heroku enviroments"
 }
 
 cmd_configure(){
