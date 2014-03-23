@@ -5,12 +5,15 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-gem 'sqlite3'
+gem 'pg'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
 gem 'apipie-rails'
+gem 'execjs'
+gem "bson_ext"
+gem 'therubyracer'
 
 # Gems used only for assets and not required
 # in production environments by default.
