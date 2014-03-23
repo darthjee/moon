@@ -104,12 +104,12 @@ DotPosition:
 
 # Offense count: 3
 DoubleNegation:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 6
 # Configuration parameters: AlignWith, SupportedStyles.
 EndAlignment:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 8
 FavorUnlessOverNegatedIf:
@@ -123,7 +123,7 @@ FileName:
 # Offense count: 13
 # Cop supports --auto-correct.
 FinalNewline:
-  Enabled: false
+  Enabled: new
 
 # Offense count: 1
 HandleExceptions:
@@ -138,23 +138,23 @@ HashMethods:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 HashSyntax:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 18
 # Configuration parameters: MaxLineLength.
 IfUnlessModifier:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 1
 # Cop supports --auto-correct.
 IndentArray:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 59
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 IndentHash:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 10
 # Cop supports --auto-correct.
@@ -164,7 +164,7 @@ IndentationConsistency:
 # Offense count: 26
 # Cop supports --auto-correct.
 IndentationWidth:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 6
 Lambda:
@@ -189,7 +189,7 @@ LineLength:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 MethodDefParentheses:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 71
 # Configuration parameters: CountComments.
@@ -335,7 +335,7 @@ StringLiterals:
 
 # Offense count: 14
 Tab:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 14
 # Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
