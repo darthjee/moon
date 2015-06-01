@@ -1,25 +1,61 @@
-# SQLite version 3.x
-#   gem install sqlite3
+# MySQL.  Versions 4.1 and 5.0 are recommended.
 #
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
+# Install the MYSQL driver
+#   gem install mysql2
 #
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
+# Ensure the MySQL gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 
-development:
-  <<: *default
-  database: db/development.sqlite3
+<%
+  socket = [
+    ENV["BOXEN_MYSQL_SOCKET"],
+    "/var/run/mysql5/mysqld.sock",
+    "/tmp/mysql.sock"
+  ].detect { |f| f && File.exist?(f) }
+
+  port = ENV["BOXEN_MYSQL_PORT"] || "3306"
+%>
+
+development: &development
+  adapter: mysql2
+  encoding: utf8
+  database: moon_development
+  pool: 5
+  username: root
+  password:
+  host: localhost
+<% if socket %>
+  socket: <%= socket %>
+<% else %>
+  port: <%= port %>
+<% end %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: db/test.sqlite3
+test: &test
+  adapter: mysql2
+  encoding: utf8
+  database: moon_test
+  pool: 5
+  username: root
+  password:
+  host: localhost
+<% if socket %>
+  socket: <%= socket %>
+<% else %>
+  port: <%= port %>
+<% end %>
 
-production:
-  <<: *default
-  database: db/production.sqlite3
+test_readonly:
+  <<: *test
+
+production: &production
+  <<: *development
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  database: <%= ENV['DB_DATABASE'] %>
