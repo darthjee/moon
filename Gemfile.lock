@@ -1,3 +1,9 @@
+PATH
+  remote: gems/concern_builder
+  specs:
+    concern_builder (0.0.1)
+      activesupport
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -162,6 +168,7 @@ PLATFORMS
 DEPENDENCIES
   bower-rails
   coffee-rails (~> 4.0.0)
+  concern_builder!
   high_voltage
   jbuilder (~> 2.0)
   jquery-rails
