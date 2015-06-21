@@ -29,6 +29,7 @@ gem 'rails_12factor', group: :production
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+gem 'active_extension', path: 'gems/active_extension'
 gem 'concern_builder', path: 'gems/concern_builder'
 
 group :development, :test do

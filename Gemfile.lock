@@ -1,4 +1,10 @@
 PATH
+  remote: gems/active_extension
+  specs:
+    active_extension (0.0.1)
+      activesupport
+
+PATH
   remote: gems/concern_builder
   specs:
     concern_builder (0.0.1)
@@ -166,6 +172,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_extension!
   bower-rails
   coffee-rails (~> 4.0.0)
   concern_builder!

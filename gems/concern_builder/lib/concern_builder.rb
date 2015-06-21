@@ -22,7 +22,19 @@ class ConcernBuilder
 
   private
 
-  def add_method(name, code)
+  def add_method(name, code = nil, &block)
+    if code.is_a?(String)
+      add_code_method(name, code)
+    else
+      add_block_method(name, block)
+    end
+  end
+
+  def add_block_method(name, block)
+    @instance.send(:define_method, name, block)
+  end
+
+  def add_code_method(name, code)
     @methods_def << <<-CODE
       def #{name}
         #{code}
