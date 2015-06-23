@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1">
+      <% marriage.events.each do |event| %>
+        <p><%= event.description %></p>
+        <dl>
+          <dt>Horário: </dt>
+          <dd><%= event.time %></dd>
+        </dl>
+      <% end %>
+    </div>
+  </div>
+</div>
