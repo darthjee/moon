@@ -3,10 +3,10 @@
     <div class="col-md-3">
       <% marriage.events.each do |event| %>
         <p><%= event.description %></p>
-        <dl>
-          <dt>Horário: </dt>
+        <dl class="in-line">
+          <dt>Horário</dt>
           <dd><%= event.time.strftime('%H:%M') %></dd>
-          <dt>Local: </dt>
+          <dt>Local</dt>
           <dd><%= event.location %></dd>
         </dl>
       <% end %>

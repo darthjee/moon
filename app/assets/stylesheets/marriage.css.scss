@@ -3,3 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body { padding-top: 70px; }
+
+dl.in-line {
+  dt {
+    float: left;
+    clear: left;
+    margin-right: 5px;
+
+    &:after {
+      content: ':';
+    }
+  }
+}
