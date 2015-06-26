@@ -15,17 +15,16 @@
     "/var/run/mysql5/mysqld.sock",
     "/tmp/mysql.sock"
   ].detect { |f| f && File.exist?(f) }
-
-  port = ENV["BOXEN_MYSQL_PORT"] || "3306"
+  port = 5432
 %>
 
 development: &development
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   database: moon_development
   pool: 5
-  username: root
-  password:
+  username: postgres
+  password: postgres
   host: localhost
 <% if socket %>
   socket: <%= socket %>
@@ -37,12 +36,12 @@ development: &development
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test: &test
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   database: moon_test
   pool: 5
-  username: root
-  password:
+  username: postgres
+  password: postgres
   host: localhost
 <% if socket %>
   socket: <%= socket %>
