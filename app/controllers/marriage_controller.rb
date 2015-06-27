@@ -1,5 +1,6 @@
 class MarriageController < ApplicationController
   helper_method :marriage
+  layout 'marriage'
 
   def show
     render :show
