@@ -2,7 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body { padding-top: 70px; }
+body {
+  padding-top: 70px;
+  background-image: url('bg.jpg');
+  background-color: #fff;
+  background-repeat: no-repeat;
+}
 
 dl.in-line {
   dt {
@@ -35,3 +40,4 @@ dl.in-line {
     padding-bottom: 10px;
   }
 }
+
