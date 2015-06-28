@@ -1,7 +1,19 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Cristina &amp; Fernando</a>
+      <a class="navbar-brand" href="#"><%= marriage.display_name %></a>
     </div>
+
+    <div class="collapse navbar-collapse">
+      <span class="navbar-text header-date"><%= l(marriage.date) %></span>
+      <ul class="nav navbar-nav">
+        <li><a href="#">Mapas</a></li>
+        <li><a href="#">Presença</a></li>
+        <li><a href="#">Presentes</a></li>
+        <li><a href="#">Fotos</a></li>
+      </ul>
+    </div>
+
+
   </div>
 </nav>

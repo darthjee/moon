@@ -2,7 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body { padding-top: 70px; }
+* {
+  color: #666;
+}
+
+body {
+  padding-top: 70px;
+  background-image: url('bg.jpg');
+  background-color: #fff;
+  background-repeat: no-repeat;
+}
 
 dl.in-line {
   dt {
@@ -20,14 +29,26 @@ dl.in-line {
   button.btn {
     width: 400px;
     height: 80px;
-    padding-left: 50px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 1px;
+    padding-left: 30px;
     vertical-align: middle;
+    background: url('d75.png') transparent;
 
-    span.text {
-      font-size: 1.3em;
+    &:hover {
+      background: #fff;
     }
+
+    .glyphicon {
+      font-size: 4em;
+      float: left;
+      padding: 7px 0;
+    }
+
+    .text {
+      font-size: 1.7em;
+      padding: 18px 0;
+    }
+
   }
 
   & > .row {

@@ -1,8 +1,9 @@
 class MarriageController < ApplicationController
+  helper_method :marriage
+  layout 'marriage'
+
   def show
-    render :show, locals: {
-      marriage: marriage
-    }
+    render :show
   end
 
   private
