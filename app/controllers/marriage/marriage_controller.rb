@@ -1,4 +1,4 @@
-class MarriageController < ApplicationController
+class Marriage::MarriageController < ApplicationController
   include Marriage::Common
 
   def show

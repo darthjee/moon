@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  get '/' => 'marriage#show', as: :home
+
+  namespace :marriage, path: '/' do
+    get '/' => 'marriage#show', as: :home
+  end
 end
