@@ -1,14 +1,7 @@
 class MarriageController < ApplicationController
-  helper_method :marriage
-  layout 'marriage'
+  include Marriage::Common
 
   def show
     render :show
-  end
-
-  private
-
-  def marriage
-    @marriage ||= Marriage::Marriage.first
   end
 end
