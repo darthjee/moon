@@ -22,7 +22,9 @@ module Moon
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
     config.assets.paths << Rails.root.join("vendor","assets","bower_components", "bootstrap-sass", "assets", "fonts", "bootstrap")
     config.assets.paths << Rails.root.join("vendor","assets","bower_components", "bootstrap-sass", "assets", "javascripts")
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components", "chosen")
 
     config.assets.precompile += [/.*?\.(eot|svg|ttf|woff)$/]
+    config.assets.precompile += [/.*?\.(png)$/]
   end
 end

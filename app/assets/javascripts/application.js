@@ -19,4 +19,6 @@
 //= require underscore
 //= require angular/angular
 //= require angular-route/angular-route
+//= require chosen/chosen.jquery.min
+//= require angular-chosen-localytics/chosen
 //= require_tree .

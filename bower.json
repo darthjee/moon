@@ -4,6 +4,9 @@
     "angular": "latest",
     "angular-route": "latest",
     "underscore": "latest",
+    "chosen": "latest",
+    "angular-chosen-localytics": "latest",
+    "bootstrap-chosen": "latest",
     "bootstrap-sass": "latest"
   }
 }
