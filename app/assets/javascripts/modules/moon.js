@@ -1,3 +1,3 @@
 (function() {
-  angular.module('moon', []);
+  angular.module('moon', ['guests']);
 })();
