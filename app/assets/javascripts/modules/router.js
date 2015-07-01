@@ -4,7 +4,7 @@
 
   var fn = Router.prototype;
 
-  var app = angular.module('Router', ['ngRoute']);
+  // var app = angular.module('moon');
 
-  app.config(['$routeProvider', Router]);
+  // app.config(['$routeProvider', Router]);
 })(_);

@@ -1,3 +1,3 @@
 (function() {
-  var app = angular.module('moon', ['Router']);
+  angular.module('moon', []);
 })();
