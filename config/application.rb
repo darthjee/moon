@@ -19,10 +19,8 @@ module Moon
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('app', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = 'pt-BR'
-    config.assets.paths << Rails.root.join("vendor","assets","bower_components", "bootstrap-sass", "assets", "fonts", "bootstrap")
-    config.assets.paths << Rails.root.join("vendor/assets/**/*")
-    config.assets.paths << Rails.root.join("vendor","assets","bower_components", "bootstrap-chosen")
-
+    config.assets.paths << Rails.root.join('vendor/assets/bower_components/bootstrap-sass/assets/fonts/bootstrap')
+    config.assets.paths << Rails.root.join("vendor/assets/bower_components/**/*")
 
     config.assets.precompile += [/.*?\.(eot|svg|ttf|woff)$/]
     config.assets.precompile += [/.*?\.(png)$/]
