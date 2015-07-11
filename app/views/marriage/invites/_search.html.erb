@@ -1,2 +1,5 @@
-<div ng-controller="GuestsSearcherController">
+<div ng-controller="GuestsSearcherController as gsc">
+  <select ui-select2 ng-model="gsc.guest.name" >
+    <option ng-repeat="guest in gsc.options" value="{{guest.id}}">{{guest.name}}</option>
+  </select>
 </div>
