@@ -1,5 +1,3 @@
 <div ng-controller="GuestsSearcherController as gsc">
-  <select ui-select2 ng-model="gsc.guest.name" >
-    <option ng-repeat="guest in gsc.options" value="{{guest.id}}">{{guest.name}}</option>
-  </select>
+  <input ui-select2="{query: gsc.search}" ng-model="gsc.guest.id" data-placeholder="Digite o seu nome ou o nome no convite" />
 </div>
