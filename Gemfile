@@ -29,7 +29,8 @@ gem 'rails_12factor', group: :production
 gem 'spring',        group: :development
 
 gem 'active_extension', path: 'gems/active_extension'
-gem 'concern_builder', path: 'gems/concern_builder'
+gem 'concern_builder'
+gem 'bidu-core_ext'
 
 group :development, :test do
   gem 'rspec-rails'
