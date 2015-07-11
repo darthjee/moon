@@ -1,3 +1,3 @@
 (function() {
-  angular.module('moon', ['guests','localytics.directives']);
+  angular.module('moon', ['guests','ui.select2']);
 })();
