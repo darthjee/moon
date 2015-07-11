@@ -1,3 +1,5 @@
 <div ng-controller="GuestsSearcherController as gsc">
-  <input ui-select2="{query: gsc.search}" ng-model="gsc.guest.id" data-placeholder="Digite o seu nome ou o nome no convite" />
+  <input ui-select2="{query: gsc.search, minimumInputLength: 3}"
+         ng-model="gsc.guest.id"
+         data-placeholder="Digite o seu nome ou o nome no convite" />
 </div>
