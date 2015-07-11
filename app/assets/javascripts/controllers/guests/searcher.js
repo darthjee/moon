@@ -8,7 +8,7 @@
   var fn = GuestsSearcherController.prototype;
 
   fn.search = function(query) {
-    this.requester.get('/invites/search.json', {
+    this.requester.get('/guests/search.json', {
       params: { name: query.term }
     }).then(function(res){
       var results = _.map(res.data, function(object) {

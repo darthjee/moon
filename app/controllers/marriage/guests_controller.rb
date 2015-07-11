@@ -1,4 +1,4 @@
-class Marriage::InvitesController < ApplicationController
+class Marriage::GuestsController < ApplicationController
   include Marriage::Common
 
   def index
