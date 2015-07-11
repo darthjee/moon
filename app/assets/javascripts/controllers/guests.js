@@ -1,3 +1,3 @@
 (function(_) {
-  var app = angular.module('guests', ['guests/searcher']);
+  var app = angular.module('guests', ['guests/searcher', 'guests/invite']);
 })(_);
