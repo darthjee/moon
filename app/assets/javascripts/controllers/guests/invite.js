@@ -3,6 +3,7 @@
     this.requester = $http;
     this.guest_info = {};
     this.selected = {};
+    this.invite_info = {};
   }
 
   var fn = InviteController.prototype;
@@ -17,11 +18,22 @@
     }
   };
 
+  fn.invite = function() {
+    if (this.selected.id == this.guest_info.id) {
+      return this.invite_info;
+    } else {
+      this.guest_info = this.selected;
+      this.fetch();
+      return this.invite_info;
+    }
+  };
+
   fn.fetch = function() {
     var controller = this;
     id = this.selected.id;
     this.requester.get('/guests/'+id+'.json').then(function(res) {
       controller.guest_info = res.data.guest;
+      controller.invite_info = res.data.invite;
     });
   };
 

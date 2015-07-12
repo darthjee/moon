@@ -1,7 +1,11 @@
 <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ic.invite().label}}</h3>
+  </div>
+
   <div class="panel-body">
-    <div class="panel-heading">
-      <h3 class="panel-title">{{ic.guest().name}}</h3>
-    </div>
+    <ul>
+      <li ng-repeat="guest in ic.invite().guests">{{guest.name}}</li>
+    </ul>
   </div>
 </div>
