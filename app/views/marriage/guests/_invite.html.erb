@@ -4,8 +4,11 @@
   </div>
 
   <div class="panel-body">
-    <ul>
-      <li ng-repeat="guest in ic.invite().guests">{{guest.name}}</li>
-    </ul>
+    <div class="input-group" ng-repeat="guest in ic.invite().guests">
+      <span class="input-group-addon">
+        <input type="checkbox" name="guest-{{guest.id}}" ng-model="guest.presence">
+      </span>
+      <input type="text" class="form-control" ng-model="guest.name" />
+    </div>
   </div>
 </div>
