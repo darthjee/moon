@@ -10,7 +10,7 @@
   fn.search = function(query) {
     this.requester.get('/guests/search.json', {
       params: { name: query.term }
-    }).then(function(res){
+    }).then(function(res) {
       var results = _.map(res.data, function(object) {
         return {
           text: object.name,
