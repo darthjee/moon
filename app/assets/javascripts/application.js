@@ -19,5 +19,6 @@
 //= require underscore
 //= require angular/angular
 //= require select2/select2
+//= require select2/select2_locale_pt-BR.js
 //= require angular-ui-select2/src/select2.js
 //= require_tree .
