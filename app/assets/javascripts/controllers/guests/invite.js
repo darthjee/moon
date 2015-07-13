@@ -33,8 +33,15 @@
         id = this.selected.id;
 
     this.requester.get('/guests/'+id+'.json').then(function(res) {
-      controller.guest_info = res.data.guest;
-      controller.invite_info = res.data.invite;
+      var invite = res.data.invite,
+          guest = res.data.guest;
+
+      controller.guest_info = guest;
+      controller.invite_info = invite;
+
+      if (invite.guests.length < invite.invites) {
+        invite.guests = invite.guests.concat(new Array(invite.invites - invite.guests.length));
+      }
     });
   };
 
