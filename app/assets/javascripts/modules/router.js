@@ -7,4 +7,4 @@
   // var app = angular.module('moon');
 
   // app.config(['$routeProvider', Router]);
-})(_);
+})(window._);

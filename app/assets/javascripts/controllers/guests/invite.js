@@ -48,4 +48,4 @@
   var app = angular.module('guests/invite', []);
 
   app.controller('InviteController', ['$http', InviteController]);
-})(_);
+})(window._);
