@@ -45,7 +45,7 @@
     this.invite_info = invite;
 
     invite.guests = invite.guests.expandSize(invite.invites);
-};
+  };
 
   var app = angular.module('guests/invite', []);
 
