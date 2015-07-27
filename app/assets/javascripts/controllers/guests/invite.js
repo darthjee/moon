@@ -15,7 +15,7 @@
       return this.guest_info;
     } else {
       this.guest_info = this.selected;
-      this.fetch();
+      this._fetch();
       return this.selected;
     }
   };
@@ -25,12 +25,12 @@
       return this.invite_info;
     } else {
       this.guest_info = this.selected;
-      this.fetch();
+      this._fetch();
       return this.invite_info;
     }
   };
 
-  fn.fetch = function() {
+  fn._fetch = function() {
     var controller = this,
         id = this.selected.id;
 
