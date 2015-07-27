@@ -4,6 +4,8 @@
     this.guest_info = {};
     this.selected = {};
     this.invite_info = {};
+
+    _.bindAll(this, '_parseResponse');
   }
 
   var fn = InviteController.prototype;
@@ -32,18 +34,18 @@
     var controller = this,
         id = this.selected.id;
 
-    this.requester.get('/guests/'+id+'.json').then(function(res) {
-      var invite = res.data.invite,
-          guest = res.data.guest;
-
-      controller.guest_info = guest;
-      controller.invite_info = invite;
-
-      if (invite.guests.length < invite.invites) {
-        invite.guests = invite.guests.concat(new Array(invite.invites - invite.guests.length));
-      }
-    });
+    this.requester.get('/guests/'+id+'.json').then(this._parseResponse);
   };
+
+  fn._parseResponse = function(res) {
+    var invite = res.data.invite,
+        guest = res.data.guest;
+
+    this.guest_info = guest;
+    this.invite_info = invite;
+
+    invite.guests = invite.guests.expandSize(invite.invites);
+};
 
   var app = angular.module('guests/invite', []);
 
