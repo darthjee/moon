@@ -4,11 +4,17 @@
   </div>
 
   <div class="panel-body">
-    <div class="input-group" ng-repeat="guest in ic.invite().guests track by $index">
-      <span class="input-group-addon">
-        <input type="checkbox" name="guest-{{$index}}-presence" ng-model="guest.presence">
-      </span>
-      <input type="text" name="guest-{{$index}}-name" class="form-control" ng-model="guest.name" />
+    <div class="guests-invited-list">
+      <div class="input-group" ng-repeat="guest in ic.invite().guests track by $index">
+        <span class="input-group-addon">
+          <input type="checkbox" name="guest-{{$index}}-presence" ng-model="guest.presence">
+        </span>
+        <input type="text" name="guest-{{$index}}-name" class="form-control" ng-model="guest.name" />
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button type="submit" class="btn btn-default">Atualizar</button>
     </div>
   </div>
 </div>
