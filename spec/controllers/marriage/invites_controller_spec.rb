@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Marriage::InvitesController do
   let(:requests_json) { load_json_fixture_file('requests/marriage/invites.json')   }
   let(:marriage) { marriage_marriages(:first) }
+  let(:invite) { marriage.invites.first }
 
   describe 'PATCH update' do
     let(:parameters_key) { 'update' }
@@ -13,6 +14,12 @@ describe Marriage::InvitesController do
         expect do
           patch :update, parameters
         end.to change { marriage.guests.confirmed.count }.by(2)
+      end
+
+      it 'changes the name of the guests' do
+        expect do
+          patch :update, parameters
+        end.to change { marriage.guests.pluck(:name) }
       end
     end
 
@@ -31,6 +38,11 @@ describe Marriage::InvitesController do
       it 'creates a new guest for the marriage' do
         patch :update, parameters
         expect(marriage.guests.pluck(:name)).to match_array(names_expected)
+      end
+
+      it 'associates the new guests with the invite' do
+        patch :update, parameters
+        expect(invite.guests.pluck(:name)).to match_array(names_expected)
       end
     end
   end

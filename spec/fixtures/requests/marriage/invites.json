@@ -18,6 +18,38 @@
           "id": 3,
           "marriage_id": 1,
           "invite_id": 1,
+          "name": "Mr. Junior Test",
+          "presence": false
+        }, {
+          "id": 4,
+          "marriage_id": 1,
+          "invite_id": 1,
+          "name": "Baby Test",
+          "presence": null
+        }
+      ]
+    },
+    "id": "1"
+  },
+  "update_add": {
+    "invite": {
+      "guests": [
+        {
+          "id": 1,
+          "marriage_id": 1,
+          "invite_id": 1,
+          "name": "Mr. Test",
+          "presence": null
+        }, {
+          "id": 2,
+          "marriage_id": 1,
+          "invite_id": 1,
+          "name": "Mrs. Test",
+          "presence": null
+        }, {
+          "id": 3,
+          "marriage_id": 1,
+          "invite_id": 1,
           "name": "Junior Test",
           "presence": false
         }, {
@@ -26,6 +58,9 @@
           "invite_id": 1,
           "name": "Baby Test",
           "presence": null
+        }, {
+          "name": "Test Girlfriend",
+          "presence": true
         }
       ]
     },
