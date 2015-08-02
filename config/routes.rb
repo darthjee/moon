@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     resources :guests, only: [:index, :show] do
       get :search, on: :collection
     end
+
+    resources :invites, only: [:update]
   end
 end
