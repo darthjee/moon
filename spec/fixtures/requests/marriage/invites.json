@@ -1,0 +1,34 @@
+{
+  "update": {
+    "invite": {
+      "guests": [
+        {
+          "id": 7,
+          "marriage_id": 1,
+          "invite_id": 1,
+          "name": "Teste bebe",
+          "presence": null
+        }, {
+          "id": 1,
+          "marriage_id": 1,
+          "invite_id": 1,
+          "name": "teste",
+          "presence": true
+        }, {
+          "id": 5,
+          "marriage_id": 1,
+          "invite_id": 1,
+          "name": "Testezinho",
+          "presence": true
+        }, {
+          "id": 6,
+          "marriage_id": 1,
+          "invite_id": 1,
+          "name": "Teste esposa",
+          "presence": true
+        }
+      ]
+    },
+    "id": "1"
+  }
+}
