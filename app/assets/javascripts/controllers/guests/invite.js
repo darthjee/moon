@@ -30,6 +30,18 @@
     }
   };
 
+  fn.update = function() {
+    var id = this.invite_info.id,
+        guests = this.invite_info.guests;
+    console.info(guests);
+
+    this.requester.patch('/invites/'+id+'.json', {
+      invite: {
+        guests: guests
+      }
+    });
+  };
+
   fn._fetch = function() {
     var controller = this,
         id = this.selected.id;
