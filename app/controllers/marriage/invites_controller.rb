@@ -9,10 +9,10 @@ class Marriage::InvitesController < ApplicationController
       guest.update(guest_params)
     end
 
-    #new_guests_params.each do |guest_params|
-    #  attributes = guest_params.merge(invite: invite, marriage: invite.marriage)
-    #  Marriage::Guest.create(attributes)
-    #end
+    new_guests_params.each do |guest_params|
+      attributes = guest_params.merge(invite: invite, marriage: invite.marriage)
+      Marriage::Guest.create(attributes)
+    end
     render json: {}
   end
 

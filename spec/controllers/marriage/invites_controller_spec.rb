@@ -18,11 +18,19 @@ describe Marriage::InvitesController do
 
     context 'when adding guests' do
       let(:parameters_key) { 'update_add' }
+      let(:names_expected) do
+        ['Mr. Test', 'Mrs. Test', 'Baby Test', 'Junior Test', 'Test Girlfriend']
+      end
 
       it 'creates a new guest for the marriage' do
         expect do
           patch :update, parameters
         end.to change { marriage.guests.count }.by(1)
+      end
+
+      it 'creates a new guest for the marriage' do
+        patch :update, parameters
+        expect(marriage.guests.pluck(:name)).to match_array(names_expected)
       end
     end
   end
