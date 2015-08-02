@@ -5,11 +5,14 @@
 
   <div class="panel-body">
     <div class="guests-invited-list">
-      <div class="input-group" ng-repeat="guest in ic.invite().guests track by $index">
-        <span class="input-group-addon">
+      <div class="input-group agregated-block"
+           ng-repeat="guest in ic.invite().guests track by $index">
+        <span class="input-group-addon presence-box-{{$index}}">
           <input type="checkbox" name="guest-{{$index}}-presence" ng-model="guest.presence">
         </span>
-        <input type="text" name="guest-{{$index}}-name" class="form-control" ng-model="guest.name" />
+        <input type="text" name="guest-{{$index}}-name"
+               class="form-control guest-name-{{$index}}"
+               ng-model="guest.name" />
       </div>
     </div>
 
