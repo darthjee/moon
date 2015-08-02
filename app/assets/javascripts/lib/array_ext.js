@@ -1,9 +1,11 @@
 (function(fn, undefined) {
-  fn.expandSize = function(size, constructor) {
-    constructor = (constructor == undefined) ? ({}).constructor : constructor;
+  fn.expandSize = function(size, builder) {
+    if (builder == undefined) {
+      builder = function() { return {}; };
+    }
 
     while (size > this.length) {
-      this.push(new constructor);
+      this.push(builder(this.length));
     }
 
     return this;
