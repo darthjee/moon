@@ -3,29 +3,29 @@
     "invite": {
       "guests": [
         {
-          "id": 7,
-          "marriage_id": 1,
-          "invite_id": 1,
-          "name": "Teste bebe",
-          "presence": null
-        }, {
           "id": 1,
           "marriage_id": 1,
           "invite_id": 1,
-          "name": "teste",
+          "name": "Mr. Test",
           "presence": true
         }, {
-          "id": 5,
+          "id": 2,
           "marriage_id": 1,
           "invite_id": 1,
-          "name": "Testezinho",
+          "name": "Mrs. Test",
           "presence": true
         }, {
-          "id": 6,
+          "id": 3,
           "marriage_id": 1,
           "invite_id": 1,
-          "name": "Teste esposa",
-          "presence": true
+          "name": "Junior Test",
+          "presence": false
+        }, {
+          "id": 4,
+          "marriage_id": 1,
+          "invite_id": 1,
+          "name": "Baby Test",
+          "presence": null
         }
       ]
     },
