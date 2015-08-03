@@ -35,6 +35,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (5.0.1.20140414130214)
+    bidu-active_ext (1.0.0)
+      activesupport
+      bidu-core_ext
     bidu-core_ext (1.0.0)
       activesupport
     bower-rails (0.9.2)
@@ -170,7 +173,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_extension!
-  bidu-core_ext
+  bidu-active_ext
   bower-rails
   coffee-rails (~> 4.0.0)
   concern_builder

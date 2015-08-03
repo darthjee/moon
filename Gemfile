@@ -30,7 +30,7 @@ gem 'spring',        group: :development
 
 gem 'active_extension', path: 'gems/active_extension'
 gem 'concern_builder'
-gem 'bidu-core_ext'
+gem 'bidu-active_ext'
 
 group :development, :test do
   gem 'rspec-rails'
