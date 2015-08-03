@@ -13,6 +13,8 @@ class Marriage::InvitesController < ApplicationController
       attributes = guest_params.merge(invite: invite, marriage: invite.marriage)
       Marriage::Guest.create(attributes)
     end
+
+    invite.update(confirmed: invite.guests.confirmed.count)
     render json: {}
   end
 

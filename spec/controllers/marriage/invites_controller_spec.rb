@@ -10,10 +10,16 @@ describe Marriage::InvitesController do
     let(:parameters) { requests_json[parameters_key] }
 
     context 'when updating the guests that already exist' do
-      it 'changes the presence for the invites' do
+      it 'changes the presence for the guests' do
         expect do
           patch :update, parameters
         end.to change { marriage.guests.confirmed.count }.by(2)
+      end
+
+      it 'changes the confirmed count for the invite' do
+        expect do
+          patch :update, parameters
+        end.to change { Marriage::Invite.find(invite.id).confirmed }.by(2)
       end
 
       it 'changes the name of the guests' do
