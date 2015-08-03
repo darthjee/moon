@@ -24,4 +24,4 @@
   var app = angular.module('guests/searcher', []);
 
   app.controller('GuestsSearcherController', ['$http', GuestsSearcherController]);
-})(_);
+})(window._);

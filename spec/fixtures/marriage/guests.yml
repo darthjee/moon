@@ -1,0 +1,20 @@
+father_test:
+  id: 1
+  marriage_id: 1
+  invite_id: 1
+  name: Mr. Test
+mother_test:
+  id: 2
+  marriage_id: 1
+  invite_id: 1
+  name: Mrs Test
+son_test:
+  id: 3
+  marriage_id: 1
+  invite_id: 1
+  name: Junior Test
+baby_test:
+  id: 4
+  marriage_id: 1
+  invite_id: 1
+  name: Baby Test
