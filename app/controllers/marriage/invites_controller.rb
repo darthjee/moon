@@ -10,7 +10,7 @@ class Marriage::InvitesController < ApplicationController
     end
 
     new_guests_params.each do |guest_params|
-      attributes = guest_params.merge(invite: invite, marriage: invite.marriage)
+      attributes = guest_params.merge(invite: invite)
       Marriage::Guest.create(attributes)
     end
 

@@ -13,7 +13,7 @@ describe Marriage::InvitesController do
       it 'changes the presence for the guests' do
         expect do
           patch :update, parameters
-        end.to change { marriage.guests.confirmed.count }.by(2)
+        end.to change { invite.guests.confirmed.count }.by(2)
       end
 
       it 'changes the confirmed count for the invite' do
@@ -25,7 +25,7 @@ describe Marriage::InvitesController do
       it 'changes the name of the guests' do
         expect do
           patch :update, parameters
-        end.to change { marriage.guests.pluck(:name) }
+        end.to change { invite.guests.pluck(:name) }
       end
     end
 
@@ -38,12 +38,12 @@ describe Marriage::InvitesController do
       it 'creates a new guest for the marriage' do
         expect do
           patch :update, parameters
-        end.to change { marriage.guests.count }.by(1)
+        end.to change { invite.guests.count }.by(1)
       end
 
       it 'creates a new guest for the marriage' do
         patch :update, parameters
-        expect(marriage.guests.pluck(:name)).to match_array(names_expected)
+        expect(invite.guests.pluck(:name)).to match_array(names_expected)
       end
 
       it 'associates the new guests with the invite' do

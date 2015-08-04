@@ -19,7 +19,6 @@ describe Marriage::GuestsController do
       before do
         Marriage::Guest.create(
           invite: invite,
-          marriage: invite.marriage,
           name: 'Mr. Test'
         )
       end
