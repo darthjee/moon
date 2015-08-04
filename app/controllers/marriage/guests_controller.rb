@@ -42,7 +42,7 @@ class Marriage::GuestsController < ApplicationController
   end
 
   def guests_found
-    marriage.guests.where('name LIKE ?', "%#{name}%").pluck(:id, :name).map{ |i| i.as_hash([:id, :name]) }
+    marriage.guests.where('name ILIKE ?', "%#{name}%").pluck(:id, :name).map{ |i| i.as_hash([:id, :name]) }
   end
 
   def name
