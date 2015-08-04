@@ -42,7 +42,7 @@ class Marriage::GuestsController < ApplicationController
   end
 
   def guests_found
-    marriage.guests.where('name ILIKE ?', "%#{name}%").pluck_as_json(:id, :name)
+    marriage.guests.search_name(name).pluck_as_json(:id, :name)
   end
 
   def name
