@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Marriage::InvitesController do
-  let(:requests_json) { load_json_fixture_file('requests/marriage/invites.json')   }
+  let(:requests_json) { load_json_fixture_file('requests/marriage/invites.json') }
   let(:marriage) { marriage_marriages(:first) }
   let(:invite) { marriage.invites.first }
+  let(:parameters) { requests_json[parameters_key] }
 
   describe 'PATCH update' do
     let(:parameters_key) { 'update' }
-    let(:parameters) { requests_json[parameters_key] }
 
     context 'when updating the guests that already exist' do
       it 'changes the presence for the guests' do
