@@ -1,16 +1,19 @@
 require 'spec_helper'
 
 describe Marriage::Common do
+  let(:parameters) { {} }
   controller do
     include Marriage::Common
 
     def index
-      render('marriage/marriage/show')
+      respond_to do |format|
+        format.html { render('marriage/marriage/show') }
+        format.json { render nothing: true }
+      end
     end
   end
 
   describe 'layout' do
-    let(:parameters) { {} }
     before do
       allow(controller).to receive(:render_root)
       get :index, parameters
@@ -25,6 +28,24 @@ describe Marriage::Common do
 
       it do
         expect(response).not_to render_template('layouts/marriage')
+      end
+    end
+  end
+
+  describe 'angular redirection' do
+    before do
+      get :index, parameters
+    end
+
+    it 'redirects to root with angular route' do
+      expect(response).to redirect_to('http://test.host#/anonymous')
+    end
+
+    context 'when requesting a json request' do
+      let(:parameters) { { format: :json } }
+
+      it do
+        expect(response).not_to be_a_redirect
       end
     end
   end
