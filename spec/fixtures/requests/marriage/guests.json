@@ -1,8 +1,10 @@
 {
   "search": {
+    "format": "json",
     "name": "Mr. Test"
   },
   "partial_search": {
+    "format": "json",
     "name": "test"
   }
 }

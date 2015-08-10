@@ -1,5 +1,6 @@
 {
   "update": {
+    "format": "json",
     "invite": {
       "guests": [
         {
@@ -32,6 +33,7 @@
     "id": "1"
   },
   "update_add": {
+    "format": "json",
     "invite": {
       "guests": [
         {
