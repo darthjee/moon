@@ -11,7 +11,15 @@ module Marriage::Common
 
   def render_root
     return if params[:ajax]
-    redirect_to "##{request.path}" if request.format == :html && request.path != '/'
+    redirect_to "##{request.path}" if perform_angular_redirect?
+  end
+
+  def perform_angular_redirect?
+    request.format.html? && !is_home?
+  end
+
+  def is_home?
+    request.path == '/'
   end
 
   def layout_for_page
