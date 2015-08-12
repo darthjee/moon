@@ -7,11 +7,13 @@ class Marriage::Invite < ActiveRecord::Base
     save
   end
 
+  private
+
   def build_code
     SecureRandom.hex(5)
   end
 
   def unique_code?
-    !marriage.invites.exists?(code: code)
+    !marriage.invites.where('id != ?', id).exists?(code: code)
   end
 end
