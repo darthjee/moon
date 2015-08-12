@@ -35,7 +35,7 @@
         guests = this.invite_info.guests;
     console.info(guests);
 
-    this.requester.patch('/invites/'+id+'.json', {
+    this.requester.patch('/convites/'+id+'.json', {
       invite: {
         guests: guests
       }
@@ -46,7 +46,7 @@
     var controller = this,
         id = this.selected.id;
 
-    this.requester.get('/guests/'+id+'.json').then(this._parseResponse);
+    this.requester.get('/convidados/'+id+'.json').then(this._parseResponse);
   };
 
   fn._parseResponse = function(res) {

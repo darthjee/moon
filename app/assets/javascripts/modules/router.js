@@ -2,8 +2,8 @@
   function Router($routeProvider) {
     $routeProvider.when('/', {
       templateUrl: '/?ajax=true'
-    }).when('/guests', {
-      templateUrl: '/guests?ajax=true'
+    }).when('/convidados', {
+      templateUrl: '/convidados?ajax=true'
     });
   }
 
