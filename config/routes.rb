@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       get :search, on: :collection, defaults: { format: :json }
     end
 
-    resources :invites, path: '/convites', only: [:update], defaults: { format: :json }
+    resources :invites, path: '/convites', only: [:update], defaults: { format: :json } do
+      get ':code' => :show, on: :collection, defaults: { format: :html }
+    end
   end
 end
