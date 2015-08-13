@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, undefined) {
 
   function RouterBuilder($routeProvider) {
     new Router($routeProvider).bindRoutes();
@@ -23,7 +23,13 @@
   };
 
   fn.buildTemplateFor = function(route) {
-     return function() {
+     return function(params) {
+       if (params !== undefined) {
+         for(key in params) {
+           regexp = new RegExp(key+'\\b');
+           route = route.replace(regexp, params[key]);
+         }
+       }
        return route + '?ajax=true';
      };
   };
