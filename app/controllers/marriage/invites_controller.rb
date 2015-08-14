@@ -3,6 +3,9 @@ class Marriage::InvitesController < ApplicationController
 
   protect_from_forgery except: :update
 
+  def show
+  end
+
   def update
     guests_update_params.each do |guest_params|
       guest = invite.guests.find(guest_params[:id])
