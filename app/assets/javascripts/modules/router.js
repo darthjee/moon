@@ -26,7 +26,7 @@
      return function(params) {
        if (params !== undefined) {
          for(key in params) {
-           regexp = new RegExp(key+'\\b');
+           regexp = new RegExp(':' + key + '\\b');
            route = route.replace(regexp, params[key]);
          }
        }
