@@ -1,11 +1,12 @@
 (function(_) {
-  function InviteController(service, notifier) {
+  function InviteController($routeParams, service, notifier) {
     this.service = service;
-    this.selected = {};
+    this.selected = $routeParams;
     this.invite = {};
 
     _.bindAll(this, '_parseResponse', 'setInvite');
     notifier.register('select-invite', this.setInvite);
+    this._fetch();
   }
 
   var fn = InviteController.prototype;
@@ -14,9 +15,7 @@
   fn.setInvite = function(selected) {
     this.selected = selected;
 
-    if (selected && selected.id) {
-      this._fetch();
-    }
+    this._fetch();
   };
 
   fn.update = function() {
@@ -29,7 +28,12 @@
   };
 
   fn._fetch = function() {
-    var id = this.selected.id;
+    var selected = this.selected,
+        id;
+    if (! (selected && selected.id)) {
+      return;
+    }
+    id = this.selected.id;
 
     this.service.get(id).success(this._parseResponse);
   };
@@ -43,5 +47,5 @@
     invite.guests = invite.guests.expandSize(invite.invites);
   };
 
-  app.controller('InviteController', ['invitesService', 'notifier', InviteController]);
+  app.controller('InviteController', ['$routeParams', 'invitesService', 'notifier', InviteController]);
 })(window._);

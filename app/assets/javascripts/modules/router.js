@@ -10,15 +10,26 @@
 
   var fn = Router.prototype;
 
-  fn.routes = ['/', '/convidados', '/convites/:code'];
+  fn.directRoutes = ['/', '/convidados'];
+  fn.customRoutes = {
+    '/convites/:id': { controller: 'InviteController', controllerAs: 'ic' }
+  };
 
   fn.bindRoutes = function() {
     var router = this;
 
-    _.each(router.routes, function(route) {
+    _.each(router.directRoutes, function(route) {
       router.provider.when(route, {
         templateUrl: router.buildTemplateFor(route)
       });
+    });
+
+    _.each(router.customRoutes, function(params, route) {
+      _.extend(params, {
+        templateUrl: router.buildTemplateFor(route)
+      });
+
+      router.provider.when(route, params);
     });
   };
 
