@@ -11,10 +11,8 @@
       module = angular.module('guests/service', []);
 
   fn.search = function(term, callback) {
-    this.requester.get('/convidados/search.json', {
+    return this.requester.get('/convidados/search.json', {
       params: { name: term }
-    }).then(function(res) {
-      callback(res.data);
     });
   };
 

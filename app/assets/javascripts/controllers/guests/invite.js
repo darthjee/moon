@@ -31,7 +31,7 @@
   fn._fetch = function() {
     var id = this.selected.id;
 
-    this.service.get(id, this._parseResponse);
+    this.service.get(id).success(this._parseResponse);
   };
 
   fn._parseResponse = function(data) {

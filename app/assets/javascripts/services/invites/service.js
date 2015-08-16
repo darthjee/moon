@@ -11,13 +11,11 @@
       module = angular.module('invites/service', []);
 
   fn.get = function(id, callback) {
-    this.requester.get('/convidados/'+id+'.json').then(function(res) {
-      callback(res.data);
-    });
+    return this.requester.get('/convidados/'+id+'.json');
   };
 
   fn.update = function(id, invite) {
-    this.requester.patch('/convites/'+id+'.json', {
+    return this.requester.patch('/convites/'+id+'.json', {
       invite: invite
     });
   };
