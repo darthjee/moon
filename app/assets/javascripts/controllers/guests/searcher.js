@@ -11,14 +11,20 @@
       app = angular.module('guests/searcher', ['notifier', 'guests/service']);
 
   fn.search = function(query) {
+    var controller = this;
+
     this.service.search(query.term, function(data) {
-      var results = _.map(data, function(object) {
-        return {
-          text: object.name,
-          id: object.id
-        };
-      });
+      var results = controller._parseGuests(data);
       query.callback({ results: results });
+    });
+  };
+
+  fn._parseGuests = function(data) {
+    return _.map(data, function(object) {
+      return {
+        text: object.name,
+        id: object.id
+      };
     });
   };
 
