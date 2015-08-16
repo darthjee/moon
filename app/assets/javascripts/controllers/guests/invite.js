@@ -65,5 +65,5 @@
     invite.guests = invite.guests.expandSize(invite.invites);
   };
 
-  app.controller('InviteController', ['$http', 'Notifier', InviteController]);
+  app.controller('InviteController', ['$http', 'notifier', InviteController]);
 })(window._);

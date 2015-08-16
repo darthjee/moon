@@ -28,5 +28,5 @@
     this.notifier.notify('select-invite', this.selected);
   };
 
-  app.controller('GuestsSearcherController', ['$http', 'Notifier', GuestsSearcherController]);
+  app.controller('GuestsSearcherController', ['$http', 'notifier', GuestsSearcherController]);
 })(window._);

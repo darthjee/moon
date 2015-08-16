@@ -27,5 +27,5 @@
     return this.watchs[key];
   };
 
-  module.service('Notifier', [NotifierServiceFactory]);
+  module.service('notifier', [NotifierServiceFactory]);
 })(window._);
