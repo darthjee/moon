@@ -1,11 +1,14 @@
 (function(_) {
-  function GuestsSearcherController($http) {
+  function GuestsSearcherController($http, notifier) {
     this.requester = $http;
+    this.notifier = notifier;
+
     this.options = [{ name: 'name1', id: 1 },{ name: 'name2', id: 2 }];
     _.bindAll(this, 'search');
   }
 
   var fn = GuestsSearcherController.prototype;
+      app = angular.module('guests/searcher', ['notifier']);
 
   fn.search = function(query) {
     this.requester.get('/convidados/search.json', {
@@ -21,7 +24,9 @@
     });
   };
 
-  var app = angular.module('guests/searcher', []);
+  fn.change = function() {
+    this.notifier.notify('select-invite', this.selected);
+  };
 
-  app.controller('GuestsSearcherController', ['$http', GuestsSearcherController]);
+  app.controller('GuestsSearcherController', ['$http', 'Notifier', GuestsSearcherController]);
 })(window._);

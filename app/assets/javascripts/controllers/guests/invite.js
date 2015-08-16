@@ -1,14 +1,20 @@
 (function(_) {
-  function InviteController($http) {
+  function InviteController($http, notifier) {
     this.requester = $http;
     this.guest_info = {};
     this.selected = {};
     this.invite_info = {};
 
-    _.bindAll(this, '_parseResponse');
+    _.bindAll(this, '_parseResponse', 'setInvite');
+    notifier.register('select-invite', this.setInvite);
   }
 
   var fn = InviteController.prototype;
+      app = angular.module('guests/invite', ['notifier']);
+
+  fn.setInvite = function(id) {
+    this.selected = id;
+  };
 
   fn.guest = function() {
     if (this.selected.id === this.guest_info.id) {
@@ -59,7 +65,5 @@
     invite.guests = invite.guests.expandSize(invite.invites);
   };
 
-  var app = angular.module('guests/invite', []);
-
-  app.controller('InviteController', ['$http', InviteController]);
+  app.controller('InviteController', ['$http', 'Notifier', InviteController]);
 })(window._);

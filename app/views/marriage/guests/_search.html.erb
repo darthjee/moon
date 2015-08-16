@@ -1,6 +1,7 @@
 <div ng-controller="GuestsSearcherController as gsc">
   <input ui-select2="{query: gsc.search, minimumInputLength: 3}"
-         ng-model="ic.selected"
+         ng-model="gsc.selected"
+         ng-change="gsc.change()"
          data-placeholder="Digite o seu nome ou o nome no convite"
          class="select-search" />
 </div>
