@@ -1,6 +1,6 @@
 (function(_) {
-  function InviteController($http, notifier) {
-    this.requester = $http;
+  function InviteController(service, notifier) {
+    this.service = service;
     this.guest_info = {};
     this.selected = {};
     this.invite_info = {};
@@ -10,7 +10,7 @@
   }
 
   var fn = InviteController.prototype;
-      app = angular.module('guests/invite', ['notifier']);
+      app = angular.module('guests/invite', ['notifier', 'invites/service']);
 
   fn.setInvite = function(id) {
     this.selected = id;
@@ -39,25 +39,21 @@
   fn.update = function() {
     var id = this.invite_info.id,
         guests = this.invite_info.guests;
-    console.info(guests);
 
-    this.requester.patch('/convites/'+id+'.json', {
-      invite: {
-        guests: guests
-      }
+    this.service.update(id, {
+      guests: guests
     });
   };
 
   fn._fetch = function() {
-    var controller = this,
-        id = this.selected.id;
+    var id = this.selected.id;
 
-    this.requester.get('/convidados/'+id+'.json').then(this._parseResponse);
+    this.service.get(id, this._parseResponse);
   };
 
-  fn._parseResponse = function(res) {
-    var invite = res.data.invite,
-        guest = res.data.guest;
+  fn._parseResponse = function(data) {
+    var invite = data.invite,
+        guest = data.guest;
 
     this.guest_info = guest;
     this.invite_info = invite;
@@ -65,5 +61,5 @@
     invite.guests = invite.guests.expandSize(invite.invites);
   };
 
-  app.controller('InviteController', ['$http', 'notifier', InviteController]);
+  app.controller('InviteController', ['invitesService', 'notifier', InviteController]);
 })(window._);
