@@ -1,6 +1,6 @@
 (function(_) {
-  function GuestsSearcherController($http, notifier) {
-    this.requester = $http;
+  function GuestsSearcherController(service, notifier) {
+    this.service = service;
     this.notifier = notifier;
 
     this.options = [{ name: 'name1', id: 1 },{ name: 'name2', id: 2 }];
@@ -8,13 +8,11 @@
   }
 
   var fn = GuestsSearcherController.prototype;
-      app = angular.module('guests/searcher', ['notifier']);
+      app = angular.module('guests/searcher', ['notifier', 'guests/service']);
 
   fn.search = function(query) {
-    this.requester.get('/convidados/search.json', {
-      params: { name: query.term }
-    }).then(function(res) {
-      var results = _.map(res.data, function(object) {
+    this.service.search(query.term, function(data) {
+      var results = _.map(data, function(object) {
         return {
           text: object.name,
           id: object.id
@@ -28,5 +26,5 @@
     this.notifier.notify('select-invite', this.selected);
   };
 
-  app.controller('GuestsSearcherController', ['$http', 'notifier', GuestsSearcherController]);
+  app.controller('GuestsSearcherController', ['guestsService', 'notifier', GuestsSearcherController]);
 })(window._);
