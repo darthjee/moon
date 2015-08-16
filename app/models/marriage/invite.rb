@@ -2,7 +2,7 @@ class Marriage::Invite < ActiveRecord::Base
   belongs_to :marriage
   has_many :guests
 
-  def start_code(length=2)
+  def start_code(length = 2)
     self.code = build_code(length) until unique_code?
     save
   end
