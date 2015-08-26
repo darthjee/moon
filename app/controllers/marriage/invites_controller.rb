@@ -5,7 +5,7 @@ class Marriage::InvitesController < ApplicationController
 
   def show
     respond_to do |format|
-      format.json { render json: invite }
+      format.json { render json: invite.as_json(include: :guests) }
       format.html { render :show }
     end
   end
