@@ -14,6 +14,10 @@
     return this.requester.get('/convidados/'+id+'.json');
   };
 
+  fn.getByCode = function(code, callback) {
+    return this.requester.get('/convites/'+code+'.json');
+  };
+
   fn.update = function(id, invite) {
     return this.requester.patch('/convites/'+id+'.json', {
       invite: invite

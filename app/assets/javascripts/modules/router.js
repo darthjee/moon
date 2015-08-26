@@ -12,7 +12,7 @@
 
   fn.directRoutes = ['/', '/convidados'];
   fn.customRoutes = {
-    '/convites/:id': { controller: 'InviteController', controllerAs: 'ic' }
+    '/convites/:code': { controller: 'InviteController', controllerAs: 'ic' }
   };
 
   fn.bindRoutes = function() {
