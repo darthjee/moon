@@ -6,6 +6,15 @@ describe Marriage::InvitesController do
   let(:invite) { marriage.invites.first }
   let(:parameters) { requests_json[parameters_key] }
 
+  describe 'GET show' do
+    context 'when requesting for an existing invite' do
+      it do
+        get :show, code: invite.code, format: :json
+        expect(response).to be_success
+      end
+    end
+  end
+
   describe 'PATCH update' do
     let(:parameters_key) { 'update' }
 

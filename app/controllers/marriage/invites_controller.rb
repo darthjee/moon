@@ -4,6 +4,10 @@ class Marriage::InvitesController < ApplicationController
   protect_from_forgery except: :update
 
   def show
+    respond_to do |format|
+      format.json { render json: invite }
+      format.html { render :show }
+    end
   end
 
   def update
@@ -40,10 +44,22 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def invite
-    @invite ||= Marriage::Invite.find(invite_id)
+    @invite ||= invite_id ? invite_by_id : invite_by_code
+  end
+
+  def invite_by_id
+    Marriage::Invite.find(invite_id)
+  end
+
+  def invite_by_code
+    marriage.invites.find_by(code: invite_code)
   end
 
   def invite_id
     params[:id]
+  end
+
+  def invite_code
+    params[:code]
   end
 end
