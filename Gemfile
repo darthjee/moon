@@ -31,6 +31,7 @@ gem 'spring',        group: :development
 gem 'active_extension', path: 'gems/active_extension'
 gem 'concern_builder'
 gem 'bidu-active_ext'
+gem 'rqrcode_png'
 
 group :development, :test do
   gem 'rspec-rails'
