@@ -7,6 +7,9 @@ class Marriage::InvitesController < ApplicationController
     respond_to do |format|
       format.json { render json: invite.as_json(include: :guests) }
       format.html { render :show }
+      format.png do
+        render text: show_path_qr_code
+      end
     end
   end
 
@@ -26,6 +29,14 @@ class Marriage::InvitesController < ApplicationController
   end
 
   private
+
+  def show_path_qr_code
+    RQRCode::QRCode.new(show_path).to_img.resize(300, 300)
+  end
+
+  def show_path
+    show_marriage_invites_url(invite.code)
+  end
 
   def invite_params
     params.require(:invite).permit(guests: [:id, :name, :presence])
