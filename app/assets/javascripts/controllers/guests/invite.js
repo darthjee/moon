@@ -4,7 +4,7 @@
     this.selected = $routeParams;
     this.invite = {};
 
-    _.bindAll(this, '_parseResponse', '_parseInvite', 'setInvite');
+    _.bindAll(this, '_parseResponse', 'setInvite');
     notifier.register('select-invite', this.setInvite);
     this._fetch();
   }
@@ -41,23 +41,19 @@
   };
 
   fn._fetchById = function(id) {
-    this.service.get(id).success(this._parseInvite);
+    this.service.getByGuestId(id).success(this._parseResponse);
   };
 
   fn._fetchByCode = function(code) {
-    this.service.getByCode(code).success(this._parseInvite);
+    this.service.getByCode(code).success(this._parseResponse);
   };
 
-  fn._parseInvite = function(data) {
+  fn._parseResponse = function(data) {
     var invite = data;
 
     this.invite = invite;
 
     invite.guests = invite.guests.expandSize(invite.invites);
-  };
-
-  fn._parseResponse = function(data) {
-    this._parseInvite(data.invite);
   };
 
   app.controller('InviteController', ['$routeParams', 'invitesService', 'notifier', InviteController]);

@@ -10,7 +10,7 @@
   var fn = InvitesService.prototype,
       module = angular.module('invites/service', []);
 
-  fn.get = function(id, callback) {
+  fn.getByGuestId = function(id, callback) {
     return this.requester.get('/convites/for_guest/'+id+'.json');
   };
 
