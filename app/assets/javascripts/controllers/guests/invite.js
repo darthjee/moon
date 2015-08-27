@@ -1,65 +1,60 @@
 (function(_) {
-  function InviteController($http) {
-    this.requester = $http;
-    this.guest_info = {};
-    this.selected = {};
-    this.invite_info = {};
+  function InviteController($routeParams, service, notifier) {
+    this.service = service;
+    this.selected = $routeParams;
+    this.invite = {};
 
-    _.bindAll(this, '_parseResponse');
+    _.bindAll(this, '_parseResponse', 'setInvite');
+    notifier.register('select-invite', this.setInvite);
+    this._fetch();
   }
 
   var fn = InviteController.prototype;
+      app = angular.module('guests/invite', ['notifier', 'invites/service']);
 
-  fn.guest = function() {
-    if (this.selected.id === this.guest_info.id) {
-      return this.guest_info;
-    } else {
-      this.guest_info = this.selected;
-      this._fetch();
-      return this.selected;
-    }
-  };
+  fn.setInvite = function(selected) {
+    this.selected = selected;
 
-  fn.invite = function() {
-    if (this.selected.id === this.guest_info.id) {
-      return this.invite_info;
-    } else {
-      this.guest_info = this.selected;
-      this._fetch();
-      return this.invite_info;
-    }
+    this._fetch();
   };
 
   fn.update = function() {
-    var id = this.invite_info.id,
-        guests = this.invite_info.guests;
-    console.info(guests);
+    var id = this.invite.id,
+        guests = this.invite.guests;
 
-    this.requester.patch('/convites/'+id+'.json', {
-      invite: {
-        guests: guests
-      }
+    this.service.update(id, {
+      guests: guests
     });
   };
 
   fn._fetch = function() {
-    var controller = this,
-        id = this.selected.id;
+    var selected = this.selected;
+    if (! (selected && (selected.id || selected.code))) {
+      return;
+    }
 
-    this.requester.get('/convidados/'+id+'.json').then(this._parseResponse);
+    if (selected.id) {
+      this._fetchById(this.selected.id);
+    } else {
+      this._fetchByCode(this.selected.code);
+    }
   };
 
-  fn._parseResponse = function(res) {
-    var invite = res.data.invite,
-        guest = res.data.guest;
+  fn._fetchById = function(id) {
+    this.service.getByGuestId(id).success(this._parseResponse);
+  };
 
-    this.guest_info = guest;
-    this.invite_info = invite;
+  fn._fetchByCode = function(code) {
+    this.service.getByCode(code).success(this._parseResponse);
+  };
+
+  fn._parseResponse = function(data) {
+    var invite = data;
+
+    this.invite = invite;
 
     invite.guests = invite.guests.expandSize(invite.invites);
   };
 
-  var app = angular.module('guests/invite', []);
-
-  app.controller('InviteController', ['$http', InviteController]);
+  app.controller('InviteController', ['$routeParams', 'invitesService', 'notifier', InviteController]);
 })(window._);

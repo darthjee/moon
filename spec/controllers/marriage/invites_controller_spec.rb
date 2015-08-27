@@ -4,7 +4,42 @@ describe Marriage::InvitesController do
   let(:requests_json) { load_json_fixture_file('requests/marriage/invites.json') }
   let(:marriage) { marriage_marriages(:first) }
   let(:invite) { marriage.invites.first }
+  let(:guest) { marriage.invites.first.guests.first }
   let(:parameters) { requests_json[parameters_key] }
+
+  describe 'GET show' do
+    let(:response_json) { JSON.parse response.body }
+
+    shared_examples 'responds with the correct invite' do
+      it do
+        get :show, parameters
+        expect(response).to be_success
+      end
+
+      it 'returns the invite' do
+        get :show, parameters
+        expect(response_json['id']).to eq(invite.id)
+        expect(response_json['code']).to eq(invite.code)
+      end
+
+      it 'returns the invite guests' do
+        get :show, parameters
+        expect(response_json).to have_key('guests')
+      end
+    end
+
+    context 'when requesting for an existing invite by code' do
+      let(:parameters) { { code: invite.code, format: :json } }
+
+      it_behaves_like 'responds with the correct invite'
+    end
+
+    context 'when requesting for an existing invite by guest id ' do
+      let(:parameters) { { guest_id: guest.id, format: :json } }
+
+      it_behaves_like 'responds with the correct invite'
+    end
+  end
 
   describe 'PATCH update' do
     let(:parameters_key) { 'update' }
