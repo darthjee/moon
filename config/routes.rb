@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :marriage, path: '/' do
     get '/' => 'marriage#show', as: :home
 
-    resources :guests, path: '/convidados', only: [:index, :show] do
+    resources :guests, path: '/convidados', only: [:index] do
       get :search, on: :collection, defaults: { format: :json }
     end
 
