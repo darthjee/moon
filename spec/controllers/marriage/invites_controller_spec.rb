@@ -4,13 +4,45 @@ describe Marriage::InvitesController do
   let(:requests_json) { load_json_fixture_file('requests/marriage/invites.json') }
   let(:marriage) { marriage_marriages(:first) }
   let(:invite) { marriage.invites.first }
+  let(:guest) { marriage.invites.first.guests.first }
   let(:parameters) { requests_json[parameters_key] }
 
   describe 'GET show' do
-    context 'when requesting for an existing invite' do
+    let(:response_json) { JSON.parse response.body }
+
+    context 'when requesting for an existing invite by code' do
       it do
         get :show, code: invite.code, format: :json
         expect(response).to be_success
+      end
+
+      it 'returns the invite' do
+        get :show, code: invite.code, format: :json
+        expect(response_json['id']).to eq(invite.id)
+        expect(response_json['code']).to eq(invite.code)
+      end
+
+      it 'returns the invite guests' do
+        get :show, code: invite.code, format: :json
+        expect(response_json).to have_key('guests')
+      end
+    end
+
+    context 'when requesting for an existing invite by guest id ' do
+      it do
+        get :show, guest_id: guest.id, format: :json
+        expect(response).to be_success
+      end
+
+      it 'returns the invite' do
+        get :show, code: invite.code, format: :json
+        expect(response_json['id']).to eq(invite.id)
+        expect(response_json['code']).to eq(invite.code)
+      end
+
+      it 'returns the invite guests' do
+        get :show, code: invite.code, format: :json
+        expect(response_json).to have_key('guests')
       end
     end
   end
