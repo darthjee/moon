@@ -13,6 +13,10 @@ class Marriage::InvitesController < ApplicationController
     end
   end
 
+  def card
+    render :card, locals: { invite: invite }
+  end
+
   def update
     guests_update_params.each do |guest_params|
       guest = invite.guests.find(guest_params[:id])
