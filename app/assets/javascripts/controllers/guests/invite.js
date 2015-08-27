@@ -41,7 +41,7 @@
   };
 
   fn._fetchById = function(id) {
-    this.service.get(id).success(this._parseResponse);
+    this.service.get(id).success(this._parseInvite);
   };
 
   fn._fetchByCode = function(code) {

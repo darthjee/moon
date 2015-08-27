@@ -11,7 +11,7 @@
       module = angular.module('invites/service', []);
 
   fn.get = function(id, callback) {
-    return this.requester.get('/convidados/'+id+'.json');
+    return this.requester.get('/convites/for_guest/'+id+'.json');
   };
 
   fn.getByCode = function(code, callback) {
