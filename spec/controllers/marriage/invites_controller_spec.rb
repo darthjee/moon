@@ -10,40 +10,34 @@ describe Marriage::InvitesController do
   describe 'GET show' do
     let(:response_json) { JSON.parse response.body }
 
-    context 'when requesting for an existing invite by code' do
+    shared_examples 'responds with the correct invite' do
       it do
-        get :show, code: invite.code, format: :json
+        get :show, parameters
         expect(response).to be_success
       end
 
       it 'returns the invite' do
-        get :show, code: invite.code, format: :json
+        get :show, parameters
         expect(response_json['id']).to eq(invite.id)
         expect(response_json['code']).to eq(invite.code)
       end
 
       it 'returns the invite guests' do
-        get :show, code: invite.code, format: :json
+        get :show, parameters
         expect(response_json).to have_key('guests')
       end
     end
 
+    context 'when requesting for an existing invite by code' do
+      let(:parameters) { { code: invite.code, format: :json } }
+
+      it_behaves_like 'responds with the correct invite'
+    end
+
     context 'when requesting for an existing invite by guest id ' do
-      it do
-        get :show, guest_id: guest.id, format: :json
-        expect(response).to be_success
-      end
+      let(:parameters) { { guest_id: guest.id, format: :json } }
 
-      it 'returns the invite' do
-        get :show, code: invite.code, format: :json
-        expect(response_json['id']).to eq(invite.id)
-        expect(response_json['code']).to eq(invite.code)
-      end
-
-      it 'returns the invite guests' do
-        get :show, code: invite.code, format: :json
-        expect(response_json).to have_key('guests')
-      end
+      it_behaves_like 'responds with the correct invite'
     end
   end
 
