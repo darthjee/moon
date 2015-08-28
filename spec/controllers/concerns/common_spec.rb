@@ -48,5 +48,13 @@ describe Marriage::Common do
         expect(response).not_to be_a_redirect
       end
     end
+
+    context 'when it is an ajax redirection' do
+      let(:parameters) { { ajax: true } }
+
+      it do
+        expect(response).not_to be_a_redirect
+      end
+    end
   end
 end
