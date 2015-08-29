@@ -6,13 +6,13 @@ module Marriage::Common
     helper_method :marriage
     layout :layout_for_page
     redirection_rule :perform_angular_redirect?
-    skip_redirection_rule :is_ajax?
+    skip_redirection_rule :is_ajax?, :is_home?
   end
 
   private
 
   def layout_for_page
-    params[:ajax] ? false : 'marriage'
+    is_ajax? ? false : 'marriage'
   end
 
   def marriage
@@ -24,7 +24,7 @@ module Marriage::Common
   end
 
   def perform_angular_redirect?
-    request.format.html? && !is_home?
+    request.format.html?
   end
 
   def is_home?
