@@ -1,6 +1,6 @@
 module Marriage::Common
   extend ActiveSupport::Concern
-  include Marriage::Redirector
+  include Tarquinn
 
   included do
     helper_method :marriage
