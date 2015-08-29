@@ -10,9 +10,18 @@ class Marriage::Redirector::Engine
     handlers.any? { |h| h.perform_redirect? }
   end
 
+  def perform_redirect
+    return unless perform_redirect?
+    handlers.find { |h| h.perform_redirect? }.redirect
+  end
+
   private
 
   def handlers
+    @handlers ||= build_handlers
+  end
+
+  def build_handlers
     configs.map { |_,c| Marriage::Redirector::Handler.new(c, controller) }
   end
 end

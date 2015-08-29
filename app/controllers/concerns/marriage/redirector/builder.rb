@@ -14,7 +14,7 @@ class Marriage::Redirector::Builder
   private
 
   def config_for(redirection)
-    configs[redirection.to_sym] ||= Marriage::Redirector::Config.new
+    configs[redirection.to_sym] ||= Marriage::Redirector::Config.new(redirection)
   end
 
   def configs

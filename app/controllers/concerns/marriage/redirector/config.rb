@@ -1,4 +1,10 @@
 class Marriage::Redirector::Config
+  attr_accessor :redirect
+
+  def initialize(redirect)
+    @redirect = redirect
+  end
+
   def add_redirection_rules(*methods, &block)
     self.methods.concat methods
     blocks << block if block_given?

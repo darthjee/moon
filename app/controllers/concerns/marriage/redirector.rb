@@ -13,6 +13,6 @@ module Marriage::Redirector
   end
 
   def perform_redirection
-     redirect_to "##{request.path}" if redirector_engine.perform_redirect?
+     redirector_engine.perform_redirect
   end
 end
