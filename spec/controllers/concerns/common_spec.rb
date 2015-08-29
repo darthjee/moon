@@ -15,7 +15,7 @@ describe Marriage::Common do
 
   describe 'layout' do
     before do
-      allow(controller).to receive(:render_root)
+      allow(controller).to receive(:is_home?) { true }
       get :index, parameters
     end
 

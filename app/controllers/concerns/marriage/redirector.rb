@@ -3,16 +3,16 @@ module Marriage::Redirector
   require 'marriage/redirector/class_methods'
 
   included do
-    before_action :render_root
+    before_action :perform_redirection
   end
 
   private
 
   def redirector_engine
-    self.class.redirector_engine
+    self.class.redirector_builder.build(self)
   end
 
-  def render_root
-    redirect_to "##{request.path}" if redirector_engine.perform_redirect?(self)
+  def perform_redirection
+     redirect_to "##{request.path}" if redirector_engine.perform_redirect?
   end
 end

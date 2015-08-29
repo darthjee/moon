@@ -5,11 +5,15 @@ module Marriage::Common
   included do
     helper_method :marriage
     layout :layout_for_page
-    redirection_rule :perform_angular_redirect?
-    skip_redirection_rule :is_ajax?, :is_home?
+    redirection_rule :render_root, :perform_angular_redirect?
+    skip_redirection_rule :render_root, :is_ajax?, :is_home?
   end
 
   private
+
+  def render_root
+    "##{request.path}"
+  end
 
   def is_home?
     request.path == '/'

@@ -1,15 +1,13 @@
 module Marriage::Redirector::ClassMethods
-  def redirection_rule(*methods, &block)
-    redirector_engine.methods.concat methods
-    redirector_engine.blocks << block if block_given?
+  def redirection_rule(redirection, *methods, &block)
+    redirector_builder.add_redirection_config(redirection, *methods, block)
   end
 
-  def skip_redirection_rule(*methods, &block)
-    redirector_engine.skip_methods.concat methods
-    redirector_engine.skip_blocks << block if block_given?
+  def skip_redirection_rule(redirection, *methods, &block)
+    redirector_builder.add_skip_config(redirection, *methods, block)
   end
 
-  def redirector_engine
-    @redirector_engine ||= Marriage::Redirector::Engine.new
+  def redirector_builder
+    @redirector_builder ||= Marriage::Redirector::Builder.new
   end
 end

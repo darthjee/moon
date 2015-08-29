@@ -1,48 +1,18 @@
 class Marriage::Redirector::Engine
-  def methods
-    @methods ||= []
+  attr_reader :configs, :controller
+
+  def initialize(configs, controller)
+    @configs = configs
+    @controller = controller
   end
 
-  def skip_methods
-    @skip_methods ||= []
-  end
-
-  def blocks
-    @blocks ||= []
-  end
-
-  def skip_blocks
-    @skip_blocks ||= []
-  end
-
-  def perform_redirect?(controller)
-    return if methods_skip_redirect?(controller) || blocks_skip_redirect?
-    methods_require_redirect?(controller) || blocks_require_redirect?
+  def perform_redirect?
+    handlers.any? { |h| h.perform_redirect? }
   end
 
   private
 
-  def methods_skip_redirect?(controller)
-    skip_methods.any? do |method|
-      controller.send(method)
-    end
-  end
-
-  def blocks_skip_redirect?
-    skip_blocks.any? do |block|
-      block.yield
-    end
-  end
-
-  def methods_require_redirect?(controller)
-    methods.any? do |method|
-      controller.send(method)
-    end
-  end
-
-  def blocks_require_redirect?
-    blocks.any? do |block|
-      block.yield
-    end
+  def handlers
+    configs.map { |_,c| Marriage::Redirector::Handler.new(c, controller) }
   end
 end
