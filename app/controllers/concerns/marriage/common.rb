@@ -11,12 +11,8 @@ module Marriage::Common
 
   private
 
-  def layout_for_page
-    is_ajax? ? false : 'marriage'
-  end
-
-  def marriage
-    @marriage ||= Marriage::Marriage.first
+  def is_home?
+    request.path == '/'
   end
 
   def is_ajax?
@@ -27,7 +23,11 @@ module Marriage::Common
     request.format.html?
   end
 
-  def is_home?
-    request.path == '/'
+  def layout_for_page
+    is_ajax? ? false : 'marriage'
+  end
+
+  def marriage
+    @marriage ||= Marriage::Marriage.first
   end
 end
