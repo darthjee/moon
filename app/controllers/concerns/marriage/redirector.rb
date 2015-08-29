@@ -4,7 +4,6 @@ module Marriage::Redirector
 
   included do
     before_action :render_root
-    redirection_rule :perform_angular_redirect?
   end
 
   private
@@ -16,13 +15,5 @@ module Marriage::Redirector
   def render_root
     return if params[:ajax]
     redirect_to "##{request.path}" if redirector_engine.perform_redirect?(self)
-  end
-
-  def perform_angular_redirect?
-    request.format.html? && !is_home?
-  end
-
-  def is_home?
-    request.path == '/'
   end
 end

@@ -5,6 +5,7 @@ module Marriage::Common
   included do
     helper_method :marriage
     layout :layout_for_page
+    redirection_rule :perform_angular_redirect?
   end
 
   private
@@ -15,5 +16,13 @@ module Marriage::Common
 
   def marriage
     @marriage ||= Marriage::Marriage.first
+  end
+
+  def perform_angular_redirect?
+    request.format.html? && !is_home?
+  end
+
+  def is_home?
+    request.path == '/'
   end
 end
