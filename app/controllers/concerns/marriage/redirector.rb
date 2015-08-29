@@ -13,7 +13,6 @@ module Marriage::Redirector
   end
 
   def render_root
-    return if params[:ajax]
     redirect_to "##{request.path}" if redirector_engine.perform_redirect?(self)
   end
 end

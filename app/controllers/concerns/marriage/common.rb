@@ -6,6 +6,7 @@ module Marriage::Common
     helper_method :marriage
     layout :layout_for_page
     redirection_rule :perform_angular_redirect?
+    skip_redirection_rule :is_ajax?
   end
 
   private
@@ -16,6 +17,10 @@ module Marriage::Common
 
   def marriage
     @marriage ||= Marriage::Marriage.first
+  end
+
+  def is_ajax?
+    params[:ajax]
   end
 
   def perform_angular_redirect?
