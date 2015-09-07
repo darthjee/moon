@@ -87,4 +87,11 @@ describe Marriage::InvitesController do
       end
     end
   end
+
+  describe 'GET cards' do
+    it do
+      get :cards
+      expect(response).not_to be_a_redirect
+    end
+  end
 end
