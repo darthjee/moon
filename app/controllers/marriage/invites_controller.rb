@@ -64,7 +64,7 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def invites
-    @invites ||= marriage.invites
+    @invites ||= marriage.invites[0, 10]
   end
 
   def find_invite
