@@ -1,29 +1,34 @@
 module Marriage::Common
   extend ActiveSupport::Concern
+  include Tarquinn
 
   included do
     helper_method :marriage
     layout :layout_for_page
-    before_action :render_root
+    redirection_rule :render_root, :perform_angular_redirect?
+    skip_redirection_rule :render_root, :is_ajax?, :is_home?
   end
 
   private
 
   def render_root
-    return if params[:ajax]
-    redirect_to "##{request.path}" if perform_angular_redirect?
-  end
-
-  def perform_angular_redirect?
-    request.format.html? && !is_home?
+    "##{request.path}"
   end
 
   def is_home?
     request.path == '/'
   end
 
+  def is_ajax?
+    params[:ajax]
+  end
+
+  def perform_angular_redirect?
+    request.format.html?
+  end
+
   def layout_for_page
-    params[:ajax] ? false : 'marriage'
+    is_ajax? ? false : 'marriage'
   end
 
   def marriage

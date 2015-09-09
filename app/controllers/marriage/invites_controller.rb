@@ -2,6 +2,7 @@ class Marriage::InvitesController < ApplicationController
   include Marriage::Common
 
   protect_from_forgery except: :update
+  skip_redirection :render_root, :cards
 
   def show
     respond_to do |format|
@@ -13,8 +14,8 @@ class Marriage::InvitesController < ApplicationController
     end
   end
 
-  def card
-    render :card, locals: { invite: invite }
+  def cards
+    render :cards, locals: { invites: invites }, layout: 'blank'
   end
 
   def update
@@ -60,6 +61,10 @@ class Marriage::InvitesController < ApplicationController
 
   def invite
     @invite ||= find_invite
+  end
+
+  def invites
+    @invites ||= marriage.invites[0, 10]
   end
 
   def find_invite

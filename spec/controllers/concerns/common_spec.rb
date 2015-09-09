@@ -15,7 +15,7 @@ describe Marriage::Common do
 
   describe 'layout' do
     before do
-      allow(controller).to receive(:render_root)
+      allow(controller).to receive(:is_home?) { true }
       get :index, parameters
     end
 
@@ -43,6 +43,14 @@ describe Marriage::Common do
 
     context 'when requesting a json request' do
       let(:parameters) { { format: :json } }
+
+      it do
+        expect(response).not_to be_a_redirect
+      end
+    end
+
+    context 'when it is an ajax redirection' do
+      let(:parameters) { { ajax: true } }
 
       it do
         expect(response).not_to be_a_redirect
