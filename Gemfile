@@ -33,6 +33,7 @@ gem 'concern_builder'
 gem 'bidu-active_ext'
 gem 'rqrcode_png'
 gem 'tarquinn', '0.1.0'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'rspec-rails'
