@@ -36,7 +36,7 @@ class Marriage::InvitesController < ApplicationController
   private
 
   def show_path_qr_code
-    QRCodeBuilder.new(show_path, 'code.png').build
+    QRCodeBuilder.new(show_path, 'public/icon.png').build
   end
 
   def show_path
