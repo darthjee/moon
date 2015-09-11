@@ -22,7 +22,7 @@ class QRCodeBuilder
   end
 
   def qr_temp_name
-    @qr_temp_name ||= "tmp/qrcodes/#{SecureRandom.hex(10)}_code.png"
+    @qr_temp_name ||= "tmp/#{SecureRandom.hex(10)}_code.png"
   end
 
   def qr_code_image
