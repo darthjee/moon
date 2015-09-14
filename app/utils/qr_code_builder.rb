@@ -26,7 +26,7 @@ class QRCodeBuilder
   end
 
   def qr_code_image
-    @qr_code_image ||= RQRCode::QRCode.new(url).to_img.resize(300, 300)
+    @qr_code_image ||= RQRCode::QRCode.new(url).to_img.resize(150, 150)
   end
 
   def overlay_image
