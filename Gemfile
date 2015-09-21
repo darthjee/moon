@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
@@ -33,6 +33,7 @@ gem 'concern_builder'
 gem 'bidu-active_ext'
 gem 'rqrcode_png'
 gem 'tarquinn', '0.1.0'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'rspec-rails'

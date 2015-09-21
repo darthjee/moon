@@ -1,14 +1,13 @@
 <div class="row">
-  <div class="col-md-12" style="width: 1000px;">
+  <div class="col-md-12 card">
     <div class="thumbnail">
+      <h3><%= invite.label %></h3>
       <%= image_tag show_marriage_invites_url(invite.code, format: :png), class: 'pull-right' %>
       <div class="caption">
-        <h3><%= invite.label %></h3>
-        <p>Olá, você foi convidado para o nosso casamento, e com isso, vem o acesso ao nosso site feito especialmente para ajudar os convidados nesta ocasião.</p>
-        <p>Ao entrar no site, você poderá encontra-lo ainda em construção, ou em seu estágio finalizado, mas o importante é que ele deverá conter informações como localização da festa e confirmação de presença que poderá ser feita através de um endereço preparado especialmente para você alem de poder fazer um cadastro de e-mail para acompanhar as novidades do site.</p>
-        <p>O seu endereço único de confirmação é <strong><%= show_marriage_invites_url(invite.code) %></strong> que també é o endereço codificado no QR-Code ao lado.</p>
-        <p>Para abrir o código ao lado, basta ter um leitor de QR-Code instalado no seu celular, abrir o programa e apontar o celular para o o quadrado isso te levará à confirmação de presença.</p>
-        <p class="clear-fix">Ao confirmar a presença e colocar o seu e-mail, você poderá ficar informado(a) dass novidades do site, incluindo mapas de acesso à festa, bem como nos ajudar na organização do evento.</p>
+        <p>Elaboramos um site com informações importantes, como confirmação de presença e lista de presentes. Entre no nosso site!</p>
+        <p><strong>www.cristinaefernando.net</strong>
+        <p>Confirme sua presença entrando diretamente no endereço abaixo ou usando um leitor de QR Code:</p>
+        <p class="clear-fix"><strong><%= show_marriage_invites_url(invite.code) %></strong></p>
 
         <p>Desde já agradecemos sua presença.</p>
         <p>Cristina e Fernando</p>

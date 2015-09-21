@@ -13,6 +13,11 @@ body {
   background-repeat: no-repeat;
 }
 
+body.blank {
+  padding-top: 0px;
+  background: #fff;
+}
+
 dl.in-line {
   dt {
     float: left;
