@@ -3,7 +3,7 @@
     this.service = service;
     this.notifier = notifier;
 
-    this.options = [{ name: 'name1', id: 1 },{ name: 'name2', id: 2 }];
+    this.options = [];
     _.bindAll(this, 'search');
   }
 
