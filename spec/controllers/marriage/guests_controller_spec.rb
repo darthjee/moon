@@ -37,5 +37,19 @@ describe Marriage::GuestsController do
         expect(response_json.length).to eq(4)
       end
     end
+
+    context 'when requesting by the invite label' do
+      let(:parameters_key) { 'invite_label_search' }
+
+      it 'returns all matched guests' do
+        get :search, parameters
+        expect(response_json.length).to eq(1)
+      end
+
+      it 'returns all matched guests' do
+        get :search, parameters
+        expect(response_json.first.keys).to eq(%w(code label))
+      end
+    end
   end
 end

@@ -5,13 +5,29 @@ class Marriage::GuestsController < ApplicationController
   end
 
   def search
-    render json: guests_found
+    render json: guests_found_json + invites_found_json
   end
 
   private
 
   def guests_found
-    marriage.guests.search_name(name).pluck_as_json(:id, :name)
+    @guests_found ||= marriage.guests.search_name(name)
+  end
+
+  def guests_found_json
+    guests_found.pluck_as_json(:id, :name)
+  end
+
+  def invites_found
+    @invites_found ||= marriage.invites.search_label(name).where.not(id: guest_invites_ids)
+  end
+
+  def guest_invites_ids
+    guests_found.uniq.pluck(:invite_id)
+  end
+
+  def invites_found_json
+    invites_found.pluck_as_json(:code, :label)
   end
 
   def name
