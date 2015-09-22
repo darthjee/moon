@@ -4,6 +4,13 @@
   </div>
 
   <div class="panel-body">
+    <div class="input-group agregated-block">
+      <span class="input-group-addon">E-mail</span>
+      <input type="text" name="invite-email"
+             class="form-control"
+             ng-model="ic.invite.email" />
+    </div>
+
     <div class="guests-invited-list">
       <div class="input-group agregated-block"
            ng-repeat="guest in ic.invite.guests track by $index">
