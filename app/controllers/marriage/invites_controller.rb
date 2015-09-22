@@ -29,7 +29,7 @@ class Marriage::InvitesController < ApplicationController
       Marriage::Guest.create(attributes)
     end
 
-    invite.update(confirmed: invite.guests.confirmed.count)
+    invite.update(invite_update_params)
     render json: {}
   end
 
@@ -44,7 +44,11 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def invite_params
-    params.require(:invite).permit(guests: [:id, :name, :presence])
+    @invite_params ||= params.require(:invite).permit(:email, guests: [:id, :name, :presence])
+  end
+
+  def invite_update_params
+    invite_params.slice(:email).merge(confirmed: invite.guests.confirmed.count)
   end
 
   def guests_params

@@ -20,11 +20,9 @@
 
   fn.update = function() {
     var id = this.invite.id,
-        guests = this.invite.guests;
+        invite = this.invite;
 
-    this.service.update(id, {
-      guests: guests
-    });
+    this.service.update(id, invite);
   };
 
   fn._fetch = function() {

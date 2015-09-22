@@ -2,6 +2,7 @@
   "update": {
     "format": "json",
     "invite": {
+      "email": "new_user@server.com",
       "guests": [
         {
           "id": 1,
@@ -35,6 +36,7 @@
   "update_add": {
     "format": "json",
     "invite": {
+      "email": "user@server.com",
       "guests": [
         {
           "id": 1,
