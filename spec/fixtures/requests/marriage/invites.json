@@ -69,5 +69,16 @@
       ]
     },
     "id": "1"
+  },
+  "update_wrong_email": {
+    "format": "json",
+    "invite": {
+      "email": "user+server.com",
+      "guests": [{
+        "name": "Guest Name",
+        "presence": true
+      }]
+    },
+    "id": "1"
   }
 }

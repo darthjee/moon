@@ -28,10 +28,18 @@ class Marriage::InvitesController < ApplicationController
     end
 
     invite.update(invite_update_params)
-    render json: {}
+    render json: update_response_json
   end
 
   private
+
+  def update_response_json
+    if invite.valid?
+      invite.as_json
+    else
+      invite.as_json.merge(errors: invite.errors)
+    end
+  end
 
   def show_json_invite
     invite.update(last_view_date: Time.zone.now)
