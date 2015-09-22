@@ -6,11 +6,9 @@ class Marriage::InvitesController < ApplicationController
 
   def show
     respond_to do |format|
-      format.json { render json: invite.as_json(include: :guests) }
+      format.json { show_json_invite }
       format.html { render :show }
-      format.png do
-        render text: show_path_qr_code
-      end
+      format.png { show_png_invite }
     end
   end
 
@@ -34,6 +32,14 @@ class Marriage::InvitesController < ApplicationController
   end
 
   private
+
+  def show_json_invite
+    render json: invite.as_json(include: :guests)
+  end
+
+  def show_png_invite
+    render text: show_path_qr_code
+  end
 
   def show_path_qr_code
     QRCodeBuilder.new(show_path, 'public/icon.png').build
