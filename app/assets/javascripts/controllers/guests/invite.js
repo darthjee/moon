@@ -33,10 +33,10 @@
       return;
     }
 
-    if (selected.id) {
-      this._fetchById(this.selected.id);
-    } else {
+    if (selected.code) {
       this._fetchByCode(this.selected.code);
+    } else {
+      this._fetchById(this.selected.id);
     }
   };
 
