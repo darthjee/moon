@@ -2,18 +2,24 @@
   width: 100%;
 }
 
-.guests-invited-list {
-  margin-top:10px;
-  padding-bottom: 10px;
+.panel-body {
+  p {
+    margin: 10px 0 0;
+  }
 
-  .input-group.agregated-block {
-    & > .form-control, & > .input-group-addon {
-      border-top-width: 0px;
-    }
+  .guests-invited-list {
+    padding-bottom: 10px;
 
-    & > .form-control.guest-name-0,
-    & > .input-group-addon.presence-box-0 {
-      border-top-width: 1px;
+    .input-group.agregated-block {
+
+      & > .form-control, & > .input-group-addon {
+        border-top-width: 0px;
+      }
+
+      & > .form-control.guest-name-0,
+      & > .input-group-addon.presence-box-0 {
+        border-top-width: 1px;
+      }
     }
   }
 }
