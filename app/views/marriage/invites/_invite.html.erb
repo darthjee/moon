@@ -23,7 +23,7 @@
         </span>
         <input type="text" name="guest-{{$index}}-name"
                class="form-control guest-name-{{$index}}"
-               ng-model="guest.name" />
+               ng-model="guest.name" ng-change="ic.update_guest({{$index}})" />
       </div>
     </div>
 

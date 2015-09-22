@@ -46,6 +46,17 @@
     this.service.getByCode(code).success(this._parseResponse);
   };
 
+  fn.update_guest = function(index) {
+    var guest = this.invite.guests[index],
+        presence = guest.presence;
+
+    if (guest.name != '') {
+      guest.presence = presence !== false;
+    } else {
+      guest.presence = (presence == undefined) && undefined;
+    }
+  };
+
   fn._parseResponse = function(data) {
     var invite = data;
 
