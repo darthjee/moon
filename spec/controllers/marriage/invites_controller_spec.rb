@@ -62,6 +62,12 @@ describe Marriage::InvitesController do
           patch :update, parameters
         end.to change { invite.guests.pluck(:name) }
       end
+
+      it 'changes the name of the guests' do
+        expect do
+          patch :update, parameters
+        end.to change{ Marriage::Invite.find(invite.id).email }.to('new_user@server.com')
+      end
     end
 
     context 'when adding guests' do

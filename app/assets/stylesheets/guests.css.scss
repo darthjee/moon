@@ -1,18 +1,25 @@
-.guests-invited-list {
-  padding-bottom: 10px;
-}
-
 .select-search {
   width: 100%;
 }
 
-.input-group.agregated-block {
-  & > .form-control, & > .input-group-addon {
-    border-top-width: 0px;
+.panel-body {
+  p {
+    margin: 10px 0 0;
   }
 
-  & > .form-control.guest-name-0,
-  & > .input-group-addon.presence-box-0 {
-    border-top-width: 1px;
+  .guests-invited-list {
+    padding-bottom: 10px;
+
+    .input-group.agregated-block {
+
+      & > .form-control, & > .input-group-addon {
+        border-top-width: 0px;
+      }
+
+      & > .form-control.guest-name-0,
+      & > .input-group-addon.presence-box-0 {
+        border-top-width: 1px;
+      }
+    }
   }
 }

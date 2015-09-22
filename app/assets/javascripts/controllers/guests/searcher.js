@@ -3,8 +3,8 @@
     this.service = service;
     this.notifier = notifier;
 
-    this.options = [{ name: 'name1', id: 1 },{ name: 'name2', id: 2 }];
-    _.bindAll(this, 'search');
+    this.options = [];
+    _.bindAll(this, 'search', '_parseGuest');
   }
 
   var fn = GuestsSearcherController.prototype;
@@ -20,12 +20,22 @@
   };
 
   fn._parseGuests = function(data) {
-    return _.map(data, function(object) {
+    return _.map(data, this._parseGuest);
+  };
+
+  fn._parseGuest = function(data) {
+    if (data.code) {
       return {
-        text: object.name,
-        id: object.id
+        text: data.label,
+        id: data.code,
+        code: data.code
       };
-    });
+    } else {
+      return {
+        text: data.name,
+        id: data.id
+      };
+    }
   };
 
   fn.change = function() {

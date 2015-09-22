@@ -4,6 +4,17 @@
   </div>
 
   <div class="panel-body">
+    <div class="email-field-block">
+      <p>Cadastre seu e-mail para ficar informado(a) de todas as atualizações do site e da festa</p>
+      <div class="input-group agregated-block">
+        <span class="input-group-addon">E-mail</span>
+        <input type="text" name="invite-email"
+               class="form-control"
+               ng-model="ic.invite.email" />
+      </div>
+    </div>
+
+    <p>Cadastre os nomes dos convidados e confirme as presenças</p>
     <div class="guests-invited-list">
       <div class="input-group agregated-block"
            ng-repeat="guest in ic.invite.guests track by $index">
@@ -12,7 +23,7 @@
         </span>
         <input type="text" name="guest-{{$index}}-name"
                class="form-control guest-name-{{$index}}"
-               ng-model="guest.name" />
+               ng-model="guest.name" ng-change="ic.update_guest({{$index}})" />
       </div>
     </div>
 

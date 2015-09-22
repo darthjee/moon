@@ -20,11 +20,9 @@
 
   fn.update = function() {
     var id = this.invite.id,
-        guests = this.invite.guests;
+        invite = this.invite;
 
-    this.service.update(id, {
-      guests: guests
-    });
+    this.service.update(id, invite);
   };
 
   fn._fetch = function() {
@@ -33,10 +31,10 @@
       return;
     }
 
-    if (selected.id) {
-      this._fetchById(this.selected.id);
-    } else {
+    if (selected.code) {
       this._fetchByCode(this.selected.code);
+    } else {
+      this._fetchById(this.selected.id);
     }
   };
 
@@ -46,6 +44,17 @@
 
   fn._fetchByCode = function(code) {
     this.service.getByCode(code).success(this._parseResponse);
+  };
+
+  fn.update_guest = function(index) {
+    var guest = this.invite.guests[index],
+        presence = guest.presence;
+
+    if (guest.name != '') {
+      guest.presence = presence !== false;
+    } else {
+      guest.presence = (presence == undefined) && undefined;
+    }
   };
 
   fn._parseResponse = function(data) {

@@ -2,6 +2,8 @@ class Marriage::Invite < ActiveRecord::Base
   belongs_to :marriage
   has_many :guests
 
+  scope :search_label, proc { |label| where('label ILIKE ?', "%#{label}%") }
+
   def start_code(length = 2)
     self.code = build_code(length) until unique_code?
     save
