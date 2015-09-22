@@ -26,6 +26,12 @@ describe Marriage::InvitesController do
         get :show, parameters
         expect(response_json).to have_key('guests')
       end
+
+      it do
+        expect do
+          get :show, parameters
+        end.to change { Marriage::Invite.find(invite.id).last_view_date }
+      end
     end
 
     context 'when requesting for an existing invite by code' do
