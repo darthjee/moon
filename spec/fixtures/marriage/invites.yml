@@ -22,3 +22,12 @@ empty:
   expected: 0
   confirmed: 0
   code: aaac
+with_email:
+  id: 4
+  marriage_id: 2
+  label: Yet another
+  invites: 0
+  expected: 0
+  confirmed: 0
+  code: aaab
+  email: 'email@server.com'
