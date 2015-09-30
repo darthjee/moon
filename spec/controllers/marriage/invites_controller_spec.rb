@@ -98,6 +98,11 @@ describe Marriage::InvitesController do
         expect(response_json).to have_key('errors')
         expect(response_json['errors']).to have_key('email')
       end
+
+      it do
+        patch :update, parameters
+        expect(response).not_to be_success
+      end
     end
 
     context 'when adding guests' do

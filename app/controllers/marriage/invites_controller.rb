@@ -3,6 +3,7 @@ class Marriage::InvitesController < ApplicationController
 
   protect_from_forgery except: :update
   skip_redirection :render_root, :cards
+  before_action :check_valid_update, only: :update
 
   def show
     respond_to do |format|
@@ -27,11 +28,18 @@ class Marriage::InvitesController < ApplicationController
       Marriage::Guest.create(attributes)
     end
 
-    invite.update(invite_update_params)
+    invite.update(confirmed: invite.guests.confirmed.count)
     render json: update_response_json
   end
 
   private
+
+  def check_valid_update
+    invite.assign_attributes(invite_update_params)
+    unless invite.valid?
+      render json: update_response_json, status: :error
+    end
+  end
 
   def update_response_json
     if invite.valid?
@@ -63,7 +71,7 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def invite_update_params
-    invite_params.slice(:email).merge(confirmed: invite.guests.confirmed.count)
+    invite_params.slice(:email)
   end
 
   def guests_params
