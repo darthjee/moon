@@ -75,7 +75,13 @@
     "invite": {
       "email": "user+server.com",
       "guests": [{
-        "name": "Guest Name",
+        "id": 1,
+        "marriage_id": 1,
+        "invite_id": 1,
+        "name": "Mr. Test new name",
+        "presence": true
+      }, {
+        "name": "New Guest",
         "presence": true
       }]
     },

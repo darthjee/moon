@@ -92,6 +92,24 @@ describe Marriage::InvitesController do
         end.not_to change{ Marriage::Invite.find(invite.id).email }
       end
 
+      it 'does not change the confirmed count for the invite' do
+        expect do
+          patch :update, parameters
+        end.not_to change { Marriage::Invite.find(invite.id).confirmed }
+      end
+
+      it 'does not change any guest' do
+        expect do
+          patch :update, parameters
+        end.not_to change { Marriage::Guest.find(guest.id).name }
+      end
+
+      it 'does not create new guests' do
+        expect do
+          patch :update, parameters
+        end.not_to change { Marriage::Guest.where(invite_id: invite.id).count }
+      end
+
       it 'returns error' do
         patch :update, parameters
 
