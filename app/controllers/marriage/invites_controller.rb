@@ -29,7 +29,7 @@ class Marriage::InvitesController < ApplicationController
     end
 
     invite.update(confirmed: invite.guests.confirmed.count)
-    render json: update_response_json
+    render json: invite.as_json
   end
 
   private
@@ -37,15 +37,7 @@ class Marriage::InvitesController < ApplicationController
   def check_valid_update
     invite.assign_attributes(invite_update_params)
     unless invite.valid?
-      render json: update_response_json, status: :error
-    end
-  end
-
-  def update_response_json
-    if invite.valid?
-      invite.as_json
-    else
-      invite.as_json.merge(errors: invite.errors)
+      render json: invite.as_json.merge(errors: invite.errors), status: :error
     end
   end
 
