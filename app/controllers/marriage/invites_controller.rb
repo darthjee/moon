@@ -18,21 +18,27 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def update
-    guests_update_params.each do |guest_params|
-      guest = invite.guests.find(guest_params[:id])
-      guest.update(guest_params)
-    end
-
-    new_guests_params.each do |guest_params|
-      attributes = guest_params.merge(invite: invite)
-      Marriage::Guest.create(attributes)
-    end
-
+    update_invite_guests
+    create_invite_guests
     invite.update(confirmed: invite.guests.confirmed.count)
     render json: invite.as_json
   end
 
   private
+
+  def update_invite_guests
+    guests_update_params.each do |guest_params|
+      guest = invite.guests.find(guest_params[:id])
+      guest.update(guest_params)
+    end
+  end
+
+  def create_invite_guests
+    new_guests_params.each do |guest_params|
+      attributes = guest_params.merge(invite: invite)
+      Marriage::Guest.create(attributes)
+    end
+  end
 
   def check_valid_update
     invite.assign_attributes(invite_update_params)
