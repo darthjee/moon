@@ -37,7 +37,7 @@ class Marriage::InvitesController < ApplicationController
   def check_valid_update
     invite.assign_attributes(invite_update_params)
     unless invite.valid?
-      render json: invite.as_json.merge(errors: invite.errors), status: :error
+      render json: { errors: invite.errors }, status: :error
     end
   end
 
