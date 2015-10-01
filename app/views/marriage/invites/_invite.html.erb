@@ -12,6 +12,9 @@
                class="form-control"
                ng-model="ic.invite.email" />
       </div>
+      <div class="input-group agregated-block" ng-show="ic.errors.email">
+        <span class="input-group-addon">{{ ic.errors.email }}</span>
+      </div>
     </div>
 
     <p>Cadastre os nomes dos convidados e confirme as presenças</p>
