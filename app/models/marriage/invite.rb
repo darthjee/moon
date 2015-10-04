@@ -31,10 +31,10 @@ class Marriage::Invite < ActiveRecord::Base
   end
 
   def other_like?(key, value)
-    other_invites.exists?(key => value) if value
+    !other_invites.exists?(key => value) if value
   end
 
   def other_invites
-    !marriage.invites.where('id != ?', id)
+    marriage.invites.where('id != ?', id)
   end
 end

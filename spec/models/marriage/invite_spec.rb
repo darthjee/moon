@@ -22,4 +22,6 @@ describe Marriage::Invite do
       end
     end
   end
+
+  it_behaves_like 'an object that has a secure random code start up', :code, :authentication_token
 end
