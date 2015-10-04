@@ -20,23 +20,16 @@ class Marriage::Invite < ActiveRecord::Base
   private
 
   def start_random_attribute(attribute, length)
-    public_send("#{attribute}=", build_code(length)) until unique_attribute?(attribute, public_send(attribute))
+    public_send("#{attribute}=", build_code(length)) until unique_attribute?(attribute)
   end
 
   def build_code(length)
     SecureRandom.hex(length)
   end
 
-  def unique_code?
-    unique_attribute?(:code, code)
-  end
-
-  def unique_token?
-    unique_attribute?(:authentication_token, authentication_token)
-  end
-
-  def unique_attribute?(key, value)
-    !other_invites.exists?(key => value) if value
+  def unique_attribute?(attribute)
+    value = public_send(attribute)
+    !other_invites.exists?(attribute => value) if value
   end
 
   def other_invites
