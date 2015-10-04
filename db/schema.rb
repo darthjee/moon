@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922214952) do
+ActiveRecord::Schema.define(version: 20151004194752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20150922214952) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "presence"
+    t.boolean  "best_man"
+    t.boolean  "maid_honor"
   end
 
   create_table "marriage_invites", force: true do |t|
@@ -42,9 +44,11 @@ ActiveRecord::Schema.define(version: 20150922214952) do
     t.integer  "confirmed"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "code",           limit: 4
+    t.string   "code",                 limit: 4
     t.string   "email"
     t.time     "last_view_date"
+    t.boolean  "invite_honor"
+    t.string   "authentication_token", limit: 16
   end
 
   add_index "marriage_invites", ["marriage_id", "code"], name: "index_marriage_invites_on_marriage_id_and_code", using: :btree
