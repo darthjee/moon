@@ -36,6 +36,7 @@ gem 'tarquinn', '0.1.0'
 gem 'mini_magick'
 
 group :development, :test do
+  gem 'factory_girl', '~> 4.0'
   gem 'rspec-rails'
   gem 'pry-rails'
   gem 'pry-nav'
