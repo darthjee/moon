@@ -69,5 +69,22 @@
       ]
     },
     "id": "1"
+  },
+  "update_wrong_email": {
+    "format": "json",
+    "invite": {
+      "email": "user+server.com",
+      "guests": [{
+        "id": 1,
+        "marriage_id": 1,
+        "invite_id": 1,
+        "name": "Mr. Test new name",
+        "presence": true
+      }, {
+        "name": "New Guest",
+        "presence": true
+      }]
+    },
+    "id": "1"
   }
 }

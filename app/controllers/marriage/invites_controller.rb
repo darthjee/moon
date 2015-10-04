@@ -3,14 +3,13 @@ class Marriage::InvitesController < ApplicationController
 
   protect_from_forgery except: :update
   skip_redirection :render_root, :cards
+  before_action :check_valid_update, only: :update
 
   def show
     respond_to do |format|
-      format.json { render json: invite.as_json(include: :guests) }
+      format.json { show_json_invite }
       format.html { render :show }
-      format.png do
-        render text: show_path_qr_code
-      end
+      format.png { show_png_invite }
     end
   end
 
@@ -19,21 +18,43 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def update
+    update_invite_guests
+    create_invite_guests
+    invite.update(confirmed: invite.guests.confirmed.count)
+    render json: invite.as_json
+  end
+
+  private
+
+  def update_invite_guests
     guests_update_params.each do |guest_params|
       guest = invite.guests.find(guest_params[:id])
       guest.update(guest_params)
     end
+  end
 
+  def create_invite_guests
     new_guests_params.each do |guest_params|
       attributes = guest_params.merge(invite: invite)
       Marriage::Guest.create(attributes)
     end
-
-    invite.update(invite_update_params)
-    render json: {}
   end
 
-  private
+  def check_valid_update
+    invite.assign_attributes(invite_update_params)
+    unless invite.valid?
+      render json: { errors: invite.errors.messages }, status: :error
+    end
+  end
+
+  def show_json_invite
+    invite.update(last_view_date: Time.zone.now)
+    render json: invite.as_json(include: :guests)
+  end
+
+  def show_png_invite
+    render text: show_path_qr_code
+  end
 
   def show_path_qr_code
     QRCodeBuilder.new(show_path, 'public/icon.png').build
@@ -48,7 +69,7 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def invite_update_params
-    invite_params.slice(:email).merge(confirmed: invite.guests.confirmed.count)
+    invite_params.slice(:email)
   end
 
   def guests_params
