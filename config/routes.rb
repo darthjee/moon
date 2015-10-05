@@ -7,6 +7,12 @@ Rails.application.routes.draw do
       get :search, on: :collection, defaults: { format: :json }
     end
 
+    resources :best_man, path: '/padrinhos', only: [:index] do
+      scope defaults: { format: :html } do
+        get ':code' => :show, on: :collection, as: :show
+      end
+    end
+
     resources :invites, path: '/convites', only: [:update], defaults: { format: :json } do
       scope defaults: { format: :html } do
         get 'cards' => :cards, on: :collection, as: :cards
