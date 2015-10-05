@@ -1,6 +1,8 @@
 class Marriage::LoginController < ApplicationController
   include Marriage::Common
 
+  protect_from_forgery except: :create
+
   def create
     sign_in if invite
 
@@ -14,7 +16,7 @@ class Marriage::LoginController < ApplicationController
   end
 
   def invite
-    marriage.invites.find_by(email: :email)
+    marriage.invites.find_by(email: email)
   end
 
   def email

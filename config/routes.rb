@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :login, path: '/login', only: [:create], defaults: { format: :json }
+
     resources :invites, path: '/convites', only: [:update], defaults: { format: :json } do
       scope defaults: { format: :html } do
         get 'cards' => :cards, on: :collection, as: :cards
