@@ -3,6 +3,9 @@ class Marriage::LoginController < ApplicationController
 
   protect_from_forgery except: :create
 
+  def index
+  end
+
   def create
     sign_in if invite
 

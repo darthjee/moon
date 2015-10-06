@@ -10,7 +10,7 @@
 
   var fn = Router.prototype;
 
-  fn.directRoutes = ['/', '/convidados', '/convites/:code/card', '/padrinhos'];
+  fn.directRoutes = ['/', '/convidados', '/convites/:code/card', '/padrinhos', '/login'];
   fn.customRoutes = {
     '/convites/:code': { controller: 'InviteController', controllerAs: 'ic' }
   };

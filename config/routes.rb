@@ -13,7 +13,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :login, path: '/login', only: [:create], defaults: { format: :json }
+    resources :login, path: '/login', only: [:create], defaults: { format: :json } do
+      scope defaults: { format: :html } do
+        get '/' => :index, on: :collection, as: :index
+      end
+    end
 
     resources :invites, path: '/convites', only: [:update], defaults: { format: :json } do
       scope defaults: { format: :html } do
