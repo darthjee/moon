@@ -1,19 +1,27 @@
 (function(_) {
-  function LoginController(service) {
+  function LoginController($location, service) {
+    this.redirect_to = $location.$$path;
     this.service = service;
+    this.location = $location;
+
+    _.bindAll(this, 'redirect');
   }
 
   var fn = LoginController.prototype;
       app = angular.module('guests/login', ['guests/login_service']);
 
+  fn.redirect = function() {
+    console.info('redirect', this.redirect_to);
+    this.location.$$path = this.redirect_to;
+    this.location.reload();
+  };
+
   fn.performLogin = function() {
     console.info(this.login);
     var promisse = this.service.login(this.login);
 
-    promisse.success(function(){
-      console.info(arguments);
-    });
+    promisse.success(this.redirect);
   };
 
-  app.controller('LoginController', ['loginService', LoginController]);
+  app.controller('LoginController', ['$location', 'loginService', LoginController]);
 })(window._);

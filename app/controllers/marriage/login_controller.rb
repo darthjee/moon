@@ -2,6 +2,7 @@ class Marriage::LoginController < ApplicationController
   include Marriage::Login
 
   protect_from_forgery except: :create
+  helper_method :redirection_path
 
   def index
   end
@@ -13,6 +14,10 @@ class Marriage::LoginController < ApplicationController
   end
 
   private
+
+  def redirection_path
+    params[:redirect_to]
+  end
 
   def sign_in
     cookies.signed[:credentials] = invite.authentication_token
