@@ -1,5 +1,5 @@
 class Marriage::LoginController < ApplicationController
-  include Marriage::Common
+  include Marriage::Login
 
   protect_from_forgery except: :create
 
