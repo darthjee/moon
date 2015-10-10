@@ -1,8 +1,6 @@
 class Marriage::BestManController < ApplicationController
   include Marriage::Login
 
-  before_action :login_required
-
   def index
   end
 

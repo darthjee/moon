@@ -12,8 +12,6 @@
 
   fn.redirect = function() {
     console.info('redirect', this.redirect_to);
-    this.location.$$path = this.redirect_to;
-    this.location.reload();
   };
 
   fn.performLogin = function() {
