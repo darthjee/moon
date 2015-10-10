@@ -14,5 +14,9 @@
     return this.requester.post('/login', login);
   };
 
+  fn.isLogged = function() {
+    return this.requester.get('/login/check');
+  };
+
   module.service('loginService', ['$http', LoginServiceFactory]);
 })(window._);

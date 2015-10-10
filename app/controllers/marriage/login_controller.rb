@@ -7,6 +7,14 @@ class Marriage::LoginController < ApplicationController
   def index
   end
 
+  def check
+    if is_logged?
+      render json: {}
+    else
+      render json: {}, status: :not_found
+    end
+  end
+
   def create
     sign_in if invite
 

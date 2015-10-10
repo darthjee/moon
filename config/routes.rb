@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     end
 
     resources :login, path: '/login', only: [:create], defaults: { format: :json } do
+      get '/check' => :check, on: :collection, as: :check
+
       scope defaults: { format: :html } do
         get '/' => :index, on: :collection, as: :index
       end

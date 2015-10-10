@@ -1,7 +1,8 @@
 (function(_) {
-  function BestManController($routeParams, $location, notifier) {
+  function BestManController($routeParams, $location, notifier, loginService) {
     this.selected = $routeParams;
     this.location = $location;
+    this.loginService = loginService;
     this.requireLogin();
   }
 
@@ -9,8 +10,12 @@
       app = angular.module('guests/best_man', []);
 
   fn.requireLogin = function() {
-    this.location.url('/login?redirect_to=/padrinhos');
+    var that = this;
+
+    that.loginService.isLogged().error(function () {
+      that.location.url('/login?redirect_to=/padrinhos');
+    });
   };
 
-  app.controller('BestManController', ['$routeParams', '$location', 'notifier', BestManController]);
+  app.controller('BestManController', ['$routeParams', '$location', 'notifier', 'loginService', BestManController]);
 })(window._);
