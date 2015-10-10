@@ -9,7 +9,8 @@
       app = angular.module('guests/best_man', []);
 
   fn.requireLogin = function() {
-    this.location.path('/login');
+    console.info(this.location.path());
+    this.location.url('/login?redirect_to=/padrinhos');
   };
 
   app.controller('BestManController', ['$routeParams', '$location', 'notifier', BestManController]);
