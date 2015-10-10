@@ -9,7 +9,6 @@
       app = angular.module('guests/best_man', []);
 
   fn.requireLogin = function() {
-    console.info(this.location.path());
     this.location.url('/login?redirect_to=/padrinhos');
   };
 

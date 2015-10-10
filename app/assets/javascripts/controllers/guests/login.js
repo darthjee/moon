@@ -1,6 +1,6 @@
 (function(_) {
-  function LoginController($location, service) {
-    this.redirect_to = $location.$$path;
+  function LoginController($routeParams, $location, service) {
+    this.redirect_to = $routeParams.redirect_to || '/';
     this.service = service;
     this.location = $location;
 
@@ -11,7 +11,7 @@
       app = angular.module('guests/login', ['guests/login_service']);
 
   fn.redirect = function() {
-    console.info('redirect', this.redirect_to);
+    this.location.url(this.redirect_to);
   };
 
   fn.performLogin = function() {
@@ -21,5 +21,5 @@
     promisse.success(this.redirect);
   };
 
-  app.controller('LoginController', ['$location', 'loginService', LoginController]);
+  app.controller('LoginController', ['$routeParams', '$location', 'loginService', LoginController]);
 })(window._);
