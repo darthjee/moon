@@ -2,6 +2,10 @@ class Marriage::BestManController < ApplicationController
   include Marriage::Login
 
   def index
+    respond_to do |format|
+      format.json { render json: invite_from_credential }
+      format.html { render :index }
+    end
   end
 
   def show
