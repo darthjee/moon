@@ -7,6 +7,7 @@
     this.loginService = loginService;
     this.service = bestManService;
     this.requireLogin();
+    _.bindAll(this, '_parseData');
   }
 
   var fn = BestManController.prototype;
@@ -25,11 +26,17 @@
   };
 
   fn.loadData = function() {
-    this.service.getFromSession().success(
-      function(data) {
-        this.invite = data;
-      }
-    );
+    this.service.getFromSession().success(this._parseData);
+  };
+
+  fn._parseData = function(data) {
+    this.invite = data;
+    this.maids = _.select(data.guests, function(guest) {
+      return guest.maid_honor;
+    });
+    this.men = _.select(data.guests, function(guest) {
+      return guest.best_man;
+    });
   };
 
   app.controller('BestManController', [
