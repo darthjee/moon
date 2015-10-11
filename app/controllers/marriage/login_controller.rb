@@ -32,11 +32,15 @@ class Marriage::LoginController < ApplicationController
   end
 
   def invite
-    marriage.invites.find_by(email: email)
+    marriage.invites.login(email, password)
   end
 
   def email
     login_params[:email]
+  end
+
+  def password
+    login_params[:password]
   end
 
   def login_params

@@ -7,8 +7,12 @@ class Marriage::Invite < ActiveRecord::Base
 
   scope :search_label, proc { |label| where('label ILIKE ?', "%#{label}%") }
 
+  def self.login(email, password)
+    find_by(email: email, password: encrypt(password))
+  end
+
   def password=(pass)
-    super(encrypt(pass))
+    super(self.class.encrypt(pass))
   end
 
   def start_code(length = 2)
@@ -45,7 +49,7 @@ class Marriage::Invite < ActiveRecord::Base
     start_random_attribute(:authentication_token, 8)
   end
 
-  def encrypt(pass)
+  def self.encrypt(pass)
     return unless pass.present?
     Digest::SHA256.hexdigest pass
   end
