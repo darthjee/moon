@@ -37,6 +37,7 @@
     this.men = _.select(data.guests, function(guest) {
       return guest.best_man;
     });
+    this.hasPeople = [].concat(this.men, this.maids).length > 0;
   };
 
   app.controller('BestManController', [
