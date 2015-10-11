@@ -22,4 +22,19 @@ describe Marriage::Invite do
       end
     end
   end
+
+  it_behaves_like 'an object that has a secure random code start up', :code, :authentication_token
+
+  describe 'create' do
+    let(:marriage) { create(:marriage) }
+    let(:invite) { build(:invite, code: nil, authentication_token: nil, marriage_id: marriage.id) }
+
+    it do
+      expect { invite.save }.to change(invite, :code)
+    end
+
+    it do
+      expect { invite.save }.to change(invite, :authentication_token)
+    end
+  end
 end
