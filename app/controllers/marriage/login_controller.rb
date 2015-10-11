@@ -16,9 +16,13 @@ class Marriage::LoginController < ApplicationController
   end
 
   def create
-    sign_in if invite
+    if invite_from_login
+      sign_in
 
-    render json: {}
+      render json: {}
+    else
+      render json: {}, status: :not_found
+    end
   end
 
   private
@@ -28,11 +32,11 @@ class Marriage::LoginController < ApplicationController
   end
 
   def sign_in
-    cookies.signed[:credentials] = invite.authentication_token
+    cookies.signed[:credentials] = invite_from_login.authentication_token
   end
 
-  def invite
-    marriage.invites.login(email, password)
+  def invite_from_login
+    @invite_from_login = marriage.invites.login(email, password)
   end
 
   def email
@@ -44,6 +48,6 @@ class Marriage::LoginController < ApplicationController
   end
 
   def login_params
-    params[:login]
+    params.require(:login)
   end
 end

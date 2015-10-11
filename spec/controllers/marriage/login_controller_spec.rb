@@ -44,4 +44,45 @@ describe Marriage::LoginController do
       end
     end
   end
+
+  describe 'POST create' do
+    let(:email) { user.email }
+    let(:password) { 'pass_code' }
+    let(:parameters) do
+      {
+        login: { email: email, password: password },
+        format: :json
+      }
+    end
+
+    before do
+      user.password = 'pass_code'
+      user.save
+      post :create, parameters
+    end
+
+    context 'when requesting with correct email and password' do
+      it do
+        expect(response).to be_a_success
+      end
+
+      it 'sets the user as logged' do
+        get :check, format: :json
+        expect(response).to be_a_success
+      end
+    end
+
+    context 'when requesting with incorrect email and password' do
+      let(:password) { 'wrong pass_code' }
+
+      it do
+        expect(response).to be_a_not_found
+      end
+
+      it 'do not set the user as logged' do
+        get :check, format: :json
+        expect(response).to be_a_not_found
+      end
+    end
+  end
 end
