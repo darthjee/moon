@@ -6,6 +6,7 @@ first:
   expected: 0
   confirmed: 0
   code: aaaa
+  authentication_token: token
 second_second:
   id: 2
   marriage_id: 2
