@@ -2,5 +2,8 @@
   <div class="panel-heading"><h4>{{ maid.name }}</h4></div>
   <div class="panel-body">
     <p>Selecione a cor do seu vestido</p>
+    <div style="background-color: {{maid.color}}"
+      colorpicker ng-model="maid.color" class="dress-picker">
+    </div>
   </div>
 </div>
