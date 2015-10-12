@@ -14,5 +14,11 @@
     return this.requester.get('/padrinhos.json');
   };
 
+  fn.update = function(id, guest) {
+    return this.requester.patch('/padrinhos/' + id + '.json', {
+      guest: guest
+    });
+  };
+
   module.service('bestManService', ['$http', BestManServiceFactory]);
 })(window._);

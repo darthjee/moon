@@ -25,6 +25,12 @@
     });
   };
 
+  fn.saveMaid = function(index) {
+    var maid = this.maids[index];
+
+    this.service.update(maid.id, maid);
+  };
+
   fn.loadData = function() {
     this.service.getFromSession().success(this._parseData);
   };
