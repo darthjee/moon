@@ -14,6 +14,10 @@
     return this.requester.get('/padrinhos.json');
   };
 
+  fn.getMaids = function() {
+    return this.requester.get('/madrinhas.json');
+  };
+
   fn.update = function(id, guest) {
     return this.requester.patch('/padrinhos/' + id + '.json', {
       guest: guest

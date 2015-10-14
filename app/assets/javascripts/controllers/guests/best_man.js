@@ -7,7 +7,7 @@
     this.loginService = loginService;
     this.service = bestManService;
     this.requireLogin();
-    _.bindAll(this, '_parseData');
+    _.bindAll(this, '_parseInvite', '_parseMaids');
   }
 
   var fn = BestManController.prototype;
@@ -32,10 +32,11 @@
   };
 
   fn.loadData = function() {
-    this.service.getFromSession().success(this._parseData);
+    this.service.getFromSession().success(this._parseInvite);
+    this.service.getMaids().success(this._parseMaids);
   };
 
-  fn._parseData = function(data) {
+  fn._parseInvite = function(data) {
     this.invite = data;
     this.maids = _.select(data.guests, function(guest) {
       return guest.maid_honor;
@@ -44,7 +45,17 @@
       return guest.best_man;
     });
     this.hasPeople = [].concat(this.men, this.maids).length > 0;
+    this.matchMaids();
   };
+
+  fn._parseMaids = function(data) {
+    this.allMaids = data;
+    this.matchMaids();
+  };
+
+  fn.matchMaids = function() {
+    this.maids
+  }
 
   app.controller('BestManController', [
     '$routeParams', '$location', 'notifier', 'loginService', 'bestManService',

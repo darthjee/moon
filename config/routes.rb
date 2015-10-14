@@ -13,6 +13,10 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :best_man, path: '/madrinhas', only: [], defaults: { format: :json } do
+      get '/' => :show_maids, on: :collection, as: :show_maids
+    end
+
     resources :login, path: '/login', only: [:create], defaults: { format: :json } do
       get '/check' => :check, on: :collection, as: :check
 

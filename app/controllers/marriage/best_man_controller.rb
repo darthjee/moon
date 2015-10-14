@@ -21,7 +21,15 @@ class Marriage::BestManController < ApplicationController
     render json: guest
   end
 
+  def show_maids
+    render json: maids
+  end
+
   private
+
+  def maids
+    marriage.guests.where(maid_honor: true)
+  end
 
   def guest
     invite_from_credential.guests.find(id)
