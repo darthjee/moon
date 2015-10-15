@@ -6,6 +6,8 @@ module Marriage::Login
 
   def is_logged?
     invite_from_credential.present?
+  rescue ActiveRecord::RecordNotFound
+    false
   end
 
   def credential
@@ -13,11 +15,10 @@ module Marriage::Login
   end
 
   def invite_from_credential
-    return unless credential.present?
     @invite_from_credential ||= find_invite_from_credential
   end
 
   def find_invite_from_credential
-    marriage.invites.find_by(authentication_token: credential)
+    marriage.invites.where.not(authentication_token: nil).find_by!(authentication_token: credential)
   end
 end
