@@ -39,10 +39,10 @@
   fn._parseInvite = function(data) {
     this.invite = data;
     this.maids = _.select(data.guests, function(guest) {
-      return guest.maid_honor;
+      return guest.role == 'maid_honor';
     });
     this.men = _.select(data.guests, function(guest) {
-      return guest.best_man;
+      return guest.role = 'best_man';
     });
     this.hasPeople = [].concat(this.men, this.maids).length > 0;
     this._matchMaids();

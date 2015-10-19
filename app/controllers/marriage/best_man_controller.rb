@@ -28,7 +28,7 @@ class Marriage::BestManController < ApplicationController
   private
 
   def maids
-    marriage.guests.where(maid_honor: true)
+    marriage.guests.where(role: 'maid_honor')
   end
 
   def guest
