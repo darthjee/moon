@@ -7,7 +7,7 @@
     this.loginService = loginService;
     this.service = bestManService;
     this.requireLogin();
-    _.bindAll(this, '_parseInvite', '_parseMaids');
+    _.bindAll(this, '_parseInvite', '_parseMaids', '_matchMaid');
   }
 
   var fn = BestManController.prototype;
@@ -45,17 +45,23 @@
       return guest.best_man;
     });
     this.hasPeople = [].concat(this.men, this.maids).length > 0;
-    this.matchMaids();
+    this._matchMaids();
   };
 
   fn._parseMaids = function(data) {
     this.allMaids = data;
-    this.matchMaids();
+    this._matchMaids();
   };
 
-  fn.matchMaids = function() {
-    this.maids
-  }
+  fn._matchMaids = function() {
+    _.each(this.maids, this._matchMaid);
+  };
+
+  fn._matchMaid = function(maid) {
+    this.allMaids = _.map(this.allMaids, function(current) {
+      return (current.id == maid.id) ? maid : current;
+    });
+  };
 
   app.controller('BestManController', [
     '$routeParams', '$location', 'notifier', 'loginService', 'bestManService',
