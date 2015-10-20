@@ -6,6 +6,7 @@
     "underscore": "latest",
     "angular-ui-select2": "latest",
     "bootstrap-sass": "latest",
-    "angular-route": "latest"
+    "angular-route": "latest",
+    "angular-bootstrap-colorpicker": "latest"
   }
 }
