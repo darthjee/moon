@@ -31,6 +31,24 @@ describe Marriage::Login do
         expect(logged_id).to eq(user.id)
       end
     end
+
+    context 'when a user is already signed in' do
+      let(:old_user) { marriage_invites(:empty) }
+
+      before do
+        cookies.signed[:credentials] = old_user.authentication_token
+        controller.sign_in(user)
+        get :index, parameters
+      end
+
+      it 'logs the user' do
+        expect(is_logged).to be_truthy
+      end
+
+      it 'changes logged in user' do
+        expect(logged_id).to eq(user.id)
+      end
+    end
   end
 
   describe '#login_from_parameters' do
