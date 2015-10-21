@@ -2,12 +2,23 @@ module Marriage::Login
   extend ActiveSupport::Concern
   include Marriage::Common
 
+  included do
+    before_action :login_from_parameters
+  end
+
   private
 
+  def login_from_parameters
+  end
+
   def is_logged?
-    invite_from_credential.present?
+    logged_user.present?
+  end
+
+  def logged_user
+    invite_from_credential
   rescue ActiveRecord::RecordNotFound
-    false
+    nil
   end
 
   def credential
