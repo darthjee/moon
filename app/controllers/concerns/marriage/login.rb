@@ -10,6 +10,10 @@ module Marriage::Login
     cookies.signed[:credentials] = user.authentication_token
   end
 
+  def sign_off
+    cookies.delete(:credentials)
+  end
+
   private
 
   def login_from_parameters

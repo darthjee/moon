@@ -51,6 +51,40 @@ describe Marriage::Login do
     end
   end
 
+  describe '#sign_off' do
+    context 'when no one is signed in' do
+      before do
+        cookies.delete(:credentials)
+        controller.sign_off
+        get :index, parameters
+      end
+
+      it 'keeps user logged off' do
+        expect(is_logged).to be_falsey
+      end
+
+      it 'keeps the user as nil' do
+        expect(logged_id).to be_nil
+      end
+    end
+
+    context 'when a user is already signed in' do
+      before do
+        cookies.signed[:credentials] = user.authentication_token
+        controller.sign_off
+        get :index, parameters
+      end
+
+      it 'logs off the user' do
+        expect(is_logged).to be_falsey
+      end
+
+      it 'changes logged in user to nil' do
+        expect(logged_id).to be_nil
+      end
+    end
+  end
+
   describe '#login_from_parameters' do
     let(:token) { user.authentication_token }
 
