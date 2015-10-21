@@ -61,7 +61,7 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def show_path
-    show_marriage_invites_url(invite.code)
+    show_marriage_invites_url(invite.code, token: invite.authentication_token)
   end
 
   def invite_params
