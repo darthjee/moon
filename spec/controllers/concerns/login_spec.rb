@@ -13,10 +13,27 @@ describe Marriage::Login do
   let(:response_json) { JSON.parse response.body }
   let(:is_logged) { response_json['is_logged'] }
   let(:logged_id) { response_json['user_id'] }
+  let(:user) { marriage_invites(:first) }
 
+  describe '#sign_in' do
+    context 'when no one is signed in' do
+      before do
+        cookies.delete(:credentials)
+        controller.sign_in(user)
+        get :index, parameters
+      end
 
-  describe 'login_from_parameters' do
-    let(:user) { marriage_invites(:first) }
+      it 'logs the user' do
+        expect(is_logged).to be_truthy
+      end
+
+      it 'changes logged in user' do
+        expect(logged_id).to eq(user.id)
+      end
+    end
+  end
+
+  describe '#login_from_parameters' do
     let(:token) { user.authentication_token }
 
     context 'user is not logged' do
