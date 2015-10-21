@@ -29,6 +29,10 @@ describe Marriage::Login do
         it 'logs the user' do
           expect(is_logged).to be_truthy
         end
+
+        it 'changes logged in user' do
+          expect(logged_id).to eq(user.id)
+        end
       end
 
       context 'the request does not contain a token' do
@@ -36,6 +40,10 @@ describe Marriage::Login do
 
         it 'does not log the user' do
           expect(is_logged).to be_falsey
+        end
+
+        it 'does not change logged in user' do
+          expect(logged_id).to be_nil
         end
       end
     end
