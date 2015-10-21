@@ -1,4 +1,4 @@
-<div ng-controller="GuestsSearcherController as gsc">
+<div ng-controller="GuestsSearcherController as gsc" class="invite-search">
   <input ui-select2="{query: gsc.search, minimumInputLength: 3}"
          ng-model="gsc.selected"
          ng-change="gsc.change()"

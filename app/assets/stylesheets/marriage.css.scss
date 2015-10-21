@@ -32,7 +32,7 @@ dl.in-line {
 
 .main-links {
   button.btn {
-    width: 400px;
+    width: 100%;
     height: 80px;
     padding: 1px;
     padding-left: 30px;
@@ -60,4 +60,8 @@ dl.in-line {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+}
+
+.header-date {
+  display: inline-table;
 }
