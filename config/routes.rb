@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get :search, on: :collection, defaults: { format: :json }
     end
 
-    resources :best_man, path: '/padrinho', only: [:index, :update] do
+    resources :best_man, path: '/padrinhos/informativo', only: [:index, :update] do
       scope defaults: { format: :html } do
         get ':code' => :show, on: :collection, as: :show
       end

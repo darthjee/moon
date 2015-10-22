@@ -18,7 +18,7 @@
         promisse = that.loginService.isLogged();
 
     promisse.error(function () {
-      that.location.url('/login?redirect_to=/padrinho');
+      that.location.url('/login?redirect_to=/padrinhos/informativo');
     });
     promisse.success(function() {
       that.loadData();
