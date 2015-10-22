@@ -13,7 +13,7 @@
   fn.directRoutes = ['/', '/convidados', '/convites/:code/card', '/login'];
   fn.customRoutes = {
     '/convites/:code': { controller: 'InviteController', controllerAs: 'ic' },
-    '/padrinhos': { controller: 'BestManController', controllerAs: 'bmc' },
+    '/padrinho': { controller: 'BestManController', controllerAs: 'bmc' },
     '/login': { controller: 'LoginController', controllerAs: 'lc' },
     '/login?redirect_to=:redirect_to': { controller: 'LoginController', controllerAs: 'lc'}
   };

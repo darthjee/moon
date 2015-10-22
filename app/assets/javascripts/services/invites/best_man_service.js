@@ -11,7 +11,7 @@
       module = angular.module('guests/best_man_service', []);
 
   fn.getFromSession = function() {
-    return this.requester.get('/padrinhos.json');
+    return this.requester.get('/padrinho.json');
   };
 
   fn.getMaids = function() {
@@ -19,7 +19,7 @@
   };
 
   fn.update = function(id, guest) {
-    return this.requester.patch('/padrinhos/' + id + '.json', {
+    return this.requester.patch('/padrinho/' + id + '.json', {
       guest: guest
     });
   };

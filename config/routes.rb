@@ -7,14 +7,14 @@ Rails.application.routes.draw do
       get :search, on: :collection, defaults: { format: :json }
     end
 
-    resources :best_man, path: '/padrinhos', only: [:index, :update] do
+    resources :best_man, path: '/padrinho', only: [:index, :update] do
       scope defaults: { format: :html } do
         get ':code' => :show, on: :collection, as: :show
       end
     end
 
     resources :best_man, path: '/madrinhas', only: [], defaults: { format: :json } do
-      get '/' => :show_maids, on: :collection, as: :show_maids
+      get '/' => :show_maids, on: :collection, as: :show_maids, defaults: { role: :maid_honor }
     end
 
     resources :login, path: '/login', only: [:create], defaults: { format: :json } do
