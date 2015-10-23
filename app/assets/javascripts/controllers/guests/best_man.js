@@ -39,18 +39,30 @@
     this.invite = data;
     this.maidData = this._buildRoleData('maid_honor');
     this.menData = this._buildRoleData('best_man');
-    //this.hasPeople = [].concat(this.men, this.maids).length > 0;
-    this.hasPeople = true;
+    this.hasPeople = this._checkHasPeople();
+  };
+
+  fn._checkHasPeople = function() {
+    list = [ this.maidData.hasPeople, this.menData.hasPeople ];
+    return _.any(list, function(i) {
+      return i;
+    });
   };
 
   fn._buildRoleData = function(role) {
+    people = this._filterGuests(role);
     roleData = {
-      people: _.select(this.invite.guests, function(guest) {
-        return guest.role == role;
-      })
+      people: people,
+      hasPeople: !people.empty()
     };
     this.service.listFromRole(role).success(this._parseAllFromRole(roleData));
     return roleData;
+  };
+
+  fn._filterGuests = function(role) {
+    return _.select(this.invite.guests, function(guest) {
+      return guest.role == role;
+    });
   };
 
   fn._parseAllFromRole = function(roleData) {
