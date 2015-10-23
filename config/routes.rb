@@ -13,8 +13,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :best_man, path: '/madrinhas', only: [], defaults: { format: :json } do
-      get '/' => :show_maids, on: :collection, as: :show_maids, defaults: { role: :maid_honor }
+    scope path: '/', defaults: { format: :json }, controller: :best_man do
+      get '/madrinhas' => :show_maids, as: :show_maids, defaults: { role: :maid_honor }
+      get '/padrinhos' => :show_maids, as: :show_best_men, defaults: { role: :best_man }
+      get '/maes' => :show_maids, as: :show_mothers, defaults: { role: :mother }
     end
 
     resources :login, path: '/login', only: [:create], defaults: { format: :json } do
