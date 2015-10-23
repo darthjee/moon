@@ -49,7 +49,7 @@
         return guest.role == role;
       })
     };
-    this.service.getMaids().success(function(data) {
+    this.service.listFromRole(role).success(function(data) {
       roleData.all = _.map(data, function(current) {
         return _.find(roleData, function(maid) {
           return current.id == maid.id;
