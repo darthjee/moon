@@ -38,7 +38,7 @@
   fn._parseInvite = function(data) {
     this.invite = data;
     this.maidData = this._buildRoleData('maid_honor');
-    //this.menData = this._buildRoleData('best_man');
+    this.menData = this._buildRoleData('best_man');
     //this.hasPeople = [].concat(this.men, this.maids).length > 0;
     this.hasPeople = true;
   };
