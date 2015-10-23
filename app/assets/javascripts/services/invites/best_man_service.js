@@ -25,7 +25,7 @@
   };
 
   fn.update = function(id, guest) {
-    return this.requester.patch('/padrinho/' + id + '.json', {
+    return this.requester.patch('/padrinhos/' + id + '.json', {
       guest: guest
     });
   };

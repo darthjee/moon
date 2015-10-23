@@ -25,10 +25,12 @@
     });
   };
 
-  fn.saveMaid = function(index) {
-    var maid = this.maids[index];
+  fn.saveGuest = function(guest_id) {
+    var guest = _.find(this.invite.guests, function(guest) {
+      return guest.id = guest_id;
+    });
 
-    this.service.update(maid.id, maid);
+    this.service.update(guest_id, guest);
   };
 
   fn.loadData = function() {
