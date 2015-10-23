@@ -4,11 +4,9 @@
       <div class="row" ng-show="bmc.maidData.hasPeople" ng-repeat="maid in bmc.maidData.people track by $index">
         <%= render 'maid_honor' %>
       </div>
-      <div class="row" ng-show="bmc.menData.hasPeople" ng-repeat="best_man in bmc.menData.people track by $index">
+      <div class="row" ng-show="bmc.menData.hasPeople">
+        <%= render 'best_man' %>
         man
-      </div>
-      <div class="row" ng-hide="bmc.hasPeople">
-        b
       </div>
     </div>
   </div>
