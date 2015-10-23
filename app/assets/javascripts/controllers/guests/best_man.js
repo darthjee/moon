@@ -7,7 +7,7 @@
     this.loginService = loginService;
     this.service = bestManService;
     this.requireLogin();
-    _.bindAll(this, '_parseInvite', '_parseMaids', '_matchMaid');
+    _.bindAll(this, '_parseInvite');
   }
 
   var fn = BestManController.prototype;
@@ -33,34 +33,30 @@
 
   fn.loadData = function() {
     this.service.getFromSession().success(this._parseInvite);
-    this.service.getMaids().success(this._parseMaids);
   };
 
   fn._parseInvite = function(data) {
     this.invite = data;
-    this.maids = _.select(data.guests, function(guest) {
-      return guest.role == 'maid_honor';
-    });
-    this.men = _.select(data.guests, function(guest) {
-      return guest.role = 'best_man';
-    });
-    this.hasPeople = [].concat(this.men, this.maids).length > 0;
-    this._matchMaids();
+    this.maidData = this._buildRoleData('maid_honor');
+    //this.menData = this._buildRoleData('best_man');
+    //this.hasPeople = [].concat(this.men, this.maids).length > 0;
+    this.hasPeople = true;
   };
 
-  fn._parseMaids = function(data) {
-    this.allMaids = data;
-    this._matchMaids();
-  };
-
-  fn._matchMaids = function() {
-    _.each(this.maids, this._matchMaid);
-  };
-
-  fn._matchMaid = function(maid) {
-    this.allMaids = _.map(this.allMaids, function(current) {
-      return (current.id == maid.id) ? maid : current;
+  fn._buildRoleData = function(role) {
+    roleData = {
+      people: _.select(this.invite.guests, function(guest) {
+        return guest.role == role;
+      })
+    };
+    this.service.getMaids().success(function(data) {
+      roleData.all = _.map(data, function(current) {
+        return _.find(roleData, function(maid) {
+          return current.id == maid.id;
+        }) || current;
+      });
     });
+    return roleData;
   };
 
   app.controller('BestManController', [

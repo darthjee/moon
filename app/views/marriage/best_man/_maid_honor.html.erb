@@ -3,7 +3,7 @@
   <div class="panel-body">
 
     <div>
-      <span ng-repeat="m in bmc.allMaids" class="dress-picker">
+      <span ng-repeat="m in bmc.maidData.all" class="dress-picker">
         <%= image_tag 'dress.png', style: "background-color: {{m.color}}" %>
       </span>
     </div>
