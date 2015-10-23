@@ -37,6 +37,7 @@
 
   fn._parseInvite = function(data) {
     this.invite = data;
+    this.motherData = this._buildRoleData('mother');
     this.maidData = this._buildRoleData('maid_honor');
     this.menData = this._buildRoleData('best_man');
     this.hasPeople = this._checkHasPeople();
