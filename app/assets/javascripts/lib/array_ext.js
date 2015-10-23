@@ -10,4 +10,8 @@
 
     return this;
   };
+
+  fn.empty = function() {
+    this.length == 0;
+  };
 })([].constructor.prototype);
