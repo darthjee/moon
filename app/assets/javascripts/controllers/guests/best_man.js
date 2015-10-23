@@ -7,7 +7,7 @@
     this.loginService = loginService;
     this.service = bestManService;
     this.requireLogin();
-    _.bindAll(this, '_parseInvite', '_findPerson');
+    _.bindAll(this, '_parseInvite', '_parseAllFromRole', '_findPerson');
   }
 
   var fn = BestManController.prototype;
@@ -49,13 +49,17 @@
         return guest.role == role;
       })
     };
+    this.service.listFromRole(role).success(this._parseAllFromRole(roleData));
+    return roleData;
+  };
+
+  fn._parseAllFromRole = function(roleData) {
     var that = this;
-    this.service.listFromRole(role).success(function(data) {
+    return function(data) {
       roleData.all = _.map(data, function(current) {
         return that._findPerson(roleData, current);
       });
-    });
-    return roleData;
+    };
   };
 
   fn._findPerson = function(roleData, target) {
