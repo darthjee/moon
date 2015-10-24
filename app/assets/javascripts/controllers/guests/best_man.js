@@ -27,7 +27,7 @@
 
   fn.saveGuest = function(guest_id) {
     var guest = _.find(this.invite.guests, function(guest) {
-      return guest.id = guest_id;
+      return guest.id == guest_id;
     });
 
     this.service.update(guest_id, guest);
