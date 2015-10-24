@@ -1,14 +1,15 @@
-<div class="container-fluid">
+<div class="container-fluid loading {{bmc.invite.id ? 'loaded' : ''}}">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <div class="row" ng-show="bmc.hasPeople" ng-repeat="maid in bmc.maids track by $index">
+      <div class="row" ng-show="bmc.motherData.hasPeople" ng-repeat="mother in bmc.motherData.people track by $index">
+        <%= render 'mother' %>
+      </div>
+      <div class="row" ng-show="bmc.maidData.hasPeople" ng-repeat="maid in bmc.maidData.people track by $index">
         <%= render 'maid_honor' %>
       </div>
-      <div class="row" ng-show="bmc.hasPeople" ng-repeat="best_man in bmc.men track by $index">
+      <div class="row" ng-show="bmc.menData.hasPeople">
+        <%= render 'best_man' %>
         man
-      </div>
-      <div class="row" ng-hide="bmc.hasPeople">
-        b
       </div>
     </div>
   </div>

@@ -28,7 +28,11 @@ class Marriage::BestManController < ApplicationController
   private
 
   def maids
-    marriage.guests.where(role: 'maid_honor')
+    marriage.guests.where(role: role)
+  end
+
+  def role
+    params.require(:role)
   end
 
   def guest
