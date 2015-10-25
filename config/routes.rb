@@ -30,7 +30,8 @@ Rails.application.routes.draw do
 
     resources :invites, path: '/convites', only: [:update], defaults: { format: :json } do
       scope defaults: { format: :html } do
-        get 'cards' => :cards, on: :collection, as: :cards
+        get 'cards' => :cards, on: :collection, as: :cards, defaults: { page: 1 }
+        get 'cards/:page' => :cards, on: :collection, as: :paged_cards
         get ':code' => :show, on: :collection, as: :show
         get 'for_guest/:guest_id' => :show, on: :collection
       end
