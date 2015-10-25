@@ -97,7 +97,7 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def pagination
-    @pagination ||= (params[:pagination] || 10)
+    @pagination ||= (params[:pagination] || 10).to_i
   end
 
   def find_invite
