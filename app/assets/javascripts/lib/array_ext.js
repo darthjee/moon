@@ -12,6 +12,6 @@
   };
 
   fn.empty = function() {
-    this.length == 0;
+    return this.length == 0;
   };
 })([].constructor.prototype);
