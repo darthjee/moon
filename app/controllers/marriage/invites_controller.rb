@@ -97,7 +97,7 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def per_page
-    10
+    @per_page ||= (params[:per_page] || 10).to_i
   end
 
   def find_invite
