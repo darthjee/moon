@@ -81,6 +81,12 @@ describe Marriage::InvitesController do
 
         expect(response_json).not_to have_key('errors')
       end
+
+      it 'returns the guests along with invite' do
+        patch :update, parameters
+
+        expect(response_json).to have_key('guests')
+      end
     end
 
     context 'when sending an invalid e-mail' do
