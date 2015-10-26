@@ -89,15 +89,15 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def invites
-    @invites ||= marriage.invites.limit(pagination).offset(offset)
+    @invites ||= marriage.invites.limit(per_page).offset(offset)
   end
 
   def offset
-    (params[:page].to_i - 1) * pagination
+    (params[:page].to_i - 1) * per_page
   end
 
-  def pagination
-    @pagination ||= (params[:pagination] || 10).to_i
+  def per_page
+    @per_page ||= (params[:per_page] || 10).to_i
   end
 
   def find_invite
