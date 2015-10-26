@@ -27,6 +27,7 @@
 
     promisse = this.service.update(id, invite);
     promisse.error(this._showErrors);
+    promisse.success(this._parseResponse);
   };
 
   fn._showErrors = function(data) {
