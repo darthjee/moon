@@ -1,0 +1,4 @@
+checkout:
+  post:
+    - rake bower:install
+
