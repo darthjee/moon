@@ -6,3 +6,9 @@ checkout:
   post:
     - bower install
 
+dependencies:
+  pre:
+    - gem install bundler
+    - bundle install
+  cache_directories:
+    - "tmp/cache"
