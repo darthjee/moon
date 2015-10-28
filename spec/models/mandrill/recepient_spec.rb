@@ -18,10 +18,7 @@ describe Mandrill::Recepient do
     end
 
     context 'when regexp do not allow e-mail' do
-      before do
-        Mandrill.config = Mandrill::Config.new(allowed_emails: /^wrong$/)
-      end
-      after { Mandrill.config = nil }
+      include_context 'email is not allowed'
 
       it do
         expect(subject.allowed?).to be_falsey

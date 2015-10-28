@@ -38,10 +38,7 @@ describe Mandrill::Request do
     end
 
     context 'when email is not allowed' do
-      before do
-        Mandrill.config = Mandrill::Config.new(allowed_emails: /^wrong$/)
-      end
-      after { Mandrill.config = nil }
+      include_context 'email is not allowed'
 
       it 'returns mandrill formatted message' do
         expect(subject.recepients).to eq([])
@@ -57,10 +54,7 @@ describe Mandrill::Request do
     end
 
     context 'when email is not allowed' do
-      before do
-        Mandrill.config = Mandrill::Config.new(allowed_emails: /^wrong$/)
-      end
-      after { Mandrill.config = nil }
+      include_context 'email is not allowed'
 
       it 'returns mandrill formatted message' do
         expect(subject.has_recepients?).to be_falsey
