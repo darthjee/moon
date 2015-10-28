@@ -1,0 +1,30 @@
+{
+  "input": {
+    "recepient": "user@server.com",
+    "data": {
+      "key1": "value1"
+    }
+  },
+  "output": {
+    "headers": {
+      "Reply-To": null
+    },
+    "return_path_domain": null,
+    "to": [
+      {
+        "email": "user@server.com"
+      }
+    ],
+    "merge_vars": [
+      {
+        "rcpt": "user@server.com",
+        "vars": [
+          {
+            "name": "key1",
+            "content": "value1"
+          }
+        ]
+      }
+    ]
+  }
+}

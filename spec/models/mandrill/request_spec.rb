@@ -1,32 +1,18 @@
 require 'spec_helper'
 
 describe Mandrill::Request do
+  let(:fixture) { load_json_fixture_file('jsons/mandrill/request.json') }
   let(:subject) { described_class.new(messages, settings) }
   let(:settings) { {} }
   let(:email) { 'user@server.com' }
   let(:messages) { [message] }
-  let(:message) do
-    {
-      recepient: email,
-      data: { key1: 'value1' }
-    }
-  end
+  let(:message) { fixture['input'] }
 
   describe '#as_json' do
-    let(:expected) do
-      {
-        headers: { :'Reply-To' => nil},
-        return_path_domain: nil,
-        to: [{email: 'user@server.com'}],
-        merge_vars:[{
-          rcpt: 'user@server.com',
-          vars: [{ name: 'key1', content: 'value1'}]
-        }]
-      }
-    end
+    let(:expected) { fixture['output'] }
 
     it 'returns mandrill formatted message' do
-      expect(subject.as_json.deep_symbolize_keys).to eq(expected)
+      expect(subject.as_json.deep_stringify_keys).to eq(expected)
     end
   end
 
