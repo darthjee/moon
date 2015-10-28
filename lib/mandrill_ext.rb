@@ -3,12 +3,12 @@ require 'mandrill/config'
 
 module Mandrill
   class << self
-    mattr_accessor :config
+    attr_accessor :config
 
     delegate :key, :allowed_emails, :reply_to, :return_path_domain, to: :config
 
     def email_allowed?(email)
-      allowed_emails_regexp.match(email)
+      allowed_emails.match(email)
     end
 
     def config

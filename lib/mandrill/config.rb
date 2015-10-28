@@ -11,7 +11,7 @@ class Mandrill::Config < DelegateClass(RecursiveOpenStruct)
   end
 
   def initialize(config = {})
-    @config = RecursiveOpenStruct.new config.merge(self.class.default_config)
+    @config = RecursiveOpenStruct.new self.class.default_config.merge(config)
     super(@config)
   end
 end

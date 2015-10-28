@@ -9,4 +9,22 @@ describe Mandrill::Recepient do
       expect(subject.as_json.symbolize_keys).to eq(email: email)
     end
   end
+
+  describe '#allowed?' do
+    context 'when regexp allows e-mail' do
+      it do
+        expect(subject.allowed?).to be_truthy
+      end
+    end
+
+    context 'when regexp do not allow e-mail' do
+      before do
+        Mandrill.config = Mandrill::Config.new(allowed_emails: /^wrong$/)
+      end
+
+      it do
+        expect(subject.allowed?).to be_falsey
+      end
+    end
+  end
 end
