@@ -58,6 +58,7 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
+    excon (0.45.4)
     execjs (2.5.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -72,6 +73,9 @@ GEM
     json (1.8.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     method_source (0.8.2)
     mime-types (2.6.1)
     mini_magick (4.3.3)
@@ -112,6 +116,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    recursive-open-struct (0.6.5)
     rqrcode (0.7.0)
       chunky_png
     rqrcode_png (0.1.5)
@@ -191,12 +196,14 @@ DEPENDENCIES
   factory_girl (~> 4.0)
   jbuilder (~> 2.0)
   jquery-rails
+  mandrill-api
   mini_magick
   pg
   pry-nav
   pry-rails
   rails (= 4.1.7)
   rails_12factor
+  recursive-open-struct
   rqrcode_png
   rspec-collection_matchers
   rspec-rails

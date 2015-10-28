@@ -34,6 +34,8 @@ gem 'bidu-active_ext'
 gem 'rqrcode_png'
 gem 'tarquinn', '0.1.0'
 gem 'mini_magick'
+gem 'recursive-open-struct'
+gem 'mandrill-api'
 
 group :development, :test do
   gem 'factory_girl', '~> 4.0'
