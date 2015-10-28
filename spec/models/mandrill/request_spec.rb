@@ -29,4 +29,23 @@ describe Mandrill::Request do
       expect(subject.as_json.deep_symbolize_keys).to eq(expected)
     end
   end
+
+  describe '#recepients' do
+    context 'when email is allowed' do
+      it 'returns mandrill formatted message' do
+        expect(subject.recepients.map(&:symbolize_keys)).to eq([{ email: email }])
+      end
+    end
+
+    context 'when email is not allowed' do
+      before do
+        Mandrill.config = Mandrill::Config.new(allowed_emails: /^wrong$/)
+      end
+      after { Mandrill.config = nil }
+
+      it 'returns mandrill formatted message' do
+        expect(subject.recepients).to eq([])
+      end
+    end
+  end
 end
