@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019220647) do
+ActiveRecord::Schema.define(version: 20151028210254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mandrill_email_settings", force: true do |t|
+    t.string "mandrill_email_settings"
+    t.string "key"
+    t.string "template_name"
+  end
 
   create_table "marriage_events", force: true do |t|
     t.time     "time"

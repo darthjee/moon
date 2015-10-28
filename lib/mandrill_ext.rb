@@ -7,6 +7,10 @@ module Mandrill
 
     delegate :key, :allowed_emails, :reply_to, :return_path_domain, to: :config
 
+    def table_name_prefix
+      'mandrill_'
+    end
+
     def email_allowed?(email)
       allowed_emails.match(email)
     end
