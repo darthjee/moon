@@ -21,6 +21,7 @@ describe Mandrill::Recepient do
       before do
         Mandrill.config = Mandrill::Config.new(allowed_emails: /^wrong$/)
       end
+      after { Mandrill.config = nil }
 
       it do
         expect(subject.allowed?).to be_falsey
