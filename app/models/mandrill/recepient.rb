@@ -1,5 +1,3 @@
-require 'mandrill_ext'
-
 class Mandrill::Recepient
   attr_reader :email
 

@@ -1,6 +1,3 @@
-require 'mandrill_ext'
-require 'mandrill/config'
-
 class Mandrill::Request
   class Error < StandardError; end
   class NoRecepients < Error; end
