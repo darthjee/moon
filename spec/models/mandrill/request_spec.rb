@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Mandrill::Request do
   let(:fixture) { load_json_fixture_file('jsons/mandrill/request.json') }
-  let(:subject) { described_class.new(messages, settings) }
+  let(:subject) { described_class.new(messages, template_name, settings) }
   let(:settings) { {} }
+  let(:template_name) { 'template' }
   let(:email) { 'user@server.com' }
   let(:messages) { [message] }
   let(:message) { fixture['input'] }

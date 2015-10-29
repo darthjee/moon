@@ -2,10 +2,11 @@ class Mandrill::Request
   class Error < StandardError; end
   class NoRecepients < Error; end
 
-  attr_reader :messages, :settings
+  attr_reader :messages, :template_name, :settings
 
-  def initialize(messages, settings = {})
-    @messages = messages.map { |m| Mandrill::Message.new(m) }
+  def initialize(messages, template_name, settings = {})
+    @messages = [ messages ].flatten.map { |m| Mandrill::Message.new(m) }
+    @template_name = template_name
     @settings = settings
     filter_recepients
   end
