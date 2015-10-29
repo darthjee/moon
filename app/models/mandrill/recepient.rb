@@ -1,8 +1,7 @@
-class Mandrill::Recepient
-  attr_reader :email
-
-  def initialize(email)
-    @email = email
+class Mandrill::Recepient < DelegateClass(RecursiveOpenStruct)
+  def initialize(recepient)
+    @recepient = RecursiveOpenStruct.new(recepient)
+    super(@recepient)
   end
 
   def allowed?

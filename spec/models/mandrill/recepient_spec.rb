@@ -2,11 +2,13 @@ require 'spec_helper'
 
 describe Mandrill::Recepient do
   let(:email) { 'user@server.com' }
-  let(:subject) { described_class.new(email) }
+  let(:name) { 'User Name' }
+  let(:subject) { described_class.new(email: email, name: name) }
 
   describe '#as_json' do
+    let(:expected) { { name: name, email: email } }
     it 'returns the formatted json' do
-      expect(subject.as_json.symbolize_keys).to eq(email: email)
+      expect(subject.as_json.symbolize_keys).to eq(expected)
     end
   end
 
