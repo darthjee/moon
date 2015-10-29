@@ -1,6 +1,7 @@
 class Mandrill::Request
   class Error < StandardError; end
   class NoRecepients < Error; end
+  class NoConfig < Error; end
 
   attr_reader :messages, :template_key, :settings
   delegate :template_name, to: :email_setting
@@ -30,7 +31,9 @@ class Mandrill::Request
   private
 
   def email_setting
-    @email_setting ||= Mandrill::EmailSetting.find_by(key: template_key)
+    @email_setting ||= Mandrill::EmailSetting.find_by!(key: template_key)
+  rescue ActiveRecord::RecordNotFound => e
+    raise NoConfig, e
   end
 
   def settings

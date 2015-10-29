@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Mandrill::Request do
   let(:fixture) { load_json_fixture_file('jsons/mandrill/request.json') }
-  let(:subject) { described_class.new(messages, template_name, settings) }
+  let(:subject) { described_class.new(messages, template_key, settings) }
   let(:settings) { {} }
-  let(:template_name) { 'template' }
+  let(:template_key) { 'template' }
   let(:email) { 'user@server.com' }
   let(:messages) { [message] }
   let(:message) { fixture['input'] }
@@ -45,6 +45,23 @@ describe Mandrill::Request do
 
       it 'returns mandrill formatted message' do
         expect(subject.has_recepients?).to be_falsey
+      end
+    end
+  end
+
+  describe '#template name' do
+    context 'when emails settings do exist' do
+      it 'returns emails settings template name' do
+        expect(subject.template_name).to eq('mandrill_template')
+      end
+    end
+
+    context 'when emails settings do not exist' do
+      let(:template_key) { 'wrong_template' }
+      it do
+        expect do
+          subject.template_name
+        end.to raise_error(Mandrill::Request::NoConfig)
       end
     end
   end
