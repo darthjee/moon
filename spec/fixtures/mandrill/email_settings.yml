@@ -1,0 +1,3 @@
+default_template:
+  key: 'template'
+  template_name: 'mandrill_template'

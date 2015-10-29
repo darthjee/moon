@@ -2,11 +2,12 @@ class Mandrill::Request
   class Error < StandardError; end
   class NoRecepients < Error; end
 
-  attr_reader :messages, :template_name, :settings
+  attr_reader :messages, :template_key, :settings
+  delegate :template_name, to: :email_setting
 
-  def initialize(messages, template_name, settings = {})
+  def initialize(messages, template_key, settings = {})
     @messages = [ messages ].flatten.map { |m| Mandrill::Message.new(m) }
-    @template_name = template_name
+    @template_key = template_key
     @settings = settings
     filter_recepients
   end
@@ -27,6 +28,10 @@ class Mandrill::Request
   end
 
   private
+
+  def email_setting
+    @email_setting ||= Mandrill::EmailSetting.find_by(key: template_key)
+  end
 
   def settings
     {

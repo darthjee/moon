@@ -4,8 +4,9 @@ describe Mandrill::Service do
   let(:fixture) { load_json_fixture_file('jsons/mandrill/request.json') }
   let(:subject) { described_class.instance }
   let(:mandrill_messages) { double('mandrill_messages') }
-  let(:template_name) { 'template' }
-  let(:request) { Mandrill::Request.new(fixture['input'], template_name) }
+  let(:template_key) { 'template' }
+  let(:template_name) { 'mandrill_template' }
+  let(:request) { Mandrill::Request.new(fixture['input'], template_key) }
 
   before do
     allow(Mandrill).to receive(:key) { 'key' }
