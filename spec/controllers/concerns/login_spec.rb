@@ -4,7 +4,6 @@ describe Marriage::Login do
   let(:parameters) { {} }
   controller do
     include Marriage::Login
-    skip_redirection :render_root, :index
 
     def index
       render json: { is_logged: is_logged?, user_id: logged_user.try(:id) }

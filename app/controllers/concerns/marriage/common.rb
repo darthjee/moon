@@ -1,5 +1,6 @@
 module Marriage::Common
   extend ActiveSupport::Concern
+  include Marriage::Login
   include Tarquinn
 
   included do
