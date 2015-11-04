@@ -6,6 +6,7 @@ describe Mandrill::Request do
   let(:settings) { {} }
   let(:template_key) { 'template' }
   let(:email) { 'user@server.com' }
+  let(:name) { 'User Name' }
   let(:messages) { [message] }
   let(:message) { fixture['input'] }
 
@@ -20,7 +21,7 @@ describe Mandrill::Request do
   describe '#recepients' do
     context 'when email is allowed' do
       it 'returns mandrill formatted message' do
-        expect(subject.recepients.map(&:symbolize_keys)).to eq([{ email: email }])
+        expect(subject.recepients.map(&:symbolize_keys)).to eq([{ email: email, name: name }])
       end
     end
 
