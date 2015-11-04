@@ -1,6 +1,6 @@
 class Mandrill::Recepient < DelegateClass(RecursiveOpenStruct)
   def initialize(recepient)
-    @recepient = RecursiveOpenStruct.new(recepient)
+    @recepient = recepient.is_a?(Hash) ? RecursiveOpenStruct.new(recepient) : recepient
     super(@recepient)
   end
 
