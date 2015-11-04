@@ -9,9 +9,9 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
 
   def as_json(*args)
     {
-      rcpt: recepient.email,
+      rcpt: recepient,
       vars: vars
-    }
+    }.as_json
   end
 
   private

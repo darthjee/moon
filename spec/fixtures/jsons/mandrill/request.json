@@ -1,6 +1,9 @@
 {
   "input": {
-    "recepient": "user@server.com",
+    "recepient": {
+      "email": "user@server.com",
+      "name": "User Name"
+    },
     "data": {
       "key1": "value1"
     }
@@ -12,7 +15,8 @@
     "return_path_domain": null,
     "to": [
       {
-        "email": "user@server.com"
+        "email": "user@server.com",
+        "name": "User Name"
       }
     ],
     "merge_vars": [
