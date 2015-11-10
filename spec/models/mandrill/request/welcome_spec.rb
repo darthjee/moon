@@ -12,9 +12,14 @@ describe Mandrill::Request::Welcome do
     end
   end
 
-  describe '#data' do
-    it do
-      expect(subject.messages.first.data.as_json).to eq( 'NAME' => name )
+  describe '#as_json' do
+    let(:vars) { subject.as_json[:merge_vars].first['vars'] }
+    let(:expected) do
+      [{"name"=>"NAME", "content"=>"Mr. Test"}]
+    end
+
+    it 'returns the correct data' do
+      expect(vars).to eq(expected)
     end
   end
 end
