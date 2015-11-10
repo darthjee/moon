@@ -42,10 +42,13 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'
   gem 'pry-nav'
-  gem 'webmock'
   gem 'zonebie'
   gem 'simplecov'
   gem 'rspec-collection_matchers'
+end
+
+group :test do
+  gem 'webmock'
 end
 
 # Use ActiveModel has_secure_password
