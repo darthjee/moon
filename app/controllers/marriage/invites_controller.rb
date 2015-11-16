@@ -1,5 +1,7 @@
 class Marriage::InvitesController < ApplicationController
   include Marriage::Invite::Update
+  include Marriage::Invite::Show
+  include Marriage::Invite::List
 
   protect_from_forgery except: :update
   skip_redirection :render_root, :cards
@@ -28,18 +30,6 @@ class Marriage::InvitesController < ApplicationController
 
   def invite
     @invite ||= find_invite
-  end
-
-  def invites
-    @invites ||= marriage.invites.limit(per_page).offset(offset)
-  end
-
-  def offset
-    (params[:page].to_i - 1) * per_page
-  end
-
-  def per_page
-    @per_page ||= (params[:per_page] || 10).to_i
   end
 
   def find_invite
