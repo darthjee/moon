@@ -1,6 +1,5 @@
 module Marriage::Login
   extend ActiveSupport::Concern
-  include Marriage::Common
 
   included do
     before_action :login_from_parameters
@@ -21,7 +20,7 @@ module Marriage::Login
   end
 
   def user_from_from_parameters
-    marriage.invites.find_by(authentication_token: token_parameter)
+    Marriage::Invite.find_by(authentication_token: token_parameter)
   end
 
   def is_logged?
@@ -43,7 +42,7 @@ module Marriage::Login
   end
 
   def find_invite_from_credential
-    marriage.invites.where.not(authentication_token: nil).find_by!(authentication_token: credential)
+    Marriage::Invite.where.not(authentication_token: nil).find_by!(authentication_token: credential)
   end
 
   def token_parameter

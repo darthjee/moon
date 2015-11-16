@@ -1,5 +1,5 @@
 class Marriage::BestManController < ApplicationController
-  include Marriage::Login
+  include Marriage::Common
 
   protect_from_forgery except: :update
 
