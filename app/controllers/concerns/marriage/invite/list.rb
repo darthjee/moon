@@ -4,7 +4,7 @@ module Marriage::Invite::List
   include Marriage::Invite::Common
 
   def invites
-    @invites ||= marriage.invites.limit(per_page).offset(offset)
+    @invites ||= marriage.invites.where(filters).limit(per_page).offset(offset)
   end
 
   private
@@ -15,5 +15,9 @@ module Marriage::Invite::List
 
   def per_page
     @per_page ||= (params[:per_page] || 10).to_i
+  end
+
+  def filters
+    @filters ||= params.permit(:up_to_date, :status)
   end
 end
