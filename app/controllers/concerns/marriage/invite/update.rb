@@ -19,6 +19,10 @@ module Marriage::Invite::Update
 
   private
 
+  def guests_params
+    invite_params.require(:guests)
+  end
+
   def guests_update_params
     guests_params.select { |g| g[:id].present? }
   end
@@ -32,5 +36,13 @@ module Marriage::Invite::Update
     unless invite.valid?
       render json: { errors: invite.errors.messages }, status: :error
     end
+  end
+
+  def invite_params
+    @invite_params ||= params.require(:invite).permit(:email, guests: [:id, :name, :presence])
+  end
+
+  def invite_update_params
+    invite_params.slice(:email)
   end
 end
