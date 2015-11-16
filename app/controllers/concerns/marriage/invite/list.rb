@@ -1,6 +1,8 @@
 module Marriage::Invite::List
   extend ActiveSupport::Concern
 
+  include Marriage::Invite::Common
+
   def invites
     @invites ||= marriage.invites.limit(per_page).offset(offset)
   end

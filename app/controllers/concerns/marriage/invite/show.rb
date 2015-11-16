@@ -1,7 +1,7 @@
 module Marriage::Invite::Show
   extend ActiveSupport::Concern
 
-  include Marriage::Common
+  include Marriage::Invite::Common
 
   def show_json_invite
     invite.update(last_view_date: Time.zone.now)

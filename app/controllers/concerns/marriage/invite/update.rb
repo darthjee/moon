@@ -1,7 +1,7 @@
 module Marriage::Invite::Update
   extend ActiveSupport::Concern
 
-  include Marriage::Common
+  include Marriage::Invite::Common
 
   def update_invite_guests
     guests_update_params.each do |guest_params|

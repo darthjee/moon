@@ -25,43 +25,4 @@ class Marriage::InvitesController < ApplicationController
     invite.update(confirmed: invite.guests.confirmed.count)
     render json: invite.as_json(include: :guests)
   end
-
-  private
-
-  def invite
-    @invite ||= find_invite
-  end
-
-  def find_invite
-    return invite_by_id if invite_id
-    invite_code ? invite_by_code : guest_invite
-  end
-
-  def guest_invite
-    guest.invite
-  end
-
-  def invite_by_id
-    Marriage::Invite.find(invite_id)
-  end
-
-  def invite_by_code
-    marriage.invites.find_by(code: invite_code)
-  end
-
-  def guest
-    marriage.guests.find(guest_id)
-  end
-
-  def guest_id
-    params[:guest_id]
-  end
-
-  def invite_id
-    params[:id]
-  end
-
-  def invite_code
-    params[:code]
-  end
 end
