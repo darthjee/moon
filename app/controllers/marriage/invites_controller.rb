@@ -1,5 +1,5 @@
 class Marriage::InvitesController < ApplicationController
-  include Marriage::Common
+  include Marriage::Invite::Update
 
   protect_from_forgery except: :update
   skip_redirection :render_root, :cards
@@ -25,27 +25,6 @@ class Marriage::InvitesController < ApplicationController
   end
 
   private
-
-  def update_invite_guests
-    guests_update_params.each do |guest_params|
-      guest = invite.guests.find(guest_params[:id])
-      guest.update(guest_params)
-    end
-  end
-
-  def create_invite_guests
-    new_guests_params.each do |guest_params|
-      attributes = guest_params.merge(invite: invite)
-      Marriage::Guest.create(attributes)
-    end
-  end
-
-  def check_valid_update
-    invite.assign_attributes(invite_update_params)
-    unless invite.valid?
-      render json: { errors: invite.errors.messages }, status: :error
-    end
-  end
 
   def show_json_invite
     invite.update(last_view_date: Time.zone.now)
@@ -74,14 +53,6 @@ class Marriage::InvitesController < ApplicationController
 
   def guests_params
     invite_params.require(:guests)
-  end
-
-  def guests_update_params
-    guests_params.select { |g| g[:id].present? }
-  end
-
-  def new_guests_params
-    guests_params.select { |g| g[:id].blank? && g[:name].present? }
   end
 
   def invite
