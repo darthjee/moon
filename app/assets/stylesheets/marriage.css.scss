@@ -69,3 +69,9 @@ dl.in-line {
 .header-date {
   display: inline-table;
 }
+
+.navbar-default .navbar-nav > li > a.disabled,
+a.disabled {
+  color: #aaa;
+  pointer-events: none;
+}
