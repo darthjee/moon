@@ -8,8 +8,20 @@ describe EmailValidator::Matcher do
 
   describe '#match' do
     context 'when e-mail is valid' do
-      context 'with simple user@server format' do
+      context 'with simple user@server.com format' do
         it { expect(subject.match).to be_truthy }
+      end
+
+      context 'when server is an ip' do
+        let(:server) { '12.12.125.100' }
+        it { expect(subject.match).to be_truthy }
+      end
+    end
+
+    context 'when server is invalid' do
+      context 'when server lacks type or country' do
+        let(:server) { 'server' }
+        it { expect(subject.match).to be_falsey }
       end
     end
 
