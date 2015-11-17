@@ -39,6 +39,10 @@ dl.in-line {
     vertical-align: middle;
     background: url('d75.png') transparent;
 
+    &:disabled {
+      background: #ccc;
+    }
+
     &:hover {
       background: #fff;
     }
