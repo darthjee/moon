@@ -1,0 +1,13 @@
+@media screen and (min-width: 480px) {
+  .main-links {
+    a.btn, button.btn {
+      .glyphicon {
+        font-size: 4em;
+      }
+
+      .text {
+        font-size: 1.7em;
+      }
+    }
+  }
+}
