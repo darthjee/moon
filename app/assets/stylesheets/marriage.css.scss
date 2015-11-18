@@ -31,26 +31,30 @@ dl.in-line {
 }
 
 .main-links {
-  button.btn {
+  a.btn, button.btn {
     width: 100%;
-    height: 80px;
-    padding: 1px;
-    padding-left: 30px;
+    height: 6em;
+    padding: 0.5em;
+    padding-left: 2.1em;
     vertical-align: middle;
     background: url('d75.png') transparent;
+
+    &:disabled {
+      background: #ccc;
+    }
 
     &:hover {
       background: #fff;
     }
 
     .glyphicon {
-      font-size: 4em;
+      font-size: 3.5em;
       float: left;
       padding: 7px 0;
     }
 
     .text {
-      font-size: 1.7em;
+      font-size: 1.3em;
       padding: 18px 0;
     }
 
@@ -64,4 +68,10 @@ dl.in-line {
 
 .header-date {
   display: inline-table;
+}
+
+.navbar-default .navbar-nav > li > a.disabled,
+a.disabled {
+  color: #aaa;
+  pointer-events: none;
 }
