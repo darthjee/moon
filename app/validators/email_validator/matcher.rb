@@ -1,6 +1,6 @@
 class EmailValidator::Matcher
   PRELIMINARREGEXP = /^(?<user>.*)@(?<server>.*)$/
-  USERREGEXP = /^[a-z]+(([_.][a-z])?[a-z0-9]+)*(\+\w+)*$/
+  USERREGEXP = /^[a-z]+(([_.][a-z])?[a-z0-9]*)*(\+\w+)*$/
   SERVERREGEXP = /^[\w]+([._]?[a-z0-9]+)*(\.[a-z0-9]{2,3}){1,2}/i
   attr_reader :value
 
