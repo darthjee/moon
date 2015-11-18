@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029172504) do
+ActiveRecord::Schema.define(version: 20151116123548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20151029172504) do
     t.boolean  "invite_honor"
     t.string   "authentication_token", limit: 16
     t.text     "password"
+    t.string   "status"
+    t.boolean  "up_to_date"
   end
 
   add_index "marriage_invites", ["marriage_id", "code"], name: "index_marriage_invites_on_marriage_id_and_code", using: :btree
