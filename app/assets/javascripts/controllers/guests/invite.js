@@ -22,6 +22,14 @@
     this.invite.guests.push({});
   };
 
+  fn.pop = function() {
+    var guest = this.invite.guests.pop();
+
+    if (guest && (guest.id || guest.name || guest.presence)) {
+      this.invite.guests.push(guest);
+    }
+  };
+
   fn.update = function() {
     var id = this.invite.id,
         invite = this.invite,
