@@ -18,6 +18,10 @@
     this._fetch();
   };
 
+  fn.add = function() {
+    this.invite.guests.push({});
+  };
+
   fn.update = function() {
     var id = this.invite.id,
         invite = this.invite,
