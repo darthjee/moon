@@ -13,6 +13,10 @@
                ng-model="ic.invite.email" />
       </div>
       <div class="input-error" ng-show="ic.errors.email">Email {{ ic.errors.email[0] }}</div>
+      <div class="alert alert-success" role="alert" ng-show="ic.success">
+        <button type="button" class="close" aria-label="Close" ng-click="ic.success = false"><span aria-hidden="true">&times;</span></button>
+        Dados salvos com sucesso
+      </div>
     </div>
 
     <p>Cadastre os nomes dos convidados e confirme as presenças</p>

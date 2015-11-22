@@ -4,7 +4,7 @@
     this.selected = $routeParams;
     this.invite = {};
 
-    _.bindAll(this, '_parseResponse', 'setInvite', '_showErrors');
+    _.bindAll(this, '_parseResponse', 'setInvite', '_showErrors', '_updateSuccess');
     notifier.register('select-invite', this.setInvite);
     this._fetch();
   }
@@ -23,19 +23,20 @@
         invite = this.invite,
         promisse;
 
-    this._clearErrors();
+    this._clearMessages();
 
     promisse = this.service.update(id, invite);
     promisse.error(this._showErrors);
-    promisse.success(this._parseResponse);
+    promisse.success(this._updateSuccess);
   };
 
   fn._showErrors = function(data) {
     this.errors = data.errors;
   };
 
-  fn._clearErrors = function() {
+  fn._clearMessages = function() {
     this.errors = {};
+    this.success = false;
   };
 
   fn._fetch = function() {
@@ -68,6 +69,11 @@
     } else {
       guest.presence = (presence == undefined) && undefined;
     }
+  };
+
+  fn._updateSuccess = function (data) {
+    this._parseResponse(data);
+    this.success = true;
   };
 
   fn._parseResponse = function(data) {
