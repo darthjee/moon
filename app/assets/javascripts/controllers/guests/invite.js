@@ -75,7 +75,7 @@
 
     this.invite = invite;
 
-    invite.guests = invite.guests.expandSize(invite.invites);
+    invite.guests = invite.guests.expandSize(invite.invites || 1);
   };
 
   app.controller('InviteController', ['$routeParams', 'invitesService', 'notifier', InviteController]);
