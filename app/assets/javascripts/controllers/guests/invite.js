@@ -59,7 +59,7 @@
     this.service.getByCode(code).success(this._parseResponse);
   };
 
-  fn.update_guest = function(index) {
+  fn.updateGuest = function(index) {
     var guest = this.invite.guests[index],
         presence = guest.presence;
 
