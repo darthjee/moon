@@ -18,9 +18,13 @@
     return this.requester.get('/convites/'+code+'.json');
   };
 
-  fn.update = function(id, invite) {
+  fn.update = function(id, invite, removed) {
+    removed = _.filter(removed, function(guest) { return guest.id; });
+    removed = _.map(removed, function(guest) { return guest.id; });
+
     return this.requester.patch('/convites/'+id+'.json', {
-      invite: invite
+      invite: invite,
+      removed: removed
     });
   };
 
