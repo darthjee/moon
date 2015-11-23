@@ -4,4 +4,5 @@ class Marriage::Guest < ActiveRecord::Base
 
   scope :confirmed, proc { where(presence: true) }
   scope :search_name, proc { |name| where('name ILIKE ?', "%#{name}%") }
+  default_scope { where(active: true) }
 end

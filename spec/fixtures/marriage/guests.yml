@@ -2,15 +2,19 @@ father_test:
   id: 1
   invite_id: 1
   name: Mr. Test
+  active: true
 mother_test:
   id: 2
   invite_id: 1
   name: Mrs Test
+  active: true
 son_test:
   id: 3
   invite_id: 1
   name: Junior Test
+  active: true
 baby_test:
   id: 4
   invite_id: 1
   name: Baby Test
+  active: true
