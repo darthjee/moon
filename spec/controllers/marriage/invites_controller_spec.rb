@@ -158,7 +158,13 @@ describe Marriage::InvitesController do
       it do
         expect do
           patch :update, parameters
-        end.to change { invite.guests.count }.by(-2)
+        end.to change { Marriage::Guest.count }.by(-2)
+      end
+
+      it 'does not really removes the guests' do
+        expect do
+          patch :update, parameters
+        end.not_to change { Marriage::Guest.unscoped.count }
       end
 
       context 'when the guest id given does not belong to the invite' do
@@ -169,7 +175,7 @@ describe Marriage::InvitesController do
         it do
           expect do
             patch :update, parameters
-          end.not_to change { invite.guests.count }
+          end.not_to change { Marriage::Guest.count }
         end
       end
     end

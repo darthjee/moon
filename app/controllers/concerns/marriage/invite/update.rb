@@ -18,7 +18,7 @@ module Marriage::Invite::Update
   end
 
   def remove_guests
-    invite.guests.where(id: removed_guests_id).delete_all
+    invite.guests.where(id: removed_guests_id).update_all(active: false)
   end
 
   private
