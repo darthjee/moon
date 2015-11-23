@@ -3,8 +3,9 @@
     this.service = service;
     this.selected = $routeParams;
     this.invite = {};
+    this.removed = [];
 
-    _.bindAll(this, '_parseResponse', 'setInvite', '_showErrors');
+    _.bindAll(this, '_parseResponse', 'setInvite', '_showErrors', '_updateSuccess');
     notifier.register('select-invite', this.setInvite);
     this._fetch();
   }
@@ -18,24 +19,37 @@
     this._fetch();
   };
 
+  fn.add = function() {
+    this.invite.guests.push(this.removed.pop() || {});
+  };
+
+  fn.pop = function() {
+    var guest = this.invite.guests.pop();
+
+    if (guest && (guest.id || guest.name || guest.presence)) {
+      this.removed.push(guest);
+    }
+  };
+
   fn.update = function() {
     var id = this.invite.id,
         invite = this.invite,
         promisse;
 
-    this._clearErrors();
+    this._clearMessages();
 
-    promisse = this.service.update(id, invite);
+    promisse = this.service.update(id, invite, this.removed);
     promisse.error(this._showErrors);
-    promisse.success(this._parseResponse);
+    promisse.success(this._updateSuccess);
   };
 
   fn._showErrors = function(data) {
     this.errors = data.errors;
   };
 
-  fn._clearErrors = function() {
+  fn._clearMessages = function() {
     this.errors = {};
+    this.success = false;
   };
 
   fn._fetch = function() {
@@ -59,7 +73,7 @@
     this.service.getByCode(code).success(this._parseResponse);
   };
 
-  fn.update_guest = function(index) {
+  fn.updateGuest = function(index) {
     var guest = this.invite.guests[index],
         presence = guest.presence;
 
@@ -70,12 +84,17 @@
     }
   };
 
+  fn._updateSuccess = function (data) {
+    this._parseResponse(data);
+    this.success = true;
+  };
+
   fn._parseResponse = function(data) {
     var invite = data;
 
     this.invite = invite;
 
-    invite.guests = invite.guests.expandSize(invite.invites);
+    invite.guests = invite.guests.expandSize(invite.invites || 1);
   };
 
   app.controller('InviteController', ['$routeParams', 'invitesService', 'notifier', InviteController]);

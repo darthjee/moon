@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116123548) do
+ActiveRecord::Schema.define(version: 20151123013857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20151116123548) do
     t.boolean  "presence"
     t.text     "color"
     t.text     "role"
+    t.boolean  "active",     default: true, null: false
   end
 
   create_table "marriage_invites", force: true do |t|

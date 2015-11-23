@@ -86,5 +86,14 @@
       }]
     },
     "id": "1"
+  },
+  "update_remove": {
+    "format": "json",
+    "invite": {
+      "email": "new_user@server.com",
+      "guests": []
+    },
+    "removed": [1, 2],
+    "id": "1"
   }
 }

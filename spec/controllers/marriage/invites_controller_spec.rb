@@ -151,6 +151,34 @@ describe Marriage::InvitesController do
         expect(invite.guests.pluck(:name)).to match_array(names_expected)
       end
     end
+
+    context 'when removing guests' do
+      let(:parameters_key) { 'update_remove' }
+
+      it do
+        expect do
+          patch :update, parameters
+        end.to change { Marriage::Guest.count }.by(-2)
+      end
+
+      it 'does not really removes the guests' do
+        expect do
+          patch :update, parameters
+        end.not_to change { Marriage::Guest.unscoped.count }
+      end
+
+      context 'when the guest id given does not belong to the invite' do
+        before do
+          Marriage::Guest.update_all(invite_id: 10)
+        end
+
+        it do
+          expect do
+            patch :update, parameters
+          end.not_to change { Marriage::Guest.count }
+        end
+      end
+    end
   end
 
   describe 'GET cards' do

@@ -17,10 +17,18 @@ module Marriage::Invite::Update
     end
   end
 
+  def remove_guests
+    invite.guests.where(id: removed_guests_id).update_all(active: false)
+  end
+
   private
 
+  def removed_guests_id
+    params[:removed]
+  end
+
   def guests_params
-    invite_params.require(:guests)
+    invite_params[:guests]
   end
 
   def guests_update_params
@@ -39,7 +47,7 @@ module Marriage::Invite::Update
   end
 
   def invite_params
-    @invite_params ||= params.require(:invite).permit(:email, guests: [:id, :name, :presence])
+    @invite_params ||= params.require(:invite).permit(:email, :removed, guests: [:id, :name, :presence])
   end
 
   def invite_update_params

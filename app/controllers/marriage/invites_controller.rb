@@ -22,6 +22,7 @@ class Marriage::InvitesController < ApplicationController
   def update
     update_invite_guests
     create_invite_guests
+    remove_guests
     invite.update(confirmed: invite.guests.confirmed.count)
     render json: invite.as_json(include: :guests)
   end
