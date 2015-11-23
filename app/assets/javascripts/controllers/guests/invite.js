@@ -38,7 +38,7 @@
 
     this._clearMessages();
 
-    promisse = this.service.update(id, invite, removed);
+    promisse = this.service.update(id, invite, this.removed);
     promisse.error(this._showErrors);
     promisse.success(this._updateSuccess);
   };
