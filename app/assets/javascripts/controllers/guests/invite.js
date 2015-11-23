@@ -3,6 +3,7 @@
     this.service = service;
     this.selected = $routeParams;
     this.invite = {};
+    this.removed = [];
 
     _.bindAll(this, '_parseResponse', 'setInvite', '_showErrors', '_updateSuccess');
     notifier.register('select-invite', this.setInvite);
@@ -19,14 +20,14 @@
   };
 
   fn.add = function() {
-    this.invite.guests.push({});
+    this.invite.guests.push(this.removed.pop() || {});
   };
 
   fn.pop = function() {
     var guest = this.invite.guests.pop();
 
     if (guest && (guest.id || guest.name || guest.presence)) {
-      this.invite.guests.push(guest);
+      this.removed.push(guest);
     }
   };
 
