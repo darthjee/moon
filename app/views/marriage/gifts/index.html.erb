@@ -1,2 +1,5 @@
 <div ng-controller="GiftsListController as glc" ng-show="glc.loaded">
+  <div ng-repeat="gift in glc.gifts">
+    <img src="{{ gift.image_url }}" />
+  </div>
 </div>

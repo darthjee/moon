@@ -5,7 +5,6 @@
     _.bindAll(this, '_parseGifts');
 
     this.loadGifts();
-
   }
 
   var fn = GiftsListController.prototype;

@@ -10,8 +10,9 @@
   var fn = GiftsService.prototype,
       module = angular.module('gifts/service', []);
 
-  fn.loadGifts = function() {
-    return this.requester.get('/presentes.json');
+  fn.loadGifts = function(page) {
+    page = page || 1;
+    return this.requester.get('/presentes/page/' + page + '.json');
   };
 
   module.service('giftsService', ['$http', GiftsServiceFactory]);
