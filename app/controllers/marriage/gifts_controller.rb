@@ -21,7 +21,11 @@ class Marriage::GiftsController < ApplicationController
   private
 
   def offset
-    (params[:page].to_i - 1) * per_page
+    (per_page_param) * per_page
+  end
+
+  def per_page_param
+    [params[:page].to_i, 1].max - 1
   end
 
   def per_page
