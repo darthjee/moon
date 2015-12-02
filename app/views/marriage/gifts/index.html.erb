@@ -1,5 +1,7 @@
 <div ng-controller="GiftsListController as glc" ng-show="glc.loaded">
-  <div ng-repeat="gift in glc.gifts">
-    <img src="{{ gift.image_url }}" />
+  <div class="row" ng-repeat="giftRow in glc.giftRows">
+    <div class="col-xs-3" ng-repeat="gift in giftRow">
+      <img src="{{ gift.image_url }}" />
+    </div>
   </div>
 </div>
