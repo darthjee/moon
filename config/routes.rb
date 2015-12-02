@@ -36,5 +36,7 @@ Rails.application.routes.draw do
         get 'for_guest/:guest_id' => :show, on: :collection
       end
     end
+
+    resources :gifts, path: '/presentes', only: [:index], defaults: { format: :html }
   end
 end
