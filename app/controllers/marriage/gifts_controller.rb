@@ -11,7 +11,11 @@ class Marriage::GiftsController < ApplicationController
   private
 
   def gifts_json
-    gifts.as_json
+    {
+      gifts: gifts.as_json,
+      pages: gift_pages,
+      page: page_param
+    }
   end
 
   def gifts
@@ -20,12 +24,16 @@ class Marriage::GiftsController < ApplicationController
 
   private
 
-  def offset
-    (per_page_param) * per_page
+  def gift_pages
+    (marriage.gifts.count * 1.0 / per_page).ceil
   end
 
-  def per_page_param
-    [params[:page].to_i, 1].max - 1
+  def offset
+    (page_param - 1) * per_page
+  end
+
+  def page_param
+    [params[:page].to_i, 1].max
   end
 
   def per_page
