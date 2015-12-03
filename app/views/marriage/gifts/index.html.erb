@@ -1,13 +1,14 @@
 <div ng-controller="GiftsListController as glc" ng-show="glc.loaded">
   <div class="row" ng-repeat="giftRow in glc.giftRows">
-    <div class="col-xs-3 gift-block" ng-repeat="gift in giftRow">
-      <div class="gift-image">
-        <img src="{{ gift.image_url }}" />
-      </div>
-      <div class="gift-links">
-        <a ng-repeat="link in gift.gift_links" href="{{ link.url }}">
-          <img src="{{ link.store_image_url }}" />
-        </a>
+    <div class="col-xs-3" ng-repeat="gift in giftRow">
+      <div class="gift-block">
+        <div class="gift-image" style="background-image: url({{ gift.image_url }})">
+        </div>
+        <div class="gift-links">
+          <a ng-repeat="link in gift.gift_links" href="{{ link.url }}">
+            <img src="{{ link.store_image_url }}" />
+          </a>
+        </div>
       </div>
     </div>
   </div>
