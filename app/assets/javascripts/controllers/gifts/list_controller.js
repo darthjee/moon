@@ -15,7 +15,7 @@
   };
 
   fn._parseGifts = function(data) {
-    this.giftRows = data.gifts.breakIntoRows(4);
+    this.gifts = data.gifts;
     this.pages = data.pages;
     this.page = data.page;
     this.loaded = true;

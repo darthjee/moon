@@ -1,6 +1,6 @@
 <div ng-controller="GiftsListController as glc" ng-show="glc.loaded">
-  <div class="row" ng-repeat="giftRow in glc.giftRows">
-    <div class="col-md-3 cols-sm-12" ng-repeat="gift in giftRow">
+  <div class="row">
+    <div class="col-md-3 cols-sm-12" ng-repeat="gift in glc.gifts">
       <div class="panel panel-default gift-block">
         <div class="panel-heading">{{ gift.name }}</div>
         <div class="panel-body">

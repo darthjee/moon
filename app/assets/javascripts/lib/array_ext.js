@@ -14,23 +14,4 @@
   fn.empty = function() {
     return this.length == 0;
   };
-
-  fn.breakIntoRows = function(rowSize) {
-    var row, rows = [];
-
-    rowSize = rowSize || 1;
-    for (i = 0; i < this.length; i++) {
-      var index = i % rowSize,
-          e = this[i];
-
-      if (!index) {
-        row = [];
-        rows.push(row);
-      }
-
-      row.push(e);
-    }
-
-    return rows;
-  };
 })([].constructor.prototype);
