@@ -5,7 +5,7 @@
         <div class="gift-image" style="background-image: url({{ gift.image_url }})">
         </div>
         <div class="gift-links">
-          <a ng-repeat="link in gift.gift_links" href="{{ link.url }}">
+          <a ng-repeat="link in gift.gift_links" href="{{ link.url }}" target="_BLANK">
             <img src="{{ link.store_image_url }}" />
           </a>
         </div>
