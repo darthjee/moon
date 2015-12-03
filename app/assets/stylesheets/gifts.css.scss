@@ -1,10 +1,17 @@
 .gift-block {
-  width: 330px;
+  width: 300px;
+  margin: 0 auto 20px;
   background-color: #fff;
   border: 1px solid black;
 
   .gift-image {
     background-repeat: no-repeat;
     background-position: center;
+    height: 200px;
+  }
+
+  .gift-links {
+    height: 100px;
+    width: 300px;
   }
 }
