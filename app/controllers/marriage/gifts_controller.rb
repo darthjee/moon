@@ -3,19 +3,23 @@ class Marriage::GiftsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json { render json: gifts_json }
+      format.json { render json: gifts_list_json }
       format.html { render :index }
     end
   end
 
   private
 
-  def gifts_json
+  def gifts_list_json
     {
-      gifts: gifts.as_json,
+      gifts: gifts_json,
       pages: gift_pages,
       page: page_param
     }
+  end
+
+  def gifts_json
+    gifts.as_json(include: :gift_links)
   end
 
   def gifts
@@ -37,6 +41,6 @@ class Marriage::GiftsController < ApplicationController
   end
 
   def per_page
-    @per_page ||= (params[:per_page] || 10).to_i
+    @per_page ||= (params[:per_page] || 16).to_i
   end
 end
