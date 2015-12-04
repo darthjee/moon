@@ -3,6 +3,9 @@
   <div class="panel-body">
     <div class="gift-image" style="background-image: url({{ gift.image_url }})">
     </div>
+    <div class="gift-price">
+      <strong>Preço: </strong> R$ {{ gift.price_range.join(' até R$ ') }}
+    </div>
     <div class="gift-links">
       <div class="row">
         <div class="col-sm-6" ng-repeat="link in gift.gift_links">
