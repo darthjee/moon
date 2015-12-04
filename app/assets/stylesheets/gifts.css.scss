@@ -10,5 +10,16 @@
   .gift-links {
     height: 100px;
     width: 300px;
+
+    .store-link {
+      background-repeat: no-repeat;
+      background-position: center;
+
+      div {
+        width: 80px;
+        height: 20px;
+        text-indent: -99999px;
+      }
+    }
   }
 }
