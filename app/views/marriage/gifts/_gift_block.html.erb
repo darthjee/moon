@@ -4,10 +4,15 @@
     <div class="gift-image" style="background-image: url({{ gift.image_url }})">
     </div>
     <div class="gift-links">
-      <a ng-repeat="link in gift.gift_links" href="{{ link.url }}" target="_BLANK"
-         class="btn btn-default store-link" style="background-image: url({{ link.store.image_url }})">
-         <div>{{ link.store.name }}</div>
-      </a>
+      <div class="row">
+        <div class="col-sm-6" ng-repeat="link in gift.gift_links">
+          <a href="{{ link.url }}" target="_BLANK"
+             class="btn btn-default store-link"
+             style="background-image: url({{ link.store.image_url }})">
+             <div>{{ link.store.name }}</div>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
