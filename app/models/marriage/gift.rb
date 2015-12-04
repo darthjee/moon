@@ -9,11 +9,15 @@ class Marriage::Gift < ActiveRecord::Base
     )
   end
 
+  def price_list
+    gift_links.map(&:price).push(price)
+  end
+
   def min_price
-    gift_links.map(&:price).min
+    price_list.min
   end
 
   def max_price
-    gift_links.map(&:price).max
+    price_list.max
   end
 end
