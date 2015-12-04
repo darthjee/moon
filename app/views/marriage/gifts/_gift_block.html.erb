@@ -1,0 +1,25 @@
+<div class="panel panel-default gift-block">
+  <div class="panel-heading">{{ gift.name }}</div>
+  <div class="panel-body">
+    <div class="gift-image" style="background-image: url({{ gift.image_url }})">
+    </div>
+    <div class="gift-price">
+      <strong>Preço: </strong>
+      <span ng-show="gift.price_range.length > 0">
+        R$ {{ gift.price_range.join(' até R$ ') }}
+      </span>
+    </div>
+    <div class="gift-links">
+      <div class="row">
+        <div class="col-sm-6" ng-repeat="link in gift.gift_links">
+          <a href="{{ link.url }}" target="_BLANK"
+             class="btn btn-default store-link"
+             style="background-image: url({{ link.store.image_url }})">
+             <div>{{ link.store.name }}</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

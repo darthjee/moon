@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123013857) do
+ActiveRecord::Schema.define(version: 20151204031021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,25 @@ ActiveRecord::Schema.define(version: 20151123013857) do
     t.datetime "updated_at"
     t.string   "location"
     t.string   "address"
+  end
+
+  create_table "marriage_gift_links", force: true do |t|
+    t.integer  "gift_id"
+    t.integer  "store_list_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "price"
+  end
+
+  create_table "marriage_gifts", force: true do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "marriage_id"
+    t.float    "price"
   end
 
   create_table "marriage_guests", force: true do |t|
@@ -69,6 +88,22 @@ ActiveRecord::Schema.define(version: 20151123013857) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "display_name"
+  end
+
+  create_table "marriage_store_lists", force: true do |t|
+    t.integer  "store_id"
+    t.integer  "marriage_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "marriage_stores", force: true do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

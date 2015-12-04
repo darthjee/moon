@@ -1,5 +1,7 @@
 (function() {
-  var module = angular.module('moon', ['guests','ui.select2', 'ngRoute', 'colorpicker.module']);
+  var module = angular.module('moon', [
+    'guests', 'gifts', 'ui.select2', 'ngRoute', 'colorpicker.module'
+  ]);
 
   module.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.headers.patch = {

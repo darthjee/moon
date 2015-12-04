@@ -1,0 +1,25 @@
+.gift-block {
+  margin: 0 auto 20px;
+
+  .gift-image {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+  }
+
+  .gift-links {
+    height: 70px;
+    width: 300px;
+
+    .store-link {
+      background-repeat: no-repeat;
+      background-position: center;
+
+      div {
+        width: 80px;
+        height: 20px;
+        text-indent: -99999px;
+      }
+    }
+  }
+}
