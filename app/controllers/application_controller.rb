@@ -8,4 +8,10 @@ class ApplicationController < ActionController::Base
   def not_found
     head :not_found
   end
+
+  def cached_render(view)
+    Rails.cache.fetch "render:#{params[:controller]}:#{view}" do
+      render view
+    end
+  end
 end

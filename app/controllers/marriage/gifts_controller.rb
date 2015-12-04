@@ -4,7 +4,7 @@ class Marriage::GiftsController < ApplicationController
   def index
     respond_to do |format|
       format.json { render json: gifts_list_json }
-      format.html { render :index }
+      format.html { cached_render :index }
     end
   end
 
