@@ -6,7 +6,8 @@
       {
         "image_url": "http://image_url.com",
         "url": "http://gifturl",
-        "name": "Gift Name"
+        "name": "Gift Name",
+        "price": 10.0
       }
     ]
   }

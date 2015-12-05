@@ -18,7 +18,7 @@ class Marriage::GiftsController < ApplicationController
     gifts_creation_json.map do |gift_json|
       unless gift_link_exists?(gift_json[:url])
         gift = find_or_create_gift(gift_json)
-        store_list.gift_links.create(gift: gift, url: gift_json[:url])
+        store_list.gift_links.create(gift: gift, url: gift_json[:url], price: gift_json[:price])
       end
     end.compact
   end

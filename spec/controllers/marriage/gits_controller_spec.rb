@@ -8,6 +8,7 @@ describe Marriage::GiftsController do
   describe 'POST create' do
     let(:parameters_key) { 'create' }
     let(:last_link) { Marriage::GiftLink.last }
+    let(:last_link_attributes) { last_link.attributes.slice('url', 'store_list_id', 'gift_id', 'price') }
 
     it do
       post :create, parameters
@@ -38,10 +39,11 @@ describe Marriage::GiftsController do
     it 'creates the correct gift link' do
       post :create, parameters
 
-      expect(last_link.attributes.slice('url', 'store_list_id', 'gift_id')).to eq({
+      expect(last_link_attributes).to eq({
         'url' => 'http://gifturl',
         'store_list_id' => 1,
-        'gift_id' => Marriage::Gift.last.id
+        'gift_id' => Marriage::Gift.last.id,
+        'price' => 10.0
       })
     end
 
