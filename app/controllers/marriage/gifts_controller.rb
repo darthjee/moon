@@ -24,11 +24,11 @@ class Marriage::GiftsController < ApplicationController
   end
 
   def gift_exist?(url)
-    store_list.gift_links.any?(url: url)
+    store_list.gift_links.where(url: url).any?
   end
 
   def store_list
-    @store_list ||= marriage.store_lists.find_by(store_id: :store_id)
+    @store_list ||= marriage.store_lists.find_by(store_id: store_id)
   end
 
   def store_id

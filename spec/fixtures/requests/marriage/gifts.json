@@ -1,0 +1,13 @@
+{
+  "create": {
+    "format": "json",
+    "store_id": 1,
+    "gifts": [
+      {
+        "image_url": "http://image_url.com",
+        "url": "http://gifturl",
+        "name": "Gift Name"
+      }
+    ]
+  }
+}
