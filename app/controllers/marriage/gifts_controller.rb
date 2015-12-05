@@ -16,14 +16,22 @@ class Marriage::GiftsController < ApplicationController
 
   def created_gift_links
     gifts_creation_json.map do |gift_json|
-      unless gift_exist?(gift_json[:url])
-        gift = marriage.gifts.create(image_url: gift_json[:image_url], name: gift_json[:name])
+      unless gift_link_exists?(gift_json[:url])
+        gift = find_or_create_gift(gift_json)
         store_list.gift_links.create(gift: gift, url: gift_json[:url])
       end
     end.compact
   end
 
-  def gift_exist?(url)
+  def find_or_create_gift(gift_json)
+    if marriage.gifts.where(name: gift_json[:name]).any?
+      marriage.gifts.find_by(name: gift_json[:name])
+    else
+      marriage.gifts.create(image_url: gift_json[:image_url], name: gift_json[:name])
+    end
+  end
+
+  def gift_link_exists?(url)
     store_list.gift_links.where(url: url).any?
   end
 
