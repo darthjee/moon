@@ -1,0 +1,5 @@
+first_store:
+  id: 1
+  name: 'The Store'
+  image_url: 'http://images.com/stores/first.jpg'
+  url: 'http://store.com'

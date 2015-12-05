@@ -1,0 +1,6 @@
+first_gift:
+  id: 1
+  marriage_id: 1
+  name: 'gift'
+  image_url: 'http://images.com/gift.jpg'
+  description: 'an old gift'
