@@ -44,5 +44,41 @@ describe Marriage::GiftsController do
         'gift_id' => Marriage::Gift.last.id
       })
     end
+
+    context 'when gift already exists' do
+      before do
+        post :create, parameters
+      end
+
+      it do
+        expect do
+          post :create, parameters
+        end.not_to change(Marriage::GiftLink, :count)
+      end
+
+      it do
+        expect do
+          post :create, parameters
+        end.not_to change(Marriage::Gift, :count)
+      end
+
+      context 'but for another store' do
+        before do
+          Marriage::GiftLink.last.update(store_list_id: 2)
+        end
+
+        it do
+          expect do
+            post :create, parameters
+          end.to change(Marriage::GiftLink, :count)
+        end
+
+        it do
+          expect do
+            post :create, parameters
+          end.not_to change(Marriage::Gift, :count)
+        end
+      end
+    end
   end
 end

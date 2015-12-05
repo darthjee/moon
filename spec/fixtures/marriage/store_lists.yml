@@ -3,3 +3,8 @@ first_list:
   marriage_id: 1
   store_id: 1
   url: 'http://store.com/list1'
+second_list:
+  id: 2
+  marriage_id: 1
+  store_id: 2
+  url: 'http://secondstore.com/list1'
