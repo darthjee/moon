@@ -8,7 +8,36 @@ class Marriage::GiftsController < ApplicationController
     end
   end
 
+  def create
+    render json: created_gift_links
+  end
+
   private
+
+  def created_gift_links
+    gifts_creation_json.map do |gift|
+      unless gift_exist?(gift[:url])
+        gift = marriage.gifts.create(image_url: gift[:image_url], name: gift[:name])
+        store_list.gift_links.create(gift: gift, url: gift[:url])
+      end
+    end.compact
+  end
+
+  def gift_exist?(url)
+    store_list.gift_links.any?(url: url)
+  end
+
+  def store_list
+    @store_list ||= marriage.store_lists.find_by(store_id: :store_id)
+  end
+
+  def store_id
+    params.require(:store_id)
+  end
+
+  def gifts_creation_json
+    params.require(:gifts)
+  end
 
   def gifts_list_json
     {
