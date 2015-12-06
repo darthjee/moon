@@ -15,19 +15,19 @@ class Marriage::GiftsController < ApplicationController
   private
 
   def created_gift_links
-    gifts_creation_json.map do |gift_json|
-      unless gift_link_exists?(gift_json[:url])
-        gift = find_or_create_gift(gift_json)
-        store_list.gift_links.create(gift: gift, url: gift_json[:url], price: gift_json[:price])
+    gifts_creation_json.map do |gift_link_json|
+      unless gift_link_exists?(gift_link_json[:url])
+        gift = find_or_create_gift(gift_link_json[:gift])
+        store_list.gift_links.create(gift_link_json.permit(:url, :price).merge(gift: gift))
       end
     end.compact
   end
 
   def find_or_create_gift(gift_json)
-    if marriage.gifts.where(name: gift_json[:name]).any?
-      marriage.gifts.find_by(name: gift_json[:name])
+    if marriage.gifts.where(gift_json.permit(:name)).any?
+      marriage.gifts.find_by(gift_json.permit(:name))
     else
-      marriage.gifts.create(image_url: gift_json[:image_url], name: gift_json[:name])
+      marriage.gifts.create(gift_json.permit(:image_url, :name))
     end
   end
 
@@ -44,7 +44,7 @@ class Marriage::GiftsController < ApplicationController
   end
 
   def gifts_creation_json
-    params.require(:gifts)
+    params.require(:gift_links)
   end
 
   def gifts_list_json
