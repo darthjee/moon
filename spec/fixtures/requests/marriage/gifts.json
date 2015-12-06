@@ -1,0 +1,17 @@
+{
+  "create": {
+    "format": "json",
+    "store_id": 1,
+    "admin_key": "1234",
+    "gift_links": [
+      {
+        "gift": {
+          "image_url": "http://image_url.com",
+          "name": "Gift Name"
+        },
+        "url": "http://gifturl",
+        "price": 10.0
+      }
+    ]
+  }
+}

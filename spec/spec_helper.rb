@@ -31,5 +31,6 @@ RSpec.configure do |config|
 
   config.before do
     Rails.cache.clear
+    ENV['ADMIN_KEY'] = '1234'
   end
 end

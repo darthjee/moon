@@ -5,6 +5,18 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
+  def admin_key
+    ENV['ADMIN_KEY']
+  end
+
+  def require_admin
+    head :forbidden unless is_admin?
+  end
+
+  def is_admin?
+    params[:admin_key] == admin_key
+  end
+
   def not_found
     head :not_found
   end

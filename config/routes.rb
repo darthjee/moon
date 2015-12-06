@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :gifts, path: '/presentes', only: [:index], defaults: { format: :html } do
+    resources :gifts, path: '/presentes', only: [:index, :create], defaults: { format: :html } do
       get '/page/:page' => :index, on: :collection, as: :paginated
     end
   end
