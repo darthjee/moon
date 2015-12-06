@@ -10,7 +10,7 @@ class Marriage::Gift < ActiveRecord::Base
   end
 
   def price_list
-    gift_links.map(&:price).push(price)
+    gift_links.map(&:price).push(price).compact
   end
 
   def min_price
