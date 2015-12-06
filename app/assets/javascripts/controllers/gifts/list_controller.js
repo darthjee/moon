@@ -1,6 +1,7 @@
 (function(_) {
-  function GiftsListController(giftsService) {
+  function GiftsListController($routeParams, giftsService) {
     this.service = giftsService;
+    this.page = $routeParams.page || 1;
 
     _.bindAll(this, '_parseGifts');
 
@@ -11,7 +12,7 @@
       app = angular.module('gifts/list_controller', ['gifts/service']);
 
   fn.loadGifts = function() {
-    this.service.loadGifts().success(this._parseGifts);
+    this.service.loadGifts(this.page).success(this._parseGifts);
   };
 
   fn._parseGifts = function(data) {
@@ -21,5 +22,7 @@
     this.loaded = true;
   };
 
-  app.controller('GiftsListController', ['giftsService', GiftsListController]);
+  app.controller('GiftsListController', [
+    '$routeParams', 'giftsService', GiftsListController
+  ]);
 })(window._);
