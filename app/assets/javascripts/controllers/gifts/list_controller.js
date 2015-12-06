@@ -17,9 +17,13 @@
 
   fn._parseGifts = function(data) {
     this.gifts = data.gifts;
-    this.pages = _.map(new Array(data.pages), function(_, index) { return index + 1; });
+    this.pages = this.buildPagination(data.pages);
     this.page = data.page;
     this.loaded = true;
+  };
+
+  fn.buildPagination = function(pages) {
+    return _.map(new Array(pages), function(_, index) { return index + 1; });
   };
 
   app.controller('GiftsListController', [
