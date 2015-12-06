@@ -10,6 +10,17 @@ describe Marriage::GiftsController do
     let(:last_link) { Marriage::GiftLink.last }
     let(:last_link_attributes) { last_link.attributes.slice('url', 'store_list_id', 'gift_id', 'price') }
 
+    context 'when admin key is wrong' do
+      before do
+        allow(controller).to receive(:admin_key) { 'abcd' }
+      end
+
+      it do
+        post :create, parameters
+        expect(response).not_to be_success
+      end
+    end
+
     it do
       post :create, parameters
       expect(response).to be_success

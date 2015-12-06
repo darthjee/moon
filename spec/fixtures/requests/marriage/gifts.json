@@ -2,6 +2,7 @@
   "create": {
     "format": "json",
     "store_id": 1,
+    "admin_key": "1234",
     "gift_links": [
       {
         "gift": {

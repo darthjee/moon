@@ -1,6 +1,8 @@
 class Marriage::GiftsController < ApplicationController
   include Marriage::Common
 
+  before_action :require_admin, only: :create
+
   def index
     respond_to do |format|
       format.json { render json: gifts_list_json }
