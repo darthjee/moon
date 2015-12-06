@@ -14,7 +14,7 @@
           <span aria-hidden="true">&laquo;</span>
         <% end %>
       </li>
-      <li ng-repeat="page in glc.pages">
+      <li ng-repeat="page in glc.pages track by $index">
         <%= link_to '{{ page }}', angular_path_to(paginated_marriage_gifts_path('') + '{{ page }}') %>
       </li>
       <li>
