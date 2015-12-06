@@ -17,7 +17,7 @@
 
   fn._parseGifts = function(data) {
     this.gifts = data.gifts;
-    this.pages = data.pages;
+    this.pages = _.map(new Array(data.pages), function(_, index) { return index + 1; });
     this.page = data.page;
     this.loaded = true;
   };

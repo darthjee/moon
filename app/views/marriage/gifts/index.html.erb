@@ -4,4 +4,26 @@
       <%= render partial: 'gift_block' %>
     </div>
   </div>
+
+  <nav>
+    <ul class="pagination">
+      <li>
+        <%= link_to angular_path_to(paginated_marriage_gifts_path('') + '{{ glc.page-1 }}'), {
+          'aria-label' => 'Previous'
+        } do %>
+          <span aria-hidden="true">&laquo;</span>
+        <% end %>
+      </li>
+      <li ng-repeat="page in glc.pages">
+        <%= link_to '{{ page }}', angular_path_to(paginated_marriage_gifts_path('') + '{{ page }}') %>
+      </li>
+      <li>
+        <%= link_to angular_path_to(paginated_marriage_gifts_path('') + '{{ glc.page+1 }}'), {
+          'aria-label' => 'Next'
+        } do %>
+          <span aria-hidden="true">&raquo;</span>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
 </div>
