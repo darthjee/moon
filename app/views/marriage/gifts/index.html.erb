@@ -15,9 +15,10 @@
         <% end %>
       </li>
       <li ng-repeat="page in glc.pagination track by $index" class="{{ glc.page == page ? 'active' : '' }}">
-        <%= link_to '{{ page }}',
-            angular_path_to(paginated_marriage_gifts_path('') + '{{ page }}'),
-            'ng-show' => 'page' %>
+        <%= link_to angular_path_to(paginated_marriage_gifts_path('') + '{{ page }}'),
+            'ng-show' => 'page' do %>
+              {{ page }} <span class="sr-only" ng-show="glc.page == page">(current)</span>
+        <% end %>
          <span ng-show="!page" class="disabled">...</span>
       </li>
       <li ng-show="glc.page < glc.pages">
