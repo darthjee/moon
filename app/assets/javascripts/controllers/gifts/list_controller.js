@@ -17,7 +17,8 @@
 
   fn._parseGifts = function(data) {
     this.gifts = data.gifts;
-    this.pages = this.buildPagination(data);
+    this.pages = data.pages;
+    this.pagination = this.buildPagination(data);
     this.page = data.page;
     this.loaded = true;
   };
