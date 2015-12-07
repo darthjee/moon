@@ -1,0 +1,25 @@
+<nav>
+  <ul class="pagination">
+    <li ng-show="glc.page > 1">
+      <%= link_to angular_path_to(paginated_marriage_gifts_path('') + '{{ glc.page-1 }}'), {
+        'aria-label' => 'Previous'
+      } do %>
+        <span aria-hidden="true">&laquo;</span>
+      <% end %>
+    </li>
+    <li ng-repeat="page in glc.pagination track by $index" class="{{ glc.page == page ? 'active' : '' }}">
+      <%= link_to angular_path_to(paginated_marriage_gifts_path('') + '{{ page }}'),
+          'ng-show' => 'page' do %>
+            {{ page }} <span class="sr-only" ng-show="glc.page == page">(current)</span>
+      <% end %>
+       <span ng-show="!page" class="disabled">&#8230;</span>
+    </li>
+    <li ng-show="glc.page < glc.pages">
+      <%= link_to angular_path_to(paginated_marriage_gifts_path('') + '{{ glc.page+1 }}'), {
+        'aria-label' => 'Next'
+      } do %>
+        <span aria-hidden="true">&raquo;</span>
+      <% end %>
+    </li>
+  </ul>
+</nav>
