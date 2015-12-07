@@ -8,7 +8,9 @@ describe Marriage::GiftsController do
   describe 'POST create' do
     let(:parameters_key) { 'create' }
     let(:last_link) { Marriage::GiftLink.last }
-    let(:last_link_attributes) { last_link.attributes.slice('url', 'store_list_id', 'gift_id', 'price') }
+    let(:last_link_attributes) do
+      last_link.attributes.slice('url', 'store_list_id', 'gift_id', 'price')
+    end
 
     context 'when admin key is wrong' do
       before do
@@ -35,9 +37,10 @@ describe Marriage::GiftsController do
     it 'creates a gift for the given parameters' do
       post :create, parameters
 
-      expect(Marriage::Gift.last.attributes.slice('image_url', 'name')).to eq(
+      expect(Marriage::Gift.last.attributes.slice('image_url', 'name', 'quantity')).to eq(
         'image_url' => 'http://image_url.com',
-        'name' => 'Gift Name'
+        'name' => 'Gift Name',
+        'quantity' => 4
       )
     end
 

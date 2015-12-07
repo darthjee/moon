@@ -7,7 +7,8 @@
       {
         "gift": {
           "image_url": "http://image_url.com",
-          "name": "Gift Name"
+          "name": "Gift Name",
+          "quantity": 4
         },
         "url": "http://gifturl",
         "price": 10.0
