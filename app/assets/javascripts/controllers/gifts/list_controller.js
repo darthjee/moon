@@ -40,7 +40,9 @@
   fn.isPageListable = function(page, total, current, blockSize) {
     return page <= blockSize ||
            page > total - blockSize ||
-           Math.abs(page - current) < blockSize;
+           Math.abs(page - current) < blockSize ||
+           (Math.abs(page - current) <= blockSize && page <= (blockSize+1)) ||
+           (Math.abs(page - current) <= blockSize && page >= total - blockSize);
   };
 
   app.controller('GiftsListController', [
