@@ -23,17 +23,24 @@
   };
 
   fn.buildPagination = function(data) {
-    var current = data.page;
+    var current = data.page,
+        that = this;
 
     list = _.map(new Array(data.pages), function(_, index) {
       var page =  index + 1;
-      if (page <= 3 || page >= data.pages - 3 || Math.abs(page - current) <= 2) {
+      if (that.isPageListable(page, data.pages, current, 3)) {
         return page;
       }
       return null;
     });
 
     return list;
+  };
+
+  fn.isPageListable = function(page, total, current, blockSize) {
+    return page <= blockSize ||
+           page > total - blockSize ||
+           Math.abs(page - current) < blockSize;
   };
 
   app.controller('GiftsListController', [
