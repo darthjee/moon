@@ -34,7 +34,7 @@
       return null;
     });
 
-    return list;
+    return _.squeeze(list);
   };
 
   fn.isPageListable = function(page, total, current, blockSize) {
