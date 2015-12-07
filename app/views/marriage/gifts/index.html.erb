@@ -19,7 +19,7 @@
             'ng-show' => 'page' do %>
               {{ page }} <span class="sr-only" ng-show="glc.page == page">(current)</span>
         <% end %>
-         <span ng-show="!page" class="disabled">...</span>
+         <span ng-show="!page" class="disabled">&#8230;</span>
       </li>
       <li ng-show="glc.page < glc.pages">
         <%= link_to angular_path_to(paginated_marriage_gifts_path('') + '{{ glc.page+1 }}'), {
