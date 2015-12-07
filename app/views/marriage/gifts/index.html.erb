@@ -14,11 +14,11 @@
           <span aria-hidden="true">&laquo;</span>
         <% end %>
       </li>
-      <li ng-repeat="page in glc.pagination track by $index">
+      <li ng-repeat="page in glc.pagination track by $index" class="{{ glc.page == page ? 'active' : '' }}">
         <%= link_to '{{ page }}',
             angular_path_to(paginated_marriage_gifts_path('') + '{{ page }}'),
             'ng-show' => 'page' %>
-         <span ng-show="!page">...</span>
+         <span ng-show="!page" class="disabled">...</span>
       </li>
       <li ng-show="glc.page < glc.pages">
         <%= link_to angular_path_to(paginated_marriage_gifts_path('') + '{{ glc.page+1 }}'), {
