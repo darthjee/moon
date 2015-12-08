@@ -2,6 +2,7 @@
   function GiftsListController($routeParams, giftsService) {
     this.service = giftsService;
     this.page = $routeParams.page || 1;
+    this.params = $routeParams;
 
     _.bindAll(this, '_parseGifts');
 
@@ -12,7 +13,7 @@
       app = angular.module('gifts/list_controller', ['gifts/service']);
 
   fn.loadGifts = function() {
-    this.service.loadGifts(this.page).success(this._parseGifts);
+    this.service.loadGifts(this.page, this.params).success(this._parseGifts);
   };
 
   fn._parseGifts = function(data) {
