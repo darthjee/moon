@@ -23,4 +23,5 @@
 //= require select2/select2_locale_pt-BR.js
 //= require angular-ui-select2/src/select2.js
 //= require angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module
+//= require querystring
 //= require_tree .
