@@ -5,7 +5,7 @@ class Marriage::Gift < ActiveRecord::Base
   def as_json(*args)
     super(*args).merge(
       gift_links: gift_links.map(&:as_json),
-      price_range: [min_price, max_price].uniq.compact
+      price_range: [min_link_price, max_link_price].uniq.compact
     )
   end
 
@@ -13,11 +13,11 @@ class Marriage::Gift < ActiveRecord::Base
     gift_links.map(&:price).push(price).compact
   end
 
-  def min_price
+  def min_link_price
     price_list.min
   end
 
-  def max_price
+  def max_link_price
     price_list.max
   end
 end
