@@ -10,18 +10,7 @@
       </span>
     </div>
     <div class="gift-links">
-      <div class="row">
-        <div class="col-sm-6" ng-repeat="link in gift.gift_links">
-          <a href="{{ link.url }}" target="_BLANK"
-             class="btn btn-default store-link"
-             style="
-               background-image: url({{ link.store.image_url }});
-               background-color: {{ link.store.bg_color }}
-             ">
-             <div>{{ link.store.name }}</div>
-          </a>
-        </div>
-      </div>
+      <%= render partial: 'gift_links' %>
     </div>
   </div>
 </div>
