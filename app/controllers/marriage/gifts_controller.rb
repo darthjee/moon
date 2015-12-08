@@ -81,6 +81,6 @@ class Marriage::GiftsController < ApplicationController
   end
 
   def per_page
-    @per_page ||= (params[:per_page] || 16).to_i
+    @per_page ||= (params[:per_page] || 8).to_i
   end
 end
