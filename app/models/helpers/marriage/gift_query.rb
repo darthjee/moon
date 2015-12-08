@@ -16,8 +16,25 @@ class Helpers::Marriage::GiftQuery
 
   private
 
+  def order_by
+    case params[:sort_by]
+    when 'price'
+      sort_desc? ? :min_price : :max_price
+    else
+      :name
+    end
+  end
+
+  def sort_desc?
+    params[:desc]
+  end
+
+  def order_direction
+    sort_desc? ? :desc : :asc
+  end
+
   def gifts_json
-    gifts.as_json(include: :gift_links)
+    gifts.order(order_by => order_direction).as_json(include: :gift_links)
   end
 
   def gifts
