@@ -22,6 +22,7 @@ class Marriage::GiftsController < ApplicationController
       unless gift_link_exists?(gift_link_json[:url])
         gift = find_or_create_gift(gift_link_json[:gift])
         gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
+        gift.as_json
       end
     end.compact
   end
