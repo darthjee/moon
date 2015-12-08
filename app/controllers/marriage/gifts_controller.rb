@@ -21,7 +21,7 @@ class Marriage::GiftsController < ApplicationController
     gifts_creation_json.map do |gift_link_json|
       unless gift_link_exists?(gift_link_json[:url])
         gift = find_or_create_gift(gift_link_json[:gift])
-        store_list.gift_links.create(gift_link_json.permit(:url, :price).merge(gift: gift))
+        gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
       end
     end.compact
   end

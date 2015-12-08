@@ -20,4 +20,8 @@ class Marriage::Gift < ActiveRecord::Base
   def max_link_price
     price_list.max
   end
+
+  def add_link(attributes)
+    gift_links.create(attributes)
+  end
 end
