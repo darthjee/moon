@@ -23,5 +23,9 @@ class Marriage::Gift < ActiveRecord::Base
 
   def add_link(attributes)
     gift_links.create(attributes)
+    update(
+      min_price: min_link_price,
+      max_price: max_link_price
+    )
   end
 end

@@ -11,6 +11,7 @@ describe Marriage::GiftsController do
     let(:last_link_attributes) do
       last_link.attributes.slice('url', 'store_list_id', 'gift_id', 'price')
     end
+    let(:gift_attributes) { %w(image_url name quantity min_price max_price) }
 
     context 'when admin key is wrong' do
       before do
@@ -37,10 +38,12 @@ describe Marriage::GiftsController do
     it 'creates a gift for the given parameters' do
       post :create, parameters
 
-      expect(Marriage::Gift.last.attributes.slice('image_url', 'name', 'quantity')).to eq(
+      expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
         'image_url' => 'http://image_url.com',
         'name' => 'Gift Name',
-        'quantity' => 4
+        'quantity' => 4,
+        'min_price' => 10.0,
+        'max_price' => 10.0
       )
     end
 
@@ -79,20 +82,31 @@ describe Marriage::GiftsController do
       end
 
       context 'but for another store' do
-        before do
-          Marriage::GiftLink.last.update(store_list_id: 2)
-        end
+        let(:new_request_parameters) { requests_json['create_new_store'] }
 
         it do
           expect do
-            post :create, parameters
+            post :create, new_request_parameters
           end.to change(Marriage::GiftLink, :count)
         end
 
         it do
           expect do
-            post :create, parameters
+            post :create, new_request_parameters
           end.not_to change(Marriage::Gift, :count)
+        end
+
+        it 'updates min and max price for the gift' do
+
+          post :create, new_request_parameters
+
+          expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
+            'image_url' => 'http://image_url.com',
+            'name' => 'Gift Name',
+            'quantity' => 4,
+            'min_price' => 10.0,
+            'max_price' => 20.0
+          )
         end
       end
     end
