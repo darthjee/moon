@@ -34,7 +34,11 @@ class Helpers::Marriage::GiftQuery
   end
 
   def gifts_json
-    gifts.order(order_by => order_direction).as_json(include: :gift_links)
+    ordered_gifts.as_json(include: :gift_links)
+  end
+
+  def ordered_gifts
+    gifts.order(order_by => order_direction).order(name: :asc)
   end
 
   def gifts
