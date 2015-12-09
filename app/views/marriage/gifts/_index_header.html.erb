@@ -1,8 +1,13 @@
 <div class="navbar navbar-default navbar-static-top sub-navbar">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button class="btn btn-default">
+      <button class="btn btn-default" ng-click="glc.orderBy('name')">
         Nome
+        <span class="badge glyphicon glyphicon-arrow-up"><span></span></span>
+      </button>
+
+      <button class="btn btn-default" ng-click="glc.orderBy('price')">
+        Preço
         <span class="badge glyphicon glyphicon-arrow-up"><span></span></span>
       </button>
     </div>

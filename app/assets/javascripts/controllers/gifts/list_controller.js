@@ -16,6 +16,35 @@
     this.service.loadGifts(this.page, this.params).success(this._parseGifts);
   };
 
+  fn.orderBy = function(param) {
+    if (this.params.sort_by == param) {
+      if (this.params.desc) {
+        delete(this.params.desc);
+        this.params.asc = true;
+      } else {
+        delete(this.params.asc);
+        this.params.desc = true;
+      }
+    }
+    this.params.sort_by = param;
+    window.location.href = this.pageUrl(1);
+  };
+
+  fn.pageUrl = function(page) {
+    return '/#/presentes/pagina/' + page + '?' + this.sortParams();
+  };
+
+  fn.sortParams = function() {
+    var params = { sort_by: this.params.sort_by };
+
+    if (this.params.desc) {
+      params.desc = true;
+    } else {
+      params.asc = true;
+    }
+    return querystring.encode(params);
+  };
+
   fn._parseGifts = function(data) {
     this.gifts = data.gifts;
     this.pages = data.pages;
