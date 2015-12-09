@@ -3,14 +3,7 @@
   <div class="panel-body">
     <div class="gift-image" style="background-image: url({{ gift.image_url }})">
     </div>
-    <div class="gift-price">
-      <strong>Preço: </strong>
-      <span ng-show="gift.price_range.length > 0">
-        <span ng-repeat="price in gift.price_range track by $index">
-          <span ng-show="$index > 0">até</span> {{ price | currency : 'R$ ' : 2 }}
-        </span>
-      </span>
-    </div>
+    <%= render partial: 'gift_price' %>
     <div class="gift-links">
       <%= render partial: 'gift_links' %>
     </div>
