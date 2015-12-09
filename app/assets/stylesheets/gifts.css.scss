@@ -12,6 +12,14 @@
     height: 200px;
   }
 
+  .gift-price, .gift-quantity {
+    font-size: 1.4rem;
+
+    strong {
+      font-size: 1.1rem;
+    }
+  }
+
   .gift-links {
     height: 70px;
     width: 300px;
