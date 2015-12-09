@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209132610) do
+ActiveRecord::Schema.define(version: 20151209205530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(version: 20151209132610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "presence"
-    t.text     "color"
-    t.text     "role"
-    t.boolean  "active",     default: true, null: false
+    t.string   "color",      limit: 7
+    t.string   "role",       limit: 20
+    t.boolean  "active",                default: true, null: false
   end
 
   create_table "marriage_invites", force: true do |t|
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20151209132610) do
     t.time     "last_view_date"
     t.boolean  "invite_honor"
     t.string   "authentication_token", limit: 16
-    t.text     "password"
+    t.string   "password",             limit: 64
     t.string   "status"
     t.boolean  "up_to_date"
   end
