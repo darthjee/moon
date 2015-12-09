@@ -25,9 +25,16 @@
         delete(this.params.asc);
         this.params.desc = true;
       }
+    } else {
+      this.params.sort_by = param;
+      delete(this.params.desc);
+      this.params.asc = true;
     }
-    this.params.sort_by = param;
     window.location.href = this.pageUrl(1);
+  };
+
+  fn.orderedBy = function(param, type) {
+    return this.params.sort_by == param && this.params[type];
   };
 
   fn.pageUrl = function(page) {
