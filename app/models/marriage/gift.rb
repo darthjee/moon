@@ -5,7 +5,7 @@ class Marriage::Gift < ActiveRecord::Base
   def as_json(*args)
     super(*args).merge(
       gift_links: gift_links.map(&:as_json),
-      price_range: [min_link_price, max_link_price].uniq.compact
+      price_range: [min_price, max_price].uniq.compact
     )
   end
 
@@ -23,9 +23,13 @@ class Marriage::Gift < ActiveRecord::Base
 
   def add_link(attributes)
     gift_links.create(attributes)
+    update_prices
+  end
+
+  def update_prices
     update(
-      min_price: min_link_price,
-      max_price: max_link_price
+      min_price: min_link_price.to_f * quantity,
+      max_price: max_link_price.to_f * quantity
     )
   end
 end

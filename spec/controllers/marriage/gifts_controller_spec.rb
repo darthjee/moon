@@ -42,8 +42,8 @@ describe Marriage::GiftsController do
         'image_url' => 'http://image_url.com',
         'name' => 'Gift Name',
         'quantity' => 4,
-        'min_price' => 10.0,
-        'max_price' => 10.0
+        'min_price' => 40.0,
+        'max_price' => 40.0
       )
     end
 
@@ -104,8 +104,8 @@ describe Marriage::GiftsController do
             'image_url' => 'http://image_url.com',
             'name' => 'Gift Name',
             'quantity' => 4,
-            'min_price' => 10.0,
-            'max_price' => 20.0
+            'min_price' => 40.0,
+            'max_price' => 80.0
           )
         end
       end

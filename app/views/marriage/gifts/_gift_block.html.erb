@@ -3,12 +3,7 @@
   <div class="panel-body">
     <div class="gift-image" style="background-image: url({{ gift.image_url }})">
     </div>
-    <div class="gift-price">
-      <strong>Preço: </strong>
-      <span ng-show="gift.price_range.length > 0">
-        R$ {{ gift.price_range.join(' até R$ ') }}
-      </span>
-    </div>
+    <%= render partial: 'gift_price' %>
     <div class="gift-links">
       <%= render partial: 'gift_links' %>
     </div>
