@@ -21,7 +21,8 @@ class Marriage::GiftsController < ApplicationController
     gifts_creation_json.map do |gift_link_json|
       unless gift_link_exists?(gift_link_json[:url])
         gift = find_or_create_gift(gift_link_json[:gift])
-        store_list.gift_links.create(gift_link_json.permit(:url, :price).merge(gift: gift))
+        gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
+        gift.as_json
       end
     end.compact
   end
@@ -51,36 +52,6 @@ class Marriage::GiftsController < ApplicationController
   end
 
   def gifts_list_json
-    {
-      gifts: gifts_json,
-      pages: gift_pages,
-      page: page_param
-    }
-  end
-
-  def gifts_json
-    gifts.as_json(include: :gift_links)
-  end
-
-  def gifts
-    marriage.gifts.limit(per_page).offset(offset)
-  end
-
-  private
-
-  def gift_pages
-    (marriage.gifts.count * 1.0 / per_page).ceil
-  end
-
-  def offset
-    (page_param - 1) * per_page
-  end
-
-  def page_param
-    [params[:page].to_i, 1].max
-  end
-
-  def per_page
-    @per_page ||= (params[:per_page] || 16).to_i
+    Helpers::Marriage::GiftQuery.new(marriage, params).as_json
   end
 end

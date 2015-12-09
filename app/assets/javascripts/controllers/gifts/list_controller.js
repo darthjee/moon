@@ -2,6 +2,7 @@
   function GiftsListController($routeParams, giftsService) {
     this.service = giftsService;
     this.page = $routeParams.page || 1;
+    this.params = $routeParams;
 
     _.bindAll(this, '_parseGifts');
 
@@ -12,7 +13,43 @@
       app = angular.module('gifts/list_controller', ['gifts/service']);
 
   fn.loadGifts = function() {
-    this.service.loadGifts(this.page).success(this._parseGifts);
+    this.service.loadGifts(this.page, this.params).success(this._parseGifts);
+  };
+
+  fn.orderBy = function(param) {
+    if (this.params.sort_by == param) {
+      if (this.params.desc) {
+        delete(this.params.desc);
+        this.params.asc = true;
+      } else {
+        delete(this.params.asc);
+        this.params.desc = true;
+      }
+    } else {
+      this.params.sort_by = param;
+      delete(this.params.desc);
+      this.params.asc = true;
+    }
+    window.location.href = this.pageUrl(1);
+  };
+
+  fn.orderedBy = function(param, type) {
+    return this.params.sort_by == param && this.params[type];
+  };
+
+  fn.pageUrl = function(page) {
+    return '/#/presentes/pagina/' + page + '?' + this.sortParams();
+  };
+
+  fn.sortParams = function() {
+    var params = { sort_by: this.params.sort_by };
+
+    if (this.params.desc) {
+      params.desc = true;
+    } else {
+      params.asc = true;
+    }
+    return querystring.encode(params);
   };
 
   fn._parseGifts = function(data) {

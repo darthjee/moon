@@ -14,5 +14,21 @@
         "price": 10.0
       }
     ]
+  },
+  "create_new_store": {
+    "format": "json",
+    "store_id": 2,
+    "admin_key": "1234",
+    "gift_links": [
+      {
+        "gift": {
+          "image_url": "http://another_image.com",
+          "name": "Gift Name",
+          "quantity": 2
+        },
+        "url": "http://new_sotore/gift",
+        "price": 20.0
+      }
+    ]
   }
 }

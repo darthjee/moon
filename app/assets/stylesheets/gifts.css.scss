@@ -1,6 +1,11 @@
 .gift-block {
   margin: 0 auto 20px;
 
+  .gift-name {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
   .gift-image {
     background-repeat: no-repeat;
     background-position: center;
