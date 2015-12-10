@@ -20,4 +20,13 @@ describe Marriage::GiftLink do
       end
     end
   end
+
+  describe '#as_json' do
+    let(:link_with_account) { build(:gift_link, account: build(:account)) }
+    let(:link_with_store) { build(:gift_link) }
+
+    it 'returns the same structure for store and account link' do
+      expect(link_with_account.as_json[:store]).to eq(link_with_store.as_json[:store])
+    end
+  end
 end
