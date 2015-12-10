@@ -19,7 +19,7 @@ class Helpers::Marriage::GiftQuery
   def order_by
     case params[:sort_by]
     when 'price'
-      sort_desc? ? :min_price : :max_price
+      sort_desc? ? :max_price : :min_price
     else
       :name
     end
