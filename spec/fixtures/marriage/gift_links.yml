@@ -1,0 +1,6 @@
+first_link:
+  id: 1
+  store_list_id: 1
+link_with_account:
+  id: 2
+  account_id: 1
