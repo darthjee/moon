@@ -13,7 +13,7 @@ describe Marriage::GiftLink do
 
     context 'when link does not have an account' do
       let(:subject) { marriage_gift_links(:first_link) }
-      let(:store) { marriage_stores(:first_store) }
+      let(:store) { store_stores(:first_store) }
 
       it 'returns the store' do
         expect(subject.store).to eq(store)
