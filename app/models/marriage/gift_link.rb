@@ -5,15 +5,16 @@ class Marriage::GiftLink < ActiveRecord::Base
 
   def as_json(*args)
     super(*args).merge(
-      store: store.as_json(only: [:image_url, :name, :bg_color])
+      store: store.as_json(only: [:image_url, :name, :bg_color]),
+      bank: bank.as_json(only: [:image_url, :name, :bg_color])
     )
   end
 
-  def url
-    account ? 'url' : super
+  def store
+    store_list.try(:store)
   end
 
-  def store
-    account ? account.bank : store_list.store
+  def bank
+    account.try(:bank)
   end
 end
