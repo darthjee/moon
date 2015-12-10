@@ -9,6 +9,10 @@ class Marriage::GiftLink < ActiveRecord::Base
     )
   end
 
+  def url
+    account ? 'url' : super
+  end
+
   def store
     account ? account.bank : store_list.store
   end
