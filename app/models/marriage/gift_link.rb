@@ -10,6 +10,6 @@ class Marriage::GiftLink < ActiveRecord::Base
   end
 
   def store
-    account ? account : store_list.store
+    account ? account.bank : store_list.store
   end
 end
