@@ -18,23 +18,20 @@
 
   fn.orderBy = function(param) {
     if (this.params.sort_by == param) {
-      if (this.params.desc) {
-        delete(this.params.desc);
-        this.params.asc = true;
+      if (this.params.sort_direction == 'desc') {
+        this.params.sort_direction = 'asc';
       } else {
-        delete(this.params.asc);
-        this.params.desc = true;
+        this.params.sort_direction = 'desc';
       }
     } else {
       this.params.sort_by = param;
-      delete(this.params.desc);
-      this.params.asc = true;
+      this.params.sort_direction = 'asc';
     }
     window.location.href = this.pageUrl(1);
   };
 
   fn.orderedBy = function(param, type) {
-    return this.params.sort_by == param && this.params[type];
+    return this.params.sort_by == param && this.params.sort_direction == type;
   };
 
   fn.pageUrl = function(page) {
@@ -42,13 +39,11 @@
   };
 
   fn.sortParams = function() {
-    var params = { sort_by: this.params.sort_by };
+    var params = {
+      sort_by: this.params.sort_by,
+      sort_direction: this.params.sort_direction
+    };
 
-    if (this.params.desc) {
-      params.desc = true;
-    } else {
-      params.asc = true;
-    }
     return querystring.encode(params);
   };
 
