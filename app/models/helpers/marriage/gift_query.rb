@@ -30,7 +30,7 @@ class Helpers::Marriage::GiftQuery
   end
 
   def sort_direction
-    params[:sort_direction] || :asc
+    params[:sort_direction].present? ? params[:sort_direction] : :asc
   end
 
   def gifts_json
@@ -38,7 +38,7 @@ class Helpers::Marriage::GiftQuery
   end
 
   def ordered_gifts
-    gifts.order(order_by => sort_direction.to_sym).order(name: :asc)
+    gifts.order(order_by => sort_direction).order(name: :asc)
   end
 
   def gifts
