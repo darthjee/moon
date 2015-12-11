@@ -17,8 +17,10 @@
     promisse.success(this._parseGift);
   };
 
-  fn._parseGift = function() {
-
+  fn._parseGift = function(data) {
+    this.link = data;
+    this.gift = data.gift;
+    this.loaded = true;
   };
 
   app.controller('GiftShowController', [

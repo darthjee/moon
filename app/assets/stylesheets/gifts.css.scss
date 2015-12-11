@@ -36,3 +36,19 @@
     }
   }
 }
+
+.gift-show {
+  .gift-image {
+    max-width: 90%;
+    width: 90%;
+    margin: 0px 5% 10%;
+  }
+
+  .gift-details {
+    font-size: 2rem;
+
+    .gift-description {
+      font-size: 1.4em;
+    }
+  }
+}

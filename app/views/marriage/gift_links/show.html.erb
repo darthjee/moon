@@ -1,0 +1,30 @@
+<div class="panel panel-default gift-show" ng-show="gsc.loaded">
+  <div class="panel-heading gift-name">{{gsc.gift.name }}</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-5 col-sm-12">
+        <img src="{{ gsc.gift.image_url }}" class="gift-image" />
+      </div>
+      <div class="col-md-7 col-sm-12 gift-details">
+        <div class="row">
+          <div class="col-sm-12 gift-description">
+            {{ gsc.gift.description }}
+          </div>
+          <div class="col-sm-12">
+            {{ gsc.link.price | currency : 'R$ ' : 2 }}
+          </div>
+          <div class="col-sm-12" ng-show="gsc.link.bank">
+            {{ gsc.link.bank.name }}
+            <dl>
+              <dt>Agência</dt>
+              <dd>{{ gsc.link.account.agency }}</dd>
+            </dl>
+            <dl>
+              <dt>Conta</dt>
+              <dd>{{ gsc.link.account.number }}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
