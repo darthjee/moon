@@ -8,31 +8,11 @@ module ApplicationHelper
   end
 
   def method_missing(method, *args)
-    if /^(\w*)_safe_path$/ =~ method && respond_to?(/^(\w*)_safe_path$/.match(method)[1]+'_path')
-      safe_path(/^(\w*)_safe_path$/.match(method)[1]+'_path', *args)
-    else
-      super
-    end
+    Path::SafePath.new(self, method).call_missing(*args) || super
   end
 
   def respond_to?(method)
-    if /^(\w*)_safe_path$/ =~ method
-      respond_to?(/^(\w*)_safe_path$/.match(method)[1]+'_path')
-    else
-      super
-    end
-  end
-
-  def safe_path(path_method, args)
-    keys = args.keys.map { |k| ":#{k}" }
-    key_args = keys.as_hash(args.keys)
-
-    path = public_send(path_method, key_args)
-
-    key_args.each do |key, key_s|
-      regexp = Regexp.new("#{key_s}\\b")
-      path.gsub!(regexp, args[key])
-    end
-    path
+    return true if Path::SafePath.new(self, method).does_respond_to?
+    super
   end
 end
