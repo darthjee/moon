@@ -1,9 +1,14 @@
 <nav>
   <ul class="pagination">
     <li ng-show="glc.page > 1">
-      <%= link_to angular_path_to(paginated_marriage_gifts_safe_path(page: '{{ glc.page-1 }}')), {
-        'aria-label' => 'Previous'
-      } do %>
+      <%= link_to(
+          angular_path_to(
+            paginated_marriage_gifts_safe_path(page: '{{ glc.page-1 }}',
+              sort_by: '{{ glc.params.sort_by }}', sort_direction: '{{ glc.params.sort_direction }}'
+            )
+          ),
+          'aria-label' => 'Previous'
+        ) do %>
         <span aria-hidden="true">&laquo;</span>
       <% end %>
     </li>
@@ -11,7 +16,8 @@
       <%= link_to(
           angular_path_to(
             paginated_marriage_gifts_safe_path(page: '{{ page }}',
-            sort_by: '{{ glc.params.sort_by }}', sort_direction: '{{ glc.params.sort_direction }}')
+              sort_by: '{{ glc.params.sort_by }}', sort_direction: '{{ glc.params.sort_direction }}'
+            )
           ), 'ng-show' => 'page'
         ) do %>
         {{ page }} <span class="sr-only" ng-show="glc.page == page">(current)</span>
