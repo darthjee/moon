@@ -11,19 +11,23 @@ module Path
 
     def call_missing(*args)
       if MATCHER =~ method && does_respond_to?
-        safe_path(MATCHER.match(method)[1]+'_path', *args)
+        safe_path(*args)
       end
     end
 
     def does_respond_to?
       if MATCHER =~ method
-        controller.respond_to?(MATCHER.match(method)[1]+'_path')
+        controller.respond_to?(path_method)
       end
     end
 
     private
 
-    def safe_path(path_method, args)
+    def path_method
+      @path_method ||= MATCHER.match(method)[1]+'_path'
+    end
+
+    def safe_path(args)
       PathCaller.new(controller, path_method, args).path
     end
   end

@@ -8,25 +8,25 @@ class Path::SafePath::PathCaller
   end
 
   def path
-    c_path = controller_path
-    key_args.each do |key, key_s|
-      regexp = Regexp.new("#{key_s}\\b")
-      c_path.gsub!(regexp, args[key])
+    controller_path.tap do |path|
+      keys_map.each do |key, key_s|
+        regexp = Regexp.new("#{key_s}\\b")
+        path.gsub!(regexp, args[key])
+      end
     end
-    c_path
   end
 
   private
 
-  def keys
+  def key_names
     @keys ||= args.keys.map { |k| ":#{k}" }
   end
 
-  def key_args
-    @key_args ||= keys.as_hash(args.keys)
+  def keys_map
+    @keys_map ||= key_names.as_hash(args.keys)
   end
 
   def controller_path
-    @controller_path ||= controller.public_send(method, key_args)
+    @controller_path ||= controller.public_send(method, keys_map)
   end
 end
