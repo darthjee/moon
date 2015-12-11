@@ -25,9 +25,13 @@
        <span ng-show="!page" class="disabled">&#8230;</span>
     </li>
     <li ng-show="glc.page < glc.pages">
-      <%= link_to angular_path_to(paginated_marriage_gifts_safe_path(page: '{{ glc.page+1 }}')), {
-        'aria-label' => 'Next'
-      } do %>
+      <%= link_to(
+          angular_path_to(
+            paginated_marriage_gifts_safe_path(page: '{{ glc.page+1 }}',
+              sort_by: '{{ glc.params.sort_by }}', sort_direction: '{{ glc.params.sort_direction }}'
+            )
+          ), 'aria-label' => 'Next'
+        ) do %>
         <span aria-hidden="true">&raquo;</span>
       <% end %>
     </li>
