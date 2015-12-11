@@ -7,11 +7,27 @@ module ApplicationHelper
     "##{path}"
   end
 
-  def marriage_gift_gift_link_safe_path(args)
+  def method_missing(method, *args)
+    if /^(\w*)_safe_path$/ =~ method && respond_to?(/^(\w*)_safe_path$/.match(method)[1]+'_path')
+      safe_path(/^(\w*)_safe_path$/.match(method)[1]+'_path', *args)
+    else
+      super
+    end
+  end
+
+  def respond_to?(method)
+    if /^(\w*)_safe_path$/ =~ method
+      respond_to?(/^(\w*)_safe_path$/.match(method)[1]+'_path')
+    else
+      super
+    end
+  end
+
+  def safe_path(path_method, args)
     keys = args.keys.map { |k| ":#{k}" }
     key_args = keys.as_hash(args.keys)
 
-    path = marriage_gift_gift_link_path(key_args)
+    path = public_send(path_method, key_args)
 
     key_args.each do |key, key_s|
       regexp = Regexp.new("#{key_s}\\b")
