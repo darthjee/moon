@@ -1,11 +1,25 @@
 (function(_) {
   function GiftShowController($routeParams, giftsService) {
     this.service = giftsService;
-    this.params = $routeParams;
+    this.gift_id = $routeParams.gift_id;
+    this.link_id = $routeParams.id;
+
+    _.bindAll(this, '_parseGift');
+
+    this.loadGiftLink();
   }
 
   var fn = GiftShowController.prototype;
       app = angular.module('gifts/show_controller', ['gifts/service']);
+
+  fn.loadGiftLink = function() {
+    var promisse = this.service.loadGiftLink(this.gift_id, this.link_id);
+    promisse.success(this._parseGift);
+  };
+
+  fn._parseGift = function() {
+
+  };
 
   app.controller('GiftShowController', [
     '$routeParams', 'giftsService', GiftShowController
