@@ -49,6 +49,6 @@ class Marriage::Gift::Creator
   end
 
   def gifts_list_json
-    Helpers::Marriage::GiftQuery.new(marriage, params).as_json
+    Marriage::Query.new(marriage, params).as_json
   end
 end

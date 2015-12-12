@@ -1,4 +1,4 @@
-class Helpers::Marriage::GiftQuery
+class Marriage::Gift::Query
   attr_reader :params, :marriage
 
   def initialize(marriage, params)
