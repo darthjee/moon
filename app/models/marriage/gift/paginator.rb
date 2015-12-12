@@ -38,7 +38,7 @@ class Marriage::Gift::Paginator
   end
 
   def ordered_gifts
-    gifts.order(order_by => sort_direction).order(name: :asc)
+    gifts.order(order_by => sort_direction.to_sym).order(name: :asc)
   end
 
   def gifts
