@@ -28,8 +28,8 @@ class Marriage::Gift < ActiveRecord::Base
 
   def update_prices
     update(
-      min_price: min_link_price.to_f * quantity,
-      max_price: max_link_price.to_f * quantity
+      min_price: min_link_price.to_f * package,
+      max_price: max_link_price.to_f * package
     )
   end
 end

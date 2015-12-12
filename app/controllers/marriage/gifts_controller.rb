@@ -31,7 +31,13 @@ class Marriage::GiftsController < ApplicationController
     if marriage.gifts.where(gift_json.permit(:name)).any?
       marriage.gifts.find_by(gift_json.permit(:name))
     else
-      marriage.gifts.create(gift_json.permit(:image_url, :name, :quantity))
+      marriage.gifts.create(gift_creation_json(gift_json))
+    end
+  end
+
+  def gift_creation_json(gift_json)
+    gift_json.permit(:image_url, :name, :quantity, :package).tap do |json|
+      json[:package] ||= json[:quantity]
     end
   end
 
