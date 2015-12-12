@@ -21,5 +21,9 @@ module Marriage
     def created_gift_links
       Gift::Creator.new(marriage, params).create
     end
+
+    def gifts_list_json
+      Marriage::Gift::Query.new(marriage, params).as_json
+    end
   end
 end
