@@ -23,7 +23,7 @@ module Marriage
     end
 
     def gifts_list_json
-      Marriage::Gift::Query.new(marriage, params).as_json
+      Gift::Paginator.new(marriage, params).as_json
     end
   end
 end

@@ -1,4 +1,4 @@
-class Marriage::Gift::Query
+class Marriage::Gift::Paginator
   attr_reader :params, :marriage
 
   def initialize(marriage, params)
