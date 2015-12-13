@@ -23,5 +23,9 @@
     return this.packages_quantity > 1;
   };
 
+  fn.has_many = function() {
+    return this.quantity > 1;
+  };
+
   module.factory('Gift', [GiftFactory]);
 })(_);
