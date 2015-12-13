@@ -2,7 +2,7 @@
   <div class="gift-price col-md-9" ng-show="gift.price_range.length > 0">
     <strong>Preço<span ng-show="gift.quantity > 1"> Total</span>: </strong>
     <span ng-repeat="price in gift.price_range track by $index">
-      <span ng-show="$index > 0">até</span>
+      <span ng-show="$index > 0">-</span>
       {{ price | currency : 'R$ ' : 2 }}
     </span>
   </div>
