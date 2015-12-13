@@ -13,26 +13,45 @@
   }
 
   .gift-price, .gift-quantity {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
 
     strong {
-      font-size: 1.1rem;
+      font-size: 0.65em;
     }
   }
 
   .gift-links {
     height: 70px;
     width: 300px;
+  }
+}
 
-    .store-link {
-      background-repeat: no-repeat;
-      background-position: center;
 
-      div {
-        width: 80px;
-        height: 20px;
-        text-indent: -99999px;
-      }
+.gift-block, .gift-show {
+  .store-link, .bank-logo {
+    background-repeat: no-repeat;
+    background-position: center;
+
+    div {
+      width: 80px;
+      height: 20px;
+      text-indent: -99999px;
+    }
+  }
+}
+
+.gift-show {
+  .gift-image {
+    max-width: 90%;
+    width: 90%;
+    margin: 0px 5% 10%;
+  }
+
+  .gift-details {
+    font-size: 2rem;
+
+    .gift-description {
+      font-size: 1.4em;
     }
   }
 }

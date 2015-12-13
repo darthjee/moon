@@ -1,0 +1,10 @@
+<div class="panel panel-default gift-show" ng-show="gsc.loaded">
+  <div class="panel-heading gift-name">{{gsc.gift.name }}</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-5 col-sm-12">
+        <img src="{{ gsc.gift.image_url }}" class="gift-image" />
+      </div>
+      <%= render partial: 'details' %>
+    </div>
+</div>

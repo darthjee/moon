@@ -22,3 +22,19 @@
 .loading:not(.loaded) {
   display: none;
 }
+
+dl.description {
+  dt {
+    clear: both;
+    float: left;
+    margin-right: 0.6em;
+
+    &:after {
+      content: ":"
+    }
+  }
+}
+
+.no-link {
+  cursor: default;
+}

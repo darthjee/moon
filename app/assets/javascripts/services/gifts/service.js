@@ -18,5 +18,11 @@
     return this.requester.get(url);
   };
 
+  fn.loadGiftLink = function(gift_id, link_id) {
+    var url = '/presentes/' + gift_id + '/descricao/' + link_id + '.json';
+
+    return this.requester.get(url);
+  };
+
   module.service('giftsService', ['$http', GiftsServiceFactory]);
 })(window._);

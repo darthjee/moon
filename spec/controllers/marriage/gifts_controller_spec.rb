@@ -64,6 +64,23 @@ describe Marriage::GiftsController do
       })
     end
 
+    context 'when sending a different size package' do
+      let(:parameters_key) { 'create_smaller_package' }
+
+      it 'save the total price correctly' do
+        post :create, parameters
+
+        expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
+          'image_url' => 'http://image_url.com',
+          'name' => 'Gift Name',
+          'quantity' => 4,
+          'min_price' => 20.0,
+          'max_price' => 20.0
+        )
+
+      end
+    end
+
     context 'when gift already exists' do
       before do
         post :create, parameters

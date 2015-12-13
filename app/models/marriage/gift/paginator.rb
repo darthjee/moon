@@ -1,4 +1,4 @@
-class Helpers::Marriage::GiftQuery
+class Marriage::Gift::Paginator
   attr_reader :params, :marriage
 
   def initialize(marriage, params)
@@ -30,7 +30,7 @@ class Helpers::Marriage::GiftQuery
   end
 
   def sort_direction
-    params[:sort_direction] || :asc
+    params[:sort_direction].present? ? params[:sort_direction] : :asc
   end
 
   def gifts_json
@@ -41,12 +41,16 @@ class Helpers::Marriage::GiftQuery
     gifts.order(order_by => sort_direction.to_sym).order(name: :asc)
   end
 
+  def paginated_gifts
+    gifts.limit(per_page).offset(offset)
+  end
+
   def gifts
-    marriage.gifts.limit(per_page).offset(offset)
+    marriage.gifts.not_hidden
   end
 
   def gift_pages
-    (marriage.gifts.count * 1.0 / per_page).ceil
+    (gifts.count * 1.0 / per_page).ceil
   end
 
   def offset
