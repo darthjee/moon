@@ -4,7 +4,10 @@
       {{ gsc.gift.description }}
     </div>
     <div class="col-sm-12">
-      {{ gsc.link.price | currency : 'R$ ' : 2 }}
+      Preço Total: {{ gsc.link.price * gsc.gift.quantity | currency : 'R$ ' : 2 }}
+    </div>
+    <div class="col-sm-12">
+      Preço unitário: {{ gsc.link.price | currency : 'R$ ' : 2 }}
     </div>
     <%= render partial: 'account' %>
   </div>
