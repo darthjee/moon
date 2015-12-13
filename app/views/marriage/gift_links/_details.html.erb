@@ -9,6 +9,9 @@
     <div class="col-sm-12">
       Preço unitário: {{ gsc.link.price | currency : 'R$ ' : 2 }}
     </div>
+    <div class="col-sm-12">
+      Quantidade: {{ gsc.gift.bought }}/{{ gsc.gift.quantity }}
+    </div>
     <%= render partial: 'account' %>
   </div>
 </div>

@@ -15,7 +15,7 @@ class Marriage::GiftLinksController < ApplicationController
   end
 
   def gift_link
-    Marriage::GiftLink.find(link_id.as_json)
+    Marriage::GiftLink.find(link_id).as_json(include: :gift)
   end
 
   def link_id
