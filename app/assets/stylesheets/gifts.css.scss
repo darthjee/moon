@@ -6,12 +6,6 @@
     overflow: hidden;
   }
 
-  .gift-image {
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 200px;
-  }
-
   .gift-price, .gift-quantity {
     font-size: 1.35rem;
 
@@ -38,15 +32,15 @@
       text-indent: -99999px;
     }
   }
-}
 
-.gift-show {
   .gift-image {
     max-width: 90%;
     width: 90%;
     margin: 0px 5% 10%;
   }
+}
 
+.gift-show {
   .gift-details {
     font-size: 2rem;
 
