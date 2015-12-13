@@ -41,12 +41,16 @@ class Marriage::Gift::Paginator
     gifts.order(order_by => sort_direction.to_sym).order(name: :asc)
   end
 
+  def paginated_gifts
+    gifts.limit(per_page).offset(offset)
+  end
+
   def gifts
-    marriage.gifts.limit(per_page).offset(offset)
+    marriage.gifts.not_hidden
   end
 
   def gift_pages
-    (marriage.gifts.count * 1.0 / per_page).ceil
+    (gifts.count * 1.0 / per_page).ceil
   end
 
   def offset
