@@ -1,0 +1,11 @@
+<div class="col-md-7 col-sm-12 gift-details">
+  <div class="row">
+    <div class="col-sm-12 gift-description">
+      {{ gsc.gift.description }}
+    </div>
+    <div class="col-sm-12">
+      {{ gsc.link.price | currency : 'R$ ' : 2 }}
+    </div>
+    <%= render partial: 'account' %>
+  </div>
+</div>
