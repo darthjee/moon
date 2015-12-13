@@ -19,5 +19,9 @@
     return this.priceless;
   };
 
+  fn.has_many_packages = function() {
+    return this.packages_quantity > 1;
+  };
+
   module.factory('Gift', [GiftFactory]);
 })(_);
