@@ -23,16 +23,19 @@
   .gift-links {
     height: 70px;
     width: 300px;
+  }
+}
 
-    .store-link {
-      background-repeat: no-repeat;
-      background-position: center;
 
-      div {
-        width: 80px;
-        height: 20px;
-        text-indent: -99999px;
-      }
+.gift-block, .gift-show {
+  .store-link, .bank-logo {
+    background-repeat: no-repeat;
+    background-position: center;
+
+    div {
+      width: 80px;
+      height: 20px;
+      text-indent: -99999px;
     }
   }
 }
