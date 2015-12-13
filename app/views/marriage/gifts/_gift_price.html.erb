@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="gift-price col-md-9" ng-show="gift.price_range.length > 0">
+  <div class="gift-price col-md-9" ng-show="!gift.priceless">
     <strong>Preço<span ng-show="gift.quantity > 1"> Total</span>: </strong>
     <span ng-repeat="price in gift.price_range track by $index">
       <span ng-show="$index > 0">-</span>

@@ -48,11 +48,18 @@
   };
 
   fn._parseGifts = function(data) {
-    this.gifts = data.gifts;
+    this.gifts = this.completeGifts(data.gifts);
     this.pages = data.pages;
     this.pagination = this.buildPagination(data);
     this.page = data.page;
     this.loaded = true;
+  };
+
+  fn.completeGifts = function(gifts) {
+    return _.map(gifts, function(gift) {
+      gift.priceless = gift.price_range.length <= 0 || gift.display_type == 'priceless';
+      return gift;
+    });
   };
 
   fn.buildPagination = function(data) {
