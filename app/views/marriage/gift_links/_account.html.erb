@@ -1,4 +1,15 @@
-<div class="col-sm-12" ng-show="gsc.link.bank">
+<div class="row">
+  <dl class="description col-sm-3">
+    <dt>Agência</dt>
+    <dd>{{ gsc.link.account.agency }}</dd>
+  </dl>
+
+  <dl class="description col-sm-3">
+    <dt>Conta</dt>
+    <dd>{{ gsc.link.account.number }}</dd>
+  </dl>
+
+  <div class="col-sm-3" ng-show="gsc.link.bank">
     <div class="btn btn-default bank-logo no-link"
       style="
         background-image: url({{ gsc.link.bank.image_url }});
@@ -6,11 +17,5 @@
       ">
       <div>{{ gsc.link.bank.name }}</div>
     </div>
-
-  <dl class="description">
-    <dt>Agência</dt>
-    <dd>{{ gsc.link.account.agency }}</dd>
-    <dt>Conta</dt>
-    <dd>{{ gsc.link.account.number }}</dd>
-  </dl>
+  </div>
 </div>

@@ -1,17 +1,27 @@
 <div class="col-md-7 col-sm-12 gift-details">
   <div class="row">
+    <dl class="description col-sm-12">
+      <dt>Quantidade</dt>
+      <dd>{{ gsc.gift.bought }}/{{ gsc.gift.quantity }}</dd>
+    </dl>
+  </div>
+
+  <div class="row">
+    <dl class="description col-sm-5">
+      <dt>Preço unitário</dt>
+      <dd>{{ gsc.link.price | currency : 'R$ ' : 2 }}</dd>
+    </dl>
+    <dl class="description col-sm-5">
+      <dt>Preço Total</dt>
+      <dd>{{ gsc.link.price * gsc.gift.quantity | currency : 'R$ ' : 2 }}</dd>
+    </dl>
+  </div>
+
+  <%= render partial: 'account' %>
+
+  <div class="row">
     <div class="col-sm-12 gift-description">
       {{ gsc.gift.description }}
     </div>
-    <div class="col-sm-12">
-      Preço Total: {{ gsc.link.price * gsc.gift.quantity | currency : 'R$ ' : 2 }}
-    </div>
-    <div class="col-sm-12">
-      Preço unitário: {{ gsc.link.price | currency : 'R$ ' : 2 }}
-    </div>
-    <div class="col-sm-12">
-      Quantidade: {{ gsc.gift.bought }}/{{ gsc.gift.quantity }}
-    </div>
-    <%= render partial: 'account' %>
   </div>
 </div>
