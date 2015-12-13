@@ -1,6 +1,6 @@
 (function() {
   var module = angular.module('moon', [
-    'guests', 'gifts', 'ui.select2', 'ngRoute', 'colorpicker.module'
+    'guests', 'gifts', 'ui.select2', 'ngRoute', 'colorpicker.module', 'ext/ceil'
   ]);
 
   module.config(['$httpProvider', function($httpProvider) {
