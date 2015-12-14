@@ -1,0 +1,19 @@
+<div class="aglutination-block">
+  <div class="row">
+    <dl class="description col-sm-12">
+      <dt>Quantidade</dt>
+      <dd>{{ gsc.gift.bought }}/{{ gsc.gift.quantity }}</dd>
+    </dl>
+  </div>
+
+  <div class="row">
+    <dl class="description col-sm-5">
+      <dt>Preço unitário</dt>
+      <dd>{{ gsc.link.price | currency : 'R$ ' : 2 }}</dd>
+    </dl>
+    <dl class="description col-sm-5">
+      <dt>Preço Total</dt>
+      <dd>{{ gsc.link.price * gsc.gift.quantity | currency : 'R$ ' : 2 }}</dd>
+    </dl>
+  </div>
+</div>
