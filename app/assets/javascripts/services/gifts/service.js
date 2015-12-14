@@ -24,5 +24,11 @@
     return this.requester.get(url);
   };
 
+  fn.loadGift = function(gift_id) {
+    var url = '/presentes/' + gift_id + '.json';
+
+    return this.requester.get(url);
+  };
+
   module.service('giftsService', ['$http', GiftsServiceFactory]);
 })(window._);
