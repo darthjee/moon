@@ -13,7 +13,7 @@
       app = angular.module('gifts/show_controller', ['gifts/service']);
 
   fn.loadGiftLink = function() {
-    var promisse = this.service.loadGiftLink(this.gift_id, this.link_id);
+    var promisse = this.service.loadGiftLink(this.gift_id, this.id);
     promisse.success(this._parseGift);
   };
 

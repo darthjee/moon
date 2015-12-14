@@ -12,6 +12,13 @@ module Marriage
       end
     end
 
+    def show
+      respond_to do |format|
+        format.json { render json: gifts_list_json }
+        format.html { cached_render :show }
+      end
+    end
+
     def create
       render json: created_gift_links
     end
