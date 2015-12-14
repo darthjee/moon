@@ -1,13 +1,19 @@
 <div class="row">
-  <div class="gift-price col-md-9" ng-show="!gift.is_priceless()">
-    <strong>Preço<span ng-show="gift.has_many()"> Total</span>: </strong>
-    <span ng-repeat="price in gift.price_range track by $index">
-      <span ng-show="$index > 0">-</span>
-      {{ price | currency : 'R$ ' : 2 }}
-    </span>
+  <div class="gift-price col-md-12">
+    <div ng-show="!gift.is_priceless()">
+      <strong>Preço<span ng-show="gift.has_many()"> Total</span>: </strong>
+      <span ng-repeat="price in gift.price_range track by $index">
+        <span ng-show="$index > 0">-</span>
+        {{ price | currency : 'R$ ' : 2 }}
+      </span>
+    </div>
   </div>
-  <div class="gift-quantity col-md-3" ng-show="gift.has_many_packages()">
-    <strong>Qtn:</strong>
-    {{ gift.quantity }}
+</div>
+<div class="row">
+  <div class="gift-quantity col-md-12">
+    <div ng-show="gift.has_many_packages()">
+      <strong>Quantidade:</strong>
+      {{ gift.quantity }}
+    </div>
   </div>
 </div>
