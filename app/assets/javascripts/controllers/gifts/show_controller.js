@@ -1,25 +1,46 @@
 (function(_) {
   function GiftShowController($routeParams, giftsService) {
     this.service = giftsService;
-    this.gift_id = $routeParams.gift_id;
-    this.link_id = $routeParams.id;
+    this.params = $routeParams;
 
-    _.bindAll(this, '_parseGift');
+    _.bindAll(this, '_parseGiftLink', '_parseGift');
 
-    this.loadGiftLink();
+    this.load();
   }
 
   var fn = GiftShowController.prototype;
       app = angular.module('gifts/show_controller', ['gifts/service']);
 
+  fn.load = function() {
+    if (this.params.gift_id) {
+      this.loadGiftLink();
+    } else {
+      this.loadGift();
+    }
+  };
+
   fn.loadGiftLink = function() {
+    this.gift_id = this.params.gift_id;
+    this.link_id = this.params.id;
     var promisse = this.service.loadGiftLink(this.gift_id, this.link_id);
+    promisse.success(this._parseGiftLink);
+  };
+
+  fn._parseGiftLink = function(data) {
+    this.link = data;
+    this.gift = data.gift;
+    this.loaded = true;
+  };
+
+  fn.loadGift = function() {
+    this.gift_id = this.params.id;
+    var promisse = this.service.loadGift(this.gift_id);
     promisse.success(this._parseGift);
   };
 
   fn._parseGift = function(data) {
-    this.link = data;
-    this.gift = data.gift;
+    this.gift = data;
+    this.links = data.gift_links;
     this.loaded = true;
   };
 

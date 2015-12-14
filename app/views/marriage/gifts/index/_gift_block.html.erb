@@ -1,0 +1,14 @@
+<div class="panel panel-default gift-block">
+  <div class="panel-heading gift-name">{{ gift.name }}</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <img src="{{ gift.image_url }}" class="gift-image" />
+      </div>
+    </div>
+    <%= render partial: 'marriage/gifts/index/gift_price' %>
+    <div class="gift-links">
+      <%= render partial: 'marriage/gifts/index/gift_links' %>
+    </div>
+  </div>
+</div>

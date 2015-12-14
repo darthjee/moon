@@ -18,7 +18,8 @@
     '/padrinhos/informativo': { controller: 'BestManController', controllerAs: 'bmc' },
     '/login': { controller: 'LoginController', controllerAs: 'lc' },
     '/login?redirect_to=:redirect_to': { controller: 'LoginController', controllerAs: 'lc' },
-    '/presentes/:gift_id/descricao/:id': { controller: 'GiftShowController', controllerAs: 'gsc' }
+    '/presentes/:gift_id/descricao/:id': { controller: 'GiftShowController', controllerAs: 'gsc' },
+    '/presentes/:id': { controller: 'GiftShowController', controllerAs: 'gsc' }
   };
 
   fn.bindRoutes = function() {

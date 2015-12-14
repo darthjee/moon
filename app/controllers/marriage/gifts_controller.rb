@@ -12,6 +12,13 @@ module Marriage
       end
     end
 
+    def show
+      respond_to do |format|
+        format.json { render json: gift_json }
+        format.html { cached_render :show }
+      end
+    end
+
     def create
       render json: created_gift_links
     end
@@ -24,6 +31,10 @@ module Marriage
 
     def gifts_list_json
       Gift::Paginator.new(marriage, params).as_json
+    end
+
+    def gift_json
+      marriage.gifts.find(params[:id].as_json)
     end
   end
 end

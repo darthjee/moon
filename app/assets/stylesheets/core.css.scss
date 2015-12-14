@@ -24,6 +24,8 @@
 }
 
 dl.description {
+  margin-bottom: 0.1em;
+
   dt {
     clear: both;
     float: left;
@@ -37,4 +39,8 @@ dl.description {
 
 .no-link {
   cursor: default;
+}
+
+.aglutination-block {
+  margin-bottom: 1.5em;
 }

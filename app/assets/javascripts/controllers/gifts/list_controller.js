@@ -1,8 +1,11 @@
 (function(_) {
-  function GiftsListController($routeParams, giftsService) {
+  var Gift;
+
+  function GiftsListController($routeParams, giftsService, giftModel) {
     this.service = giftsService;
     this.page = $routeParams.page || 1;
     this.params = $routeParams;
+    Gift = giftModel;
 
     _.bindAll(this, '_parseGifts');
 
@@ -10,7 +13,7 @@
   }
 
   var fn = GiftsListController.prototype;
-      app = angular.module('gifts/list_controller', ['gifts/service']);
+      app = angular.module('gifts/list_controller', ['gifts/service', 'gifts/gift']);
 
   fn.loadGifts = function() {
     this.service.loadGifts(this.page, this.params).success(this._parseGifts);
@@ -48,11 +51,17 @@
   };
 
   fn._parseGifts = function(data) {
-    this.gifts = data.gifts;
+    this.gifts = this.completeGifts(data.gifts);
     this.pages = data.pages;
     this.pagination = this.buildPagination(data);
     this.page = data.page;
     this.loaded = true;
+  };
+
+  fn.completeGifts = function(gifts) {
+    return _.map(gifts, function(gift) {
+      return new Gift(gift);
+    });
   };
 
   fn.buildPagination = function(data) {
@@ -79,6 +88,6 @@
   };
 
   app.controller('GiftsListController', [
-    '$routeParams', 'giftsService', GiftsListController
+    '$routeParams', 'giftsService', 'Gift', GiftsListController
   ]);
 })(window._);

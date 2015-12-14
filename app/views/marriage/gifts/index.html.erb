@@ -1,10 +1,10 @@
-<%= render partial: 'index_header' %>
+<%= render partial: 'marriage/gifts/index/index_header' %>
 
 <div ng-show="glc.loaded">
   <div class="row">
     <div class="col-md-3 col-sm-12" ng-repeat="gift in glc.gifts">
-      <%= render partial: 'gift_block' %>
+      <%= render partial: 'marriage/gifts/index/gift_block' %>
     </div>
   </div>
-  <%= render partial: 'pagination' %>
+  <%= render partial: 'marriage/gifts/index/pagination' %>
 </div>

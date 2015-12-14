@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213032201) do
+ActiveRecord::Schema.define(version: 20151214020042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20151213032201) do
     t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "document",    limit: 14
+    t.string   "name"
   end
 
   create_table "bank_banks", force: true do |t|
@@ -68,12 +70,13 @@ ActiveRecord::Schema.define(version: 20151213032201) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "marriage_id"
-    t.integer  "quantity",    default: 1,      null: false
-    t.float    "min_price",   default: 0.0,    null: false
-    t.float    "max_price",   default: 0.0,    null: false
-    t.integer  "package",     default: 1,      null: false
-    t.integer  "bought",      default: 0,      null: false
-    t.string   "status",      default: "open"
+    t.integer  "quantity",     default: 1,         null: false
+    t.float    "min_price",    default: 0.0,       null: false
+    t.float    "max_price",    default: 0.0,       null: false
+    t.integer  "package",      default: 1,         null: false
+    t.integer  "bought",       default: 0,         null: false
+    t.string   "status",       default: "open"
+    t.string   "display_type", default: "regular", null: false
   end
 
   create_table "marriage_guests", force: true do |t|
