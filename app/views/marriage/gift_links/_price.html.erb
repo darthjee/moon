@@ -6,14 +6,31 @@
     </dl>
   </div>
 
-  <div class="row">
-    <dl class="description col-sm-5">
-      <dt>Preço unitário</dt>
+  <div class="row" ng-show="gsc.link">
+    <dl class="description col-sm-12">
+      <dt>Preço Unitário</dt>
       <dd>{{ gsc.link.price | currency : 'R$ ' : 2 }}</dd>
-    </dl>
-    <dl class="description col-sm-5">
       <dt>Preço Total</dt>
       <dd>{{ gsc.link.price * gsc.gift.quantity | currency : 'R$ ' : 2 }}</dd>
+    </dl>
+  </div>
+
+  <div class="row" ng-show="gsc.links">
+    <dl class="description col-sm-12">
+      <dt>Preço Unitário</dt>
+      <dd>
+        <span ng-repeat="price in gsc.gift.price_range track by $index">
+          <span ng-show="$index > 0">-</span>
+          {{ price | currency : 'R$ ' : 2 }}
+        </span>
+      </dd>
+      <dt>Preço Total</dt>
+      <dd>
+        <span ng-repeat="price in gsc.gift.price_range track by $index">
+          <span ng-show="$index > 0">-</span>
+          {{ price * gsc.gift.quantity | currency : 'R$ ' : 2 }}
+        </span>
+      </dd>
     </dl>
   </div>
 </div>
