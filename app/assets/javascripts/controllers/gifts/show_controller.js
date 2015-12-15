@@ -41,6 +41,10 @@
   fn._parseGift = function(data) {
     this.gift = data;
     this.links = data.gift_links;
+    if (this.links.length == 1) {
+      this.link = this.links[0];
+    }
+
     this.loaded = true;
   };
 
