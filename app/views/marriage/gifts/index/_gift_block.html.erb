@@ -1,9 +1,13 @@
 <div class="panel panel-default gift-block">
-  <div class="panel-heading gift-name">{{ gift.name }}</div>
+  <div class="panel-heading gift-name">
+    {{ gift.name }}
+  </div>
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-12">
-        <img src="{{ gift.image_url }}" class="gift-image" />
+        <a href="<%= angular_path_to marriage_gift_safe_path(id: '{{ gift.id }}') %>">
+          <img src="{{ gift.image_url }}" class="gift-image" />
+        </a>
       </div>
     </div>
     <%= render partial: 'marriage/gifts/index/gift_price' %>
