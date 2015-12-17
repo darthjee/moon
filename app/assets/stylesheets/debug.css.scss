@@ -1,0 +1,17 @@
+.debug-hide {
+  display: none;
+
+  .debug-float {
+    position: fixed;
+    top: 1px;
+    left: 1px;
+  }
+}
+
+body.debug {
+  .gift-block:hover {
+    .debug-hide {
+      display: block;
+    }
+  }
+}
