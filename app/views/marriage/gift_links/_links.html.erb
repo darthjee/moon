@@ -1,7 +1,11 @@
-<div class="aglutination-block" ng-show="gsc.links">
-  <div class="row">
-    <div class="col-sm-3" ng-repeat="link in gsc.links">
-      <%= render partial: 'marriage/gifts/index/gift_link' %>
-    </div>
+<div class="aglutination-block" ng-show="!gsc.link">
+  <dl>
+    <dt>Onde encontrar:</dt>
+    <dd>
+      <div class="row">
+        <div class="col-sm-3" ng-repeat="link in gsc.links">
+          <%= render partial: 'marriage/gifts/index/gift_link' %>
+        </div>
+      </dd>
   </div>
 </div>
