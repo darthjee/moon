@@ -1,7 +1,7 @@
 .debug-hide {
   display: none;
 
-  .debug-float {
+  &.debug-float {
     position: fixed;
     top: 1px;
     left: 1px;
