@@ -7,7 +7,7 @@ class Mandrill::Request::Welcome < Mandrill::Request
   def initialize(user)
     @user = user
     super({
-      recepient: { email: email, name: :name },
+      recepient: { email: email, name: name },
       data: { NAME: name }
     }, self.class::TEMPLATE_KEY)
   end
