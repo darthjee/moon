@@ -8,6 +8,7 @@ first:
   code: aaaa
   authentication_token: token
   email: 'user@server.com'
+  welcome_sent: true
 second_second:
   id: 2
   marriage_id: 2
@@ -16,6 +17,7 @@ second_second:
   expected: 0
   confirmed: 0
   code: aaab
+  welcome_sent: true
 empty:
   id: 3
   marriage_id: 1
@@ -25,6 +27,7 @@ empty:
   confirmed: 0
   code: aaac
   authentication_token: empty_token
+  welcome_sent: true
 with_email:
   id: 4
   marriage_id: 2
@@ -34,6 +37,7 @@ with_email:
   confirmed: 0
   code: aaad
   email: 'email@server.com'
+  welcome_sent: true
 without_email:
   id: 5
   marriage_id: 2
@@ -42,3 +46,4 @@ without_email:
   expected: 0
   confirmed: 0
   code: aaae
+  welcome_sent: false
