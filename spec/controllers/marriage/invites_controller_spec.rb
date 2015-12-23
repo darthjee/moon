@@ -50,6 +50,10 @@ describe Marriage::InvitesController do
 
   describe 'PATCH update' do
     let(:parameters_key) { 'update' }
+    let(:mandrill_service) { Mandrill::Service.instance }
+    before do
+      allow(mandrill_service).to receive(:send_request)
+    end
 
     context 'when updating the guests that already exist' do
       it 'changes the presence for the guests' do
@@ -176,6 +180,14 @@ describe Marriage::InvitesController do
           expect do
             patch :update, parameters
           end.not_to change { Marriage::Guest.count }
+        end
+      end
+
+      context 'but that has not an e-mail yet' do
+        let(:parameters_key) { 'create_email' }
+        it do
+          expect(mandrill_service).to receive(:send_request)
+          patch :update, parameters
         end
       end
     end

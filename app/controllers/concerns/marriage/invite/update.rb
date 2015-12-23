@@ -21,7 +21,23 @@ module Marriage::Invite::Update
     invite.guests.where(id: removed_guests_id).update_all(active: false)
   end
 
+  def send_welcome_email
+    mandrill_service.send_request(welcome_message) if user.name.present?
+  end
+
   private
+
+  def user
+    @user ||= User.for_invite(invite)
+  end
+
+  def welcome_message
+    Mandrill::Request::Welcome.new(user)
+  end
+
+  def mandrill_service
+    Mandrill::Service.instance
+  end
 
   def removed_guests_id
     params[:removed]
