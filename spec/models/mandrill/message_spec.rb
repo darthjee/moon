@@ -14,7 +14,7 @@ describe Mandrill::Message do
   describe '#as_json' do
     let(:expected) do
       {
-        rcpt: { name: name, email: email},
+        rcpt: email,
         vars: [{ name: 'key1', content: 'value1' }]
       }.deep_stringify_keys
     end
