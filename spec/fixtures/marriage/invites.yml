@@ -38,7 +38,7 @@ with_email:
   code: aaad
   email: 'email@server.com'
   welcome_sent: true
-without_email:
+without_welcome:
   id: 5
   marriage_id: 2
   label: No Email

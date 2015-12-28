@@ -91,6 +91,11 @@ describe Marriage::InvitesController do
 
         expect(response_json).to have_key('guests')
       end
+
+      it 'sends welcome e-mail' do
+        expect(mandrill_service).to receive(:send_request)
+        patch :update, parameters
+      end
     end
 
     context 'when sending an invalid e-mail' do
@@ -183,11 +188,30 @@ describe Marriage::InvitesController do
         end
       end
 
-      context 'but that has not an e-mail yet' do
+      context 'but that has not an received welcome yet' do
         let(:parameters_key) { 'create_email' }
-        it do
+
+        it 'sends welcome e-mail' do
           expect(mandrill_service).to receive(:send_request)
           patch :update, parameters
+        end
+
+        context 'but no guest name has been provided' do
+          let(:parameters_key) { 'update_no_name' }
+
+          it 'does not send welcome e-mail' do
+            expect(mandrill_service).not_to receive(:send_request)
+            patch :update, parameters
+          end
+
+          context 'but there was a guest already registered' do
+            let(:parameters_key) { 'update_no_name_already_existing' }
+
+            it 'sends welcome e-mail' do
+              expect(mandrill_service).to receive(:send_request)
+              patch :update, parameters
+            end
+          end
         end
       end
     end
