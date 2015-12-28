@@ -22,7 +22,10 @@ module Marriage::Invite::Update
   end
 
   def send_welcome_email
-    mandrill_service.send_request(welcome_message) if user.name.present?
+    return unless user.name.present?
+    return if user.welcome_sent
+
+    mandrill_service.send_request(welcome_message)
   end
 
   private

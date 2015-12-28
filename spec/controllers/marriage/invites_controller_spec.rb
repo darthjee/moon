@@ -196,6 +196,17 @@ describe Marriage::InvitesController do
           patch :update, parameters
         end
 
+        context 'but user has already received an e-mail' do
+          before do
+            Marriage::Invite.update_all(welcome_sent: true)
+          end
+
+          it 'sends welcome e-mail' do
+            expect(mandrill_service).not_to receive(:send_request)
+            patch :update, parameters
+          end
+        end
+
         context 'but no guest name has been provided' do
           let(:parameters_key) { 'update_no_name' }
 

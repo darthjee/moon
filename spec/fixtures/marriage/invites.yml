@@ -8,7 +8,7 @@ first:
   code: aaaa
   authentication_token: token
   email: 'user@server.com'
-  welcome_sent: true
+  welcome_sent: false
 second_second:
   id: 2
   marriage_id: 2
