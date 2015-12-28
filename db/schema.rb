@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214020042) do
+ActiveRecord::Schema.define(version: 20151223172700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20151214020042) do
     t.string   "password",             limit: 64
     t.string   "status"
     t.boolean  "up_to_date"
+    t.boolean  "welcome_sent",                    default: false
   end
 
   add_index "marriage_invites", ["marriage_id", "code"], name: "index_marriage_invites_on_marriage_id_and_code", using: :btree

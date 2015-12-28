@@ -21,10 +21,7 @@
     ],
     "merge_vars": [
       {
-        "rcpt": {
-          "email": "user@server.com",
-          "name": "User Name"
-        },
+        "rcpt": "user@server.com",
         "vars": [
           {
             "name": "key1",
