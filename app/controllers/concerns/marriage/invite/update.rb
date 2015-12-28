@@ -26,6 +26,7 @@ module Marriage::Invite::Update
     return if user.welcome_sent
 
     mandrill_service.send_request(welcome_message)
+    user.update(welcome_sent: true)
   end
 
   private

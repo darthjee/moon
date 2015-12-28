@@ -1,6 +1,6 @@
 class User
   attr_reader :id
-  delegate :email, :welcome_sent, to: :invite
+  delegate :email, :welcome_sent, :update, to: :invite
 
   class << self
     def find(id)

@@ -196,6 +196,12 @@ describe Marriage::InvitesController do
           patch :update, parameters
         end
 
+        it 'marks user as e-mail received' do
+          expect do
+            patch :update, parameters
+          end.to change { Marriage::Invite.find(5).welcome_sent }
+        end
+
         context 'but user has already received an e-mail' do
           before do
             Marriage::Invite.update_all(welcome_sent: true)
