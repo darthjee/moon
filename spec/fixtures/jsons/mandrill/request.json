@@ -24,7 +24,7 @@
         "rcpt": "user@server.com",
         "vars": [
           {
-            "name": "key1",
+            "name": "KEY1",
             "content": "value1"
           }
         ]

@@ -18,7 +18,7 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
 
   def vars
     data.as_json.map do |key, value|
-      { name: key.to_s, content: value }
+      { name: key.to_s.upcase, content: value }
     end
   end
 end

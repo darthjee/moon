@@ -8,7 +8,7 @@ class Mandrill::Request::Welcome < Mandrill::Request
     @user = user
     super({
       recepient: { email: email, name: name },
-      data: { NAME: name }
+      data: { name: name }
     }, self.class::TEMPLATE_KEY)
   end
 end
