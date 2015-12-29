@@ -1,5 +1,6 @@
 class Marriage::PasswordsController < ApplicationController
   include Marriage::Common
+  include Marriage::Services
 
   protect_from_forgery except: :create
 
@@ -7,8 +8,14 @@ class Marriage::PasswordsController < ApplicationController
   end
 
   def create
-    user
+    mandrill_service.send_request(password_message)
     render head: :ok, nothing: true
+  end
+
+  private
+
+  def password_message
+    Mandrill::Message::Password.new(user, request.base_url)
   end
 
   def user
