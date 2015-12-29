@@ -8,14 +8,14 @@ class Marriage::PasswordsController < ApplicationController
   end
 
   def create
-    mandrill_service.send_request(password_message)
+    mandrill_service.send_request(password_request)
     render head: :ok, nothing: true
   end
 
   private
 
-  def password_message
-    Mandrill::Message::Password.new(user, request.base_url)
+  def password_request
+    Mandrill::Request::Password.new(user, request.base_url)
   end
 
   def user
