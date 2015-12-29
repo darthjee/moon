@@ -1,3 +1,5 @@
+require 'mandrill/message'
+
 class Mandrill::Request::Password < Mandrill::Request::Base
   TEMPLATE_KEY = 'password'
 
