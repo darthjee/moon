@@ -19,7 +19,8 @@
     '/login': { controller: 'LoginController', controllerAs: 'lc' },
     '/login?redirect_to=:redirect_to': { controller: 'LoginController', controllerAs: 'lc' },
     '/presentes/:gift_id/descricao/:id': { controller: 'GiftShowController', controllerAs: 'gsc' },
-    '/presentes/:id': { controller: 'GiftShowController', controllerAs: 'gsc' }
+    '/presentes/:id': { controller: 'GiftShowController', controllerAs: 'gsc' },
+    '/senha/recuperar': { controller: 'PasswordRecoveryController', controllerAs: 'prc'  }
   };
 
   fn.bindRoutes = function() {
