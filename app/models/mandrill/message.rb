@@ -14,6 +14,10 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
     }.as_json
   end
 
+  def self.parse(hash)
+    hash.is_a?(Hash) ? new(hash) : hash
+  end
+
   private
 
   def vars

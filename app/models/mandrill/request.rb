@@ -3,11 +3,11 @@ class Mandrill::Request
   class NoRecepients < Error; end
   class NoConfig < Error; end
 
-  attr_reader :messages, :template_key, :settings
+  attr_reader :messages_hash, :template_key, :settings
   delegate :template_name, to: :email_setting
 
-  def initialize(messages, template_key, settings = {})
-    @messages = [ messages ].flatten.map { |m| Mandrill::Message.new(m) }
+  def initialize(messages_hash, template_key, settings = {})
+    @messages_hash = messages_hash
     @template_key = template_key
     @settings = settings
     filter_recepients
@@ -26,6 +26,14 @@ class Mandrill::Request
 
   def has_recepients?
     recepients.present?
+  end
+
+  def messages
+    @messages ||= [
+      messages_hash
+    ].flatten.map do |m|
+      Mandrill::Message.parse(m)
+    end
   end
 
   private
