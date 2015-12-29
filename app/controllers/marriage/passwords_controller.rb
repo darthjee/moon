@@ -12,6 +12,13 @@ class Marriage::PasswordsController < ApplicationController
     render head: :ok, nothing: true
   end
 
+  def edit
+    respond_to do |format|
+      format.json { render json: {} }
+      format.html { render :edit }
+    end
+  end
+
   private
 
   def password_request

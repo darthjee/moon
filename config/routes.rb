@@ -43,8 +43,10 @@ Rails.application.routes.draw do
       resources :gift_links, path: '/descricao', only: [:show]
     end
 
-    resource :passwords, path: '/senha', only: [:create], defaults: { format: :json } do
-      get '/recuperar' => :recovery, as: :recovery, defaults: { format: :html }
+    resources :passwords, path: '/senha', only: [:create], defaults: { format: :json }
+    resource :passwords, path: '/senha', only: [], defaults: { format: :html } do
+      get '/recuperar' => :recovery, as: :recovery
+      get  '/:code' => :edit, as: :edit
     end
   end
 end
