@@ -7,6 +7,16 @@ class Marriage::PasswordsController < ApplicationController
   end
 
   def create
-    render json: {}
+    user
+    render head: :ok, nothing: true
   end
+
+  def user
+    User.find_by!(email: email)
+  end
+
+  def email
+    params.require(:email)
+  end
+
 end

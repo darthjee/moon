@@ -10,6 +10,10 @@ class User
     def for_invite(invite)
       new(invite: invite)
     end
+
+    def find_by!(*args)
+      find Marriage::Invite.find_by!(*args).id
+    end
   end
 
   def initialize(attributes)
