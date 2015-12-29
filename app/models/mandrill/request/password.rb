@@ -1,5 +1,5 @@
 class Mandrill::Request::Password < Mandrill::Request::Base
-  TEMPLATE_KEY = 'password-recovery'
+  TEMPLATE_KEY = 'password'
 
   def messages
     [
