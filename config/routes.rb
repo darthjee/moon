@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     end
 
     resource :passwords, path: '/senha', only: [], defaults: { format: :html } do
-      get '/recuperar' => :recovery
+      get '/recuperar' => :recovery, as: :recovery
     end
   end
 end
