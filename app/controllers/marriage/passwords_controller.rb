@@ -5,4 +5,8 @@ class Marriage::PasswordsController < ApplicationController
 
   def recovery
   end
+
+  def create
+    render json: {}
+  end
 end

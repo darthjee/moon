@@ -1,9 +1,31 @@
 (function(_) {
-  function PasswordRecoveryController() {
+  function PasswordRecoveryController(service) {
+    this.service = service;
+
+    _.bindAll(this, '_emailSent', '_emailNotSent');
   }
 
   var fn = PasswordRecoveryController.prototype;
-      app = angular.module('passwords/recovery', []);
+      app = angular.module('passwords/recovery', [
+        'passwords/service'
+      ]);
 
-  app.controller('PasswordRecoveryController', [PasswordRecoveryController]);
+  fn.sendEmail = function() {
+    var promisse = this.service.sendEmail(this.email);
+
+    promisse.success(this._emailSent);
+    promisse.error(this._emailNotSent);
+  };
+
+  fn._emailSent = function() {
+    console.info('email sent');
+  };
+
+  fn._emailNotSent = function() {
+    console.info('email not sent');
+  };
+
+  app.controller('PasswordRecoveryController', [
+    'PasswordsService', PasswordRecoveryController
+  ]);
 })(window._);
