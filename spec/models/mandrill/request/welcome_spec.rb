@@ -4,7 +4,8 @@ describe Mandrill::Request::Welcome do
   let(:invite) { marriage_invites(:first) }
   let(:name) { invite.guests.first.name }
   let(:user) { User.find(invite.id) }
-  let(:subject) { described_class.new(user) }
+  let(:root_url) { 'http://www.test' }
+  let(:subject) { described_class.new(user, root_url) }
 
   describe '#template_name' do
     it do
@@ -15,7 +16,9 @@ describe Mandrill::Request::Welcome do
   describe '#as_json' do
     let(:vars) { subject.as_json[:merge_vars].first['vars'] }
     let(:expected) do
-      [{"name"=>"NAME", "content"=>"Mr. Test"}]
+      [
+        {"name"=>"NAME", "content"=>"Mr. Test"},
+        {"name"=>"ROOT_URL", "content"=> root_url}]
     end
 
     it 'returns the correct data' do

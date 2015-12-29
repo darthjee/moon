@@ -36,7 +36,7 @@ module Marriage::Invite::Update
   end
 
   def welcome_message
-    Mandrill::Request::Welcome.new(user)
+    Mandrill::Request::Welcome.new(user, request.base_url)
   end
 
   def mandrill_service

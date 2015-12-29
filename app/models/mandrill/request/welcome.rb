@@ -4,11 +4,11 @@ class Mandrill::Request::Welcome < Mandrill::Request
 
   TEMPLATE_KEY = 'welcome'
 
-  def initialize(user)
+  def initialize(user, root_url)
     @user = user
     super({
       recepient: { email: email, name: name },
-      data: { name: name }
+      data: { name: name, root_url: root_url }
     }, self.class::TEMPLATE_KEY)
   end
 end
