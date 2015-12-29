@@ -25,4 +25,6 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
       { name: key.to_s.upcase, content: value }
     end
   end
+
+  require 'mandrill/message/base'
 end

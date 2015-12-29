@@ -4,9 +4,6 @@ class Mandrill::Request::Base < Mandrill::Request
 
   def initialize(user, root_url)
     @user = user
-    super({
-      recepient: { email: email, name: name },
-      data: { name: name, root_url: root_url }
-    }, self.class::TEMPLATE_KEY)
+    super(Mandrill::Message::Base.new(user, root_url), self.class::TEMPLATE_KEY)
   end
 end
