@@ -18,7 +18,7 @@
   };
 
   fn.update = function() {
-    this.service.update(this.password).success(this._success);
+    this.service.update(this.user.password).success(this._success);
   };
 
   fn._parseUser = function(data) {
