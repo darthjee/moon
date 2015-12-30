@@ -2,7 +2,7 @@ class Marriage::PasswordsController < ApplicationController
   include Marriage::Common
   include Marriage::Services
 
-  protect_from_forgery except: :create
+  protect_from_forgery except: [:create, :update]
 
   def recovery
   end
