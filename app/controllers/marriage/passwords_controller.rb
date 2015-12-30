@@ -16,7 +16,7 @@ class Marriage::PasswordsController < ApplicationController
   end
 
   def update
-    user_from_credential.update(params[:password])
+    user_from_credential.update(password: params[:password])
     render json: {}
   end
 
