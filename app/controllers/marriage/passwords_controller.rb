@@ -15,6 +15,11 @@ class Marriage::PasswordsController < ApplicationController
   def edit
   end
 
+  def update
+    user_from_credential.update(params[:password])
+    render json: {}
+  end
+
   private
 
   def password_request

@@ -16,5 +16,11 @@
     });
   };
 
+  fn.update = function(password) {
+    return this.requester.post('/senha/atualizar', {
+      password: password
+    });
+  };
+
   module.service('PasswordsService', ['$http', PasswordsServiceFactory]);
 })(window._);
