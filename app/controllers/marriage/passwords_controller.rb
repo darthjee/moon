@@ -13,10 +13,6 @@ class Marriage::PasswordsController < ApplicationController
   end
 
   def edit
-    respond_to do |format|
-      format.json { render json: {} }
-      format.html { render :edit }
-    end
   end
 
   private

@@ -13,7 +13,7 @@ class User
     end
 
     def find_by!(*args)
-      find Marriage::Invite.find_by!(*args).id
+      for_invite Marriage::Invite.find_by!(*args)
     end
   end
 
@@ -24,6 +24,13 @@ class User
 
   def name
     guest.try(:name)
+  end
+
+  def as_json
+    {
+      name: name,
+      email: email
+    }
   end
 
   private
