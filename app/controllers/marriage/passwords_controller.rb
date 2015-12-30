@@ -28,5 +28,4 @@ class Marriage::PasswordsController < ApplicationController
   def email
     params.require(:email)
   end
-
 end
