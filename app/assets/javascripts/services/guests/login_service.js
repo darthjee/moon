@@ -18,5 +18,9 @@
     return this.requester.get('/login/check');
   };
 
+  fn.getUser = function() {
+    return this.requester.get('/login/usuario');
+  };
+
   module.service('loginService', ['$http', LoginServiceFactory]);
 })(window._);

@@ -14,11 +14,22 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
     }.as_json
   end
 
+  def self.parse(hash)
+    hash.is_a?(Hash) ? new(hash) : hash
+  end
+
   private
 
+  def data_json
+    data.as_json
+  end
+
   def vars
-    data.as_json.map do |key, value|
-      { name: key.to_s, content: value }
+    data_json.map do |key, value|
+      { name: key.to_s.upcase, content: value }
     end
   end
+
+  require 'mandrill/message/base'
+  require 'mandrill/message/password'
 end

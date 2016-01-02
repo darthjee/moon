@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
     resources :login, path: '/login', only: [:create], defaults: { format: :json } do
       get '/check' => :check, on: :collection, as: :check
+      get '/usuario' => :show, on: :collection, as: :show
 
       scope defaults: { format: :html } do
         get '/' => :index, on: :collection, as: :index
@@ -41,6 +42,15 @@ Rails.application.routes.draw do
       get '/pagina/:page' => :index, on: :collection, as: :paginated
 
       resources :gift_links, path: '/descricao', only: [:show]
+    end
+
+    resource :passwords, path: '/senha', only: [:create], defaults: { format: :json } do
+      post '/atualizar' => :update, as: :update
+
+      scope defaults: { format: :html }, on: :collection do
+        get '/recuperar' => :recovery, as: :recovery
+        get  '/:code' => :edit, as: :edit
+      end
     end
   end
 end

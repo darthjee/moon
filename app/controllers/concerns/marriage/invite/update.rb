@@ -2,6 +2,7 @@ module Marriage::Invite::Update
   extend ActiveSupport::Concern
 
   include Marriage::Invite::Common
+  include Marriage::Services
 
   def update_invite_guests
     guests_update_params.each do |guest_params|
@@ -36,11 +37,7 @@ module Marriage::Invite::Update
   end
 
   def welcome_message
-    Mandrill::Request::Welcome.new(user)
-  end
-
-  def mandrill_service
-    Mandrill::Service.instance
+    Mandrill::Request::Welcome.new(user, request.base_url)
   end
 
   def removed_guests_id

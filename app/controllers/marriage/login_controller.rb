@@ -24,7 +24,15 @@ class Marriage::LoginController < ApplicationController
     end
   end
 
+  def show
+    render json: user_from_credential_json
+  end
+
   private
+
+  def user_from_credential_json
+    user_from_credential.as_json
+  end
 
   def sign_in
     cookies.signed[:credentials] = invite_from_login.authentication_token

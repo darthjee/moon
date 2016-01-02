@@ -1,6 +1,7 @@
 class User
   attr_reader :id
-  delegate :email, :welcome_sent, :update, to: :invite
+  delegate :email, :welcome_sent, :update,
+           :code, :authentication_token, to: :invite
 
   class << self
     def find(id)
@@ -9,6 +10,10 @@ class User
 
     def for_invite(invite)
       new(invite: invite)
+    end
+
+    def find_by!(*args)
+      for_invite Marriage::Invite.find_by!(*args)
     end
   end
 
@@ -19,6 +24,13 @@ class User
 
   def name
     guest.try(:name)
+  end
+
+  def as_json
+    {
+      name: name,
+      email: email
+    }
   end
 
   private

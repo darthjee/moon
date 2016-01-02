@@ -15,7 +15,7 @@ describe Mandrill::Message do
     let(:expected) do
       {
         rcpt: email,
-        vars: [{ name: 'key1', content: 'value1' }]
+        vars: [{ name: 'KEY1', content: 'value1' }]
       }.deep_stringify_keys
     end
 
