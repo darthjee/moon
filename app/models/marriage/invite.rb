@@ -8,7 +8,7 @@ class Marriage::Invite < ActiveRecord::Base
   scope :search_label, proc { |label| where('label ILIKE ?', "%#{label}%") }
 
   def self.login(email, password)
-    find_by(email: email, password: encrypt(password))
+    where.not(email: nil, password: nil).find_by(email: email, password: encrypt(password))
   end
 
   def password=(pass)
