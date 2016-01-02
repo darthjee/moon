@@ -18,12 +18,36 @@
   };
 
   fn.update = function() {
-    this.error = null;
+    var promisse;
     this.success = false;
 
-    var promisse = this.service.update(this.user.password);
+    if (!this._equalPassword()) {
+      this.error = 'Digite a mesma senha em ambos os campos';
+    } else if (!this._filledPassword()){
+      this.error = 'Digite uma senha para atualizar';
+    } else {
+      this._sendUpdate();
+    }
+  };
+
+  fn._sendUpdate = function() {
+    this.error = null;
+    promisse = this.service.update(this.user.password);
     promisse.success(this._success);
     promisse.error(this._fail);
+  };
+
+  fn._validPassword = function() {
+    return this._equalPassword() && this._filledPassword();
+  };
+
+  fn._equalPassword = function() {
+    return this.user.password == this.user.password_confirmation;
+  };
+
+  fn._filledPassword = function() {
+    var password = this.user.password;
+    return password != null && password != '';
   };
 
   fn._parseUser = function(data) {
