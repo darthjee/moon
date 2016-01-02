@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223172700) do
+ActiveRecord::Schema.define(version: 20160102195631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20151223172700) do
     t.boolean  "invite_honor"
     t.string   "authentication_token", limit: 16
     t.string   "password",             limit: 64
-    t.string   "status"
+    t.string   "status",               limit: 10, default: "created"
     t.boolean  "up_to_date"
     t.boolean  "welcome_sent",                    default: false
   end
