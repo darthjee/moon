@@ -16,11 +16,15 @@ class Marriage::PasswordsController < ApplicationController
   end
 
   def update
-    user_from_credential.update(password: params[:password])
+    user_from_credential.update(password: new_password)
     render json: {}
   end
 
   private
+
+  def new_password
+    params.require(:password)
+  end
 
   def password_request
     Mandrill::Request::Password.new(user, request.base_url)
