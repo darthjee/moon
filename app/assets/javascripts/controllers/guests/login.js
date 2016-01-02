@@ -15,7 +15,7 @@
   };
 
   fn.performLogin = function() {
-    this.error = '';
+    this.error = null;
     var promisse = this.service.login(this.login);
 
     promisse.success(this._redirect);
