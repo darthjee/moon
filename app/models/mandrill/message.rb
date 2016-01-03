@@ -31,5 +31,6 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
   end
 
   require 'mandrill/message/base'
+  require 'mandrill/message/access'
   require 'mandrill/message/password'
 end
