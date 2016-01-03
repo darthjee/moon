@@ -8,7 +8,7 @@ class Marriage::PasswordsController < ApplicationController
   end
 
   def create
-    mandrill_service.send_request(password_request)
+    mandrill_service.recover_password(user, request.base_url)
     render head: :ok, nothing: true
   end
 
@@ -24,10 +24,6 @@ class Marriage::PasswordsController < ApplicationController
 
   def new_password
     params.require(:password)
-  end
-
-  def password_request
-    Mandrill::Request::Password.new(user, request.base_url)
   end
 
   def user

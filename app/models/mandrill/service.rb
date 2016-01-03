@@ -9,6 +9,11 @@ class Mandrill::Service
     send_template request.template_name, [], request.as_json
   end
 
+  def recover_password(user, root_url)
+    request = Mandrill::Request::Password.new(user, root_url)
+    send_request(request)
+  end
+
   private
 
   def client
