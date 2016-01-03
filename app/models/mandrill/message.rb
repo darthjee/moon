@@ -18,6 +18,11 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
     hash.is_a?(Hash) ? new(hash) : hash
   end
 
+  def ==(other)
+    return false unless other.class == self.class
+    as_json == other.as_json
+  end
+
   private
 
   def data_json
@@ -31,5 +36,6 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
   end
 
   require 'mandrill/message/base'
+  require 'mandrill/message/access'
   require 'mandrill/message/password'
 end

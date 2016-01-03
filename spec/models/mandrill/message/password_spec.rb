@@ -14,8 +14,8 @@ describe Mandrill::Message::Password do
         vars: [
           { name: 'NAME', content: name },
           { name: 'ROOT_URL', content: root_url },
-          { name: 'CODE', content: 'aaaa' },
-          { name: 'TOKEN', content: 'token' }
+          { name: 'TOKEN', content: 'token' },
+          { name: 'CODE', content: 'aaaa' }
         ]
       }.deep_stringify_keys
     end

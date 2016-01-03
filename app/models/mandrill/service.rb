@@ -9,6 +9,19 @@ class Mandrill::Service
     send_template request.template_name, [], request.as_json
   end
 
+  def recover_password(user, root_url)
+    request = Mandrill::Request::Password.new(user, root_url)
+    send_request(request)
+  end
+
+  def update_honor(root_url)
+    users = User.where(invite_honor: true)
+    users.each do |user|
+      request = Mandrill::Request::HonorUpdate.new(user, root_url)
+      send_request(request)
+    end
+  end
+
   private
 
   def client

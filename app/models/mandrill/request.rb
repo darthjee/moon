@@ -36,6 +36,11 @@ class Mandrill::Request
     end
   end
 
+  def ==(other)
+    return false unless other.class == self.class
+    messages == other.messages
+  end
+
   private
 
   def email_setting

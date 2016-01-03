@@ -15,6 +15,12 @@ class User
     def find_by!(*args)
       for_invite Marriage::Invite.find_by!(*args)
     end
+
+    def where(*args)
+      Marriage::Invite.where(*args).map do |invite|
+        for_invite invite
+      end
+    end
   end
 
   def initialize(attributes)
