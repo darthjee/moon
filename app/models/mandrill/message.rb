@@ -18,6 +18,11 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
     hash.is_a?(Hash) ? new(hash) : hash
   end
 
+  def ==(other)
+    return false unless other.class == self.class
+    as_json == other.as_json
+  end
+
   private
 
   def data_json
