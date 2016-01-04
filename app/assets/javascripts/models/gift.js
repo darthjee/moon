@@ -27,5 +27,9 @@
     return this.quantity > 1;
   };
 
+  fn.given = function() {
+    return this.status == 'given';
+  };
+
   module.factory('Gift', [GiftFactory]);
 })(_);

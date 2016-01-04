@@ -5,6 +5,9 @@
   </div>
   <div class="panel-body">
     <div class="row">
+      <div class="col-sm-12" ng-show="gift.given()">
+        <img src="/assets/wrap.png" class="wrap-image" />
+      </div>
       <div class="col-sm-12">
         <a href="<%= angular_path_to marriage_gift_safe_path(id: '{{ gift.id }}') %>">
           <img src="{{ gift.image_url }}" class="gift-image" />
