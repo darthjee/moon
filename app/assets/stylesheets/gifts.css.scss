@@ -27,6 +27,13 @@
 }
 
 
+.wrap-image {
+  position: absolute;
+  border: 1px solid red;
+  z-index: 2
+}
+
+
 .gift-block, .gift-show {
   .store-link, .bank-logo {
     background-repeat: no-repeat;

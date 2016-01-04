@@ -6,7 +6,8 @@
   function Gift(gift) {
     _.extend(this, gift);
 
-    this.priceless = this.price_range.length <= 0 || this.display_type == 'priceless';
+    this.priceless = this.display_type == 'priceless' || this.price_range.length <= 0;
+    this.given = this.status == 'given';
   }
 
   var fn = Gift.prototype,
