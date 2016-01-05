@@ -29,8 +29,11 @@
 
 .wrap-image {
   position: absolute;
-  border: 1px solid red;
-  z-index: 2
+  z-index: 2;
+
+  img {
+    border: 1px solid red;
+  }
 }
 
 
@@ -50,6 +53,7 @@
     max-width: 60%;
     width: 60%;
     margin: 0px 20% 10%;
+    max-height: 163px;
   }
 }
 
