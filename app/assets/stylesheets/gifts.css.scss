@@ -29,8 +29,11 @@
 
 .wrap-image {
   position: absolute;
-  border: 1px solid red;
-  z-index: 2
+  z-index: 2;
+
+  img {
+    border: 1px solid red;
+  }
 }
 
 
