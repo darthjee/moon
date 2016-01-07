@@ -6,6 +6,8 @@
   function Gift(gift) {
     _.extend(this, gift);
 
+    this.price_range = this.price_range || [];
+
     this.priceless = this.display_type == 'priceless' || this.price_range.length <= 0;
     this.given = this.status == 'given';
   }
