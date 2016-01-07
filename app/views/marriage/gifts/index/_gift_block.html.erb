@@ -5,14 +5,14 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-sm-12 wrap-image" ng-show="gift.given">
-        <img src="/assets/wrap-small.png" />
-      </div>
-      <div class="col-sm-12 gift-image-block">
-        <a href="<%= angular_path_to marriage_gift_safe_path(id: '{{ gift.id }}') %>">
-          <img src="{{ gift.image_url }}" class="gift-image" />
-        </a>
-      </div>
+      <a href="<%= angular_path_to marriage_gift_safe_path(id: '{{ gift.id }}') %>">
+        <div class="col-sm-12 wrap-image" ng-show="gift.given">
+          <img src="/assets/wrap-small.png" />
+        </div>
+        <div class="col-sm-12 gift-image-block">
+            <img src="{{ gift.image_url }}" class="gift-image" />
+        </div>
+      </a>
     </div>
     <%= render partial: 'marriage/gifts/index/gift_price' %>
     <div class="gift-links">
