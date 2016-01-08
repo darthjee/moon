@@ -9,7 +9,7 @@
     this.price_range = this.price_range || [];
 
     this.priceless = this.display_type == 'priceless' || this.price_range.length <= 0;
-    this.given = this.status == 'given';
+    this.given = this.status == 'given' || (this.bought == this.quantity && this.quantity > 0);
   }
 
   var fn = Gift.prototype,

@@ -42,7 +42,7 @@
   };
 
   fn._parseGift = function(data) {
-    this.gift = data;
+    this.gift = new Gift(data);
     this.links = data.gift_links;
     if (this.links.length == 1) {
       this.link = this.links[0];

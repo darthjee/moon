@@ -2,10 +2,10 @@
   <div class="panel-heading gift-name">{{gsc.gift.name }}</div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-sm-12" ng-show="gsc.gift.given">
-        <img src="/assets/wrap.png" class="wrap-image" />
+      <div class="col-sm-12 wrap-image" ng-show="gsc.gift.given">
+        <img src="/assets/wrap.png" />
       </div>
-      <div class="col-md-5 col-sm-12">
+      <div class="col-md-5 col-sm-12 gift-image-block">
         <img src="{{ gsc.gift.image_url }}" class="gift-image" />
       </div>
       <%= render partial: 'marriage/gift_links/details' %>
