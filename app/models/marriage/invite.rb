@@ -6,6 +6,7 @@ class Marriage::Invite < ActiveRecord::Base
   validates :email, email: true, if: -> { email.present? }
 
   scope :search_label, proc { |label| where('label ILIKE ?', "%#{label}%") }
+  scope :created, proc { where(status: :created) }
   default_scope { where.not(status: :cancelled) }
 
   def self.login(email, password)

@@ -4,7 +4,7 @@ module Marriage::Invite::List
   include Marriage::Invite::Common
 
   def invites
-    @invites ||= marriage.invites.where(filters).limit(per_page).offset(offset)
+    @invites ||= marriage.invites.created.where(filters).limit(per_page).offset(offset)
   end
 
   private
