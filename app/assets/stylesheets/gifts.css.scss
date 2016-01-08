@@ -27,7 +27,6 @@
 
   .gift-image-block {
     height: 165px;
-    overflow: hidden;
   }
 }
 
@@ -72,4 +71,13 @@
       font-size: 1.4em;
     }
   }
+
+  .gift-image-block {
+    height: 310px;
+  }
+}
+
+
+.gift-image-block {
+  overflow: hidden;
 }
