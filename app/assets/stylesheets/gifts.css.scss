@@ -24,6 +24,11 @@
     height: 70px;
     width: 300px;
   }
+
+  .gift-image-block {
+    height: 165px;
+    overflow: hidden;
+  }
 }
 
 
@@ -55,6 +60,7 @@
     height: auto;
     margin: 0px 20% 10%;
     max-height: 163px;
+    object-fit: cover;
   }
 }
 
