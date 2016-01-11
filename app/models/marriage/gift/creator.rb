@@ -8,8 +8,10 @@ class Marriage::Gift::Creator
 
   def create
     gifts_creation_json.map do |gift_link_json|
+      gift = find_or_create_gift(gift_link_json[:gift])
+      gift.update(gift_update_json(gift_link_json[:gift]))
+
       unless gift_link_exists?(gift_link_json[:url])
-        gift = find_or_create_gift(gift_link_json[:gift])
         gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
         gift.as_json
       end
@@ -26,8 +28,12 @@ class Marriage::Gift::Creator
     end
   end
 
+  def gift_update_json(gift_json)
+    gift_json.permit(:bought)
+  end
+
   def gift_creation_json(gift_json)
-    gift_json.permit(:image_url, :name, :quantity, :package).tap do |json|
+    gift_json.permit(:image_url, :name, :quantity, :package, :bought).tap do |json|
       json[:package] ||= json[:quantity]
     end
   end
