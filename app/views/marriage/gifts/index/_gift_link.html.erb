@@ -7,7 +7,7 @@
    ">
    <div>{{ link.store.name }}</div>
 </a>
-<a href="<%= marriage_gift_gift_link_safe_path(gift_id: '{{ gift.id }}', id: '{{ link.id }}') %>"
+<a href="<%= marriage_gift_gift_link_safe_path(gift_id: '{{ gift.id || gsc.gift.id }}', id: '{{ link.id }}') %>"
   target="_BLANK"
   ng-show="link.bank"
   class="btn btn-default store-link"
