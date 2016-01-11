@@ -13,6 +13,7 @@ class Marriage::Gift::Creator
 
       unless gift_link_exists?(gift_link_json[:url])
         gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
+        gift.update_prices
         gift.as_json
       end
     end.compact
