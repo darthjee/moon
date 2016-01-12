@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 20160112025127) do
     t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "document",    limit: 14
+    t.string   "document",     limit: 14
     t.string   "name"
+    t.string   "account_type", limit: 10, default: "savings"
   end
 
   create_table "bank_banks", force: true do |t|

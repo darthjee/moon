@@ -22,13 +22,12 @@
   </div>
   <div class="row">
     <dl class="description col-sm-12">
+      <dt>Tipo</dt>
+      <dd ng-show="gsc.link.account.savings">Poupança</dd>
+      <dd ng-show="gsc.link.account.checkings">Corrente</dd>
       <dt>CPF</dt>
       <dd>{{ gsc.link.account.document }}</dd>
-    </dl>
-  </div>
-  <div class="row">
-    <dl class="description col-sm-12">
-      <dt>Favorecida</dt>
+      <dt>Favorecido(a)</dt>
       <dd>{{ gsc.link.account.name }}</dd>
     </dl>
   </div>

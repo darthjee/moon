@@ -1,5 +1,5 @@
 (function(_, undefined) {
-  function GiftFactory(gift) {
+  function GiftFactory() {
     return Gift;
   }
 

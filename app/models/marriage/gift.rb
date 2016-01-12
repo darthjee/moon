@@ -37,7 +37,11 @@ class Marriage::Gift < ActiveRecord::Base
     update_prices
   end
 
-  def update_prices
+  def update_prices(price = nil)
+    if price
+      gift_links.update_all(price: price)
+    end
+
     update(
       min_price: min_link_price.to_f * package,
       max_price: max_link_price.to_f * package
