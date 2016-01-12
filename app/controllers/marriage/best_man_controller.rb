@@ -48,11 +48,11 @@ class Marriage::BestManController < ApplicationController
   end
 
   def invite_from_credential_json
-    invite_from_credential.as_json(include: :guests)
+    user_from_credential.invite.as_json(include: :guests)
   end
 
   def invite
-    marriage.invites.find_by(code: invite_code)
+    user.find_by(code: invite_code).invite
   end
 
   def invite_code
