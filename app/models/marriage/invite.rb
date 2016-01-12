@@ -3,7 +3,6 @@ class Marriage::Invite < ActiveRecord::Base
   has_many :guests
   belongs_to :user, class_name: 'User'
 
-  validates :email, email: true, if: -> { email.present? }
   validates_associated :user
 
   scope :search_label, proc { |label| where('label ILIKE ?', "%#{label}%") }
