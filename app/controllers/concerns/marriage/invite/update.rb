@@ -62,17 +62,23 @@ module Marriage::Invite::Update
   end
 
   def check_valid_update
-    invite.assign_attributes(invite_update_params)
-    unless invite.valid?
+    invite.user.assign_attributes(user_update_params)
+    if user.valid?
+      user.save
+    else
       render json: { errors: invite.errors.messages }, status: :error
     end
   end
 
   def invite_params
-    @invite_params ||= params.require(:invite).permit(:email, :removed, guests: [:id, :name, :presence])
+    @invite_params ||= params.require(:invite).permit(:removed, guests: [:id, :name, :presence], user: :email)
   end
 
   def invite_update_params
-    invite_params.slice(:email)
+    invite_params.slice(:user)
+  end
+
+  def user_update_params
+    invite_update_params[:user]
   end
 end

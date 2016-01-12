@@ -78,7 +78,7 @@ describe Marriage::InvitesController do
       it 'updates the invite email' do
         expect do
           patch :update, parameters
-        end.to change{ Marriage::Invite.find(invite.id).email }.to('new_user@server.com')
+        end.to change{ Marriage::Invite.find(invite.id).user.email }.to('new_user@server.com')
       end
 
       it 'does not return error' do
