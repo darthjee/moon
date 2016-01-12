@@ -4,6 +4,7 @@ describe Marriage::InvitesController do
   let(:requests_json) { load_json_fixture_file('requests/marriage/invites.json') }
   let(:marriage) { marriage_marriages(:first) }
   let(:invite) { marriage.invites.first }
+  let(:user) { invite.user }
   let(:guest) { marriage.invites.first.guests.first }
   let(:parameters) { requests_json[parameters_key] }
   let(:response_json) { JSON.parse(response.body) }
@@ -36,7 +37,7 @@ describe Marriage::InvitesController do
     end
 
     context 'when requesting for an existing invite by code' do
-      let(:parameters) { { code: invite.code, format: :json } }
+      let(:parameters) { { code: user.code, format: :json } }
 
       it_behaves_like 'responds with the correct invite'
     end
