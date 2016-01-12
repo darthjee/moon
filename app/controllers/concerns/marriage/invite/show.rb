@@ -19,6 +19,6 @@ module Marriage::Invite::Show
   end
 
   def show_path
-    show_marriage_invites_url(invite.code, token: invite.authentication_token)
+    show_marriage_invites_url(invite.code, token: invite.user.authentication_token)
   end
 end
