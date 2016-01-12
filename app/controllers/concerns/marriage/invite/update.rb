@@ -11,6 +11,11 @@ module Marriage::Invite::Update
     end
   end
 
+  def update_user
+    return if user.name.present?
+    user.update(name: invite.guests.first.try(:name))
+  end
+
   def create_invite_guests
     new_guests_params.each do |guest_params|
       attributes = guest_params.merge(invite: invite)

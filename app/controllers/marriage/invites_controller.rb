@@ -22,6 +22,7 @@ class Marriage::InvitesController < ApplicationController
   def update
     update_invite_guests
     create_invite_guests
+    update_user
     remove_guests
     invite.update(confirmed: invite.guests.confirmed.count)
     send_welcome_email

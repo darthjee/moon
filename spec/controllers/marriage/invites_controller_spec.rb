@@ -97,6 +97,12 @@ describe Marriage::InvitesController do
         expect(mandrill_service).to receive(:send_request)
         patch :update, parameters
       end
+
+      it 'does not change the user name' do
+        expect do
+          patch :update, parameters
+        end.not_to change { User.find(user.id).name }
+      end
     end
 
     context 'when sending an invalid e-mail' do
