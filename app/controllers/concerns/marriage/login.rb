@@ -41,6 +41,10 @@ module Marriage::Login
     @user_from_credential ||= find_user_from_credential
   end
 
+  def invite_from_credential
+    user_from_credential.try(:invite)
+  end
+
   def find_user_from_credential
     User.where.not(authentication_token: nil).find_by!(authentication_token: credential)
   end
