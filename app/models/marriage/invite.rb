@@ -9,6 +9,6 @@ class Marriage::Invite < ActiveRecord::Base
   scope :created, proc { where(status: :created) }
   default_scope { where.not(status: :cancelled) }
 
-  delegate :code, :authentication_token, :email, :name, to: :user
+  #delegate :code, :authentication_token, :email, :name, to: :user
 
 end
