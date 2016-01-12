@@ -118,7 +118,7 @@ describe Marriage::Login do
     end
 
     context 'user is already logged as another user' do
-      let(:old_user) { marriage_invites(:empty) }
+      let(:old_user) { users(:empty) }
 
       before do
         cookies.signed[:credentials] = old_user.authentication_token
