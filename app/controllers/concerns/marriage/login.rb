@@ -20,7 +20,7 @@ module Marriage::Login
   end
 
   def user_from_from_parameters
-    Marriage::Invite.find_by(authentication_token: token_parameter)
+    User.find_by(authentication_token: token_parameter)
   end
 
   def is_logged?
@@ -28,7 +28,7 @@ module Marriage::Login
   end
 
   def logged_user
-    invite_from_credential
+    user_from_credential
   rescue ActiveRecord::RecordNotFound
     nil
   end
@@ -37,16 +37,12 @@ module Marriage::Login
     @credential ||= cookies.signed[:credentials]
   end
 
-  def invite_from_credential
-    @invite_from_credential ||= find_invite_from_credential
-  end
-
   def user_from_credential
-    User.for_invite(invite_from_credential)
+    @user_from_credential ||= find_user_from_credential
   end
 
-  def find_invite_from_credential
-    Marriage::Invite.where.not(authentication_token: nil).find_by!(authentication_token: credential)
+  def find_user_from_credential
+    User.where.not(authentication_token: nil).find_by!(authentication_token: credential)
   end
 
   def token_parameter
