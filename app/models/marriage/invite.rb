@@ -1,6 +1,7 @@
 class Marriage::Invite < ActiveRecord::Base
   belongs_to :marriage
   has_many :guests
+  belongs_to :user, class_name: 'User'
   before_create :start_codesss
 
   validates :email, email: true, if: -> { email.present? }
