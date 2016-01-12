@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_one :invite, class_name: 'Marriage::Invite', foreign_key: :user_id
   before_create :start_codesss
 
+  validates :email, email: true, if: -> { email.present? }
+
   class << self
     def for_invite(invite)
       invite.user
@@ -16,13 +18,6 @@ class User < ActiveRecord::Base
     super(self.class.encrypt(pass))
   end
 
-  private
-
-  def start_codesss
-    start_random_attribute(:code, 2)
-    start_random_attribute(:authentication_token, 8)
-  end
-
   def start_code(length = 2)
     start_random_attribute(:code, length)
     save
@@ -31,6 +26,13 @@ class User < ActiveRecord::Base
   def start_authentication_token(length = 8)
     start_random_attribute(:authentication_token, length)
     save
+  end
+
+  private
+
+  def start_codesss
+    start_random_attribute(:code, 2)
+    start_random_attribute(:authentication_token, 8)
   end
 
   def start_random_attribute(attribute, length)
