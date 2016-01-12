@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
     def for_invite(invite)
       invite.user
     end
-  end
 
-  def self.login(email, password)
-    where.not(email: nil, password: nil).find_by(email: email, password: encrypt(password))
+    def login(email, password)
+      where.not(email: nil, password: nil).find_by(email: email, password: encrypt(password))
+    end
   end
 
   def password=(pass)
