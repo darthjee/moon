@@ -1,0 +1,19 @@
+first:
+  id: 1
+  code: aaaa
+  authentication_token: token
+  email: 'user@server.com'
+second_second:
+  id: 2
+  code: aaab
+empty:
+  id: 3
+  code: aaac
+  authentication_token: empty_token
+with_email:
+  id: 4
+  code: aaad
+  email: 'email@server.com'
+without_welcome:
+  id: 5
+  code: aaae
