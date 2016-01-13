@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Marriage::LoginController do
-  let(:user) { marriage_invites(:first) }
+  let(:user) { users(:first) }
 
   describe 'GET check' do
     context 'User is not logged' do

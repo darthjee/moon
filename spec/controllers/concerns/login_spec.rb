@@ -9,10 +9,11 @@ describe Marriage::Login do
       render json: { is_logged: is_logged?, user_id: logged_user.try(:id) }
     end
   end
+
   let(:response_json) { JSON.parse response.body }
   let(:is_logged) { response_json['is_logged'] }
   let(:logged_id) { response_json['user_id'] }
-  let(:user) { marriage_invites(:first) }
+  let(:user) { users(:first) }
 
   describe '#sign_in' do
     context 'when no one is signed in' do
@@ -32,7 +33,7 @@ describe Marriage::Login do
     end
 
     context 'when a user is already signed in' do
-      let(:old_user) { marriage_invites(:empty) }
+      let(:old_user) { users(:empty) }
 
       before do
         cookies.signed[:credentials] = old_user.authentication_token
@@ -117,7 +118,7 @@ describe Marriage::Login do
     end
 
     context 'user is already logged as another user' do
-      let(:old_user) { marriage_invites(:empty) }
+      let(:old_user) { users(:empty) }
 
       before do
         cookies.signed[:credentials] = old_user.authentication_token

@@ -4,6 +4,7 @@ describe Marriage::InvitesController do
   let(:requests_json) { load_json_fixture_file('requests/marriage/invites.json') }
   let(:marriage) { marriage_marriages(:first) }
   let(:invite) { marriage.invites.first }
+  let(:user) { invite.user }
   let(:guest) { marriage.invites.first.guests.first }
   let(:parameters) { requests_json[parameters_key] }
   let(:response_json) { JSON.parse(response.body) }
@@ -36,7 +37,7 @@ describe Marriage::InvitesController do
     end
 
     context 'when requesting for an existing invite by code' do
-      let(:parameters) { { code: invite.code, format: :json } }
+      let(:parameters) { { code: user.code, format: :json } }
 
       it_behaves_like 'responds with the correct invite'
     end
@@ -77,7 +78,7 @@ describe Marriage::InvitesController do
       it 'updates the invite email' do
         expect do
           patch :update, parameters
-        end.to change{ Marriage::Invite.find(invite.id).email }.to('new_user@server.com')
+        end.to change{ Marriage::Invite.find(invite.id).user.email }.to('new_user@server.com')
       end
 
       it 'does not return error' do
@@ -95,6 +96,12 @@ describe Marriage::InvitesController do
       it 'sends welcome e-mail' do
         expect(mandrill_service).to receive(:send_request)
         patch :update, parameters
+      end
+
+      it 'does not change the user name' do
+        expect do
+          patch :update, parameters
+        end.not_to change { User.find(user.id).name }
       end
     end
 
@@ -129,7 +136,8 @@ describe Marriage::InvitesController do
         patch :update, parameters
 
         expect(response_json).to have_key('errors')
-        expect(response_json['errors']).to have_key('email')
+        expect(response_json['errors']).to have_key('user')
+        expect(response_json['errors']['user']).to have_key('email')
       end
 
       it do

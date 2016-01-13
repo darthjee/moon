@@ -5,7 +5,7 @@ module Marriage::Invite::Show
 
   def show_json_invite
     invite.update(last_view_date: Time.zone.now)
-    render json: invite.as_json(include: :guests)
+    render json: invite.as_json(include: [:guests, :user])
   end
 
   def show_png_invite
@@ -19,6 +19,6 @@ module Marriage::Invite::Show
   end
 
   def show_path
-    show_marriage_invites_url(invite.code, token: invite.authentication_token)
+    show_marriage_invites_url(invite.code, token: invite.user.authentication_token)
   end
 end

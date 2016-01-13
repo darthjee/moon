@@ -5,7 +5,7 @@ class EmailValidator::Matcher
   attr_reader :value
 
   def initialize(value)
-    @value = value
+    @value = value.downcase
   end
 
   def match

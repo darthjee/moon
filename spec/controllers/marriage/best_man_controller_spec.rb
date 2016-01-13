@@ -4,7 +4,7 @@ describe Marriage::BestManController do
   let(:response_json) { JSON.parse response.body }
 
   describe 'GET index' do
-    let(:user) { marriage_invites(:first) }
+    let(:user) { users(:first) }
     let(:invite) { user }
     let(:parameters) { { format: format } }
 

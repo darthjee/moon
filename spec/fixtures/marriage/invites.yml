@@ -5,9 +5,7 @@ first:
   invites: 6
   expected: 0
   confirmed: 0
-  code: aaaa
-  authentication_token: token
-  email: 'user@server.com'
+  user_id: 1
   welcome_sent: false
 second_second:
   id: 2
@@ -16,7 +14,7 @@ second_second:
   invites: 0
   expected: 0
   confirmed: 0
-  code: aaab
+  user_id: 2
   welcome_sent: true
 empty:
   id: 3
@@ -25,8 +23,7 @@ empty:
   invites: 0
   expected: 0
   confirmed: 0
-  code: aaac
-  authentication_token: empty_token
+  user_id: 3
   welcome_sent: true
 with_email:
   id: 4
@@ -35,8 +32,7 @@ with_email:
   invites: 0
   expected: 0
   confirmed: 0
-  code: aaad
-  email: 'email@server.com'
+  user_id: 4
   welcome_sent: true
 without_welcome:
   id: 5
@@ -45,5 +41,5 @@ without_welcome:
   invites: 0
   expected: 0
   confirmed: 0
-  code: aaae
+  user_id: 5
   welcome_sent: false

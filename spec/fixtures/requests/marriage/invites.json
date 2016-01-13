@@ -2,7 +2,9 @@
   "update": {
     "format": "json",
     "invite": {
-      "email": "new_user@server.com",
+      "user": {
+        "email": "new_user@server.com"
+      },
       "guests": [
         {
           "id": 1,
@@ -36,7 +38,9 @@
   "update_add": {
     "format": "json",
     "invite": {
-      "email": "user@server.com",
+      "user": {
+        "email": "user@server.com"
+      },
       "guests": [
         {
           "id": 1,
@@ -73,7 +77,9 @@
   "update_wrong_email": {
     "format": "json",
     "invite": {
-      "email": "user+server.com",
+      "user": {
+        "email": "user+server.com"
+      },
       "guests": [{
         "id": 1,
         "marriage_id": 1,
@@ -90,7 +96,9 @@
   "update_remove": {
     "format": "json",
     "invite": {
-      "email": "new_user@server.com",
+      "user": {
+        "email": "new_user@server.com"
+      },
       "guests": []
     },
     "removed": [1, 2],
@@ -99,7 +107,9 @@
   "create_email": {
     "format": "json",
     "invite": {
-      "email": "new_user@server.com",
+      "user": {
+        "email": "new_user@server.com"
+      },
       "guests": [{
         "name": "New Guest"
       }]
@@ -109,7 +119,9 @@
   "update_no_name": {
     "format": "json",
     "invite": {
-      "email": "new_user@server.com",
+      "user": {
+        "email": "new_user@server.com"
+      },
       "guests": []
     },
     "id": "5"
@@ -117,7 +129,9 @@
   "update_no_name_already_existing": {
     "format": "json",
     "invite": {
-      "email": "new_user@server.com",
+      "user": {
+        "email": "new_user@server.com"
+      },
       "guests": []
     },
     "id": "1"

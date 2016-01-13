@@ -1,51 +1,59 @@
-class User
-  attr_reader :id
-  delegate :email, :welcome_sent, :update,
-           :code, :authentication_token, to: :invite
+class User < ActiveRecord::Base
+  has_one :invite, class_name: 'Marriage::Invite', foreign_key: :user_id
+  before_create :start_codesss
+
+  validates :email, email: true, if: -> { email.present? }
 
   class << self
-    def find(id)
-      User.new({ id: id })
-    end
-
     def for_invite(invite)
-      new(invite: invite)
+      invite.user
     end
 
-    def find_by!(*args)
-      for_invite Marriage::Invite.find_by!(*args)
-    end
-
-    def where(*args)
-      Marriage::Invite.where(*args).map do |invite|
-        for_invite invite
-      end
+    def login(email, password)
+      where.not(email: nil, password: nil).find_by(email: email, password: encrypt(password))
     end
   end
 
-  def initialize(attributes)
-    @id = attributes[:id]
-    @invite = attributes[:invite]
+  def password=(pass)
+    super(self.class.encrypt(pass))
   end
 
-  def name
-    guest.try(:name)
+  def start_code(length = 2)
+    start_random_attribute(:code, length)
+    save
   end
 
-  def as_json
-    {
-      name: name,
-      email: email
-    }
+  def start_authentication_token(length = 8)
+    start_random_attribute(:authentication_token, length)
+    save
   end
 
   private
 
-  def invite
-    @invite ||= Marriage::Invite.find(id)
+  def start_codesss
+    start_random_attribute(:code, 2)
+    start_random_attribute(:authentication_token, 8)
   end
 
-  def guest
-    invite.guests.first
+  def start_random_attribute(attribute, length)
+    public_send("#{attribute}=", build_code(length)) until unique_attribute?(attribute)
+  end
+
+  def build_code(length)
+    SecureRandom.hex(length)
+  end
+
+  def unique_attribute?(attribute)
+    value = public_send(attribute)
+    !other_users.exists?(attribute => value) if value
+  end
+
+  def other_users
+    self.class.where('id != ?', id)
+  end
+
+  def self.encrypt(pass)
+    return unless pass.present?
+    Digest::SHA256.hexdigest pass
   end
 end
