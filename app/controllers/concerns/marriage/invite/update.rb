@@ -11,6 +11,11 @@ module Marriage::Invite::Update
     end
   end
 
+  def update_user
+    return if user.name.present?
+    user.update(name: invite.guests.first.try(:name))
+  end
+
   def create_invite_guests
     new_guests_params.each do |guest_params|
       attributes = guest_params.merge(invite: invite)
@@ -24,10 +29,10 @@ module Marriage::Invite::Update
 
   def send_welcome_email
     return unless user.name.present?
-    return if user.welcome_sent
+    return if invite.welcome_sent
 
     mandrill_service.send_request(welcome_message)
-    user.update(welcome_sent: true)
+    invite.update(welcome_sent: true)
   end
 
   private
@@ -57,17 +62,29 @@ module Marriage::Invite::Update
   end
 
   def check_valid_update
-    invite.assign_attributes(invite_update_params)
-    unless invite.valid?
-      render json: { errors: invite.errors.messages }, status: :error
+    invite.user.assign_attributes(user_update_params)
+    if invite.valid?
+      invite.save
+    else
+      render json: { errors: invite_errors }, status: :error
     end
   end
 
   def invite_params
-    @invite_params ||= params.require(:invite).permit(:email, :removed, guests: [:id, :name, :presence])
+    @invite_params ||= params.require(:invite).permit(:removed, guests: [:id, :name, :presence], user: :email)
+  end
+
+  def invite_errors
+    invite.errors.messages.merge(
+      user: invite.user.errors.messages
+    )
   end
 
   def invite_update_params
-    invite_params.slice(:email)
+    invite_params.permit(user: :email)
+  end
+
+  def user_update_params
+    invite_params[:user]
   end
 end

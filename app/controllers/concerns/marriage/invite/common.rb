@@ -19,7 +19,7 @@ module Marriage::Invite::Common
   end
 
   def invite_by_code
-    marriage.invites.find_by(code: invite_code)
+    User.find_by(code: invite_code).invite
   end
 
   def invite_id

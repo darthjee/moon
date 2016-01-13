@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112012504) do
+ActiveRecord::Schema.define(version: 20160112025127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20160112012504) do
     t.string   "status",               limit: 10, default: "created"
     t.boolean  "up_to_date"
     t.boolean  "welcome_sent",                    default: false
+    t.integer  "user_id"
   end
 
   add_index "marriage_invites", ["marriage_id", "code"], name: "index_marriage_invites_on_marriage_id_and_code", using: :btree
@@ -142,6 +143,16 @@ ActiveRecord::Schema.define(version: 20160112012504) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "bg_color",   limit: 7, default: "#fff"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "authentication_token"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password",             limit: 64
   end
 
 end

@@ -15,7 +15,7 @@ class Marriage::LoginController < ApplicationController
   end
 
   def create
-    if invite_from_login
+    if user_from_login
       sign_in
 
       render json: {}
@@ -35,11 +35,11 @@ class Marriage::LoginController < ApplicationController
   end
 
   def sign_in
-    cookies.signed[:credentials] = invite_from_login.authentication_token
+    cookies.signed[:credentials] = user_from_login.authentication_token
   end
 
-  def invite_from_login
-    @invite_from_login = marriage.invites.login(email, password)
+  def user_from_login
+    @user_from_login = User.login(email, password)
   end
 
   def email
