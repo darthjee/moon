@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113203859) do
+ActiveRecord::Schema.define(version: 20160113210932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160113203859) do
     t.integer  "bought",       default: 0,         null: false
     t.string   "status",       default: "open"
     t.string   "display_type", default: "regular", null: false
+    t.integer  "thread_id"
   end
 
   create_table "marriage_guests", force: true do |t|
