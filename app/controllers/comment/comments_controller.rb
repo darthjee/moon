@@ -7,6 +7,9 @@ class Comment::CommentsController < ApplicationController
     render json: thread.comments
   end
 
+  def create
+  end
+
   private
 
   def thread

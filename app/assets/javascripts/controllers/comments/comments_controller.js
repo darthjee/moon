@@ -14,7 +14,13 @@
 
   fn.loadComments = function(thread_id) {
     this.loaded = false;
-    var promisse = this.service.loadComments(thread_id);
+    this.thread_id = thread_id;
+
+    this.loadThisComments();
+  };
+
+  fn.loadThisComments = function() {
+    var promisse = this.service.loadComments(this.thread_id);
     promisse.success(this._parseComments);
   };
 
@@ -25,8 +31,9 @@
   };
 
   fn.submit = function() {
-    console.info(this.comment);
-  }
+    var promisse = this.service.create(this.thread_id, this.comment);
+    promisse.success(this._parseComments);
+  };
 
   app.controller('CommentsController', [
     'commentsService', 'notifier', CommentsController
