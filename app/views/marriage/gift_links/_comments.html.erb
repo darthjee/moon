@@ -1,2 +1,12 @@
-<div class="col-sm-12 comments" ng-controller="CommentsController as cc" ng-show="cc.loaded">
+<div class="col-sm-7 comments" ng-controller="CommentsController as cc" ng-show="cc.loaded">
+  <div class="aglutination-block">
+    <div class="row" ng-repeat="comment in cc.comments">
+      <div class="col-sm-12">
+        <p>
+          <b>{{ comment.user.name }}</b><br />
+          {{ comment.text }}
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
