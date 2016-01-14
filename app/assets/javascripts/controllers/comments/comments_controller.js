@@ -24,6 +24,10 @@
     this.loaded = true;
   };
 
+  fn.submit = function() {
+    console.info(this.comment);
+  }
+
   app.controller('CommentsController', [
     'commentsService', 'notifier', CommentsController
   ]);
