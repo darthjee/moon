@@ -29,6 +29,9 @@
   fn._parseGiftLink = function(data) {
     this.link = new Link(data);
     this.gift = new Gift(data.gift);
+
+    this.notifier.notify('open-comments', this.gift.thread_id);
+
     this.loaded = true;
   };
 

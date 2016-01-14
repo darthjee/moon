@@ -31,6 +31,8 @@
       this.link = this.links[0];
     }
 
+    this.notifier.notify('open-comments', this.gift.thread_id);
+
     this.loaded = true;
   };
 
