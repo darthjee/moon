@@ -18,7 +18,7 @@
     '/padrinhos/informativo': { controller: 'BestManController', controllerAs: 'bmc' },
     '/login': { controller: 'LoginController', controllerAs: 'lc' },
     '/login?redirect_to=:redirect_to': { controller: 'LoginController', controllerAs: 'lc' },
-    '/presentes/:gift_id/descricao/:id': { controller: 'GiftShowController', controllerAs: 'gsc' },
+    '/presentes/:gift_id/descricao/:id': { controller: 'GiftLinkShowController', controllerAs: 'gsc' },
     '/presentes/:id': { controller: 'GiftShowController', controllerAs: 'gsc' },
     '/senha/recuperar': { controller: 'PasswordRecoveryController', controllerAs: 'prc'  },
     '/senha/:code': { controller: 'PasswordEditController', controllerAs: 'pc'  }

@@ -9,7 +9,7 @@
     Gift = giftModel;
     Link = linkModel;
 
-    _.bindAll(this, '_parseGiftLink', '_parseGift');
+    _.bindAll(this, '_parseGift');
 
     this.load();
   }
@@ -20,24 +20,7 @@
       ]);
 
   fn.load = function() {
-    if (this.params.gift_id) {
-      this.loadGiftLink();
-    } else {
-      this.loadGift();
-    }
-  };
-
-  fn.loadGiftLink = function() {
-    this.gift_id = this.params.gift_id;
-    this.link_id = this.params.id;
-    var promisse = this.service.loadGiftLink(this.gift_id, this.link_id);
-    promisse.success(this._parseGiftLink);
-  };
-
-  fn._parseGiftLink = function(data) {
-    this.link = new Link(data);
-    this.gift = new Gift(data.gift);
-    this.loaded = true;
+    this.loadGift();
   };
 
   fn.loadGift = function() {
