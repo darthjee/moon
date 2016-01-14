@@ -19,10 +19,6 @@
       ]);
 
   fn.load = function() {
-    this.loadGift();
-  };
-
-  fn.loadGift = function() {
     this.gift_id = this.params.id;
     var promisse = this.service.loadGift(this.gift_id);
     promisse.success(this._parseGift);

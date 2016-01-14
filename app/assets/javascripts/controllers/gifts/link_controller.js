@@ -20,10 +20,6 @@
       ]);
 
   fn.load = function() {
-    this.loadGiftLink();
-  };
-
-  fn.loadGiftLink = function() {
     this.gift_id = this.params.gift_id;
     this.link_id = this.params.id;
     var promisse = this.service.loadGiftLink(this.gift_id, this.link_id);
