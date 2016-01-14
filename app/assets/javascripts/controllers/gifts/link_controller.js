@@ -1,5 +1,5 @@
 (function(_) {
-  var Gift;
+  var Gift, Link;
 
   function GiftLinkShowController($routeParams, giftsService, notifier, giftModel, linkModel) {
     this.service = giftsService;
