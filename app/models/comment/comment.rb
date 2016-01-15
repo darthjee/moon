@@ -16,6 +16,6 @@ class Comment::Comment < ActiveRecord::Base
   private
 
   def time_ago
-    Utils::TimeAgo.new(created_at)
+    Utils::TimeElapsed.new(created_at)
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Utils::TimeAgo do
+describe Utils::TimeElapsed do
   let(:subject) { described_class.new(time) }
 
   describe '#as_json' do

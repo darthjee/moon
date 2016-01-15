@@ -1,4 +1,4 @@
-class Utils::TimeAgo
+class Utils::TimeElapsed
   attr_reader :time, :amount
 
   TIME_BLOCKS = {
