@@ -8,7 +8,7 @@
   }
 
   var fn = User.prototype,
-      module = angular.module('users/User', []);
+      module = angular.module('users/user', []);
 
   fn.gravatarUrl = function() {
     var hash = md5(this.email);
