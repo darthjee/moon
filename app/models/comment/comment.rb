@@ -8,7 +8,14 @@ class Comment::Comment < ActiveRecord::Base
 
   def as_json(*args)
     super(*args).merge(
-      user: user.as_json
+      user: user.as_json,
+      time_ago: time_ago.as_json
     )
+  end
+
+  private
+
+  def time_ago
+    Utils::TimeAgo.new(created_at)
   end
 end
