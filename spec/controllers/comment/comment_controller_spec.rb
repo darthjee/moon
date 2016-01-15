@@ -7,6 +7,7 @@ describe Comment::CommentsController do
 
   describe '#POST create' do
     let(:parameters_key) { 'create' }
+    let(:thread) { comment_threads(:first) }
 
     context 'when user do exist' do
       let(:user) { users(:first) }
@@ -14,6 +15,17 @@ describe Comment::CommentsController do
         expect do
           post :create, parameters
         end.to change { User.find(user.id).name }
+      end
+
+      it 'creates a new comment' do
+        expect do
+          post :create, parameters
+        end.to change { Comment::Thread.find(thread.id).comments.count }
+      end
+
+      it 'associates user with comment' do
+        post :create, parameters
+        expect(thread.comments.unscoped.order(id: :asc).last.user).to eq(user)
       end
     end
 
