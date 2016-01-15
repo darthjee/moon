@@ -4,7 +4,7 @@
 
   function CommentFactory(userModel, timeElapsedModel) {
     User = userModel;
-    TimeElapsed = TimeElapsed;
+    TimeElapsed = timeElapsedModel;
 
     return Comment;
   }
@@ -19,5 +19,5 @@
   var fn = Comment.prototype,
       module = angular.module('comments/comment', ['users/user', 'utils/time_elapsed']);
 
-  module.factory('Comment', ['User', CommentFactory, TimeElapsed]);
+  module.factory('Comment', ['User', 'TimeElapsed', CommentFactory]);
 })(_);
