@@ -1,7 +1,7 @@
 (function(_) {
   var Comment;
 
-  function CommentsController(service, notifier, commentModel) {
+  function CommentsController(service, commentModel, notifier) {
     this.service = service;
     this.comments = [];
     Comment = commentModel;
