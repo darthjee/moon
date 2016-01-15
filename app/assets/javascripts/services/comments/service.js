@@ -19,7 +19,7 @@
   fn.create = function(thread_id, comment) {
     var url = '/threads/' + thread_id + '/comments';
 
-    return this.requester.post(url, comment);
+    return this.requester.post(url, { comment: comment });
   };
 
   module.service('commentsService', ['$http', CommentsServiceFactory]);
