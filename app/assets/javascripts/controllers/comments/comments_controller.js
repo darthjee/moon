@@ -1,8 +1,9 @@
 (function(_) {
   function CommentsController(service, notifier) {
     this.service = service;
+    this.comments = [];
 
-    _.bindAll(this, 'loadComments', '_parseComments');
+    _.bindAll(this, 'loadComments', '_parseComments', '_addComment');
 
     notifier.register('open-comments', this.loadComments);
   }
@@ -30,9 +31,13 @@
     this.loaded = true;
   };
 
+  fn._addComment = function(comment) {
+    this.comments.unshift(comment);
+  };
+
   fn.submit = function() {
     var promisse = this.service.create(this.thread_id, this.comment);
-    promisse.success(this._parseComments);
+    promisse.success(this._addComment);
   };
 
   app.controller('CommentsController', [

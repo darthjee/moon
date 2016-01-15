@@ -9,8 +9,7 @@ class Comment::CommentsController < ApplicationController
   end
 
   def create
-    create_comment
-    render json: {}
+    render json: create_comment
   end
 
   private
