@@ -8,6 +8,7 @@
     "bootstrap-sass": "latest",
     "angular-route": "latest",
     "angular-bootstrap-colorpicker": "latest",
-    "querystring": "latest"
+    "querystring": "latest",
+    "md5": "latest"
   }
 }

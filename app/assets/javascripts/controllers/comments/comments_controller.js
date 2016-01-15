@@ -1,7 +1,10 @@
 (function(_) {
-  function CommentsController(service, notifier) {
+  var Comment;
+
+  function CommentsController(service, notifier, commentModel) {
     this.service = service;
     this.comments = [];
+    Comment = commentModel;
 
     _.bindAll(this, 'loadComments', '_parseComments', '_addComment');
 
@@ -10,7 +13,7 @@
 
   var fn = CommentsController.prototype;
       app = angular.module('comments/comment_controller', [
-        'comments/service', 'notifier'
+        'comments/service', 'comments/comment', 'notifier'
       ]);
 
   fn.loadComments = function(thread_id) {
@@ -26,13 +29,15 @@
   };
 
   fn._parseComments = function(comments) {
-    this.comments = comments;
+    this.comments = _.map(comments, function(comment) {
+      return new Comment(comment);
+    });
 
     this.loaded = true;
   };
 
   fn._addComment = function(comment) {
-    this.comments.unshift(comment);
+    this.comments.unshift(new Comment(comment));
   };
 
   fn.submit = function() {
@@ -41,6 +46,6 @@
   };
 
   app.controller('CommentsController', [
-    'commentsService', 'notifier', CommentsController
+    'commentsService', 'Comment', 'notifier', CommentsController
   ]);
 })(window._);
