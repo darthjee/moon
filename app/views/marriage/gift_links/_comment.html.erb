@@ -4,11 +4,16 @@
       <img src="{{ comment.user.gravatarUrl() }}" class="comment-avatar">
     </div>
 
-    <div class="col-sm-11">
-      <p>
-        <b>{{ comment.user.name }}</b><br />
-        {{ comment.text }}
-      </p>
+    <div class="col-sm-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>{{ comment.user.name }}</strong>
+          <span class="text-muted">commented 5 days ago</span>
+        </div>
+        <div class="panel-body">
+          {{ comment.text }}
+        </div>
+      </div>
     </div>
   </div>
 </div>
