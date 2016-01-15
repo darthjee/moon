@@ -2,8 +2,11 @@ class Utils::TimeAgo
   attr_reader :time
 
   TIME_BLOCKS = {
-    minutes: 60,
-    seconds: 1
+    year: 3600*24*365,
+    day: 3600*24,
+    hour: 3600,
+    minute: 60,
+    second: 1
   }
 
 

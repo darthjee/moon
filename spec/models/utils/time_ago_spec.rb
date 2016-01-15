@@ -20,8 +20,16 @@ describe Utils::TimeAgo do
     end
 
     it_behaves_like 'an object that can calculate time ago', [
-      { amount: 10, unit: :seconds, time: 10.seconds },
-      { amount: 1, unit: :minutes, time: 60.seconds }
+      { amount: 10, unit: :second, time: 10.seconds },
+      { amount: 1, unit: :minute, time: 1.minute },
+      { amount: 1, unit: :minute, time: 70.seconds },
+      { amount: 1, unit: :hour, time: 70.minutes },
+      { amount: 2, unit: :hour, time: 120.minutes },
+      { amount: 1, unit: :day, time: 24.hours },
+      { amount: 2, unit: :day, time: 50.hours },
+      { amount: 50, unit: :day, time: 50.days },
+      { amount: 1, unit: :year, time: 365.days },
+      { amount: 1, unit: :year, time: 380.days }
     ]
   end
 end
