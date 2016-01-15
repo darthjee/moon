@@ -22,12 +22,7 @@
       </div>
     </div>
     <div class="row" ng-repeat="comment in cc.comments">
-      <div class="col-sm-12">
-        <p>
-          <b>{{ comment.user.name }}</b><br />
-          {{ comment.text }}
-        </p>
-      </div>
+      <%= render partial: 'marriage/gift_links/comment' %>
     </div>
   </div>
 </div>
