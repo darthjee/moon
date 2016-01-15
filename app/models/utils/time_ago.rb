@@ -1,5 +1,5 @@
 class Utils::TimeAgo
-  attr_reader :time
+  attr_reader :time, :amount
 
   TIME_BLOCKS = {
     year: 3600*24*365,
@@ -15,7 +15,7 @@ class Utils::TimeAgo
   end
 
   def as_json
-    @amount = amount / TIME_BLOCKS[unit]
+    calculate_amount
 
     {
       amount: amount.to_i,
@@ -25,13 +25,19 @@ class Utils::TimeAgo
 
   private
 
-  def unit
-    @unit ||= TIME_BLOCKS.map_and_find do |u, size|
-      u if (amount / size).to_i > 0
-    end
+  def calculate_amount
+    @amount ||= Time.now - time
+    return if amount.zero?
+    @amount /= TIME_BLOCKS[unit]
   end
 
-  def amount
-    @amount ||= Time.now - time
+  def unit
+    @unit ||= find_unit || TIME_BLOCKS.keys.last
+  end
+
+  def find_unit
+    TIME_BLOCKS.map_and_find do |u, size|
+      u if (amount / size).to_i > 0
+    end
   end
 end
