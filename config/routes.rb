@@ -54,4 +54,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :comment, path: '/', defaults: { format: :json } do
+    resources :threads, only: [] do
+      resources :comments, only: [:index, :create]
+    end
+  end
 end

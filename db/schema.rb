@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112025127) do
+ActiveRecord::Schema.define(version: 20160113210932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 20160112025127) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "bg_color",   limit: 7, default: "#fff"
+  end
+
+  create_table "comment_comments", force: true do |t|
+    t.text     "text"
+    t.integer  "thread_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comment_threads", force: true do |t|
+    t.integer  "marriage_id"
+    t.string   "name"
+    t.string   "status",      limit: 14, default: "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "mandrill_email_settings", force: true do |t|
@@ -78,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160112025127) do
     t.integer  "bought",       default: 0,         null: false
     t.string   "status",       default: "open"
     t.string   "display_type", default: "regular", null: false
+    t.integer  "thread_id"
   end
 
   create_table "marriage_guests", force: true do |t|
