@@ -8,7 +8,14 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>{{ comment.user.name }}</strong>
-          <span class="text-muted">commented {{ comment.time_elapsed.amount }} {{ comment.time_elapsed.unit }} ago</span>
+          <span class="text-muted">Comentado há
+            {{ comment.time_elapsed.amount }}
+            <span ng-show="{{ comment.time_elapsed.second }}">segundos</span>
+            <span ng-show="{{ comment.time_elapsed.minute }}">minutos</span>
+            <span ng-show="{{ comment.time_elapsed.hour }}">horas</span>
+            <span ng-show="{{ comment.time_elapsed.day }}">dias</span>
+            <span ng-show="{{ comment.time_elapsed.year }}">anos</span>
+          </span>
         </div>
         <div class="panel-body">
           {{ comment.text }}

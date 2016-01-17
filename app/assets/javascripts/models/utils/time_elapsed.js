@@ -5,6 +5,7 @@
 
   function TimeElapsed(time_elapsed) {
     _.extend(this, time_elapsed);
+    this[this.unit] = true;
   }
 
   var fn = TimeElapsed.prototype,
