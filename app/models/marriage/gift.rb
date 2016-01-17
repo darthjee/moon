@@ -1,6 +1,7 @@
 class Marriage::Gift < ActiveRecord::Base
   has_many :gift_links
   belongs_to :marriage
+  belongs_to :thread, class_name: 'Comment::Thread'
 
   scope :not_hidden, -> { where.not(status: :hidden) }
 

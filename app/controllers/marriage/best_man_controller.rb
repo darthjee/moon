@@ -2,6 +2,7 @@ class Marriage::BestManController < ApplicationController
   include Marriage::Common
 
   protect_from_forgery except: :update
+  skip_redirection :render_root, :list_honors
 
   def index
     respond_to do |format|
@@ -22,12 +23,19 @@ class Marriage::BestManController < ApplicationController
   end
 
   def show_maids
-    render json: maids
+    render json: guests
+  end
+
+  def list_honors
+    render :list_honors, locals: {
+      maids: marriage.guests.where(role: :maid_honor),
+      best_men: marriage.guests.where(role: :best_man),
+    }, layout: 'blank'
   end
 
   private
 
-  def maids
+  def guests
     marriage.guests.where(role: role)
   end
 

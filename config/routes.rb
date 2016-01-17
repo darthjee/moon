@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get '/madrinhas' => :show_maids, as: :show_maids, defaults: { role: :maid_honor }
       get '/padrinhos' => :show_maids, as: :show_best_men, defaults: { role: :best_man }
       get '/maes' => :show_maids, as: :show_mothers, defaults: { role: :mother }
+      get '/padrinhos/lista' => :list_honors, as: :list_honors, defaults: { format: :html }
       patch '/padrinhos/:id' => :update, as: :update_best_men
     end
 
@@ -51,6 +52,12 @@ Rails.application.routes.draw do
         get '/recuperar' => :recovery, as: :recovery
         get  '/:code' => :edit, as: :edit
       end
+    end
+  end
+
+  namespace :comment, path: '/', defaults: { format: :json } do
+    resources :threads, only: [] do
+      resources :comments, only: [:index, :create]
     end
   end
 end

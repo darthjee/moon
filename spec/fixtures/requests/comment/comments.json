@@ -1,0 +1,24 @@
+{
+  "create": {
+    "format": "json",
+    "thread_id": 1,
+    "comment": {
+      "text": "This is a comment",
+      "user": {
+        "name": "new user name",
+        "email": "user@server.com"
+      }
+    }
+  },
+  "create_new_user": {
+    "format": "json",
+    "thread_id": 1,
+    "comment": {
+      "text": "This is a comment",
+      "user": {
+        "name": "new user name",
+        "email": "new.user@new.server.com"
+      }
+    }
+  }
+}

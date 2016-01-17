@@ -4,6 +4,7 @@ class Marriage::Marriage < ActiveRecord::Base
   has_many :store_lists, class_name: 'Store::List'
   has_many :gifts
   has_many :accounts, class_name: 'Bank::Account'
+  has_many :threads, class_name: 'Comment::Thread'
 
   def guests
     ::Marriage::Guest.joins(:invite).where(marriage_invites: { marriage_id: id })
