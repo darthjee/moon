@@ -8,7 +8,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>{{ comment.user.name }}</strong>
-          <span class="text-muted">commented {{ comment.time_ago.time }} days ago</span>
+          <span class="text-muted">commented {{ comment.time_elapsed.amount }} {{ comment.time_elapsed.unit }} ago</span>
         </div>
         <div class="panel-body">
           {{ comment.text }}
