@@ -11,10 +11,8 @@
            class="form-control"
            ng-model="cc.comment.user.name" />
   </div>
-  <div class="input-group agregated-block">
-    <label class="input-group-addon" for="comment">Comentário</label>
-    <textarea ng-model="cc.comment.text"
-              id="comment" name="comment"></textarea>
-  </div>
+  <label class="input-group-addon" for="comment">Comentário</label>
+  <textarea ng-model="cc.comment.text"
+            id="comment" name="comment" class="comment-box"></textarea>
   <button type="submit" class="btn btn-default" ng-click="cc.submit()">Enviar</button>
 </div>
