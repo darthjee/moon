@@ -1,25 +1,7 @@
 <div class="col-sm-7 comments" ng-controller="CommentsController as cc" ng-show="cc.loaded">
   <div class="aglutination-block">
     <div class="col-sm-12">
-      <div class="panel-body">
-        <div class="input-group agregated-block">
-          <span class="input-group-addon">E-mail</span>
-          <input type="text" name="comment-email"
-                 class="form-control"
-                 ng-model="cc.comment.user.email" />
-        </div>
-        <div class="input-group agregated-block">
-          <span class="input-group-addon">Nome</span>
-          <input type="text" name="comment-email"
-                 class="form-control"
-                 ng-model="cc.comment.user.name" />
-        </div>
-        <div class="input-group agregated-block">
-          <span class="input-group-addon">Comentário</span>
-          <textarea ng-model="cc.comment.text"></textarea>
-        </div>
-        <button type="submit" class="btn btn-default" ng-click="cc.submit()">Enviar</button>
-      </div>
+      <%= render partial: 'marriage/comments/form' %>
     </div>
     <div class="row" ng-repeat="comment in cc.comments">
       <%= render partial: 'marriage/comments/comment' %>
