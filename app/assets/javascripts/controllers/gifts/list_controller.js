@@ -66,7 +66,7 @@
 
   fn.buildPagination = function(data) {
     var current = data.page,
-        that = this;
+        that = this, list;
 
     list = _.map(new Array(data.pages), function(_, index) {
       var page =  index + 1;
