@@ -4,27 +4,18 @@ module Marriage::Invite::Update
   include Marriage::Invite::Common
   include Marriage::Services
 
-  def update_invite_guests
-    guests_update_params.each do |guest_params|
-      guest = invite.guests.find(guest_params[:id])
-      guest.update(guest_params)
+  private
+
+  def check_valid_update
+    if invite_updater.valid?
+      invite_updater.save
+    else
+      render json: { errors: invite_errors }, status: :error
     end
   end
 
-  def update_user
-    return if user.name.present?
-    user.update(name: invite.guests.first.try(:name))
-  end
-
-  def create_invite_guests
-    new_guests_params.each do |guest_params|
-      attributes = guest_params.merge(invite: invite)
-      Marriage::Guest.create(attributes)
-    end
-  end
-
-  def remove_guests
-    invite.guests.where(id: removed_guests_id).update_all(active: false)
+  def invite_updater
+    @invite_updater ||= Marriage::Invite::Updater.new(invite, user, params)
   end
 
   def send_welcome_email
@@ -35,56 +26,17 @@ module Marriage::Invite::Update
     invite.update(welcome_sent: true)
   end
 
-  private
-
-  def user
-    @user ||= User.for_invite(invite)
-  end
-
   def welcome_message
     Mandrill::Request::Welcome.new(user, request.base_url)
   end
 
-  def removed_guests_id
-    params[:removed]
-  end
-
-  def guests_params
-    invite_params[:guests]
-  end
-
-  def guests_update_params
-    guests_params.select { |g| g[:id].present? }
-  end
-
-  def new_guests_params
-    guests_params.select { |g| g[:id].blank? && g[:name].present? }
-  end
-
-  def check_valid_update
-    invite.user.assign_attributes(user_update_params)
-    if invite.valid?
-      invite.save
-    else
-      render json: { errors: invite_errors }, status: :error
-    end
-  end
-
-  def invite_params
-    @invite_params ||= params.require(:invite).permit(:removed, guests: [:id, :name, :presence], user: :email)
+  def user
+    @user ||= User.for_invite(invite)
   end
 
   def invite_errors
     invite.errors.messages.merge(
       user: invite.user.errors.messages
     )
-  end
-
-  def invite_update_params
-    invite_params.permit(user: :email)
-  end
-
-  def user_update_params
-    invite_params[:user]
   end
 end
