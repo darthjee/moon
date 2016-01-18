@@ -42,7 +42,7 @@
   };
 
   fn._equalPassword = function() {
-    return this.user.password == this.user.password_confirmation;
+    return this.user.password === this.user.password_confirmation;
   };
 
   fn._filledPassword = function() {

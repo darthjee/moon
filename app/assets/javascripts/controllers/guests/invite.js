@@ -81,7 +81,7 @@
     if (guest.name != '') {
       guest.presence = presence !== false;
     } else {
-      guest.presence = (presence == undefined) && undefined;
+      guest.presence = (presence === undefined) && undefined;
     }
   };
 

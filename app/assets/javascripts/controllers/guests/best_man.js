@@ -27,7 +27,7 @@
 
   fn.saveGuest = function(guest_id) {
     var guest = _.find(this.invite.guests, function(guest) {
-      return guest.id == guest_id;
+      return guest.id === guest_id;
     });
 
     this.service.update(guest_id, guest);
@@ -64,7 +64,7 @@
 
   fn._filterGuests = function(role) {
     return _.select(this.invite.guests, function(guest) {
-      return guest.role == role;
+      return guest.role === role;
     });
   };
 
@@ -79,7 +79,7 @@
 
   fn._findPerson = function(roleData, target) {
     return _.find(roleData.people, function(person) {
-      return target.id == person.id;
+      return target.id === person.id;
     }) || target;
   };
 
