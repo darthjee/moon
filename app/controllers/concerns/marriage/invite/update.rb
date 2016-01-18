@@ -13,6 +13,6 @@ module Marriage::Invite::Update
   end
 
   def invite_updater
-    @invite_updater ||= Marriage::Invite::Updater.new(invite, params)
+    @invite_updater ||= Marriage::Invite::Updater.new(invite, request, params)
   end
 end

@@ -1,12 +1,13 @@
 class Marriage::Invite::Updater
   include Marriage::Services
 
-  attr_reader :invite, :params
+  attr_reader :invite, :request, :params
 
   delegate :valid?, :save, to: :invite
 
-  def initialize(invite, params)
+  def initialize(invite, request, params)
     @invite = invite
+    @request = request
     @params = params
 
     invite.user.assign_attributes(user_update_params)
