@@ -15,6 +15,7 @@
 
   fn.setInvite = function(selected) {
     this.selected = selected;
+    this._clearMessages();
 
     this._fetch();
   };
