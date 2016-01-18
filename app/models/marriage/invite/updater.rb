@@ -1,13 +1,13 @@
 class Marriage::Invite::Updater
   include Marriage::Services
 
-  attr_reader :invite, :request, :params
+  attr_reader :invite, :user, :params
 
   delegate :valid?, :save, to: :invite
 
-  def initialize(invite, request, params)
+  def initialize(invite, user, params)
     @invite = invite
-    @request = request
+    @user = user
     @params = params
 
     invite.user.assign_attributes(user_update_params)
@@ -19,11 +19,9 @@ class Marriage::Invite::Updater
     update_user
     remove_guests
     invite.update(confirmed: invite.guests.confirmed.count)
-    send_welcome_email
   end
 
   private
-
 
   def update_invite_guests
     guests_update_params.each do |guest_params|
@@ -48,14 +46,6 @@ class Marriage::Invite::Updater
     invite.guests.where(id: removed_guests_id).update_all(active: false)
   end
 
-  def send_welcome_email
-    return unless user.name.present?
-    return if invite.welcome_sent
-
-    mandrill_service.send_request(welcome_message)
-    invite.update(welcome_sent: true)
-  end
-
   def guests_update_params
     guests_params.select { |g| g[:id].present? }
   end
@@ -72,19 +62,11 @@ class Marriage::Invite::Updater
     guests_params.select { |g| g[:id].blank? && g[:name].present? }
   end
 
-  def user
-    @user ||= User.for_invite(invite)
-  end
-
   def invite_params
     @invite_params ||= params.require(:invite).permit(:removed, guests: [:id, :name, :presence], user: :email)
   end
 
   def removed_guests_id
     params[:removed]
-  end
-
-  def welcome_message
-    Mandrill::Request::Welcome.new(user, request.base_url)
   end
 end
