@@ -1,6 +1,4 @@
 class Marriage::Invite::Updater
-  include Marriage::Services
-
   attr_reader :invite, :user, :params
 
   delegate :valid?, :save, to: :invite
