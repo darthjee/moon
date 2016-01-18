@@ -78,7 +78,7 @@
     var guest = this.invite.guests[index],
         presence = guest.presence;
 
-    if (guest.name != '') {
+    if (guest.name !== '') {
       guest.presence = presence !== false;
     } else {
       guest.presence = (presence === undefined) && undefined;

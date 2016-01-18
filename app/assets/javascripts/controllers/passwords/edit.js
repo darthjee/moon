@@ -47,7 +47,7 @@
 
   fn._filledPassword = function() {
     var password = this.user.password;
-    return password != null && password != '';
+    return password !== null && password !== '';
   };
 
   fn._parseUser = function(data) {
