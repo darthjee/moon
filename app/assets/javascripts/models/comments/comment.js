@@ -16,8 +16,7 @@
     this.time_elapsed = new TimeElapsed(this.time_elapsed);
   }
 
-  var fn = Comment.prototype,
-      module = angular.module('comments/comment', ['users/user', 'utils/time_elapsed']);
+  var module = angular.module('comments/comment', ['users/user', 'utils/time_elapsed']);
 
   module.factory('Comment', ['User', 'TimeElapsed', CommentFactory]);
 })(_);

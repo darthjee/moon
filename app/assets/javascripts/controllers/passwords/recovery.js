@@ -21,7 +21,7 @@
     promisse.error(this._emailNotSent);
   };
 
-  fn._emailSent = function(data) {
+  fn._emailSent = function() {
     this.success = true;
   };
 

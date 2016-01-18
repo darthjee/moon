@@ -11,8 +11,7 @@
     this.account = new Account(link.account);
   }
 
-  var fn = Link.prototype,
-      module = angular.module('gifts/link', ['bank/account']);
+  var module = angular.module('gifts/link', ['bank/account']);
 
   module.factory('Link', ['Account', LinkFactory]);
 })(_);

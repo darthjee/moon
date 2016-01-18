@@ -18,7 +18,6 @@
   };
 
   fn.update = function() {
-    var promisse;
     this.success = false;
 
     if (!this._equalPassword()) {
@@ -31,8 +30,10 @@
   };
 
   fn._sendUpdate = function() {
+    var promisse;
     this.error = null;
     promisse = this.service.update(this.user.password);
+
     promisse.success(this._success);
     promisse.error(this._fail);
   };

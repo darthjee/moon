@@ -8,8 +8,7 @@
     this[this.unit] = true;
   }
 
-  var fn = TimeElapsed.prototype,
-      module = angular.module('utils/time_elapsed', []);
+  var module = angular.module('utils/time_elapsed', []);
 
   module.factory('TimeElapsed', [TimeElapsedFactory]);
 })(_);

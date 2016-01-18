@@ -46,7 +46,7 @@
   };
 
   fn._checkHasPeople = function() {
-    list = [ this.maidData.hasPeople, this.menData.hasPeople ];
+    var list = [ this.maidData.hasPeople, this.menData.hasPeople ];
     return _.any(list, function(i) {
       return i;
     });
