@@ -10,7 +10,7 @@
     _.bindAll(this, '_parseInvite', '_parseAllFromRole', '_findPerson');
   }
 
-  var fn = BestManController.prototype;
+  var fn = BestManController.prototype,
       app = angular.module('guests/best_man', ['guests/best_man_service']);
 
   fn.requireLogin = function() {
@@ -27,7 +27,7 @@
 
   fn.saveGuest = function(guest_id) {
     var guest = _.find(this.invite.guests, function(guest) {
-      return guest.id == guest_id;
+      return guest.id === guest_id;
     });
 
     this.service.update(guest_id, guest);
@@ -53,18 +53,19 @@
   };
 
   fn._buildRoleData = function(role) {
-    people = this._filterGuests(role);
-    roleData = {
-      people: people,
-      hasPeople: !people.empty()
-    };
+    var people = this._filterGuests(role),
+        roleData = {
+          people: people,
+          hasPeople: !people.empty()
+        };
+
     this.service.listFromRole(role).success(this._parseAllFromRole(roleData));
     return roleData;
   };
 
   fn._filterGuests = function(role) {
     return _.select(this.invite.guests, function(guest) {
-      return guest.role == role;
+      return guest.role === role;
     });
   };
 
@@ -79,7 +80,7 @@
 
   fn._findPerson = function(roleData, target) {
     return _.find(roleData.people, function(person) {
-      return target.id == person.id;
+      return target.id === person.id;
     }) || target;
   };
 

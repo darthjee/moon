@@ -10,7 +10,7 @@
     this._fetch();
   }
 
-  var fn = InviteController.prototype;
+  var fn = InviteController.prototype,
       app = angular.module('guests/invite', ['notifier', 'invites/service']);
 
   fn.setInvite = function(selected) {
@@ -78,10 +78,10 @@
     var guest = this.invite.guests[index],
         presence = guest.presence;
 
-    if (guest.name != '') {
+    if (guest.name !== '') {
       guest.presence = presence !== false;
     } else {
-      guest.presence = (presence == undefined) && undefined;
+      guest.presence = (presence === undefined) && undefined;
     }
   };
 

@@ -1,6 +1,6 @@
 (function(fn, undefined) {
   fn.expandSize = function(size, builder) {
-    if (builder == undefined) {
+    if (builder === undefined) {
       builder = function() { return {}; };
     }
 
@@ -12,6 +12,6 @@
   };
 
   fn.empty = function() {
-    return this.length == 0;
+    return this.length === 0;
   };
 })([].constructor.prototype);

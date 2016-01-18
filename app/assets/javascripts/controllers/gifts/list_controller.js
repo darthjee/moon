@@ -12,7 +12,7 @@
     this.loadGifts();
   }
 
-  var fn = GiftsListController.prototype;
+  var fn = GiftsListController.prototype,
       app = angular.module('gifts/list_controller', ['gifts/service', 'gifts/gift']);
 
   fn.loadGifts = function() {
@@ -20,8 +20,8 @@
   };
 
   fn.orderBy = function(param) {
-    if (this.params.sort_by == param) {
-      if (this.params.sort_direction == 'desc') {
+    if (this.params.sort_by === param) {
+      if (this.params.sort_direction === 'desc') {
         this.params.sort_direction = 'asc';
       } else {
         this.params.sort_direction = 'desc';
@@ -34,7 +34,7 @@
   };
 
   fn.orderedBy = function(param, type) {
-    return this.params.sort_by == param && this.params.sort_direction == type;
+    return this.params.sort_by === param && this.params.sort_direction === type;
   };
 
   fn.pageUrl = function(page) {
@@ -66,7 +66,7 @@
 
   fn.buildPagination = function(data) {
     var current = data.page,
-        that = this;
+        that = this, list;
 
     list = _.map(new Array(data.pages), function(_, index) {
       var page =  index + 1;

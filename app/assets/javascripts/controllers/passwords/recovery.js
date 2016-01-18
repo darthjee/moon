@@ -6,7 +6,7 @@
     _.bindAll(this, '_emailSent', '_emailNotSent');
   }
 
-  var fn = PasswordRecoveryController.prototype;
+  var fn = PasswordRecoveryController.prototype,
       app = angular.module('passwords/recovery', [
         'passwords/service'
       ]);

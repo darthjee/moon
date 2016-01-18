@@ -7,7 +7,7 @@
     _.bindAll(this, 'search', '_parseGuest');
   }
 
-  var fn = GuestsSearcherController.prototype;
+  var fn = GuestsSearcherController.prototype,
       app = angular.module('guests/searcher', ['notifier', 'guests/service']);
 
   fn.search = function(query) {

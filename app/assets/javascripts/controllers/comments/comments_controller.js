@@ -11,7 +11,7 @@
     notifier.register('open-comments', this.loadComments);
   }
 
-  var fn = CommentsController.prototype;
+  var fn = CommentsController.prototype,
       app = angular.module('comments/comment_controller', [
         'comments/service', 'comments/comment', 'notifier'
       ]);

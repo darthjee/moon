@@ -7,7 +7,7 @@
     this.load();
   }
 
-  var fn = PasswordEditController.prototype;
+  var fn = PasswordEditController.prototype,
       app = angular.module('passwords/edit', [
         'passwords/service',
         'guests/login_service'
@@ -42,12 +42,12 @@
   };
 
   fn._equalPassword = function() {
-    return this.user.password == this.user.password_confirmation;
+    return this.user.password === this.user.password_confirmation;
   };
 
   fn._filledPassword = function() {
     var password = this.user.password;
-    return password != null && password != '';
+    return password !== null && password !== '';
   };
 
   fn._parseUser = function(data) {
