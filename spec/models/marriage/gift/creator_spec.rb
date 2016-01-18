@@ -85,23 +85,26 @@ describe Marriage::Gift::Creator do
       end
 
       context 'but for another store' do
-        let(:new_request_parameters) { ActionController::Parameters.new tests_json['create_new_store'] }
+        let(:new_gifts_creator) { described_class.new(marriage, new_request_parameters) }
+        let(:new_request_parameters) do
+          ActionController::Parameters.new tests_json['create_new_store']
+        end
 
         it do
           expect do
-            described_class.new(marriage, new_request_parameters).create
+            new_gifts_creator.create
           end.to change(Marriage::GiftLink, :count)
         end
 
         it do
           expect do
-            described_class.new(marriage, new_request_parameters).create
+            new_gifts_creator.create
           end.not_to change(Marriage::Gift, :count)
         end
 
         it 'updates min and max price for the gift' do
 
-          described_class.new(marriage, new_request_parameters).create
+          new_gifts_creator.create
 
           expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
             'image_url' => 'http://image_url.com',
