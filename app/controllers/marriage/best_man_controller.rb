@@ -5,10 +5,7 @@ class Marriage::BestManController < ApplicationController
   skip_redirection :render_root, :list_honors
 
   def index
-    respond_to do |format|
-      format.json { render json: invite_from_credential_json }
-      format.html { render :index }
-    end
+    render_basic
   end
 
   def show
@@ -55,7 +52,7 @@ class Marriage::BestManController < ApplicationController
     params.require(:guest).permit(:color)
   end
 
-  def invite_from_credential_json
+  def index_json
     user_from_credential.invite.as_json(include: :guests)
   end
 

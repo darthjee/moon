@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
+  def render_basic
+    action = params[:action]
+    respond_to do |format|
+      format.json { render json: send("#{action}_json") }
+      format.html { cached_render action }
+    end
+  end
+
   def admin_key
     ENV['ADMIN_KEY']
   end

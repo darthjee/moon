@@ -24,4 +24,8 @@ class Marriage::GiftLink < ActiveRecord::Base
   def bank
     account.try(:bank)
   end
+
+  def cancel
+    update(status: :canceled)
+  end
 end

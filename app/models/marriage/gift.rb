@@ -17,6 +17,11 @@ class Marriage::Gift < ActiveRecord::Base
     )
   end
 
+  def cancel
+    update(status: :canceled)
+    gift_links.each(&:cancel)
+  end
+
   def packages_quantity
     (1.0 * quantity / package).ceil
   end
@@ -38,10 +43,16 @@ class Marriage::Gift < ActiveRecord::Base
     update_prices
   end
 
-  def update_prices(price = nil)
-    if price
-      gift_links.update_all(price: price)
+  def update_bought(bought = nil)
+    update(bought: bought) if bought
+
+    if self.bought == self.quantity
+      update(status: :bought)
     end
+  end
+
+  def update_prices(price = nil)
+    gift_links.update_all(price: price) if price
 
     update(
       min_price: min_link_price.to_f * package,
