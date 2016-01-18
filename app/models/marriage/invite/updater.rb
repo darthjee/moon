@@ -1,6 +1,15 @@
-class Marriage::Gift::Updater
-  def initialize
+class Marriage::Invite::Updater
+  include Marriage::Services
 
+  attr_reader :invite, :params
+
+  delegate :valid?, :save, to: :invite
+
+  def initialize(invite, params)
+    @invite = invite
+    @params = params
+
+    invite.user.assign_attributes(user_update_params)
   end
 
   def update
@@ -10,7 +19,6 @@ class Marriage::Gift::Updater
     remove_guests
     invite.update(confirmed: invite.guests.confirmed.count)
     send_welcome_email
-    render json: invite.as_json(include: [:guests, :user])
   end
 
   private
@@ -45,5 +53,37 @@ class Marriage::Gift::Updater
 
     mandrill_service.send_request(welcome_message)
     invite.update(welcome_sent: true)
+  end
+
+  def guests_update_params
+    guests_params.select { |g| g[:id].present? }
+  end
+
+  def guests_params
+    invite_params[:guests]
+  end
+
+  def user_update_params
+    invite_params[:user]
+  end
+
+  def new_guests_params
+    guests_params.select { |g| g[:id].blank? && g[:name].present? }
+  end
+
+  def user
+    @user ||= User.for_invite(invite)
+  end
+
+  def invite_params
+    @invite_params ||= params.require(:invite).permit(:removed, guests: [:id, :name, :presence], user: :email)
+  end
+
+  def removed_guests_id
+    params[:removed]
+  end
+
+  def welcome_message
+    Mandrill::Request::Welcome.new(user, request.base_url)
   end
 end

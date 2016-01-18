@@ -20,5 +20,7 @@ class Marriage::InvitesController < ApplicationController
   end
 
   def update
+    invite_updater.update
+    render json: invite.as_json(include: [:guests, :user])
   end
 end
