@@ -17,6 +17,11 @@ class Marriage::Gift < ActiveRecord::Base
     )
   end
 
+  def cancel
+    update(status: :canceled)
+    gift_links.each(&:cancel)
+  end
+
   def packages_quantity
     (1.0 * quantity / package).ceil
   end
