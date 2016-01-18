@@ -7,7 +7,7 @@
     this.load();
   }
 
-  var fn = PasswordEditController.prototype;
+  var fn = PasswordEditController.prototype,
       app = angular.module('passwords/edit', [
         'passwords/service',
         'guests/login_service'

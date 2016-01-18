@@ -10,7 +10,7 @@
     this._fetch();
   }
 
-  var fn = InviteController.prototype;
+  var fn = InviteController.prototype,
       app = angular.module('guests/invite', ['notifier', 'invites/service']);
 
   fn.setInvite = function(selected) {

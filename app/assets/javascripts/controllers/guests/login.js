@@ -7,7 +7,7 @@
     _.bindAll(this, '_redirect', '_fail');
   }
 
-  var fn = LoginController.prototype;
+  var fn = LoginController.prototype,
       app = angular.module('guests/login', ['guests/login_service']);
 
   fn._redirect = function() {

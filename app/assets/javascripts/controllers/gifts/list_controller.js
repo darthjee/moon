@@ -12,7 +12,7 @@
     this.loadGifts();
   }
 
-  var fn = GiftsListController.prototype;
+  var fn = GiftsListController.prototype,
       app = angular.module('gifts/list_controller', ['gifts/service', 'gifts/gift']);
 
   fn.loadGifts = function() {

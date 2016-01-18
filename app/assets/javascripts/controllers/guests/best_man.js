@@ -10,7 +10,7 @@
     _.bindAll(this, '_parseInvite', '_parseAllFromRole', '_findPerson');
   }
 
-  var fn = BestManController.prototype;
+  var fn = BestManController.prototype,
       app = angular.module('guests/best_man', ['guests/best_man_service']);
 
   fn.requireLogin = function() {

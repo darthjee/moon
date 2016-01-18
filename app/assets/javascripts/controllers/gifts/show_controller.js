@@ -13,7 +13,7 @@
     this.load();
   }
 
-  var fn = GiftShowController.prototype;
+  var fn = GiftShowController.prototype,
       app = angular.module('gifts/show_controller', [
         'gifts/service', 'gifts/gift', 'notifier'
       ]);

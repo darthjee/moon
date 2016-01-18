@@ -14,7 +14,7 @@
     this.load();
   }
 
-  var fn = GiftLinkShowController.prototype;
+  var fn = GiftLinkShowController.prototype,
       app = angular.module('gifts/link_controller', [
         'gifts/service', 'gifts/gift', 'gifts/link', 'notifier'
       ]);
