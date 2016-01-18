@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def render_basic
     action = params[:action]
     respond_to do |format|
-      format.json { render json: public_send("#{action}_json") }
+      format.json { render json: send("#{action}_json") }
       format.html { cached_render action }
     end
   end
