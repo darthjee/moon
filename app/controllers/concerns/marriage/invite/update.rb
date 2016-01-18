@@ -10,7 +10,7 @@ module Marriage::Invite::Update
     if invite_updater.valid?
       invite_updater.save
     else
-      render json: { errors: invite_updater.invite_errors }, status: :error
+      render json: { errors: invite_errors }, status: :error
     end
   end
 
@@ -32,5 +32,11 @@ module Marriage::Invite::Update
 
   def user
     @user ||= User.for_invite(invite)
+  end
+
+  def invite_errors
+    invite.errors.messages.merge(
+      user: invite.user.errors.messages
+    )
   end
 end
