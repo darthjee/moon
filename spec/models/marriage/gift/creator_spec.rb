@@ -102,6 +102,26 @@ describe Marriage::Gift::Creator do
         end
       end
 
+      context 'and we are updating the bought quantity' do
+        let(:update_gifts_creator) { described_class.new(marriage, update_request_parameters) }
+        let(:gift) { Marriage::Gift.last }
+        let(:update_request_parameters) do
+          ActionController::Parameters.new tests_json['update']
+        end
+
+        it 'updates the bought quantity' do
+          expect do
+            update_gifts_creator.create
+          end.to change { Marriage::Gift.find(gift.id).bought }
+        end
+
+        it 'updates the bought status' do
+          expect do
+            update_gifts_creator.create
+          end.to change { Marriage::Gift.find(gift.id).status }.to('bought')
+        end
+      end
+
       context 'but for another store' do
         let(:new_gifts_creator) { described_class.new(marriage, new_request_parameters) }
         let(:new_request_parameters) do
