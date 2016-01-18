@@ -8,21 +8,26 @@ class Marriage::Gift::Creator
 
   def create
     gifts_creation_json.map do |gift_link_json|
-      gift = find_or_create_gift(gift_link_json[:gift])
-      gift.update(gift_update_json(gift_link_json[:gift]))
-
-      unless gift_link_exists?(gift_link_json[:url])
-        gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
-        gift.update_prices
-        gift.as_json
-      end
+      create_gift(gift_link_json)
     end.compact
   end
 
   private
 
+  def create_gift(gift_link_json)
+    gift = find_or_create_gift(gift_link_json[:gift])
+    return unless gift
+    gift.update(gift_update_json(gift_link_json[:gift]))
+
+    unless gift_link_exists?(gift_link_json[:url])
+      gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
+      gift.update_prices
+      gift.as_json
+    end
+  end
+
   def find_or_create_gift(gift_json)
-    if marriage.gifts.where(gift_json.permit(:name)).any?
+    if marriage.gifts.unscoped.where(gift_json.permit(:name)).any?
       marriage.gifts.find_by(gift_json.permit(:name))
     else
       marriage.gifts.create(gift_creation_json(gift_json))

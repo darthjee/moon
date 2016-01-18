@@ -84,6 +84,24 @@ describe Marriage::Gift::Creator do
         end.not_to change(Marriage::Gift, :count)
       end
 
+      context 'but it has been already canceled' do
+        before do
+          Marriage::Gift.last.cancel
+        end
+
+        it do
+          expect do
+            subject.create
+          end.not_to change(Marriage::Gift, :count)
+        end
+
+        it do
+          expect do
+            subject.create
+          end.not_to change(Marriage::GiftLink.unscoped, :count)
+        end
+      end
+
       context 'but for another store' do
         let(:new_gifts_creator) { described_class.new(marriage, new_request_parameters) }
         let(:new_request_parameters) do
