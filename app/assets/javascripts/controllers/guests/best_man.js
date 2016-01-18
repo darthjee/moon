@@ -53,11 +53,12 @@
   };
 
   fn._buildRoleData = function(role) {
-    people = this._filterGuests(role);
-    roleData = {
-      people: people,
-      hasPeople: !people.empty()
-    };
+    var people = this._filterGuests(role),
+        roleData = {
+          people: people,
+          hasPeople: !people.empty()
+        };
+
     this.service.listFromRole(role).success(this._parseAllFromRole(roleData));
     return roleData;
   };
