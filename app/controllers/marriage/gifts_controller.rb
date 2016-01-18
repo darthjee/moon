@@ -6,17 +6,11 @@ module Marriage
     protect_from_forgery except: :create
 
     def index
-      respond_to do |format|
-        format.json { render json: gifts_list_json }
-        format.html { cached_render :index }
-      end
+      render_basic
     end
 
     def show
-      respond_to do |format|
-        format.json { render json: gift_json }
-        format.html { cached_render :show }
-      end
+      render_basic
     end
 
     def create
@@ -29,11 +23,11 @@ module Marriage
       Gift::Creator.new(marriage, params).create
     end
 
-    def gifts_list_json
+    def index_json
       Gift::Paginator.new(marriage, params).as_json
     end
 
-    def gift_json
+    def show_json
       marriage.gifts.find(params[:id].as_json)
     end
   end
