@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, angular) {
   var Gift;
 
   function GiftShowController($routeParams, giftsService, notifier, giftModel) {
@@ -36,4 +36,4 @@
   app.controller('GiftShowController', [
     '$routeParams', 'giftsService', 'notifier','Gift', GiftShowController
   ]);
-})(window._);
+})(window._, window.angular);

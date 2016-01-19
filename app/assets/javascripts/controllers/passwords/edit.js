@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, angular) {
   function PasswordEditController(service, loginService) {
     this.service = service;
     this.loginService = loginService;
@@ -66,4 +66,4 @@
   app.controller('PasswordEditController', [
     'PasswordsService', 'loginService', PasswordEditController
   ]);
-})(window._);
+})(window._, window.angular);

@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   function GiftsServiceFactory($http) {
     return new GiftsService($http);
   }
@@ -31,4 +31,4 @@
   };
 
   module.service('giftsService', ['$http', GiftsServiceFactory]);
-})(window._);
+})(window._, window.angular);

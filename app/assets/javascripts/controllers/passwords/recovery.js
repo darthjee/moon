@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, angular) {
   function PasswordRecoveryController(service) {
     this.service = service;
     this.success = false;
@@ -40,4 +40,4 @@
   app.controller('PasswordRecoveryController', [
     'PasswordsService', PasswordRecoveryController
   ]);
-})(window._);
+})(window._, window.angular);

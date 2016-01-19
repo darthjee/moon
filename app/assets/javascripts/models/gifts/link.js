@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   var Account;
 
   function LinkFactory(accountModel) {

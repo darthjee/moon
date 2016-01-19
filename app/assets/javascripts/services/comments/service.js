@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   function CommentsServiceFactory($http) {
     return new CommentsService($http);
   }
@@ -23,4 +23,4 @@
   };
 
   module.service('commentsService', ['$http', CommentsServiceFactory]);
-})(window._);
+})(window._, window.angular);

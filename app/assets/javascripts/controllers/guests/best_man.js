@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, angular) {
   function BestManController(
     $routeParams, $location, notifier, loginService, bestManService
   ) {
@@ -88,4 +88,4 @@
     '$routeParams', '$location', 'notifier', 'loginService', 'bestManService',
     BestManController
   ]);
-})(window._);
+})(window._, window.angular);

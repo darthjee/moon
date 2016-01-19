@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, angular) {
   function GuestsSearcherController(service, notifier) {
     this.service = service;
     this.notifier = notifier;
@@ -43,4 +43,4 @@
   };
 
   app.controller('GuestsSearcherController', ['guestsService', 'notifier', GuestsSearcherController]);
-})(window._);
+})(window._, window.angular);

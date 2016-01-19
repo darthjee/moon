@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   function InvitesServiceFactory($http) {
     return new InvitesService($http);
   }
@@ -29,4 +29,4 @@
   };
 
   module.service('invitesService', ['$http', InvitesServiceFactory]);
-})(window._);
+})(window._, window.angular);

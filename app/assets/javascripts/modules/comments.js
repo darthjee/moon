@@ -1,3 +1,3 @@
-(function(_) {
+(function(_, angular) {
   var app = angular.module('comments', ['comments/comment_controller']);
-})(window._);
+})(window._, window.angular);

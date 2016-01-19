@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   function NotifierServiceFactory() {
     return new NotifierService();
   }
@@ -28,4 +28,4 @@
   };
 
   module.service('notifier', [NotifierServiceFactory]);
-})(window._);
+})(window._, window.angular);

@@ -1,4 +1,4 @@
-(function(_, md5, undefined) {
+(function(_, angular, md5, undefined) {
   function UserFactory() {
     return User;
   }

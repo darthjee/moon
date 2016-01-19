@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
 
   function RouterBuilder($routeProvider) {
     new Router($routeProvider).bindRoutes();
@@ -57,4 +57,4 @@
   var app = angular.module('moon');
 
   app.config(['$routeProvider', RouterBuilder]);
-})(window._);
+})(window._, window.angular);
