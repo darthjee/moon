@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   var User, TimeElapsed;
 
 
@@ -19,4 +19,4 @@
   var module = angular.module('comments/comment', ['users/user', 'utils/time_elapsed']);
 
   module.factory('Comment', ['User', 'TimeElapsed', CommentFactory]);
-})(_);
+})(window._, window.angular);

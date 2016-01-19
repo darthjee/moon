@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   function LoginServiceFactory($http) {
     return new LoginService($http);
   }
@@ -23,4 +23,4 @@
   };
 
   module.service('loginService', ['$http', LoginServiceFactory]);
-})(window._);
+})(window._, window.angular);

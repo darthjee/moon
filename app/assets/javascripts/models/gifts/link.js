@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   var Account;
 
   function LinkFactory(accountModel) {
@@ -14,4 +14,4 @@
   var module = angular.module('gifts/link', ['bank/account']);
 
   module.factory('Link', ['Account', LinkFactory]);
-})(_);
+})(window._, window.angular);

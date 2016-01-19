@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
 
   function RouterBuilder($routeProvider) {
     new Router($routeProvider).bindRoutes();
@@ -45,8 +45,8 @@
   fn.buildTemplateFor = function(route) {
      return function(params) {
        if (params !== undefined) {
-         for(key in params) {
-           regexp = new RegExp(':' + key + '\\b');
+         for(var key in params) {
+           var regexp = new RegExp(':' + key + '\\b');
            route = route.replace(regexp, params[key]);
          }
        }
@@ -57,4 +57,4 @@
   var app = angular.module('moon');
 
   app.config(['$routeProvider', RouterBuilder]);
-})(window._);
+})(window._, window.angular);

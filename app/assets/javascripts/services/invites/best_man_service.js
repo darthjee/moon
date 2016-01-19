@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   function BestManServiceFactory($http) {
     return new BestManService($http);
   }
@@ -31,4 +31,4 @@
   };
 
   module.service('bestManService', ['$http', BestManServiceFactory]);
-})(window._);
+})(window._, window.angular);

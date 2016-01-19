@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, angular) {
   function LoginController($routeParams, $location, service) {
     this.redirect_to = $routeParams.redirect_to || '/';
     this.service = service;
@@ -33,4 +33,4 @@
   };
 
   app.controller('LoginController', ['$routeParams', '$location', 'loginService', LoginController]);
-})(window._);
+})(window._, window.angular);

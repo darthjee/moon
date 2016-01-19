@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, angular, querystring) {
   var Gift;
 
   function GiftsListController($routeParams, giftsService, giftModel) {
@@ -90,4 +90,4 @@
   app.controller('GiftsListController', [
     '$routeParams', 'giftsService', 'Gift', GiftsListController
   ]);
-})(window._);
+})(window._, window.angular, window.querystring);

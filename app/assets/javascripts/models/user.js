@@ -1,4 +1,4 @@
-(function(_, md5, undefined) {
+(function(_, angular, md5, undefined) {
   function UserFactory() {
     return User;
   }
@@ -16,4 +16,4 @@
   };
 
   module.factory('User', [UserFactory]);
-})(_, md5);
+})(window._, window.angular, window.md5);

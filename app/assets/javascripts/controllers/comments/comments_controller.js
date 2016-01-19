@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, angular) {
   var Comment;
 
   function CommentsController(service, commentModel, notifier) {
@@ -48,4 +48,4 @@
   app.controller('CommentsController', [
     'commentsService', 'Comment', 'notifier', CommentsController
   ]);
-})(window._);
+})(window._, window.angular);

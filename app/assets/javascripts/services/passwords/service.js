@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   function PasswordsServiceFactory($http) {
     return new PasswordsService($http);
   }
@@ -23,4 +23,4 @@
   };
 
   module.service('PasswordsService', ['$http', PasswordsServiceFactory]);
-})(window._);
+})(window._, window.angular);

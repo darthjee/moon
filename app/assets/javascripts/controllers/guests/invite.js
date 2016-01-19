@@ -1,4 +1,4 @@
-(function(_) {
+(function(_, angular) {
   function InviteController($routeParams, service, notifier) {
     this.service = service;
     this.selected = $routeParams;
@@ -99,4 +99,4 @@
   };
 
   app.controller('InviteController', ['$routeParams', 'invitesService', 'notifier', InviteController]);
-})(window._);
+})(window._, window.angular);

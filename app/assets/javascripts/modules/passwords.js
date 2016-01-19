@@ -1,5 +1,5 @@
-(function(_) {
+(function(_, angular) {
   var app = angular.module('passwords', [
     'passwords/recovery', 'passwords/edit'
   ]);
-})(window._);
+})(window._, window.angular);

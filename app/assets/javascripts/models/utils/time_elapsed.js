@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   function TimeElapsedFactory() {
     return TimeElapsed;
   }
@@ -11,4 +11,4 @@
   var module = angular.module('utils/time_elapsed', []);
 
   module.factory('TimeElapsed', [TimeElapsedFactory]);
-})(_);
+})(window._, window.angular);

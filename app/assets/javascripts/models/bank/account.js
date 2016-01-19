@@ -1,4 +1,4 @@
-(function(_, undefined) {
+(function(_, angular, undefined) {
   function AccountFactory() {
     return Account;
   }
@@ -13,4 +13,4 @@
   var module = angular.module('bank/account', []);
 
   module.factory('Account', [AccountFactory]);
-})(_);
+})(window._, window.angular);
