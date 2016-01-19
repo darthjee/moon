@@ -17,7 +17,7 @@
 
   fn.is_priceless = function() {
     if (this.priceless === undefined) {
-      this.priceless = his.price_range.length <= 0 || this.display_type === 'priceless';
+      this.priceless = this.price_range.length <= 0 || this.display_type === 'priceless';
     }
     return this.priceless;
   };
