@@ -11,4 +11,4 @@
   var module = angular.module('utils/time_elapsed', []);
 
   module.factory('TimeElapsed', [TimeElapsedFactory]);
-})(window._);
+})(window._, window.angular);

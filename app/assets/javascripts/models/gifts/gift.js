@@ -31,4 +31,4 @@
   };
 
   module.factory('Gift', [GiftFactory]);
-})(window._);
+})(window._, window.angular);

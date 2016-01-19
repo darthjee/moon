@@ -19,4 +19,4 @@
   var module = angular.module('comments/comment', ['users/user', 'utils/time_elapsed']);
 
   module.factory('Comment', ['User', 'TimeElapsed', CommentFactory]);
-})(window._);
+})(window._, window.angular);

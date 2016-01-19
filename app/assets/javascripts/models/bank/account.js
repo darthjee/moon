@@ -13,4 +13,4 @@
   var module = angular.module('bank/account', []);
 
   module.factory('Account', [AccountFactory]);
-})(window._);
+})(window._, window.angular);
