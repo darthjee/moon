@@ -10,7 +10,7 @@
   var fn = GuestsService.prototype,
       module = angular.module('guests/service', []);
 
-  fn.search = function(term, callback) {
+  fn.search = function(term) {
     return this.requester.get('/convidados/search.json', {
       params: { name: term }
     });
