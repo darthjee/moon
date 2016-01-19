@@ -16,4 +16,4 @@
   };
 
   module.factory('User', [UserFactory]);
-})(_, md5);
+})(window._, window.md5);

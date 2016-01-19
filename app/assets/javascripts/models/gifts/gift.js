@@ -31,4 +31,4 @@
   };
 
   module.factory('Gift', [GiftFactory]);
-})(_);
+})(window._);
