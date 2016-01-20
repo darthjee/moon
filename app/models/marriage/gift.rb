@@ -13,7 +13,8 @@ class Marriage::Gift < ActiveRecord::Base
     super(*args).merge(
       gift_links: gift_links.not_hidden.map(&:as_json),
       price_range: [min_price, max_price].uniq.compact,
-      packages_quantity: packages_quantity
+      packages_quantity: packages_quantity,
+      comments: thread.comments.count
     )
   end
 

@@ -1,12 +1,19 @@
 <div class="row">
-  <div class="gift-price col-md-12">
+  <div class="gift-price col-md-10">
     <div ng-show="!gift.is_priceless()">
-      <strong>Preço<span ng-show="gift.has_many()"> Total</span>: </strong>
+      <strong ng-show="gift.has_many()">Total</strong>
       <span ng-repeat="price in gift.price_range track by $index">
         <span ng-show="$index > 0">-</span>
         {{ price | currency : 'R$ ' : 2 }}
       </span>
     </div>
+  </div>
+  <div class="gift-price col-md-2">
+    <a href="<%= angular_path_to marriage_gift_safe_path(id: '{{ gift.id }}') %>"
+      class="badge">
+      {{  gift.comments }}
+      <div class="glyphicon glyphicon-comment" aria-hidden="true"></div>
+    </a>
   </div>
 </div>
 <div class="row">
