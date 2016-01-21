@@ -34,7 +34,7 @@ class Marriage::Gift::Paginator
   end
 
   def gifts_json
-    ordered_gifts.as_json(include: :gift_links)
+    ordered_gifts.as_json
   end
 
   def ordered_gifts
