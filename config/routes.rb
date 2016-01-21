@@ -60,4 +60,8 @@ Rails.application.routes.draw do
       resources :comments, only: [:index, :create]
     end
   end
+
+  resources :album, path: '/album/', defaults: { format: :json }, only: [] do
+    resources :pictures, path: '/fotos', only: [:index]
+  end
 end
