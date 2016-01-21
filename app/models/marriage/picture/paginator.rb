@@ -17,7 +17,7 @@ class Marriage::Picture::Paginator
   private
 
   def pictures_json
-    pictures.limit(per_page).offset(offset)
+    pictures.limit(per_page).offset(offset).as_json
   end
 
   def pictures
