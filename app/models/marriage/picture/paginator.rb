@@ -21,7 +21,7 @@ class Marriage::Picture::Paginator
   end
 
   def pictures
-    album.pictures.not_hidden
+    album.pictures
   end
 
   def picture_pages
