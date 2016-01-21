@@ -18,6 +18,10 @@ class Marriage::Gift < ActiveRecord::Base
     )
   end
 
+  def thread
+    super || create_thread
+  end
+
   def cancel
     update(status: :canceled)
     gift_links.each(&:cancel)
@@ -59,5 +63,13 @@ class Marriage::Gift < ActiveRecord::Base
       min_price: min_link_price.to_f * package,
       max_price: max_link_price.to_f * package
     )
+  end
+
+  private
+
+  def create_thread
+    Comment::Thread.create(marriage_id: marriage_id, name: name).tap do |thread|
+      update(thread_id: thread.id)
+    end
   end
 end
