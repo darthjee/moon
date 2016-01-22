@@ -9,7 +9,7 @@ class Marriage::Gift::Paginator
   def as_json
     {
       gifts: gifts_json,
-      pages: gift_pages,
+      pages: pages,
       page: page_param
     }
   end
@@ -49,7 +49,7 @@ class Marriage::Gift::Paginator
     marriage.gifts.not_hidden
   end
 
-  def gift_pages
+  def pages
     (gifts.count * 1.0 / per_page).ceil
   end
 

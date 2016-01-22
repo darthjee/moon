@@ -9,7 +9,7 @@ class Marriage::Picture::Paginator
   def as_json
     {
       pictures: pictures_json,
-      pages: picture_pages,
+      pages: pages,
       page: page_param
     }
   end
@@ -24,7 +24,7 @@ class Marriage::Picture::Paginator
     album.pictures
   end
 
-  def picture_pages
+  def pages
     (pictures.count * 1.0 / per_page).ceil
   end
 
