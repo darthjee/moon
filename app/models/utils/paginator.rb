@@ -16,6 +16,18 @@ class Utils::Paginator
 
   private
 
+  def list_json
+    ordered_list.as_json
+  end
+
+  def ordered_list
+    paginated_list
+  end
+
+  def paginated_list
+    list.limit(per_page).offset(offset)
+  end
+
   def pages
     (list.count * 1.0 / per_page).ceil
   end

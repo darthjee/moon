@@ -22,15 +22,7 @@ class Marriage::Gift::Paginator < Utils::Paginator
     params[:sort_direction].present? ? params[:sort_direction] : :asc
   end
 
-  def list_json
-    ordered_list.as_json
-  end
-
   def ordered_list
     paginated_list.order(order_by => sort_direction.to_sym).order(name: :asc)
-  end
-
-  def paginated_list
-    list.limit(per_page).offset(offset)
   end
 end
