@@ -1,20 +1,9 @@
-class Marriage::Gift::Paginator
-  attr_reader :params, :list
-
-  def initialize(gifts, params)
-    @list = gifts
-    @params = params
-  end
-
-  def as_json
-    {
-      gifts: list_json,
-      pages: pages,
-      page: page_param
-    }
-  end
-
+class Marriage::Gift::Paginator < Utils::Paginator
   private
+
+  def key
+    :gifts
+  end
 
   def order_by
     case params[:sort_by]
@@ -43,21 +32,5 @@ class Marriage::Gift::Paginator
 
   def paginated_list
     list.limit(per_page).offset(offset)
-  end
-
-  def pages
-    (list.count * 1.0 / per_page).ceil
-  end
-
-  def offset
-    (page_param - 1) * per_page
-  end
-
-  def page_param
-    [params[:page].to_i, 1].max
-  end
-
-  def per_page
-    @per_page ||= (params[:per_page] || 8).to_i
   end
 end
