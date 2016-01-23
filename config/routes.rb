@@ -53,15 +53,15 @@ Rails.application.routes.draw do
         get  '/:code' => :edit, as: :edit
       end
     end
+
+    resources :album, path: '/album/', defaults: { format: :html }, only: [] do
+      resources :pictures, path: '/fotos', only: [:index]
+    end
   end
 
   namespace :comment, path: '/', defaults: { format: :json } do
     resources :threads, only: [] do
       resources :comments, only: [:index, :create]
     end
-  end
-
-  resources :album, path: '/album/', defaults: { format: :json }, only: [] do
-    resources :pictures, path: '/fotos', only: [:index]
   end
 end
