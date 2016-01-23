@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Marriage::Gift::Paginator do
   let(:params) { {} }
   let(:marriage) { create(:marriage) }
-  let(:subject) { described_class.new(marriage, params) }
+  let(:gifts) { marriage.gifts }
+  let(:subject) { described_class.new(gifts, params) }
 
   describe '#as_json' do
     let(:gifts_json) { subject.as_json[:gifts] }

@@ -1,8 +1,8 @@
 class Marriage::Gift::Paginator
-  attr_reader :params, :marriage
+  attr_reader :params, :list
 
-  def initialize(marriage, params)
-    @marriage = marriage
+  def initialize(gifts, params)
+    @list = gifts
     @params = params
   end
 
@@ -43,10 +43,6 @@ class Marriage::Gift::Paginator
 
   def paginated_list
     list.limit(per_page).offset(offset)
-  end
-
-  def list
-    marriage.gifts.not_hidden
   end
 
   def pages

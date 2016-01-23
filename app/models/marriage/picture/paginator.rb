@@ -1,8 +1,8 @@
 class Marriage::Picture::Paginator
-  attr_reader :params, :album
+  attr_reader :params, :list
 
-  def initialize(album, params)
-    @album = album
+  def initialize(pictures, params)
+    @list = pictures
     @params = params
   end
 
@@ -18,10 +18,6 @@ class Marriage::Picture::Paginator
 
   def list_json
     list.limit(per_page).offset(offset).as_json
-  end
-
-  def list
-    album.pictures
   end
 
   def pages

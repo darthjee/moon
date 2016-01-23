@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Marriage::Picture::Paginator do
   let(:params) { {} }
   let(:album) { marriage_albums(:first) }
-  let(:subject) { described_class.new(album, params) }
+  let(:pictures) { album.pictures }
+  let(:subject) { described_class.new(pictures, params) }
 
   describe '#as_json' do
     let(:pictures_json) { subject.as_json[:pictures] }
