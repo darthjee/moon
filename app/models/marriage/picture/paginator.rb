@@ -8,7 +8,7 @@ class Marriage::Picture::Paginator
 
   def as_json
     {
-      pictures: pictures_json,
+      pictures: list_json,
       pages: pages,
       page: page_param
     }
@@ -16,16 +16,16 @@ class Marriage::Picture::Paginator
 
   private
 
-  def pictures_json
-    pictures.limit(per_page).offset(offset).as_json
+  def list_json
+    list.limit(per_page).offset(offset).as_json
   end
 
-  def pictures
+  def list
     album.pictures
   end
 
   def pages
-    (pictures.count * 1.0 / per_page).ceil
+    (list.count * 1.0 / per_page).ceil
   end
 
   def offset

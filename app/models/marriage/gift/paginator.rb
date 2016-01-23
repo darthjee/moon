@@ -8,7 +8,7 @@ class Marriage::Gift::Paginator
 
   def as_json
     {
-      gifts: gifts_json,
+      gifts: list_json,
       pages: pages,
       page: page_param
     }
@@ -33,24 +33,24 @@ class Marriage::Gift::Paginator
     params[:sort_direction].present? ? params[:sort_direction] : :asc
   end
 
-  def gifts_json
-    ordered_gifts.as_json
+  def list_json
+    ordered_list.as_json
   end
 
-  def ordered_gifts
-    paginated_gifts.order(order_by => sort_direction.to_sym).order(name: :asc)
+  def ordered_list
+    paginated_list.order(order_by => sort_direction.to_sym).order(name: :asc)
   end
 
-  def paginated_gifts
-    gifts.limit(per_page).offset(offset)
+  def paginated_list
+    list.limit(per_page).offset(offset)
   end
 
-  def gifts
+  def list
     marriage.gifts.not_hidden
   end
 
   def pages
-    (gifts.count * 1.0 / per_page).ceil
+    (list.count * 1.0 / per_page).ceil
   end
 
   def offset
