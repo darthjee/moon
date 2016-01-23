@@ -21,7 +21,8 @@
     '/presentes/:gift_id/descricao/:id': { controller: 'GiftLinkShowController', controllerAs: 'gsc' },
     '/presentes/:id': { controller: 'GiftShowController', controllerAs: 'gsc' },
     '/senha/recuperar': { controller: 'PasswordRecoveryController', controllerAs: 'prc'  },
-    '/senha/:code': { controller: 'PasswordEditController', controllerAs: 'pc'  }
+    '/senha/:code': { controller: 'PasswordEditController', controllerAs: 'pc'  },
+    '/album/:album_id/fotos': { controller: 'PicturesListController', controllerAs: 'pc'  }
   };
 
   fn.bindRoutes = function() {
