@@ -1,0 +1,16 @@
+<div class="panel panel-default debug-container">
+  <div class="panel-heading picture-name">
+    {{ picture.name }}
+    <span class="debug-hide debug-float">{{ picture.id }}</span>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12 wrap-image" ng-show="picture.given">
+        <img src="/assets/wrap-small.png" />
+      </div>
+      <div class="col-sm-12 picture-image-block">
+          <img src="{{ picture.snap_url }}" class="picture-image" />
+      </div>
+    </div>
+  </div>
+</div>
