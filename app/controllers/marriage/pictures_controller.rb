@@ -9,7 +9,7 @@ module Marriage
     private
 
     def index_json
-      Gift::Paginator.new(album.pictures, params).as_json
+      Picture::Paginator.new(album.pictures, params).as_json
     end
 
     def album
