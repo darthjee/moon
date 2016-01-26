@@ -44,3 +44,14 @@ dl.description {
 .aglutination-block {
   margin-bottom: 1.5em;
 }
+
+.show-block {
+  .show-name {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .show-image-block {
+    height: 165px;
+  }
+}

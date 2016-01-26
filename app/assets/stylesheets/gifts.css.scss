@@ -1,11 +1,4 @@
 .gift-block {
-  margin: 0 auto 20px;
-
-  .gift-name {
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
   .gift-quantity {
     text-align: right;
   }
@@ -23,10 +16,6 @@
   .gift-links {
     height: 70px;
     width: 300px;
-  }
-
-  .gift-image-block {
-    height: 165px;
   }
 }
 
