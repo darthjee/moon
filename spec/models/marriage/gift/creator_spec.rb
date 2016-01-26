@@ -39,6 +39,12 @@ describe Marriage::Gift::Creator do
       end.to change(Marriage::GiftLink, :count)
     end
 
+    it do
+      expect do
+        subject.create
+      end.to change(Comment::Thread, :count)
+    end
+
     it 'creates the correct gift link' do
       subject.create
 
