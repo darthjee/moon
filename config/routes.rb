@@ -53,6 +53,12 @@ Rails.application.routes.draw do
         get  '/:code' => :edit, as: :edit
       end
     end
+
+    resources :album, path: '/album/', defaults: { format: :html }, only: [] do
+      resources :pictures, path: '/fotos', only: [:index] do
+        get '/pagina/:page' => :index, on: :collection, as: :paginated
+      end
+    end
   end
 
   namespace :comment, path: '/', defaults: { format: :json } do

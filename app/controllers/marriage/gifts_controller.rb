@@ -24,7 +24,7 @@ module Marriage
     end
 
     def index_json
-      Gift::Paginator.new(marriage, params).as_json
+      Gift::Paginator.new(marriage.gifts, params).as_json
     end
 
     def show_json

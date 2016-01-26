@@ -1,0 +1,10 @@
+class CreateMarriagePictures < ActiveRecord::Migration
+  def change
+    create_table :marriage_pictures do |t|
+      t.integer :album_id
+      t.string :name, limit: 14
+      t.string :url
+      t.string :snap_url
+    end
+  end
+end
