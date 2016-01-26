@@ -39,6 +39,12 @@ describe Marriage::Gift::Creator do
       end.to change(Marriage::GiftLink, :count)
     end
 
+    it do
+      expect do
+        subject.create
+      end.to change(Comment::Thread, :count)
+    end
+
     it 'creates the correct gift link' do
       subject.create
 
@@ -119,6 +125,12 @@ describe Marriage::Gift::Creator do
           expect do
             update_gifts_creator.create
           end.to change { Marriage::Gift.find(gift.id).status }.to('bought')
+        end
+
+        it do
+          expect do
+            update_gifts_creator.create
+          end.not_to change(Marriage::GiftLink, :count)
         end
       end
 

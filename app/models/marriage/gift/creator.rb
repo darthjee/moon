@@ -20,7 +20,7 @@ class Marriage::Gift::Creator
     gift.update(gift_update_json(gift_link_json[:gift]))
     gift.update_bought
 
-    unless gift_link_exists?(gift_link_json[:url])
+    if gift_link_json[:url] && !gift_link_exists?(gift_link_json[:url])
       gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
       gift.update_prices
       gift.as_json
@@ -46,7 +46,7 @@ class Marriage::Gift::Creator
   end
 
   def gift_link_exists?(url)
-    store_list.gift_links.where(url: url).any?
+    store_list.gift_links.where(account_id: nil).where(url: url).any?
   end
 
   def store_list
