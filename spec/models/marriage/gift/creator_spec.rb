@@ -120,6 +120,12 @@ describe Marriage::Gift::Creator do
             update_gifts_creator.create
           end.to change { Marriage::Gift.find(gift.id).status }.to('bought')
         end
+
+        it do
+          expect do
+            update_gifts_creator.create
+          end.not_to change(Marriage::GiftLink, :count)
+        end
       end
 
       context 'but for another store' do
