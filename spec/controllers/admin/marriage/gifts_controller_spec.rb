@@ -13,6 +13,10 @@ describe Admin::Marriage::GiftsController do
     end
     let(:gift_attributes) { %w(image_url name quantity min_price max_price) }
 
+    before do
+      cookies.delete(:admin_key)
+    end
+
     context 'when admin key is wrong' do
       before do
         allow(controller).to receive(:admin_key) { 'abcd' }
@@ -25,7 +29,7 @@ describe Admin::Marriage::GiftsController do
 
       context 'but user has admin key on its cookies' do
         before do
-          cookies.signed[:admin_key] = 'abcd'
+          post :create, parameters.merge('admin_key' => 'abcd')
         end
 
         it do
@@ -38,6 +42,12 @@ describe Admin::Marriage::GiftsController do
     it do
       post :create, parameters
       expect(response).to be_success
+    end
+
+    it do
+      expect do
+        post :create, parameters
+      end.to change { cookies[:admin_key] }
     end
 
     it do
