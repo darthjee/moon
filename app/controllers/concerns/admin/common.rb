@@ -18,7 +18,15 @@ module Admin::Common
     ! is_admin?
   end
 
+  def admin_key_from_request
+    params[:admin_key]
+  end
+
+  def admin_key_from_cookies
+    cookies.signed[:admin_key]
+  end
+
   def is_admin?
-    params[:admin_key] == admin_key
+    [admin_key_from_cookies, admin_key_from_request].include? admin_key
   end
 end

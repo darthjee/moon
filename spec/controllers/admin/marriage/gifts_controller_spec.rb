@@ -22,6 +22,17 @@ describe Admin::Marriage::GiftsController do
         post :create, parameters
         expect(response).not_to be_success
       end
+
+      context 'but user has admin key on its cookies' do
+        before do
+          cookies.signed[:admin_key] = 'abcd'
+        end
+
+        it do
+          post :create, parameters
+          expect(response).to be_success
+        end
+      end
     end
 
     it do
