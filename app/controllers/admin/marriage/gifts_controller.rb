@@ -1,9 +1,8 @@
 module Admin::Marriage
   class GiftsController < ApplicationController
     include Admin::Common
-    include Marriage::Common
+    include ::Marriage::Common
 
-    before_action :require_admin, only: :create
     protect_from_forgery except: :create
 
     def create

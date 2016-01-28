@@ -69,7 +69,7 @@ Rails.application.routes.draw do
 
   namespace :admin, path: '/admin', defaults: { format: :json } do
     resources :login, path: '/', only: [:index] do
-      get :forbidden, on: :collection
+      get :forbidden, on: :collection, as: :forbidden
     end
   end
 
