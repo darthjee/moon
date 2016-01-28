@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :gifts, path: '/presentes', only: [:index, :create, :show], defaults: { format: :html } do
+    resources :gifts, path: '/presentes', only: [:index, :show], defaults: { format: :html } do
       get '/pagina/:page' => :index, on: :collection, as: :paginated
 
       resources :gift_links, path: '/descricao', only: [:show]
@@ -69,5 +69,12 @@ Rails.application.routes.draw do
 
   namespace :admin, path: '/admin', defaults: { format: :json } do
     resources :login, only: [:index]
+  end
+
+  namespace :admin, path: '/', defaults: { format: :json } do
+    namespace :marriage, path: '/' do
+
+      resources :gifts, path: '/presentes', only: [:create]
+    end
   end
 end
