@@ -3,4 +3,8 @@ class Admin::LoginController < ApplicationController
 
   def index
   end
+
+  def forbidden
+    head :forbidden
+  end
 end
