@@ -1,5 +1,5 @@
 class Admin::LoginController < ApplicationController
-  include Admin::Admin
+  include Admin::Common
 
   def index
   end
