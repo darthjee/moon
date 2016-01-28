@@ -1,7 +1,7 @@
 (function(angular) {
   var module = angular.module('moon', [
     'guests', 'gifts', 'ui.select2', 'ngRoute', 'colorpicker.module', 'ext/ceil',
-    'passwords', 'comments', 'pictures'
+    'passwords', 'comments', 'pictures', 'admin'
   ]);
 
   module.config(['$httpProvider', function($httpProvider) {

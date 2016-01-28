@@ -1,9 +1,11 @@
 module Admin::Common
   extend ActiveSupport::Concern
+  include ::Marriage::Common
   include Tarquinn
 
   included do
     redirection_rule :forbidden_path, :lack_admin?
+    skip_redirection_rule :forbidden_path, :is_html?, :is_home?
   end
 
   def forbidden_path

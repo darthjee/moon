@@ -25,6 +25,10 @@ module Marriage::Common
   end
 
   def perform_angular_redirect?
+    is_html?
+  end
+
+  def is_html?
     request.format.html?
   end
 
