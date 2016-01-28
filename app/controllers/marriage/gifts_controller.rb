@@ -1,5 +1,5 @@
 module Marriage
-    class GiftsController < ApplicationController
+  class GiftsController < ApplicationController
     include Common
 
     before_action :require_admin, only: :create

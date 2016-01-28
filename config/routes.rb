@@ -66,4 +66,8 @@ Rails.application.routes.draw do
       resources :comments, only: [:index, :create]
     end
   end
+
+  namespace :admin, path: '/admin', defaults: { format: :json } do
+    resources :login, only: [:index]
+  end
 end
