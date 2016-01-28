@@ -75,7 +75,6 @@ Rails.application.routes.draw do
 
   namespace :admin, path: '/', defaults: { format: :json } do
     namespace :marriage, path: '/' do
-
       resources :gifts, path: '/presentes', only: [:create]
     end
   end

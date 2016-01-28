@@ -19,12 +19,19 @@ describe Admin::Marriage::GiftsController do
 
     context 'when admin key is wrong' do
       before do
+        post :create, parameters
         allow(controller).to receive(:admin_key) { 'abcd' }
       end
 
       it do
         post :create, parameters
         expect(response).not_to be_success
+      end
+
+      it do
+        expect do
+          post :create, parameters
+        end.to change { cookies[:admin_key] }.to(nil)
       end
 
       context 'but user has admin key on its cookies' do
@@ -47,7 +54,7 @@ describe Admin::Marriage::GiftsController do
     it do
       expect do
         post :create, parameters
-      end.to change { cookies[:admin_key] }
+      end.to change { cookies.signed[:admin_key] }.to('1234')
     end
 
     it do

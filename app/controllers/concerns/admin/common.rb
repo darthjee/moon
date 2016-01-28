@@ -23,10 +23,20 @@ module Admin::Common
   end
 
   def admin_key_from_cookies
-    cookies.signed[:admin_key] ||= admin_key_from_request
+    cookies.signed[:admin_key]
+  end
+
+  def admin_keys
+    [admin_key_from_cookies, admin_key_from_request]
   end
 
   def is_admin?
-    admin_key_from_cookies == admin_key
+    if admin_keys.include? admin_key
+      cookies.signed[:admin_key] = admin_key
+      true
+    else
+      cookies.delete(:admin_key)
+      false
+    end
   end
 end
