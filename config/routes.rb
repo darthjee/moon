@@ -68,8 +68,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin, path: '/admin', defaults: { format: :html } do
-    resources :login, path: '/', only: [:index] do
+    resources :login, path: '/login', only: [:index] do
       get :forbidden, on: :collection, as: :forbidden
+      get '/check' => :check, on: :collection, as: :check
     end
 
     namespace :marriage, path: '/', defaults: { format: :json } do

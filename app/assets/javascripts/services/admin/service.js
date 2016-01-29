@@ -11,7 +11,7 @@
       module = angular.module('admin/service', []);
 
   fn.login = function(code) {
-    return this.requester.get('/admin.json?admin_key=' + code);
+    return this.requester.get('/admin/login.json?admin_key=' + code);
   };
 
   module.service('adminService', ['$http', AdminServiceFactory]);
