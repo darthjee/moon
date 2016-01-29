@@ -71,10 +71,8 @@ Rails.application.routes.draw do
     resources :login, path: '/', only: [:index] do
       get :forbidden, on: :collection, as: :forbidden
     end
-  end
 
-  namespace :admin, path: '/', defaults: { format: :json } do
-    namespace :marriage, path: '/' do
+    namespace :marriage, path: '/', defaults: { format: :json } do
       resources :gifts, path: '/presentes', only: [:create]
     end
   end
