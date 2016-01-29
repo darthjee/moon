@@ -1,6 +1,8 @@
 class Admin::LoginController < ApplicationController
   include Admin::Common
 
+  skip_redirection :render_root, :forbidden
+
   def index
   end
 
