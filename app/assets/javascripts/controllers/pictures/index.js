@@ -1,20 +1,32 @@
 (function(_, angular) {
-  function PicturesListController($routeParams, picturesService) {
+  function PicturesListController($routeParams, picturesService, albumsService) {
     this.service = picturesService;
+    this.albumsService = albumsService;
     this.page = $routeParams.page || 1;
     this.album_id = $routeParams.album_id;
     this.params = $routeParams;
 
-    _.bindAll(this, '_parsePictures');
+    _.bindAll(this, '_parsePictures', '_parseAlbums');
 
-    this.loadPictures();
+    this._loadPictures();
+    this._loadAlbums();
   }
 
   var fn = PicturesListController.prototype,
-      app = angular.module('pictures/list_controller', ['pictures/service']);
+      app = angular.module('pictures/list_controller', [
+        'pictures/service', 'album/service'
+      ]);
 
-  fn.loadPictures = function() {
+  fn._loadPictures = function() {
     this.service.index(this.page, this.album_id, this.params).success(this._parsePictures);
+  };
+
+  fn._loadAlbums = function() {
+    this.albumsService.index().success(this._parseAlbums);
+  };
+
+  fn._parseAlbums = function(data) {
+    this.albums = data;
   };
 
   fn._parsePictures = function(data) {
@@ -49,6 +61,6 @@
   };
 
   app.controller('PicturesListController', [
-    '$routeParams', 'picturesService', PicturesListController
+    '$routeParams', 'picturesService', 'albumsService', PicturesListController
   ]);
 })(window._, window.angular);
