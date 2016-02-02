@@ -11,7 +11,7 @@
   }
 
   var fn = InviteController.prototype,
-      app = angular.module('guests/invite', ['notifier', 'invites/service']);
+      app = angular.module('guests/invite', ['global/notifier', 'invites/service']);
 
   fn.setInvite = function(selected) {
     this.selected = selected;

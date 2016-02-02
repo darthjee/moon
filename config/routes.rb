@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :gifts, path: '/presentes', only: [:index, :create, :show], defaults: { format: :html } do
+    resources :gifts, path: '/presentes', only: [:index, :show], defaults: { format: :html } do
       get '/pagina/:page' => :index, on: :collection, as: :paginated
 
       resources :gift_links, path: '/descricao', only: [:show]
@@ -64,6 +64,17 @@ Rails.application.routes.draw do
   namespace :comment, path: '/', defaults: { format: :json } do
     resources :threads, only: [] do
       resources :comments, only: [:index, :create]
+    end
+  end
+
+  namespace :admin, path: '/admin', defaults: { format: :html } do
+    resources :login, path: '/login', only: [:index] do
+      get :forbidden, on: :collection, as: :forbidden
+      get '/check' => :check, on: :collection, as: :check
+    end
+
+    namespace :marriage, path: '/', defaults: { format: :json } do
+      resources :gifts, path: '/presentes', only: [:create]
     end
   end
 end

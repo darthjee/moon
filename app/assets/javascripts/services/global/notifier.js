@@ -8,7 +8,7 @@
   }
 
   var fn = NotifierService.prototype,
-      module = angular.module('notifier', []);
+      module = angular.module('global/notifier', []);
 
   fn.notify = function(key, value) {
     _.each(this.listeners(key), function(callback) {

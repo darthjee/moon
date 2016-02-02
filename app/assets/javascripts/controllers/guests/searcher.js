@@ -8,7 +8,7 @@
   }
 
   var fn = GuestsSearcherController.prototype,
-      app = angular.module('guests/searcher', ['notifier', 'guests/service']);
+      app = angular.module('guests/searcher', ['global/notifier', 'guests/service']);
 
   fn.search = function(query) {
     var controller = this;
