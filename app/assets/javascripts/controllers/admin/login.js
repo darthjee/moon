@@ -1,6 +1,7 @@
 (function(_, angular) {
-  function AdminLoginEditController(service) {
+  function AdminLoginEditController(service, notifier) {
     this.login = {};
+    this.notifier = notifier;
 
     this.service = service;
 
@@ -10,7 +11,7 @@
   }
 
   var fn = AdminLoginEditController.prototype,
-      app = angular.module('admin/login/edit', ['admin/service']);
+      app = angular.module('admin/login/edit', ['admin/service', 'global/notifier']);
 
   fn._load = function() {
     var promisse = this.service.check();
@@ -28,6 +29,7 @@
 
   fn._markLogged = function() {
     this.logged = true;
+    this.notifier.notify('login-admin');
   };
 
   fn._markNotLogged = function() {
@@ -35,6 +37,6 @@
   };
 
   app.controller('AdminLoginEditController', [
-    'adminService', AdminLoginEditController
+    'adminService', 'notifier', AdminLoginEditController
   ]);
 })(window._, window.angular);
