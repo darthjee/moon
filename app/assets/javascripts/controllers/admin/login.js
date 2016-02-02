@@ -4,24 +4,33 @@
 
     this.service = service;
 
-    _.bindAll(this, '_logiSuccess', '_logiSuccess');
+    _.bindAll(this, '_markLogged', '_markLogged');
+
+    this._load();
   }
 
   var fn = AdminLoginEditController.prototype,
       app = angular.module('admin/login/edit', ['admin/service']);
 
+  fn._load = function() {
+    var promisse = this.service.check();
+
+    promisse.success(this._markLogged);
+    promisse.error(this._markNotLogged);
+  };
+
   fn.performLogin = function() {
     var promisse = this.service.login(this.login.password);
 
-    promisse.success(this._logiSuccess);
-    promisse.error(this._logiFailure);
+    promisse.success(this._markLogged);
+    promisse.error(this._markNotLogged);
   };
 
-  fn._logiSuccess = function() {
+  fn._markLogged = function() {
     this.logged = true;
   };
 
-  fn._logiFailure = function() {
+  fn._markNotLogged = function() {
     this.logged = false;
   };
 

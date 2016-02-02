@@ -23,7 +23,7 @@
     '/senha/recuperar': { controller: 'PasswordRecoveryController', controllerAs: 'prc' },
     '/senha/:code': { controller: 'PasswordEditController', controllerAs: 'pc' },
     '/album/:album_id/fotos': { controller: 'PicturesListController', controllerAs: 'pc' },
-    '/admin': { controller: 'AdminLoginEditController', controllerAs: 'lc' },
+    '/admin/login': { controller: 'AdminLoginEditController', controllerAs: 'lc' },
   };
 
   fn.bindRoutes = function() {

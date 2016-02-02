@@ -14,5 +14,9 @@
     return this.requester.get('/admin/login.json?admin_key=' + code);
   };
 
+  fn.check = function() {
+    return this.requester.get('/admin/login/check.json');
+  };
+
   module.service('adminService', ['$http', AdminServiceFactory]);
 })(window._, window.angular);
