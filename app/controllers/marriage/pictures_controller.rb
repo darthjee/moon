@@ -1,5 +1,5 @@
 module Marriage
-    class PicturesController < ApplicationController
+  class PicturesController < ApplicationController
     include Common
 
     def index
