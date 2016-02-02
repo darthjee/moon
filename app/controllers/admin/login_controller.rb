@@ -4,6 +4,7 @@ class Admin::LoginController < ApplicationController
   skip_redirection :render_root, :forbidden
 
   def index
+    render_basic
   end
 
   def forbidden
@@ -16,5 +17,11 @@ class Admin::LoginController < ApplicationController
     else
       render json: {}, status: :not_found
     end
+  end
+
+  private
+
+  def index_json
+    { status: :ok }
   end
 end
