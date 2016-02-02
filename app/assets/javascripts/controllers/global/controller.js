@@ -1,17 +1,28 @@
 (function(_, angular) {
-  function GlobalController(notifier) {
+  function GlobalController(adminService, notifier) {
+    this.adminService = adminService;
     this.notifier = notifier;
 
     _.bindAll(this, 'loginAdmin');
 
-    this.bind();
+    this.start();
   }
 
   var fn = GlobalController.prototype,
-      app = angular.module('global/controller', ['global/notifier']);
+      app = angular.module('global/controller', [
+        'admin/service', 'global/notifier'
+      ]);
 
-  fn.bind = function() {
+  fn.start = function() {
     this.notifier.register('login-admin', this.loginAdmin);
+
+    this._checkAdmin();
+  };
+
+  fn._checkAdmin = function() {
+    var promisse = this.adminService.check();
+
+    promisse.success(this.loginAdmin);
   };
 
   fn.loginAdmin = function() {
@@ -21,6 +32,6 @@
   };
 
   app.controller('GlobalController', [
-    'notifier', GlobalController
+    'adminService', 'notifier', GlobalController
   ]);
 })(window._, window.angular);
