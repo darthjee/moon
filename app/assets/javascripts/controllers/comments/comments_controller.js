@@ -13,7 +13,7 @@
 
   var fn = CommentsController.prototype,
       app = angular.module('comments/comment_controller', [
-        'comments/service', 'comments/comment', 'notifier'
+        'comments/service', 'comments/comment', 'global/notifier'
       ]);
 
   fn.loadComments = function(thread_id) {

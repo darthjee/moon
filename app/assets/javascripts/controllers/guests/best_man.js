@@ -11,7 +11,7 @@
   }
 
   var fn = BestManController.prototype,
-      app = angular.module('guests/best_man', ['guests/best_man_service']);
+      app = angular.module('guests/best_man', ['global/notifier', 'guests/best_man_service']);
 
   fn.requireLogin = function() {
     var that = this,
