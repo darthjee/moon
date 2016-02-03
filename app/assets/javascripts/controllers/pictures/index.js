@@ -8,8 +8,8 @@
 
     _.bindAll(this, '_parsePictures', '_parseAlbums');
 
-    this._loadPictures();
     this._loadAlbums();
+    this._loadPictures();
   }
 
   var fn = PicturesListController.prototype,
@@ -27,6 +27,10 @@
 
   fn._parseAlbums = function(data) {
     this.albums = data;
+  };
+
+  fn.update = function(picture) {
+    console.info(picture);
   };
 
   fn._parsePictures = function(data) {
