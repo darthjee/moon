@@ -10,7 +10,7 @@
     this.album_id = $routeParams.album_id;
     this.params = $routeParams;
 
-    _.bindAll(this, '_parsePictures', '_parseAlbums');
+    _.bindAll(this, '_loadPictures', '_parsePictures', '_parseAlbums');
 
     this._loadAlbums();
     this._loadPictures();
@@ -34,7 +34,10 @@
   };
 
   fn.update = function(picture) {
-    console.info(picture);
+    var id = picture.id,
+        promisse = this.service.update(this.album_id, id, picture);
+
+    promisse.success(this._loadPictures);
   };
 
   fn._parsePictures = function(data) {

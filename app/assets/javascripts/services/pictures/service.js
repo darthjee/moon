@@ -18,5 +18,10 @@
     return this.requester.get(url);
   };
 
+  fn.update = function(album_id, id, data) {
+    var url = '/admin/album/' + album_id + '/fotos/' + id + '.json';
+    return this.requester.patch(url, { picture: data });
+  };
+
   module.service('picturesService', ['$http', PicturesServiceFactory]);
 })(window._, window.angular);

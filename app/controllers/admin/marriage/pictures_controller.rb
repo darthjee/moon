@@ -3,14 +3,18 @@ module Admin::Marriage
     include Admin::Common
     include ::Marriage::Picture::Common
 
+    protect_from_forgery except: :create
+
     def update
-      picture.update()
+      picture.update(update_params)
+
+      render json: picture
     end
 
     private
 
     def update_params
-      params.permit(:name, :album_id)
+      params.require(:picture).permit(:name, :album_id)
     end
 
     def picture
