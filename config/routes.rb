@@ -54,7 +54,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :album, path: '/album/', defaults: { format: :html }, only: [] do
+    resources :albums, path: '/album/', only: [:index], defaults: { format: :html } do
       resources :pictures, path: '/fotos', only: [:index] do
         get '/pagina/:page' => :index, on: :collection, as: :paginated
       end
@@ -67,14 +67,18 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :admin, path: '/admin', defaults: { format: :html } do
-    resources :login, path: '/login', only: [:index] do
+  namespace :admin, path: '/admin', defaults: { format: :json } do
+    resources :login, path: '/login', only: [:index], defaults: { format: :html } do
       get :forbidden, on: :collection, as: :forbidden
       get '/check' => :check, on: :collection, as: :check
     end
 
-    namespace :marriage, path: '/', defaults: { format: :json } do
+    namespace :marriage, path: '/' do
       resources :gifts, path: '/presentes', only: [:create]
+
+      resources :albums, path: '/album/', only: [] do
+        resources :pictures, path: '/fotos', only: [:update]
+      end
     end
   end
 end

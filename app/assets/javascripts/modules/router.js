@@ -23,6 +23,7 @@
     '/senha/recuperar': { controller: 'PasswordRecoveryController', controllerAs: 'prc' },
     '/senha/:code': { controller: 'PasswordEditController', controllerAs: 'pc' },
     '/album/:album_id/fotos': { controller: 'PicturesListController', controllerAs: 'pc' },
+    '/album/:album_id/fotos/pagina/:page': { controller: 'PicturesListController', controllerAs: 'pc' },
     '/admin/login': { controller: 'AdminLoginEditController', controllerAs: 'lc' },
   };
 

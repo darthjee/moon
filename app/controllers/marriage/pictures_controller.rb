@@ -1,6 +1,6 @@
 module Marriage
-    class PicturesController < ApplicationController
-    include Common
+  class PicturesController < ApplicationController
+    include Picture::Common
 
     def index
       render_basic
@@ -10,10 +10,6 @@ module Marriage
 
     def index_json
       Picture::Paginator.new(album.pictures, params).as_json
-    end
-
-    def album
-      marriage.albums.find(params[:album_id])
     end
   end
 end
