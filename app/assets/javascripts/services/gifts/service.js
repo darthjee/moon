@@ -30,5 +30,10 @@
     return this.requester.get(url);
   };
 
+  fn.update = function(gift_id, attributes) {
+    var url = '/admin/presentes/' + gift_id + '.json';
+    return this.requester.patch(url, attributes);
+  }
+
   module.service('giftsService', ['$http', GiftsServiceFactory]);
 })(window._, window.angular, window.querystring);

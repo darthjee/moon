@@ -1,0 +1,19 @@
+<div class="row gift-tools">
+  <div class="col-sm-8">
+  </div>
+  <div class="col-sm-2">
+    <button
+      class="glyphicon glyphicon-gift" aria-hidden="true"
+      ng-click="glc.markGiven(gift.id)"
+    >
+    </button>
+  </div>
+  <div class="col-sm-2">
+    <a href="<%= angular_path_to marriage_gift_safe_path(id: '{{ gift.id }}') %>"
+      class="badge">
+      {{  gift.comments }}
+      <div class="glyphicon glyphicon-comment" aria-hidden="true"></div>
+    </a>
+  </div>
+</div>
+

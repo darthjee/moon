@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="gift-price col-md-10 col-sm-9">
+  <div class="gift-price col-md-6">
     <div ng-show="!gift.is_priceless()">
       <strong ng-show="gift.has_many()">Total</strong>
       <span ng-repeat="price in gift.price_range track by $index">
@@ -8,16 +8,7 @@
       </span>
     </div>
   </div>
-  <div class="gift-price col-md-2 col-sm-3">
-    <a href="<%= angular_path_to marriage_gift_safe_path(id: '{{ gift.id }}') %>"
-      class="badge">
-      {{  gift.comments }}
-      <div class="glyphicon glyphicon-comment" aria-hidden="true"></div>
-    </a>
-  </div>
-</div>
-<div class="row">
-  <div class="gift-quantity col-md-12">
+  <div class="gift-quantity col-md-6">
     <div ng-show="gift.has_many_packages()">
       <strong>Quantidade:</strong>
       {{ gift.quantity }}

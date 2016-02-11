@@ -64,6 +64,10 @@
     });
   };
 
+  fn.markGiven = function(id) {
+    this.service.update(id, { given: true } );
+  };
+
   fn.buildPagination = function(data) {
     var current = data.page,
         that = this, list;

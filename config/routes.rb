@@ -74,7 +74,7 @@ Rails.application.routes.draw do
     end
 
     namespace :marriage, path: '/' do
-      resources :gifts, path: '/presentes', only: [:create]
+      resources :gifts, path: '/presentes', only: [:create, :update]
 
       resources :albums, path: '/album/', only: [] do
         resources :pictures, path: '/fotos', only: [:update]

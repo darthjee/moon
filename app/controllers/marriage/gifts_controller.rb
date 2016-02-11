@@ -1,6 +1,6 @@
 module Marriage
   class GiftsController < ApplicationController
-    include Common
+    include Gift::Common
 
     def index
       render_basic
@@ -17,7 +17,7 @@ module Marriage
     end
 
     def show_json
-      marriage.gifts.find(params[:id].as_json)
+      gift.as_json
     end
   end
 end
