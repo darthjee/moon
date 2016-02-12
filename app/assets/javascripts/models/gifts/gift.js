@@ -8,7 +8,7 @@
 
     this.price_range = this.price_range || [];
 
-    this.priceless = this.display_type === 'priceless' || this.price_range.length <= 0;
+    this.priceless = this.display_type === 'priceless' || this.price_range.length <= 0 || this.max_price == 0.0;
     this.given = this.status === 'given' || (this.bought === this.quantity && this.quantity > 0);
   }
 
