@@ -18,7 +18,7 @@ describe Marriage::Gift::Creator do
     it do
       expect do
         subject.create
-      end.to change(Marriage::Gift, :count)
+      end.to change(Marriage::Gift.unscoped, :count)
     end
 
     it 'creates a gift for the given parameters' do
@@ -36,13 +36,13 @@ describe Marriage::Gift::Creator do
     it do
       expect do
         subject.create
-      end.to change(Marriage::GiftLink, :count)
+      end.to change(Marriage::GiftLink.unscoped, :count)
     end
 
     it do
       expect do
         subject.create
-      end.to change(Comment::Thread, :count)
+      end.to change(Comment::Thread.unscoped, :count)
     end
 
     it 'creates the correct gift link' do
@@ -81,13 +81,31 @@ describe Marriage::Gift::Creator do
       it do
         expect do
           subject.create
-        end.not_to change(Marriage::GiftLink, :count)
+        end.not_to change(Marriage::GiftLink.unscoped, :count)
       end
 
       it do
         expect do
           subject.create
-        end.not_to change(Marriage::Gift, :count)
+        end.not_to change(Marriage::Gift.unscoped, :count)
+      end
+
+      context 'but it has changed its name' do
+        before do
+          Marriage::Gift.last.update(name: 'new gift name')
+        end
+
+        it do
+          expect do
+            subject.create
+          end.not_to change(Marriage::Gift.unscoped, :count)
+        end
+
+        it do
+          expect do
+            subject.create
+          end.not_to change(Marriage::GiftLink.unscoped, :count)
+        end
       end
 
       context 'but it has been already canceled' do
@@ -98,7 +116,7 @@ describe Marriage::Gift::Creator do
         it do
           expect do
             subject.create
-          end.not_to change(Marriage::Gift, :count)
+          end.not_to change(Marriage::Gift.unscoped, :count)
         end
 
         it do
@@ -130,7 +148,7 @@ describe Marriage::Gift::Creator do
         it do
           expect do
             update_gifts_creator.create
-          end.not_to change(Marriage::GiftLink, :count)
+          end.not_to change(Marriage::GiftLink.unscoped, :count)
         end
       end
 
@@ -143,13 +161,13 @@ describe Marriage::Gift::Creator do
         it do
           expect do
             new_gifts_creator.create
-          end.to change(Marriage::GiftLink, :count)
+          end.to change(Marriage::GiftLink.unscoped, :count)
         end
 
         it do
           expect do
             new_gifts_creator.create
-          end.not_to change(Marriage::Gift, :count)
+          end.not_to change(Marriage::Gift.unscoped, :count)
         end
 
         it 'updates min and max price for the gift' do
