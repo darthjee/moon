@@ -95,13 +95,13 @@ describe Marriage::Gift::Creator do
           Marriage::Gift.last.update(name: 'new gift name')
         end
 
-        xit do
+        it do
           expect do
             subject.create
           end.not_to change(Marriage::Gift.unscoped, :count)
         end
 
-        xit do
+        it do
           expect do
             subject.create
           end.not_to change(Marriage::GiftLink.unscoped, :count)

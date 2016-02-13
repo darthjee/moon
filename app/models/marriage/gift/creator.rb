@@ -28,7 +28,7 @@ class Marriage::Gift::Creator
   end
 
   def find_or_create_gift(gift_json)
-    find(gift_json, :name) || create_gift(gift_json)
+    find(gift_json, :name) || find(gift_json, :image_url) || create_gift(gift_json)
   end
 
   def create_gift(gift_json)
@@ -36,7 +36,7 @@ class Marriage::Gift::Creator
   end
 
   def find(gift_json, key)
-    Marriage::Gift.unscoped.where(marriage: marriage).find_by(gift_json.permit(:name))
+    Marriage::Gift.unscoped.where(marriage: marriage).find_by(gift_json.permit(key))
   end
 
   def gift_update_json(gift_json)
