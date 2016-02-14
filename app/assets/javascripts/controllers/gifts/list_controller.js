@@ -1,11 +1,13 @@
 (function(_, angular, querystring) {
-  var Gift;
+  var Gift, Paginator;
 
-  function GiftsListController($routeParams, giftsService, giftModel) {
+  function GiftsListController($routeParams, giftsService, giftModel, paginator) {
     this.service = giftsService;
     this.page = $routeParams.page || 1;
     this.params = $routeParams;
+
     Gift = giftModel;
+    Paginator = paginator;
 
     _.bindAll(this, '_parseGifts');
 
@@ -13,7 +15,9 @@
   }
 
   var fn = GiftsListController.prototype,
-      app = angular.module('gifts/list_controller', ['gifts/service', 'gifts/gift']);
+      app = angular.module('gifts/list_controller', [
+        'gifts/service', 'gifts/gift', 'utils/paginator'
+      ]);
 
   fn.loadGifts = function() {
     this.service.loadGifts(this.page, this.params).success(this._parseGifts);
@@ -69,29 +73,10 @@
   };
 
   fn.buildPagination = function(data) {
-    var current = data.page,
-        that = this, list;
-
-    list = _.map(new Array(data.pages), function(_, index) {
-      var page =  index + 1;
-      if (that.isPageListable(page, data.pages, current, 3)) {
-        return page;
-      }
-      return null;
-    });
-
-    return _.squeeze(list);
-  };
-
-  fn.isPageListable = function(page, total, current, blockSize) {
-    return page <= blockSize ||
-           page > total - blockSize ||
-           Math.abs(page - current) < blockSize ||
-           (Math.abs(page - current) <= blockSize && page <= (blockSize+1)) ||
-           (Math.abs(page - current) <= blockSize && page >= total - blockSize);
+    return Paginator.from_data(3, data).build();
   };
 
   app.controller('GiftsListController', [
-    '$routeParams', 'giftsService', 'Gift', GiftsListController
+    '$routeParams', 'giftsService', 'Gift', 'paginator', GiftsListController
   ]);
 })(window._, window.angular, window.querystring);
