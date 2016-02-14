@@ -51,26 +51,7 @@
   };
 
   fn.buildPagination = function(data) {
-    var current = data.page,
-        that = this, list;
-
-    list = _.map(new Array(data.pages), function(_, index) {
-      var page =  index + 1;
-      if (that.isPageListable(page, data.pages, current, 3)) {
-        return page;
-      }
-      return null;
-    });
-
-    return _.squeeze(list);
-  };
-
-  fn.isPageListable = function(page, total, current, blockSize) {
-    return page <= blockSize ||
-           page > total - blockSize ||
-           Math.abs(page - current) < blockSize ||
-           (Math.abs(page - current) <= blockSize && page <= (blockSize+1)) ||
-           (Math.abs(page - current) <= blockSize && page >= total - blockSize);
+    return Paginator.from_data(3, data).build();
   };
 
   app.controller('PicturesListController', [
