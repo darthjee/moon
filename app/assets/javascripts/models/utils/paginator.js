@@ -32,7 +32,7 @@
 
   fn.isPageListable = function(page) {
     var total = this.pages,
-        current = this.current;
+        current = this.current,
         blockSize = this.blockSize;
 
     return page <= blockSize ||
