@@ -24,6 +24,8 @@
     '/senha/:code': { controller: 'PasswordEditController', controllerAs: 'pc' },
     '/album/:album_id/fotos': { controller: 'PicturesListController', controllerAs: 'pc' },
     '/album/:album_id/fotos/pagina/:page': { controller: 'PicturesListController', controllerAs: 'pc' },
+    '/album': { controller: 'AlbumsListController', controllerAs: 'ac' },
+    '/album/pagina/:page': { controller: 'AlbumsListController', controllerAs: 'ac' },
     '/admin/login': { controller: 'AdminLoginEditController', controllerAs: 'lc' },
   };
 
