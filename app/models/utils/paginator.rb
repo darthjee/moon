@@ -29,11 +29,11 @@ class Utils::Paginator
   end
 
   def limited_list
-    list.limit(per_page)
+    @limited_list ||= (per_page > 0) ? list.limit(per_page) : list
   end
 
   def pages
-    (list.count * 1.0 / per_page).ceil
+    (per_page > 0) ? (list.count * 1.0 / per_page).ceil : 1
   end
 
   def offset
