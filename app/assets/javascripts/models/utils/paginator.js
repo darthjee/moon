@@ -17,9 +17,9 @@
   };
 
   fn.build = function() {
-    var list = that = this;
+    var list, that = this;
 
-    list = _.map(new Array(that.pages), function(_, index) {
+    list = _.map(new Array(this.pages), function(_, index) {
       var page =  index + 1;
       if (that.isPageListable(page)) {
         return page;
