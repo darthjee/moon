@@ -1,7 +1,7 @@
 (function(_, angular) {
-  var Picture;
+  var Picture, Paginator;
 
-  function PicturesListController($routeParams, picturesService, albumsService, pictureModel) {
+  function PicturesListController($routeParams, picturesService, albumsService, pictureModel, paginator) {
     Picture = pictureModel;
 
     this.service = picturesService;
@@ -9,6 +9,8 @@
     this.page = $routeParams.page || 1;
     this.album_id = $routeParams.album_id;
     this.params = $routeParams;
+
+    Paginator = paginator;
 
     _.bindAll(this, '_loadPictures', '_parsePictures', '_parseAlbums');
 
@@ -18,7 +20,7 @@
 
   var fn = PicturesListController.prototype,
       app = angular.module('pictures/list_controller', [
-        'pictures/service', 'album/service', 'pictures/picture'
+        'pictures/service', 'album/service', 'pictures/picture', 'utils/paginator'
       ]);
 
   fn._loadPictures = function() {
@@ -51,30 +53,11 @@
   };
 
   fn.buildPagination = function(data) {
-    var current = data.page,
-        that = this, list;
-
-    list = _.map(new Array(data.pages), function(_, index) {
-      var page =  index + 1;
-      if (that.isPageListable(page, data.pages, current, 3)) {
-        return page;
-      }
-      return null;
-    });
-
-    return _.squeeze(list);
-  };
-
-  fn.isPageListable = function(page, total, current, blockSize) {
-    return page <= blockSize ||
-           page > total - blockSize ||
-           Math.abs(page - current) < blockSize ||
-           (Math.abs(page - current) <= blockSize && page <= (blockSize+1)) ||
-           (Math.abs(page - current) <= blockSize && page >= total - blockSize);
+    return Paginator.from_data(3, data).build();
   };
 
   app.controller('PicturesListController', [
-    '$routeParams', 'picturesService', 'albumsService', 'Picture',
+    '$routeParams', 'picturesService', 'albumsService', 'Picture', 'paginator',
     PicturesListController
   ]);
 })(window._, window.angular);

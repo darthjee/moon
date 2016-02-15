@@ -1,4 +1,4 @@
-(function(_, angular, undefined) {
+(function(_, angular, querystring, undefined) {
   function PicturesServiceFactory($http) {
     return new PicturesService($http);
   }
@@ -24,4 +24,4 @@
   };
 
   module.service('picturesService', ['$http', PicturesServiceFactory]);
-})(window._, window.angular);
+})(window._, window.angular, window.querystring);
