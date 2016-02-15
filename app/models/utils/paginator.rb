@@ -29,7 +29,7 @@ class Utils::Paginator
   end
 
   def limited_list
-    (per_page > 0) ? list.limit(per_page) : list
+    list.limit(per_page)
   end
 
   def pages
