@@ -2,7 +2,7 @@
   var Album, Paginator;
 
   function AlbumsListController($routeParams, albumsService, albumModel, paginator) {
-    Album = pictureModel;
+    Album = albumModel;
 
     this.service = albumsService;
     this.page = $routeParams.page || 1;
