@@ -1,7 +1,7 @@
 (function(_, angular) {
-  var Picture;
+  var Picture, Paginator;
 
-  function PicturesListController($routeParams, picturesService, albumsService, pictureModel) {
+  function PicturesListController($routeParams, picturesService, albumsService, pictureModel, paginator) {
     Picture = pictureModel;
 
     this.service = picturesService;
@@ -9,6 +9,8 @@
     this.page = $routeParams.page || 1;
     this.album_id = $routeParams.album_id;
     this.params = $routeParams;
+
+    Paginator = paginator;
 
     _.bindAll(this, '_loadPictures', '_parsePictures', '_parseAlbums');
 
@@ -18,7 +20,7 @@
 
   var fn = PicturesListController.prototype,
       app = angular.module('pictures/list_controller', [
-        'pictures/service', 'album/service', 'pictures/picture'
+        'pictures/service', 'album/service', 'pictures/picture', 'utils/paginator'
       ]);
 
   fn._loadPictures = function() {
@@ -55,7 +57,7 @@
   };
 
   app.controller('PicturesListController', [
-    '$routeParams', 'picturesService', 'albumsService', 'Picture',
+    '$routeParams', 'picturesService', 'albumsService', 'Picture', 'paginator',
     PicturesListController
   ]);
 })(window._, window.angular);
