@@ -3,13 +3,13 @@ module Marriage
     include Common
 
     def index
-      render json: index_json
+      render_basic
     end
 
     private
 
     def index_json
-      marriage.albums.as_json
+      Album::Paginator.new(marriage.albums, params).as_json
     end
   end
 end
