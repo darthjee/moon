@@ -25,7 +25,11 @@ class Utils::Paginator
   end
 
   def paginated_list
-    list.limit(per_page).offset(offset)
+    limited_list.offset(offset)
+  end
+
+  def limited_list
+    @limited_list ||= list.limit(per_page)
   end
 
   def pages
@@ -41,6 +45,11 @@ class Utils::Paginator
   end
 
   def per_page
-    @per_page ||= (params[:per_page] || 8).to_i
+    @per_page ||= fetch_per_page
+  end
+
+  def fetch_per_page
+    value = [params[:per_page], 8].compact.first.to_i
+    value == 0 ? list.count : value
   end
 end

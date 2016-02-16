@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     end
 
     resources :albums, path: '/album/', only: [:index], defaults: { format: :html } do
+      get '/pagina/:page' => :index, on: :collection, as: :paginated
+
       resources :pictures, path: '/fotos', only: [:index] do
         get '/pagina/:page' => :index, on: :collection, as: :paginated
       end

@@ -18,6 +18,36 @@ describe Marriage::Picture::Paginator do
       expect(pictures_json).to eq(pictures.as_json)
     end
 
+    context 'when not specifying per page param and having more than one page' do
+      before do
+        10.times.each { create(:picture, album: album) }
+      end
+
+      it 'returns only the first 8 pictures' do
+        expect(pictures_json.length).to eq(8)
+      end
+
+      it 'returns page counter bigger than 1' do
+        expect(subject.as_json[:pages] > 1).to be_truthy
+      end
+    end
+
+    context 'when asking for 0 pictures per page' do
+      let(:per_page) { 0 }
+      let(:params) { { per_page: per_page } }
+      before do
+        10.times.each { create(:picture, album: album) }
+      end
+
+      it 'returns all the album pictures with no limit' do
+        expect(pictures_json.length).to eq(Marriage::Picture.where(album: album).count)
+      end
+
+      it 'returns only one page' do
+        expect(subject.as_json[:pages]).to eq(1)
+      end
+    end
+
     context 'when album has more pictures than each page can hold' do
       let(:album) { create(:album) }
       let(:last_pictures) { 2.times.map { create(:picture, album: album) } }

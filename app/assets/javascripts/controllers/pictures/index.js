@@ -28,11 +28,11 @@
   };
 
   fn._loadAlbums = function() {
-    this.albumsService.index().success(this._parseAlbums);
+    this.albumsService.all().success(this._parseAlbums);
   };
 
   fn._parseAlbums = function(data) {
-    this.albums = data;
+    this.albums = data.albums;
   };
 
   fn.update = function(picture) {
