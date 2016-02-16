@@ -12,15 +12,25 @@ class Comment::Comment::Creator
     @user ||= update_or_create_user
   end
 
-  def created_comment
-    @created_comment ||= create
+  def comment
+    @comment ||= build
   end
 
-  def create
-    @created_comment = thread.comments.create(comment_creation_params)
+  def errors
+    comment.errors.messages.merge(
+      user: user.errors.messages
+    )
+  end
+
+  def save
+    comment.save
   end
 
   private
+
+  def build
+    thread.comments.build(comment_creation_params)
+  end
 
   def update_or_create_user
     fetch_user.tap do |u|

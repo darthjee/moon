@@ -17,10 +17,14 @@ class Comment::CommentsController < ApplicationController
 
   def check_valid_create
     if creator.valid?
-      creator.create
+      creator.save
     else
-      render json: { errors: { user: { email: 'erro' } } }, status: :error
+      render json: creation_errors, status: :error
     end
+  end
+
+  def creation_errors
+    { errors: creator.errors }
   end
 
   def creator
@@ -28,7 +32,7 @@ class Comment::CommentsController < ApplicationController
   end
 
   def created_comment
-    creator.created_comment
+    creator.comment
   end
 
   def thread
