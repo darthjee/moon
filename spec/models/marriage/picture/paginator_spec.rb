@@ -27,7 +27,7 @@ describe Marriage::Picture::Paginator do
         expect(pictures_json.length).to eq(8)
       end
 
-      it 'returns page index bigger than 1' do
+      it 'returns page counter bigger than 1' do
         expect(subject.as_json[:pages] > 1).to be_truthy
       end
     end
@@ -41,6 +41,10 @@ describe Marriage::Picture::Paginator do
 
       it 'returns all the album pictures with no limit' do
         expect(pictures_json.length).to eq(Marriage::Picture.where(album: album).count)
+      end
+
+      it 'returns only one page' do
+        expect(subject.as_json[:pages]).to eq(1)
       end
     end
 

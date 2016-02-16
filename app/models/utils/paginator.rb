@@ -29,11 +29,11 @@ class Utils::Paginator
   end
 
   def limited_list
-    @limited_list ||= (per_page > 0) ? list.limit(per_page) : list
+    @limited_list ||= list.limit(per_page)
   end
 
   def pages
-    (per_page > 0) ? (list.count * 1.0 / per_page).ceil : 1
+    (list.count * 1.0 / per_page).ceil
   end
 
   def offset
@@ -45,6 +45,16 @@ class Utils::Paginator
   end
 
   def per_page
-    @per_page ||= (params[:per_page] || 8).to_i
+    @per_page ||= fetch_per_page
+  end
+
+  def fetch_per_page
+    if params[:per_page].nil?
+      8
+    elsif params[:per_page].to_i == 0
+      list.count
+    else
+      params[:per_page].to_i
+    end
   end
 end
