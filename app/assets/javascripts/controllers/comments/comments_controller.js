@@ -38,6 +38,7 @@
 
   fn._addComment = function(comment) {
     this.comments.unshift(new Comment(comment));
+    this.comment = {};
   };
 
   fn.submit = function() {
