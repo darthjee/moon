@@ -20,5 +20,16 @@
         "email": "new.user@new.server.com"
       }
     }
+  },
+  "create_wrong_email": {
+    "format": "json",
+    "thread_id": 1,
+    "comment": {
+      "text": "This is a comment",
+      "user": {
+        "name": "new user name",
+        "email": "new.user.wrong.email"
+      }
+    }
   }
 }

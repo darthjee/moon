@@ -9,13 +9,15 @@ class Comment::CommentsController < ApplicationController
   end
 
   def create
-    render json: create_comment
+    render json: created_comment
   end
 
   private
 
-  def create_comment
-    thread.comments.create(comment_creation_params)
+  def created_comment
+    if user.valid?
+      thread.comments.create(comment_creation_params)
+    end
   end
 
   def user
