@@ -1,16 +1,12 @@
 <nav>
   <ul class="pagination">
     <li ng-show="<%= controller %>.page > 1">
-      <%= link_to(
-          angular_path_to(
-            public_send("#{path_method}_safe_path",
-              {
-                page: "{{ #{controller}.page-1 }}"
-              }.merge(options)
-            )
-          ),
-          'aria-label' => 'Previous'
-        ) do %>
+      <%= angular_safe_link_to(
+        path_method, {
+          page: "{{ #{controller}.page-1 }}"
+        }.merge(options),
+        'aria-label' => 'Previous'
+      ) do %>
         <span aria-hidden="true">&laquo;</span>
       <% end %>
     </li>
