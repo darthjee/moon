@@ -10,11 +10,10 @@
     </button>
   </div>
   <div class="col-sm-2">
-    <a href="<%= angular_path_to marriage_gift_safe_path(id: '{{ gift.id }}') %>"
-      class="badge">
+    <%= angular_safe_link_to(:marriage_gift, { id: '{{ gift.id }}' }, class: 'badge') do %>
       {{  gift.comments }}
       <div class="glyphicon glyphicon-comment" aria-hidden="true"></div>
-    </a>
+    <% end %>
   </div>
 </div>
 
