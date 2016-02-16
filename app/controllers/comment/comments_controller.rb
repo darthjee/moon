@@ -16,41 +16,19 @@ class Comment::CommentsController < ApplicationController
   private
 
   def check_valid_create
-    if user.valid?
-      true
+    if creator.valid?
+      creator.create
     else
       render json: { errors: { user: { email: 'erro' } } }, status: :error
     end
   end
 
+  def creator
+    @creator ||= Comment::Comment::Creator.new(thread, params)
+  end
+
   def created_comment
-    thread.comments.create(comment_creation_params)
-  end
-
-  def user
-    @user ||= update_or_create_user
-  end
-
-  def update_or_create_user
-    fetch_user.tap do |u|
-      u.update(user_params)
-    end
-  end
-
-  def fetch_user
-    User.find_or_create_by(user_params.slice(:email))
-  end
-
-  def user_params
-    comment_params.require(:user).permit(:name, :email)
-  end
-
-  def comment_creation_params
-    comment_params.permit(:text).merge(user: user)
-  end
-
-  def comment_params
-    params.require(:comment)
+    creator.created_comment
   end
 
   def thread
