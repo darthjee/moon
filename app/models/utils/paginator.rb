@@ -49,12 +49,7 @@ class Utils::Paginator
   end
 
   def fetch_per_page
-    if params[:per_page].nil?
-      8
-    elsif params[:per_page].to_i == 0
-      list.count
-    else
-      params[:per_page].to_i
-    end
+    value = [params[:per_page], 8].compact.first.to_i
+    value == 0 ? list.count : value
   end
 end
