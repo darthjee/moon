@@ -24,9 +24,7 @@ class Comment::CommentsController < ApplicationController
   end
 
   def created_comment
-    if user.valid?
-      thread.comments.create(comment_creation_params)
-    end
+    thread.comments.create(comment_creation_params)
   end
 
   def user
