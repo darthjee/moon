@@ -3,6 +3,7 @@ class Comment::CommentsController < ApplicationController
 
   skip_redirection_rule :render_root
   protect_from_forgery except: :create
+  before_action :check_valid_create, only: :create
 
   def index
     render json: thread.comments
@@ -13,6 +14,14 @@ class Comment::CommentsController < ApplicationController
   end
 
   private
+
+  def check_valid_create
+    if user.valid?
+      true
+    else
+      render json: { errors: { user: { email: 'erro' } } }, status: :error
+    end
+  end
 
   def created_comment
     if user.valid?
