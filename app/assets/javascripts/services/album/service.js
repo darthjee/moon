@@ -10,6 +10,10 @@
   var fn = AlbumsService.prototype,
       module = angular.module('album/service', []);
 
+  fn.all = function() {
+    return this.index(1, { per_page: 0 });
+  };
+
   fn.index = function(page, params) {
     page = page || 1;
     params = params || {};
