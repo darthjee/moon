@@ -6,7 +6,7 @@
     this.comments = [];
     Comment = commentModel;
 
-    _.bindAll(this, 'loadComments', '_parseComments', '_addComment');
+    _.bindAll(this, 'loadComments', '_parseComments', '_addComment', '_parseError');
 
     notifier.register('open-comments', this.loadComments);
   }
@@ -42,8 +42,15 @@
   };
 
   fn.submit = function() {
+    this.errors = {};
+
     var promisse = this.service.create(this.thread_id, this.comment);
     promisse.success(this._addComment);
+    promisse.error(this._parseError);
+  };
+
+  fn._parseError = function(data) {
+    this.errors = data.errors;
   };
 
   app.controller('CommentsController', [

@@ -6,6 +6,7 @@
            class="form-control"
            ng-model="cc.comment.user.email" />
   </div>
+  <div class="input-error" ng-show="cc.errors.user.email">Email {{ cc.errors.user.email[0] }}</div>
   <div class="input-group agregated-block">
     <label class="input-group-addon" for="comment-name">Nome</label>
     <input type="text" name="comment-name" id="comment-name"
