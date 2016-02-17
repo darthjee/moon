@@ -27,6 +27,7 @@
     '/album': { controller: 'AlbumsListController', controllerAs: 'ac' },
     '/album/pagina/:page': { controller: 'AlbumsListController', controllerAs: 'ac' },
     '/admin/login': { controller: 'AdminLoginEditController', controllerAs: 'lc' },
+    '/eventos/mapas': { controller: 'MapsController', controllerAs: 'mc' },
   };
 
   fn.bindRoutes = function() {
