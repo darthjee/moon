@@ -2,6 +2,9 @@ class Marriage::Album < ActiveRecord::Base
   belongs_to :marriage
   has_many :pictures
 
+  scope :displayable, proc { where.not(status: :cancelled) }
+  default_scope { displayable }
+
   def as_json(*args)
     options = args.extract_options!
     options = {
