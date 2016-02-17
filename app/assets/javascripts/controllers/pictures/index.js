@@ -42,6 +42,12 @@
     promisse.success(this._loadPictures);
   };
 
+  fn.cancel = function(picture) {
+    picture.status = 'cancelled';
+
+    this.update(picture);
+  };
+
   fn._parsePictures = function(data) {
     this.pictures = _.map(data.pictures, function(pic) {
       return new Picture(pic);
