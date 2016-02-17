@@ -14,7 +14,7 @@ module Admin::Marriage
     private
 
     def update_params
-      params.require(:picture).permit(:name, :album_id)
+      params.require(:picture).permit(:name, :album_id, :status)
     end
 
     def picture

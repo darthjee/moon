@@ -42,6 +42,13 @@
     promisse.success(this._loadPictures);
   };
 
+  fn.cancel = function(picture) {
+    var id = picture.id,
+        promisse = this.service.update(this.album_id, id, { status: 'canceled' });
+
+    promisse.success(this._loadPictures);
+  };
+
   fn._parsePictures = function(data) {
     this.pictures = _.map(data.pictures, function(pic) {
       return new Picture(pic);
