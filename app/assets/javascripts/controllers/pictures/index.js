@@ -44,7 +44,7 @@
 
   fn.cancel = function(picture) {
     var id = picture.id,
-        promisse = this.service.update(this.album_id, id, { status: 'canceled' });
+        promisse = this.service.update(this.album_id, id, { status: 'cancelled' });
 
     promisse.success(this._loadPictures);
   };
