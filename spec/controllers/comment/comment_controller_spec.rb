@@ -37,6 +37,40 @@ describe Comment::CommentsController do
           post :create, parameters
         end.to change(User, :count)
       end
+
+      it 'creates a new comment' do
+        expect do
+          post :create, parameters
+        end.to change { Comment::Thread.find(thread.id).comments.count }
+      end
+    end
+
+    context 'when user email is wrong' do
+      let(:parameters_key) { 'create_wrong_email' }
+
+      it 'does not create a new user' do
+        expect do
+          post :create, parameters
+        end.not_to change(User, :count)
+      end
+
+      it 'does not create a new comment' do
+        expect do
+          post :create, parameters
+        end.not_to change(Comment::Comment, :count)
+      end
+
+       it 'returns error' do
+         patch :create, parameters
+         expect(response_json).to have_key('errors')
+         expect(response_json['errors']).to have_key('user')
+         expect(response_json['errors']['user']).to have_key('email')
+       end
+
+       it do
+         patch :create, parameters
+         expect(response).not_to be_success
+       end
     end
   end
 end

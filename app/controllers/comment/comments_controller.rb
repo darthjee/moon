@@ -3,45 +3,36 @@ class Comment::CommentsController < ApplicationController
 
   skip_redirection_rule :render_root
   protect_from_forgery except: :create
+  before_action :check_valid_create, only: :create
 
   def index
     render json: thread.comments
   end
 
   def create
-    render json: create_comment
+    render json: created_comment
   end
 
   private
 
-  def create_comment
-    thread.comments.create(comment_creation_params)
-  end
-
-  def user
-    @user ||= update_or_create_user
-  end
-
-  def update_or_create_user
-    fetch_user.tap do |u|
-      u.update(user_params)
+  def check_valid_create
+    if creator.valid?
+      creator.save
+    else
+      render json: creation_errors, status: :error
     end
   end
 
-  def fetch_user
-    User.find_or_create_by(user_params.slice(:email))
+  def creation_errors
+    { errors: creator.errors }
   end
 
-  def user_params
-    comment_params.require(:user).permit(:name, :email)
+  def creator
+    @creator ||= Comment::Comment::Creator.new(thread, params)
   end
 
-  def comment_creation_params
-    comment_params.permit(:text).merge(user: user)
-  end
-
-  def comment_params
-    params.require(:comment)
+  def created_comment
+    creator.comment
   end
 
   def thread
