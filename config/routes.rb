@@ -62,7 +62,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :events, path: '/eventos/', only: [], defaults: { format: :json } do
+    resources :events, path: '/eventos/', only: [:index], defaults: { format: :json } do
       get '/mapas' => :maps, on: :collection, as: :maps, defaults: { format: :html }
     end
   end
