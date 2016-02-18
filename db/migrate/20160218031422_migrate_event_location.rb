@@ -25,6 +25,7 @@ class MigrateEventLocation < ActiveRecord::Migration
         location_name: event.location.name,
         address: event.location.address
       )
+      event.location.destroy
     end
 
     remove_column :marriage_events, :location_id
