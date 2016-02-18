@@ -4,8 +4,8 @@
     <dt>Horário</dt>
     <dd><%= event.time.strftime('%H:%M') %></dd>
     <dt>Local</dt>
-    <dd><%= event.location %></dd>
+    <dd><%= event.location.name %></dd>
     <dt>Endereço</dt>
-    <dd><%= event.address %></dd>
+    <dd><%= event.location.address %></dd>
   </dl>
 <% end %>
