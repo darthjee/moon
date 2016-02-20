@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217173944) do
+ActiveRecord::Schema.define(version: 20160218195541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,8 +71,7 @@ ActiveRecord::Schema.define(version: 20160217173944) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "location"
-    t.string   "address"
+    t.integer  "location_id"
   end
 
   create_table "marriage_gift_links", force: true do |t|
@@ -135,6 +134,16 @@ ActiveRecord::Schema.define(version: 20160217173944) do
   end
 
   add_index "marriage_invites", ["marriage_id", "code"], name: "index_marriage_invites_on_marriage_id_and_code", using: :btree
+
+  create_table "marriage_locations", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.text     "map_url"
+    t.string   "instruction"
+    t.integer  "marriage_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "marriage_marriages", force: true do |t|
     t.date     "date"
