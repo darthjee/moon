@@ -18,7 +18,7 @@
         <li><%= angular_link_to 'Padrinhos', marriage_best_man_index_path %></li>
         <li><a href="#" class="disabled">Mensagens</a></li>
         <li><%= angular_link_to 'Presentes', marriage_gifts_path %></li>
-        <li><a href="#" class="disabled">Fotos</a></li>
+        <li><a href="<%= angular_path_to(marriage_albums_path) %>">Fotos</a></li>
       </ul>
     </div>
   </div>
