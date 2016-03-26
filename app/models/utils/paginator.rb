@@ -40,6 +40,10 @@ class Utils::Paginator
     (page_param - 1) * per_page
   end
 
+  def offset_param
+    [params[:offset].to_i, 0].max
+  end
+
   def page_param
     [params[:page].to_i, 1].max
   end
