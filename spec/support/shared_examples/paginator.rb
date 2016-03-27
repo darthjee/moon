@@ -16,9 +16,7 @@ shared_examples 'a paginator' do |described_class|
     end
 
     context 'when not specifying per page param and having more than one page' do
-      before do
-        10.times.each { create(:picture, album: album) }
-      end
+      let(:album) { album10 }
 
       it 'returns only the first 8 documents' do
         expect(documents_json.length).to eq(8)
@@ -32,9 +30,7 @@ shared_examples 'a paginator' do |described_class|
     context 'when asking for 0 documents per page' do
       let(:per_page) { 0 }
       let(:params) { { per_page: per_page } }
-      before do
-        10.times.each { create(:picture, album: album) }
-      end
+      let(:album) { album10 }
 
       it 'returns all the album documents with no limit' do
         expect(documents_json.length).to eq(Marriage::Picture.where(album: album).count)

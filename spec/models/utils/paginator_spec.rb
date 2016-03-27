@@ -10,5 +10,10 @@ describe Utils::Paginator do
   it_behaves_like 'a paginator', described_class::DummyPaginator do
     let(:album) { marriage_albums(:first) }
     let(:documents) { album.pictures }
+    let(:album10) { create(:album) }
+
+    before do
+      10.times.each { create(:picture, album: album10) }
+    end
   end
 end
