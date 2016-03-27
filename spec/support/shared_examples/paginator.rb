@@ -2,13 +2,10 @@ require 'spec_helper'
 
 shared_examples 'a paginator' do |described_class|
   let(:params) { {} }
-  let(:album) { marriage_albums(:first) }
-  let(:documents) { album.pictures }
   let(:subject) { described_class.new(documents, params) }
 
   describe '#as_json' do
     let(:documents_json) { subject.as_json[:documents] }
-    let(:documents) { Marriage::Picture.where(album_id: album) }
 
     it 'returns all the pagination information' do
       expect(subject.as_json.keys).to eq([:documents, :pages, :page])

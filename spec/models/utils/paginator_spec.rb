@@ -7,5 +7,8 @@ describe Utils::Paginator do
     end
   end
 
-  it_behaves_like 'a paginator', described_class::DummyPaginator
+  it_behaves_like 'a paginator', described_class::DummyPaginator do
+    let(:album) { marriage_albums(:first) }
+    let(:documents) { album.pictures }
+  end
 end
