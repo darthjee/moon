@@ -1,8 +1,8 @@
 class Utils::Paginator
   attr_reader :params, :list
 
-  def initialize(pictures, params)
-    @list = pictures
+  def initialize(list, params)
+    @list = list
     @params = params
   end
 
