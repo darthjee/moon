@@ -21,6 +21,6 @@ describe Utils::Paginator do
       end.pictures
     end
     let(:first_documents) { documents.limit(per_page) }
-    let(:last_documents) { documents.last(2) }
+    let(:last_documents) { documents.last(documents.count % per_page) }
   end
 end
