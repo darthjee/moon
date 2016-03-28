@@ -11,12 +11,12 @@ shared_examples 'a paginator' do |described_class|
       expect(subject.as_json.keys).to eq([:documents, :pages, :page])
     end
 
-    it 'returns all the documents from the album' do
+    it 'returns all the documents from the list' do
       expect(documents_json).to eq(documents.as_json)
     end
 
     context 'when not specifying per page param and having more than one page' do
-      let(:album) { album10 }
+      let(:documents) { documents_with_10_itens }
 
       it 'returns only the first 8 documents' do
         expect(documents_json.length).to eq(8)
@@ -30,10 +30,10 @@ shared_examples 'a paginator' do |described_class|
     context 'when asking for 0 documents per page' do
       let(:per_page) { 0 }
       let(:params) { { per_page: per_page } }
-      let(:album) { album10 }
+      let(:documents) { documents_with_10_itens }
 
-      it 'returns all the album documents with no limit' do
-        expect(documents_json.length).to eq(Marriage::Picture.where(album: album).count)
+      it 'returns all the documents with no limit' do
+        expect(documents_json.length).to eq(documents.count)
       end
 
       it 'returns only one page' do
@@ -41,8 +41,8 @@ shared_examples 'a paginator' do |described_class|
       end
     end
 
-    context 'when album has more documents than each page can hold' do
-      let(:album) { album_with_more_pages }
+    context 'when documents list has more documents than each page can hold' do
+      let(:documents) { documents_with_more_pages }
       let(:per_page) { 8 }
       let(:page) { nil }
       let(:params) { { per_page: per_page, page: page } }
