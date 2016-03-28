@@ -21,7 +21,7 @@ describe Utils::TimeElapsed do
 
     it_behaves_like 'an object that can calculate time ago', [
       { amount: 0, unit: :second, time: 0.seconds },
-      { amount: 10, unit: :second, time: 10.seconds },
+      { amount: 30, unit: :second, time: 30.seconds },
       { amount: 1, unit: :minute, time: 1.minute },
       { amount: 1, unit: :minute, time: 70.seconds },
       { amount: 1, unit: :hour, time: 70.minutes },
@@ -34,3 +34,4 @@ describe Utils::TimeElapsed do
     ]
   end
 end
+
