@@ -42,18 +42,10 @@ shared_examples 'a paginator' do |described_class|
     end
 
     context 'when album has more documents than each page can hold' do
-      let(:album) { create(:album) }
-      let(:last_documents) { 2.times.map { create(:picture, album: album) } }
-      let(:first_documents) { per_page.times.map { create(:picture, album: album) } }
+      let(:album) { album_with_more_pages }
       let(:per_page) { 8 }
       let(:page) { nil }
       let(:params) { { per_page: per_page, page: page } }
-
-      before do
-        first_documents
-        per_page.times.each { create(:picture, album: album) }
-        last_documents
-      end
 
       it 'returns the first page documents only' do
         expect(documents_json).to eq(first_documents.as_json)
