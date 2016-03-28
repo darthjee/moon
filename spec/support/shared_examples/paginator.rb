@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-shared_examples 'a paginator' do |described_class|
+shared_examples 'a paginator' do |described_class, key|
   let(:params) { {} }
   let(:subject) { described_class.new(documents, params) }
 
   describe '#as_json' do
-    let(:documents_json) { subject.as_json[:documents] }
+    let(:documents_json) { subject.as_json[key] }
 
     it 'returns all the pagination information' do
-      expect(subject.as_json.keys).to eq([:documents, :pages, :page])
+      expect(subject.as_json.keys).to eq([key, :pages, :page])
     end
 
     it 'returns all the documents from the list' do
