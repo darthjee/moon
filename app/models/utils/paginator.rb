@@ -25,11 +25,17 @@ class Utils::Paginator
   end
 
   def paginated_list
-    limited_list.offset(offset)
+    return limited_list.offset(offset) if offset >= 0
+    limited_list
   end
 
   def limited_list
-    @limited_list ||= list.limit(per_page)
+    @limited_list ||= fetch_limited_list
+  end
+
+  def fetch_limited_list
+    return list.limit(per_page) if offset >= 0
+    list.limit(0)
   end
 
   def pages
@@ -37,11 +43,11 @@ class Utils::Paginator
   end
 
   def offset
-    (page_param - 1) * per_page
+    (page_param - 1) * per_page + offset_param
   end
 
   def offset_param
-    [params[:offset].to_i, 0].max
+    params[:offset].to_i
   end
 
   def page_param

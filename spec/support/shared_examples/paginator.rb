@@ -58,6 +58,23 @@ shared_examples 'a paginator' do |described_class, key|
           expect(documents_json).to eq(last_documents.as_json)
         end
       end
+
+      context 'when passing offset as argument' do
+        context 'when the offset is negative' do
+          context 'and its module is bigger than per_page argument' do
+            let(:offset) { - (per_page + 2)  }
+            let(:params) { { per_page: per_page, page: page, offset: offset } }
+
+            context 'when requesting the first page' do
+              let(:page) { 1 }
+
+              it 'does not return any document' do
+                expect(documents_json.length).to eq(0)
+              end
+            end
+          end
+        end
+      end
     end
   end
 end
