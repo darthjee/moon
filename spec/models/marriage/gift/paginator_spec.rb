@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Marriage::Gift::Paginator do
   it_behaves_like 'a paginator', described_class, :gifts do
     let(:marriage) { marriage_marriages(:first) }
-    let(:documents) { marriage.gifts.tap { |l| l.each(&:thread) } }
+    let(:documents) { marriage.gifts.order(:name).tap { |l| l.each(&:thread) } }
     let(:documents_with_10_itens) do
       create(:marriage).tap do |marriage|
         10.times.map { create(:gift, marriage: marriage) }.each(&:thread)
@@ -14,7 +14,7 @@ describe Marriage::Gift::Paginator do
         (per_page * 2 + 2).times.map { create(:gift, marriage: marriage) }.each(&:thread)
       end.gifts
     end
-    let(:first_documents) { documents.limit(per_page) }
+    let(:first_documents) { documents.order(:name).limit(per_page) }
     let(:last_documents) { documents.last(documents.count % per_page) }
   end
 
