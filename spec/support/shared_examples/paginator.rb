@@ -72,6 +72,14 @@ shared_examples 'a paginator' do |described_class, key|
                 expect(documents_json.length).to eq(0)
               end
             end
+
+            context 'when requesting for a page that is after the offset' do
+              let(:page) { 2 }
+
+              it 'return less documents' do
+                expect(documents_json.length).to eq(6)
+              end
+            end
           end
         end
       end
