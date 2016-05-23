@@ -38,8 +38,7 @@ class Utils::Paginator
 
   def limit
     return per_page if calculated_offset >= 0
-    return calculated_offset + per_page if calculated_offset + per_page >= 0
-    0
+    [ calculated_offset + per_page, 0 ].max
   end
 
   def pages
