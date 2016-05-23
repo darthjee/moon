@@ -71,6 +71,10 @@ shared_examples 'a paginator' do |described_class, key|
               it 'does not return any document' do
                 expect(documents_json.length).to eq(0)
               end
+  
+              it 'returns the correct pagination' do
+                expect(subject.as_json[:page]).to eq(page)
+              end
             end
 
             context 'when requesting for a page that is right after the offset' do
@@ -78,6 +82,10 @@ shared_examples 'a paginator' do |described_class, key|
 
               it 'return less documents' do
                 expect(documents_json.length).to eq(6)
+              end
+  
+              it 'returns the correct pagination' do
+                expect(subject.as_json[:page]).to eq(page)
               end
             end
 
@@ -87,6 +95,10 @@ shared_examples 'a paginator' do |described_class, key|
               it 'return one page of documents' do
                 expect(documents_json.length).to eq(8)
               end
+  
+              it 'returns the correct pagination' do
+                expect(subject.as_json[:page]).to eq(page)
+              end
             end
 
             context 'when requesting for a page that is after the offsetted documents' do
@@ -95,8 +107,11 @@ shared_examples 'a paginator' do |described_class, key|
               it 'return last documents' do
                 expect(documents_json.length).to eq(4)
               end
+  
+              it 'returns the correct pagination' do
+                expect(subject.as_json[:page]).to eq(page)
+              end
             end
-
           end
         end
       end
