@@ -8,7 +8,7 @@ shared_examples 'a paginator' do |described_class, key|
     let(:documents_json) { subject.as_json[key] }
 
     it 'returns all the pagination information' do
-      expect(subject.as_json.keys).to eq([key, :pages, :page])
+      expect(subject.as_json.keys.sort).to eq([key, :pages, :page].sort)
     end
 
     it 'returns all the documents from the list' do
