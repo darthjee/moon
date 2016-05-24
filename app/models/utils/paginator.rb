@@ -1,6 +1,8 @@
 class Utils::Paginator
   attr_reader :params, :list
 
+  delegate :count, :empty?, to: :ordered_list
+
   def initialize(list, params)
     @list = list
     @params = params
