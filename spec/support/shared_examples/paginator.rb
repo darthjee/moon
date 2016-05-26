@@ -56,6 +56,7 @@ shared_examples 'a paginator extending utils paginator' do |described_class, key
   end
 
   it_behaves_like 'a paginator', described_class, key
+  it_behaves_like 'a paginator that accepts offset', described_class, key
 end
 
 shared_examples 'a paginator' do |described_class, key|
@@ -116,59 +117,71 @@ shared_examples 'a paginator' do |described_class, key|
           expect(documents_json).to eq(last_documents.as_json)
         end
       end
+    end
+  end
+end
 
-      context 'when passing offset as argument' do
-        context 'when the offset is negative' do
-          context 'and its module is bigger than per_page argument' do
-            let(:offset) { - (per_page + 2)  }
-            let(:params) { { per_page: per_page, page: page, offset: offset } }
 
-            context 'when requesting the first page' do
-              let(:page) { 1 }
+shared_examples 'a paginator that accepts offset' do |described_class, key|
+  let(:subject) { described_class.new(documents, params) }
+  let(:documents_json) { subject.as_json[key] }
+  let(:documents) { documents_with_more_pages }
+  let(:per_page) { 8 }
+  let(:page) { nil }
+  let(:params) { { per_page: per_page, page: page } }
 
-              it 'does not return any document' do
-                expect(documents_json.length).to eq(0)
-              end
-  
-              it 'returns the correct pagination' do
-                expect(subject.as_json[:page]).to eq(page)
-              end
+  describe '#as_json' do
+    context 'when passing offset as argument' do
+      context 'when the offset is negative' do
+        context 'and its module is bigger than per_page argument' do
+          let(:offset) { - (per_page + 2)  }
+          let(:params) { { per_page: per_page, page: page, offset: offset } }
+
+          context 'when requesting the first page' do
+            let(:page) { 1 }
+
+            it 'does not return any document' do
+              expect(documents_json.length).to eq(0)
             end
 
-            context 'when requesting for a page that is right after the offset' do
-              let(:page) { 2 }
+            it 'returns the correct pagination' do
+              expect(subject.as_json[:page]).to eq(page)
+            end
+          end
 
-              it 'return less documents' do
-                expect(documents_json.length).to eq(6)
-              end
-  
-              it 'returns the correct pagination' do
-                expect(subject.as_json[:page]).to eq(page)
-              end
+          context 'when requesting for a page that is right after the offset' do
+            let(:page) { 2 }
+
+            it 'return less documents' do
+              expect(documents_json.length).to eq(6)
             end
 
-            context 'when requesting for a page that is way after the offset' do
-              let(:page) { 3 }
+            it 'returns the correct pagination' do
+              expect(subject.as_json[:page]).to eq(page)
+            end
+          end
 
-              it 'return one page of documents' do
-                expect(documents_json.length).to eq(8)
-              end
-  
-              it 'returns the correct pagination' do
-                expect(subject.as_json[:page]).to eq(page)
-              end
+          context 'when requesting for a page that is way after the offset' do
+            let(:page) { 3 }
+
+            it 'return one page of documents' do
+              expect(documents_json.length).to eq(8)
             end
 
-            context 'when requesting for a page that is after the offsetted documents' do
-              let(:page) { 4 }
+            it 'returns the correct pagination' do
+              expect(subject.as_json[:page]).to eq(page)
+            end
+          end
 
-              it 'return last documents' do
-                expect(documents_json.length).to eq(4)
-              end
-  
-              it 'returns the correct pagination' do
-                expect(subject.as_json[:page]).to eq(page)
-              end
+          context 'when requesting for a page that is after the offsetted documents' do
+            let(:page) { 4 }
+
+            it 'return last documents' do
+              expect(documents_json.length).to eq(4)
+            end
+
+            it 'returns the correct pagination' do
+              expect(subject.as_json[:page]).to eq(page)
             end
           end
         end
