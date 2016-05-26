@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-shared_examples 'a paginator' do |described_class, key|
+shared_examples 'a paginator extending utils paginator' do |described_class, key|
   let(:params) { {} }
   let(:subject) { described_class.new(documents, params) }
 
@@ -54,6 +54,13 @@ shared_examples 'a paginator' do |described_class, key|
       end
     end
   end
+
+  it_behaves_like 'a paginator', described_class, key
+end
+
+shared_examples 'a paginator' do |described_class, key|
+  let(:params) { {} }
+  let(:subject) { described_class.new(documents, params) }
 
   describe '#as_json' do
     let(:documents_json) { subject.as_json[key] }
@@ -169,3 +176,4 @@ shared_examples 'a paginator' do |described_class, key|
     end
   end
 end
+

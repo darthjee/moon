@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Marriage::Gift::Paginator do
-  it_behaves_like 'a paginator', described_class, :gifts do
+  it_behaves_like 'a paginator extending utils paginator', described_class, :gifts do
     let(:marriage) { marriage_marriages(:first) }
     let(:documents) { marriage.gifts.order(:name).tap { |l| l.each(&:thread) } }
     let(:documents_with_10_itens) do
