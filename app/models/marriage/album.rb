@@ -1,5 +1,6 @@
 class Marriage::Album < ActiveRecord::Base
   belongs_to :marriage
+  belongs_to :album
   has_many :pictures
   has_many :albums
 
