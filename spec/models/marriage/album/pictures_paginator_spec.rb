@@ -27,7 +27,7 @@ describe Marriage::Album::PicturesPaginator do
     let(:marriage) { create(:marriage) }
     let(:album) { create(:album, marriage: marriage) }
     let(:documents) { pictures }
-    let(:subalbums) { marriage.albums }
+    let(:subalbums) { album.albums }
     let(:pictures) { album.pictures }
     let(:documents_with_10_itens) do
       create(:album).tap do |album|
