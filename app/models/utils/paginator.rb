@@ -16,10 +16,14 @@ class Utils::Paginator
     }
   end
 
+  def full_page?
+    list_json.size == per_page
+  end
+
   private
 
   def list_json
-    ordered_list.as_json
+    @list_json ||= ordered_list.as_json
   end
 
   def ordered_list

@@ -4,6 +4,30 @@ shared_examples 'a paginator' do |described_class, key|
   let(:params) { {} }
   let(:subject) { described_class.new(documents, params) }
 
+  describe '#full_page?' do
+    let(:documents) { documents_with_10_itens }
+
+    context 'when requesting not the last page' do
+      it do
+        expect(subject.full_page?).to be_truthy
+      end
+    end
+
+    context 'when requesting a page that is not full (the last page)' do
+      let(:params) { { page: 2 } }
+      it do
+        expect(subject.full_page?).to be_falsey
+      end
+
+      context 'when passing offset to fill the page' do
+        let(:params) { { page: 2, offset: -6} }
+        it do
+          expect(subject.full_page?).to be_truthy
+        end
+      end
+    end
+  end
+
   describe '#as_json' do
     let(:documents_json) { subject.as_json[key] }
 
