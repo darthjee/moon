@@ -16,6 +16,10 @@ class Utils::Paginator
     }
   end
 
+  def next_page_offset
+    offset + list_json.length - params[:offset].to_i
+  end
+
   def full_page?
     list_json.size == per_page
   end

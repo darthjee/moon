@@ -4,6 +4,33 @@ shared_examples 'a paginator' do |described_class, key|
   let(:params) { {} }
   let(:subject) { described_class.new(documents, params) }
 
+  describe '#next_page_offset' do
+    let(:per_page) { 8 }
+    let(:params) { { per_page: per_page } }
+    let(:documents) { documents_with_10_itens }
+
+    context 'when requesting not the last page' do
+      it 'returns per page' do
+        expect(subject.next_page_offset).to eq(per_page)
+      end
+    end
+
+    context 'when requesting a page that is not full (the last page)' do
+      let(:params) { { page: 2, per_page: per_page } }
+      it 'returns the total nunber of documents' do
+        expect(subject.next_page_offset).to eq(documents.length)
+      end
+
+      context 'when passing offset to fill the page' do
+        let(:offset) { 6 }
+        let(:params) { { page: 2, offset: -offset, per_page: per_page } }
+        it 'returns the real offset plus the given offset' do
+          expect(subject.next_page_offset).to eq(documents.length + offset)
+        end
+      end
+    end
+  end
+
   describe '#full_page?' do
     let(:documents) { documents_with_10_itens }
 
