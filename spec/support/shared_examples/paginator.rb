@@ -36,6 +36,14 @@ shared_examples 'a paginator extending utils paginator' do |described_class, key
       it 'returns the total nunber of documents' do
         expect(subject.next_page_offset).to eq(documents.length)
       end
+
+      context 'when passing offset to fill the page' do
+        let(:offset) { 6 }
+        let(:params) { { page: 3, offset: -offset, per_page: per_page } }
+        it 'returns the real offset plus the given offset' do
+          expect(subject.next_page_offset).to eq(documents.length + offset)
+        end
+      end
     end
   end
 
