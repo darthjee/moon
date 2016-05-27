@@ -29,6 +29,14 @@ shared_examples 'a paginator extending utils paginator' do |described_class, key
         end
       end
     end
+
+    context 'when requesting a page that is after the limits' do
+      let(:params) { { page: 3, per_page: per_page } }
+
+      it 'returns the total nunber of documents' do
+        expect(subject.next_page_offset).to eq(documents.length)
+      end
+    end
   end
 
   describe '#full_page?' do
