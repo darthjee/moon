@@ -22,6 +22,7 @@ describe Marriage::Album::PicturesPaginator do
           (per_page * 2 + 2).times.each { create(:album, marriage: marriage, album: album) }
         end.albums
       end
+      let(:empty_documents) { create(:album).albums }
     end
   end
     
@@ -39,6 +40,7 @@ describe Marriage::Album::PicturesPaginator do
           (per_page * 2 + 2).times.each { create(:picture, album: album) }
         end.pictures
       end
+      let(:empty_documents) { create(:album).pictures }
     end
   end
 

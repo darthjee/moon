@@ -14,6 +14,7 @@ describe Marriage::Gift::Paginator do
         (per_page * 2 + 2).times.map { create(:gift, marriage: marriage) }.each(&:thread)
       end.gifts
     end
+    let(:empty_documents) { create(:marriage).gifts }
     let(:first_documents) { documents.order(:name).limit(per_page) }
     let(:last_documents) { documents.last(documents.count % per_page) }
   end

@@ -14,6 +14,7 @@ describe Marriage::Picture::Paginator do
         (per_page * 2 + 2).times.each { create(:picture, album: album) }
       end.pictures
     end
+    let(:empty_documents) { create(:album).pictures }
     let(:first_documents) { documents.limit(per_page) }
     let(:last_documents) { documents.last(documents.count % per_page) }
   end

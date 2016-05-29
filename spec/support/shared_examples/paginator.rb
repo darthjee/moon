@@ -114,6 +114,22 @@ shared_examples 'a paginator' do |described_class, key|
       it 'returns only one page' do
         expect(subject.as_json[:pages]).to eq(1)
       end
+
+      context 'when given an empty document list' do
+        let(:documents) { empty_documents }
+
+        it do
+          expect { subject.as_json }.not_to raise_error
+        end
+
+        it 'returns at least one page' do
+          expect(subject.as_json[:pages]).to eq(0)
+        end
+
+        it 'returns first page' do
+          expect(subject.as_json[:page]).to eq(1)
+        end
+      end
     end
 
     context 'when documents list has more documents than each page can hold' do
