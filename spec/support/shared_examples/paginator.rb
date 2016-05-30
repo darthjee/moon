@@ -179,6 +179,10 @@ shared_examples 'a paginator that accepts offset' do |described_class, key|
             it 'returns the correct pagination' do
               expect(subject.as_json[:page]).to eq(page)
             end
+
+            it 'add the offset to pages count' do
+              expect(subject.as_json[:pages]).to eq(4)
+            end
           end
 
           context 'when requesting for a page that is right after the offset' do

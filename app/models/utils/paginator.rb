@@ -53,7 +53,7 @@ class Utils::Paginator
   end
 
   def pages
-    (list.count * 1.0 / per_page).ceil
+    ((list.count - offset_param) * 1.0 / per_page).ceil
   end
 
   def offset
