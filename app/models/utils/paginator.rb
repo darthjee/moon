@@ -1,8 +1,10 @@
 class Utils::Paginator
   attr_reader :params, :list
 
-  def initialize(pictures, params)
-    @list = pictures
+  delegate :count, :empty?, to: :ordered_list
+
+  def initialize(list, params)
+    @list = list
     @params = params
   end
 
@@ -14,10 +16,19 @@ class Utils::Paginator
     }
   end
 
+  def next_page_offset
+    return  list.count - params[:offset].to_i if empty?
+    offset + list_json.length - params[:offset].to_i
+  end
+
+  def full_page?
+    list_json.size == per_page
+  end
+
   private
 
   def list_json
-    ordered_list.as_json
+    @list_json ||= ordered_list.as_json
   end
 
   def ordered_list
@@ -29,15 +40,33 @@ class Utils::Paginator
   end
 
   def limited_list
-    @limited_list ||= list.limit(per_page)
+    @limited_list ||= fetch_limited_list
+  end
+
+  def fetch_limited_list
+    list.limit(limit)
+  end
+
+  def limit
+    return per_page if calculated_offset >= 0
+    [ calculated_offset + per_page, 0 ].max
   end
 
   def pages
-    (list.count * 1.0 / per_page).ceil
+    return 1 if params[:per_page].to_i == 0 && ! params[:per_page].nil? || list.empty?
+    ((list.count - offset_param) * 1.0 / per_page).ceil
   end
 
   def offset
-    (page_param - 1) * per_page
+    @offset ||= [calculated_offset, 0].max
+  end
+
+  def calculated_offset
+    (page_param - 1) * per_page + offset_param
+  end
+
+  def offset_param
+    params[:offset].to_i
   end
 
   def page_param
@@ -49,7 +78,7 @@ class Utils::Paginator
   end
 
   def fetch_per_page
-    value = [params[:per_page], 8].compact.first.to_i
-    value == 0 ? list.count : value
+    value = [ params[:per_page], 8 ].compact.first.to_i
+    [ value, list.count, 8 ].find { |n| n > 0 }
   end
 end

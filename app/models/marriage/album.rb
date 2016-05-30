@@ -1,8 +1,12 @@
 class Marriage::Album < ActiveRecord::Base
   belongs_to :marriage
+  belongs_to :album
   has_many :pictures
+  has_many :albums
 
   scope :displayable, proc { where.not(status: :cancelled) }
+  scope :from_album, proc { |album_id| where(album_id: album_id) }
+  scope :top_album, proc { where(album_id: nil) }
   default_scope { displayable }
 
   def as_json(*args)

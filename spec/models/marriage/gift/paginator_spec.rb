@@ -1,6 +1,24 @@
 require 'spec_helper'
 
 describe Marriage::Gift::Paginator do
+  it_behaves_like 'a paginator extending utils paginator', described_class, :gifts do
+    let(:marriage) { marriage_marriages(:first) }
+    let(:documents) { marriage.gifts.order(:name).tap { |l| l.each(&:thread) } }
+    let(:documents_with_10_itens) do
+      create(:marriage).tap do |marriage|
+        10.times.map { create(:gift, marriage: marriage) }.each(&:thread)
+      end.gifts
+    end
+    let(:documents_with_more_pages) do
+      create(:marriage).tap do |marriage|
+        (per_page * 2 + 2).times.map { create(:gift, marriage: marriage) }.each(&:thread)
+      end.gifts
+    end
+    let(:empty_documents) { create(:marriage).gifts }
+    let(:first_documents) { documents.order(:name).limit(per_page) }
+    let(:last_documents) { documents.last(documents.count % per_page) }
+  end
+
   let(:params) { {} }
   let(:marriage) { create(:marriage) }
   let(:gifts) { marriage.gifts }
@@ -9,14 +27,6 @@ describe Marriage::Gift::Paginator do
   describe '#as_json' do
     let(:gifts_json) { subject.as_json[:gifts] }
     let(:gifts) { Marriage::Gift.where(marriage_id: marriage) }
-
-    it 'returns all the pagination information' do
-      expect(subject.as_json.keys).to eq([:gifts, :pages, :page])
-    end
-
-    it 'returns all the gifts from the marriage' do
-      expect(gifts_json).to eq(gifts.as_json)
-    end
 
     context 'when marriage has more gifts than each page can hold' do
       let(:last_gifts) { 2.times.map { create(:gift, marriage: marriage) } }
@@ -29,18 +39,6 @@ describe Marriage::Gift::Paginator do
         first_gifts.each(&:thread)
         per_page.times.map { create(:gift, marriage: marriage) }.each(&:thread)
         last_gifts.each(&:thread)
-      end
-
-      it 'returns the first page gifts only' do
-        expect(gifts_json).to eq(first_gifts.as_json)
-      end
-
-      context 'when requesting last page' do
-        let(:page) { 3 }
-
-        it 'returns the last page gifts only' do
-          expect(gifts_json).to eq(last_gifts.as_json)
-        end
       end
 
       context 'when there are gifts to be ordered by name' do

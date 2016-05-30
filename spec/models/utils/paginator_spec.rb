@@ -1,7 +1,13 @@
 require 'spec_helper'
 
-describe Marriage::Picture::Paginator do
-  it_behaves_like 'a paginator extending utils paginator', described_class, :pictures do
+describe Utils::Paginator do
+  class Utils::Paginator::DummyPaginator < Utils::Paginator
+    def key
+      :documents
+    end
+  end
+
+  it_behaves_like 'a paginator extending utils paginator', described_class::DummyPaginator, :documents do
     let(:album) { marriage_albums(:first) }
     let(:documents) { album.pictures }
     let(:documents_with_10_itens) do

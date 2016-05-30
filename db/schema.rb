@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218195541) do
+ActiveRecord::Schema.define(version: 20160326025100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20160218195541) do
     t.integer "marriage_id"
     t.string  "name",        limit: 14
     t.string  "status",      limit: 10, default: "display"
+    t.integer "album_id"
   end
 
   create_table "marriage_events", force: true do |t|
