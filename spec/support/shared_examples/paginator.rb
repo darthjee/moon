@@ -102,6 +102,18 @@ shared_examples 'a paginator' do |described_class, key|
       end
     end
 
+    context 'when document list is empty' do
+      let(:documents) { empty_documents }
+
+      it 'returns at least one page' do
+        expect(subject.as_json[:pages]).to eq(1)
+      end
+
+      it 'returns first page' do
+        expect(subject.as_json[:page]).to eq(1)
+      end
+    end
+
     context 'when asking for 0 documents per page' do
       let(:per_page) { 0 }
       let(:params) { { per_page: per_page } }
@@ -123,7 +135,7 @@ shared_examples 'a paginator' do |described_class, key|
         end
 
         it 'returns at least one page' do
-          expect(subject.as_json[:pages]).to eq(0)
+          expect(subject.as_json[:pages]).to eq(1)
         end
 
         it 'returns first page' do
@@ -218,6 +230,18 @@ shared_examples 'a paginator that accepts offset' do |described_class, key|
 
             it 'returns the correct pagination' do
               expect(subject.as_json[:page]).to eq(page)
+            end
+          end
+
+          context 'when document list is empty' do
+            let(:documents) { empty_documents }
+
+            context 'and requesting for an unlimited per page list' do
+              let(:params) { { per_page: 0, page: 1, offset: offset } }
+
+              it do
+                expect(subject.as_json[:pages]).to eq(1)
+              end
             end
           end
         end

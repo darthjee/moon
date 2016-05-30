@@ -53,6 +53,7 @@ class Utils::Paginator
   end
 
   def pages
+    return 1 if params[:per_page].to_i == 0 && ! params[:per_page].nil? || list.empty?
     ((list.count - offset_param) * 1.0 / per_page).ceil
   end
 
