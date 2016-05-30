@@ -12,6 +12,7 @@ module Marriage
     def as_json
       pictures_json.tap do |json|
         json[:itens] = albums_json[:itens] + json[:itens]
+        json[:pages] = [ albums_json[:pages], json[:pages] ].max
       end
     end
 
