@@ -10,8 +10,8 @@ module Marriage
     end
 
     def as_json
-      albums_json.tap do |json|
-        json[:itens] += pictures_json[:itens]
+      pictures_json.tap do |json|
+        json[:itens] = albums_json[:itens] + json[:itens]
       end
     end
 
