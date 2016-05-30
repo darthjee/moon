@@ -10,21 +10,27 @@ module Marriage
     end
 
     def as_json
-      album_paginator.empty? ? pictures_json : albums_json
+      albums_json.tap do |json|
+        json[:itens] += pictures_json[:itens]
+      end
     end
 
     private
 
     def pictures_json
-      picture_paginator.as_json.remap_keys pictures: :itens
+      @pictures_json ||= picture_paginator.as_json.remap_keys pictures: :itens
     end
 
     def picture_paginator
-      @picture_paginator ||= Picture::Paginator.new(pictures, params)
+      @picture_paginator ||= Picture::Paginator.new(pictures, picture_paginator_params)
+    end
+
+    def picture_paginator_params
+      params.merge(offset: -album_paginator.next_page_offset)
     end
 
     def albums_json
-      album_paginator.as_json.remap_keys albums: :itens
+      @albums_json ||= album_paginator.as_json.remap_keys albums: :itens
     end
 
     def album_paginator
