@@ -17,7 +17,7 @@ class Utils::Paginator
   end
 
   def next_page_offset
-    return  list.count - params[:offset].to_i if empty?
+    return list.count - params[:offset].to_i if empty?
     offset + list_json.length - params[:offset].to_i
   end
 
