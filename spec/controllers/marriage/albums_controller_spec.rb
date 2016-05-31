@@ -14,6 +14,22 @@ describe Marriage::AlbumsController do
       get :index, parameters
       expect(response_json).to eq({ 'page' => 1, 'pages' => 1, 'albums' => albums_json })
     end
+
+    context 'when album has subalbums' do
+      let(:album) { albums.first }
+      let(:albums_json) { [ album ].as_json.map(&:stringify_keys) }
+
+      before do
+        8.times do
+          create(:album, album: album, marriage: marriage)
+        end
+      end
+
+      it 'returns all the albums for the given marriage' do
+        get :index, parameters
+        expect(response_json).to eq({ 'page' => 1, 'pages' => 1, 'albums' => albums_json })
+      end
+    end
   end
 end
 

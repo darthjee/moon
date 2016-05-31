@@ -9,7 +9,11 @@ module Marriage
     private
 
     def index_json
-      Album::Paginator.new(marriage.albums, params).as_json
+      Album::Paginator.new(albums, params).as_json
+    end
+
+    def albums
+      marriage.albums.top_album
     end
   end
 end
