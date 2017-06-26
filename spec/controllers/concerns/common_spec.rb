@@ -8,7 +8,7 @@ describe Marriage::Common do
     def index
       respond_to do |format|
         format.html { render('marriage/marriage/show') }
-        format.json { render nothing: true }
+        format.json { render body: nil }
       end
     end
   end
