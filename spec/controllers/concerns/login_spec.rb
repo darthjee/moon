@@ -20,7 +20,7 @@ describe Marriage::Login do
       before do
         cookies.delete(:credentials)
         controller.sign_in(user)
-        get :index, parameters
+        get :index, params: parameters
       end
 
       it 'logs the user' do
@@ -38,7 +38,7 @@ describe Marriage::Login do
       before do
         cookies.signed[:credentials] = old_user.authentication_token
         controller.sign_in(user)
-        get :index, parameters
+        get :index, params: parameters
       end
 
       it 'logs the user' do
@@ -56,7 +56,7 @@ describe Marriage::Login do
       before do
         cookies.delete(:credentials)
         controller.sign_off
-        get :index, parameters
+        get :index, params: parameters
       end
 
       it 'keeps user logged off' do
@@ -72,7 +72,7 @@ describe Marriage::Login do
       before do
         cookies.signed[:credentials] = user.authentication_token
         controller.sign_off
-        get :index, parameters
+        get :index, params: parameters
       end
 
       it 'logs off the user' do
@@ -93,7 +93,7 @@ describe Marriage::Login do
 
       context 'the request contains a token' do
         let(:parameters) { { token: token } }
-        before { get :index, parameters }
+        before { get :index, params: parameters }
 
         it 'logs the user' do
           expect(is_logged).to be_truthy
@@ -105,7 +105,7 @@ describe Marriage::Login do
       end
 
       context 'the request does not contain a token' do
-        before { get :index, parameters }
+        before { get :index, params: parameters }
 
         it 'does not log the user' do
           expect(is_logged).to be_falsey
@@ -126,7 +126,7 @@ describe Marriage::Login do
 
       context 'the request contains a token' do
         let(:parameters) { { token: token } }
-        before { get :index, parameters }
+        before { get :index, params: parameters }
 
         it 'logs in the user' do
           expect(is_logged).to be_truthy
@@ -138,7 +138,7 @@ describe Marriage::Login do
       end
 
       context 'the request does not contain a token' do
-        before { get :index, parameters }
+        before { get :index, params: parameters }
 
         it 'does not change logged in state' do
           expect(is_logged).to be_truthy
