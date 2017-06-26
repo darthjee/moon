@@ -18,7 +18,7 @@ describe Marriage::Login do
   describe '#sign_in' do
     context 'when no one is signed in' do
       before do
-        cookies.delete(:credentials)
+        controller.sign_off
         controller.sign_in(user)
         get :index, params: parameters
       end
@@ -36,7 +36,7 @@ describe Marriage::Login do
       let(:old_user) { users(:empty) }
 
       before do
-        cookies.signed[:credentials] = old_user.authentication_token
+        controller.sign_in(old_user)
         controller.sign_in(user)
         get :index, params: parameters
       end
@@ -54,7 +54,6 @@ describe Marriage::Login do
   describe '#sign_off' do
     context 'when no one is signed in' do
       before do
-        cookies.delete(:credentials)
         controller.sign_off
         get :index, params: parameters
       end
@@ -70,7 +69,7 @@ describe Marriage::Login do
 
     context 'when a user is already signed in' do
       before do
-        cookies.signed[:credentials] = user.authentication_token
+        controller.sign_in(user)
         controller.sign_off
         get :index, params: parameters
       end
