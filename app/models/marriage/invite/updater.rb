@@ -49,7 +49,7 @@ class Marriage::Invite::Updater
   end
 
   def guests_params
-    invite_params[:guests]
+    invite_params[:guests] || []
   end
 
   def user_update_params
