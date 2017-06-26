@@ -45,6 +45,7 @@ group :development, :test do
   gem 'zonebie'
   gem 'simplecov'
   gem 'rspec-collection_matchers'
+  gem 'rails-controller-testing'
 end
 
 group :test do
