@@ -59,7 +59,7 @@ describe Marriage::LoginController do
       before do
         user.password = 'pass_code'
         user.save
-        post :create, parameters
+        post :create, params: parameters
       end
 
       context 'when requesting with correct email and password' do
@@ -93,7 +93,7 @@ describe Marriage::LoginController do
 
       before do
         user.update(password: nil, email: nil)
-        post :create, parameters
+        post :create, params: parameters
       end
 
       it do

@@ -16,7 +16,7 @@ describe Marriage::Common do
   describe 'layout' do
     before do
       allow(controller).to receive(:is_home?) { true }
-      get :index, parameters
+      get :index, params: parameters
     end
 
     it do
@@ -34,7 +34,7 @@ describe Marriage::Common do
 
   describe 'angular redirection' do
     before do
-      get :index, parameters
+      get :index, params: parameters
     end
 
     it 'redirects to root with angular route' do

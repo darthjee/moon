@@ -14,24 +14,24 @@ describe Marriage::InvitesController do
 
     shared_examples 'responds with the correct invite' do
       it do
-        get :show, parameters
+        get :show, params: parameters
         expect(response).to be_success
       end
 
       it 'returns the invite' do
-        get :show, parameters
+        get :show, params: parameters
         expect(response_json['id']).to eq(invite.id)
         expect(response_json['code']).to eq(invite.code)
       end
 
       it 'returns the invite guests' do
-        get :show, parameters
+        get :show, params: parameters
         expect(response_json).to have_key('guests')
       end
 
       it do
         expect do
-          get :show, parameters
+          get :show, params: parameters
         end.to change { Marriage::Invite.find(invite.id).last_view_date }
       end
     end
@@ -59,48 +59,48 @@ describe Marriage::InvitesController do
     context 'when updating the guests that already exist' do
       it 'changes the presence for the guests' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.to change { invite.guests.confirmed.count }.by(2)
       end
 
       it 'changes the confirmed count for the invite' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.to change { Marriage::Invite.find(invite.id).confirmed }.by(2)
       end
 
       it 'changes the name of the guests' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.to change { invite.guests.pluck(:name) }
       end
 
       it 'updates the invite email' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.to change{ Marriage::Invite.find(invite.id).user.email }.to('new_user@server.com')
       end
 
       it 'does not return error' do
-        patch :update, parameters
+        patch :update, params: parameters
 
         expect(response_json).not_to have_key('errors')
       end
 
       it 'returns the guests along with invite' do
-        patch :update, parameters
+        patch :update, params: parameters
 
         expect(response_json).to have_key('guests')
       end
 
       it 'sends welcome e-mail' do
         expect(mandrill_service).to receive(:send_request)
-        patch :update, parameters
+        patch :update, params: parameters
       end
 
       it 'does not change the user name' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.not_to change { User.find(user.id).name }
       end
     end
@@ -110,30 +110,30 @@ describe Marriage::InvitesController do
 
       it 'does not update the e-mail' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.not_to change{ Marriage::Invite.find(invite.id).email }
       end
 
       it 'does not change the confirmed count for the invite' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.not_to change { Marriage::Invite.find(invite.id).confirmed }
       end
 
       it 'does not change any guest' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.not_to change { Marriage::Guest.find(guest.id).name }
       end
 
       it 'does not create new guests' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.not_to change { Marriage::Guest.where(invite_id: invite.id).count }
       end
 
       it 'returns error' do
-        patch :update, parameters
+        patch :update, params: parameters
 
         expect(response_json).to have_key('errors')
         expect(response_json['errors']).to have_key('user')
@@ -141,7 +141,7 @@ describe Marriage::InvitesController do
       end
 
       it do
-        patch :update, parameters
+        patch :update, params: parameters
         expect(response).not_to be_success
       end
     end
@@ -154,17 +154,17 @@ describe Marriage::InvitesController do
 
       it 'creates a new guest for the marriage' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.to change { invite.guests.count }.by(1)
       end
 
       it 'creates a new guest for the marriage' do
-        patch :update, parameters
+        patch :update, params: parameters
         expect(invite.guests.pluck(:name)).to match_array(names_expected)
       end
 
       it 'associates the new guests with the invite' do
-        patch :update, parameters
+        patch :update, params: parameters
         expect(invite.guests.pluck(:name)).to match_array(names_expected)
       end
     end
@@ -174,13 +174,13 @@ describe Marriage::InvitesController do
 
       it do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.to change { Marriage::Guest.count }.by(-2)
       end
 
       it 'does not really removes the guests' do
         expect do
-          patch :update, parameters
+          patch :update, params: parameters
         end.not_to change { Marriage::Guest.unscoped.count }
       end
 
@@ -191,7 +191,7 @@ describe Marriage::InvitesController do
 
         it do
           expect do
-            patch :update, parameters
+            patch :update, params: parameters
           end.not_to change { Marriage::Guest.count }
         end
       end
@@ -201,12 +201,12 @@ describe Marriage::InvitesController do
 
         it 'sends welcome e-mail' do
           expect(mandrill_service).to receive(:send_request)
-          patch :update, parameters
+          patch :update, params: parameters
         end
 
         it 'marks user as e-mail received' do
           expect do
-            patch :update, parameters
+            patch :update, params: parameters
           end.to change { Marriage::Invite.find(5).welcome_sent }
         end
 
@@ -217,7 +217,7 @@ describe Marriage::InvitesController do
 
           it 'sends welcome e-mail' do
             expect(mandrill_service).not_to receive(:send_request)
-            patch :update, parameters
+            patch :update, params: parameters
           end
         end
 
@@ -226,7 +226,7 @@ describe Marriage::InvitesController do
 
           it 'does not send welcome e-mail' do
             expect(mandrill_service).not_to receive(:send_request)
-            patch :update, parameters
+            patch :update, params: parameters
           end
 
           context 'but there was a guest already registered' do
@@ -234,7 +234,7 @@ describe Marriage::InvitesController do
 
             it 'sends welcome e-mail' do
               expect(mandrill_service).to receive(:send_request)
-              patch :update, parameters
+              patch :update, params: parameters
             end
           end
         end

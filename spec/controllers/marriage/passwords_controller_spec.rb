@@ -19,7 +19,7 @@ describe Marriage::PasswordsController do
 
     it do
       expect(mandrill_service).to receive(:send_request).with(message)
-      post :create, parameters
+      post :create, params: parameters
     end
   end
 end

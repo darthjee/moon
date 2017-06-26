@@ -17,12 +17,12 @@ describe Marriage::BestManController do
         let(:format) { :json }
 
         it 'returns the user invite' do
-          get :index, parameters
+          get :index, params: parameters
           expect(response_json['id']).to eq(invite.id)
         end
 
         it 'returns the user with the guests' do
-          get :index, parameters
+          get :index, params: parameters
           expect(response_json).to include('guests')
         end
       end
@@ -37,7 +37,7 @@ describe Marriage::BestManController do
         let(:format) { :json }
 
         it do
-          get :index, parameters
+          get :index, params: parameters
           expect(response.status).to eq(404)
         end
       end
@@ -65,7 +65,7 @@ describe Marriage::BestManController do
       let(:role) { 'maid_honor' }
 
       it 'returns all the maids' do
-        get :show_maids, parameters
+        get :show_maids, params: parameters
         expect(response_json.map { |g| g['role'] }).to eq(marriage.invites.count.times.map { role })
       end
     end
@@ -74,7 +74,7 @@ describe Marriage::BestManController do
       let(:role) { 'best_man' }
 
       it 'returns all the best_man' do
-        get :show_maids, parameters
+        get :show_maids, params: parameters
         expect(response_json.map { |g| g['role'] }).to eq([role])
       end
     end
@@ -83,7 +83,7 @@ describe Marriage::BestManController do
       let(:role) { 'mother' }
 
       it 'returns all the mothers' do
-        get :show_maids, parameters
+        get :show_maids, params: parameters
         expect(response_json.map { |g| g['role'] }).to eq([role, role])
       end
     end
