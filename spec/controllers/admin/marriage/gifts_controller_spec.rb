@@ -134,19 +134,19 @@ describe Admin::Marriage::GiftsController do
 
         it do
           expect do
-            post :create, new_request_parameters
+            post :create, params: new_request_parameters
           end.to change(Marriage::GiftLink, :count)
         end
 
         it do
           expect do
-            post :create, new_request_parameters
+            post :create, params: new_request_parameters
           end.not_to change(Marriage::Gift, :count)
         end
 
         it 'updates min and max price for the gift' do
 
-          post :create, new_request_parameters
+          post :create, params: new_request_parameters
 
           expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
             'image_url' => 'http://image_url.com',
