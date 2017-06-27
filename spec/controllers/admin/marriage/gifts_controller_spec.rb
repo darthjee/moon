@@ -19,7 +19,6 @@ describe Admin::Marriage::GiftsController do
 
     context 'when admin key is wrong' do
       before do
-        post :create, params: parameters
         allow(controller).to receive(:admin_key) { 'abcd' }
       end
 
@@ -28,10 +27,9 @@ describe Admin::Marriage::GiftsController do
         expect(response).not_to be_success
       end
 
-      it do
-        expect do
-          post :create, params: parameters
-        end.to change { cookies[:admin_key] }.to(nil)
+      it 'Redirects a non authorized request' do
+        post :create, params: parameters
+        expect(response).to be_a_redirect
       end
 
       context 'but user has admin key on its cookies' do
@@ -42,6 +40,11 @@ describe Admin::Marriage::GiftsController do
         it do
           post :create, params: parameters
           expect(response).to be_success
+        end
+
+        it 'Redirects a non authorized request' do
+          post :create, params: parameters
+          expect(response).not_to be_a_redirect
         end
       end
     end
