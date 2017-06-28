@@ -10,7 +10,7 @@ describe Marriage::GuestsController do
     let(:expected) { [ { id: 1, name:  'Mr. Test' } ].map(&:stringify_keys) }
 
     it 'returns the jsons of the found guests' do
-      get :search, parameters
+      get :search, params: parameters
       expect(response_json).to eq(expected)
     end
 
@@ -24,7 +24,7 @@ describe Marriage::GuestsController do
       end
 
       it 'returns only from the current marriage' do
-        get :search, parameters
+        get :search, params: parameters
         expect(response_json.length).to eq(1)
       end
     end
@@ -33,7 +33,7 @@ describe Marriage::GuestsController do
       let(:parameters_key) { 'partial_search' }
 
       it 'returns all matched guests' do
-        get :search, parameters
+        get :search, params: parameters
         expect(response_json.length).to eq(4)
       end
     end
@@ -42,12 +42,12 @@ describe Marriage::GuestsController do
       let(:parameters_key) { 'invite_label_search' }
 
       it 'returns all matched guests' do
-        get :search, parameters
+        get :search, params: parameters
         expect(response_json.length).to eq(1)
       end
 
       it 'returns all matched guests' do
-        get :search, parameters
+        get :search, params: parameters
         expect(response_json.first.keys).to eq(%w(code label))
       end
     end

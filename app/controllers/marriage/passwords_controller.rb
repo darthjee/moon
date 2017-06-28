@@ -9,7 +9,7 @@ class Marriage::PasswordsController < ApplicationController
 
   def create
     mandrill_service.recover_password(user, request.base_url)
-    render head: :ok, nothing: true
+    render head: :ok, body: nil
   end
 
   def edit

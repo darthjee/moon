@@ -19,52 +19,55 @@ describe Admin::Marriage::GiftsController do
 
     context 'when admin key is wrong' do
       before do
-        post :create, parameters
         allow(controller).to receive(:admin_key) { 'abcd' }
       end
 
       it do
-        post :create, parameters
+        post :create, params: parameters
         expect(response).not_to be_success
       end
 
-      it do
-        expect do
-          post :create, parameters
-        end.to change { cookies[:admin_key] }.to(nil)
+      it 'Redirects a non authorized request' do
+        post :create, params: parameters
+        expect(response).to be_a_redirect
       end
 
       context 'but user has admin key on its cookies' do
         before do
-          post :create, parameters.merge('admin_key' => 'abcd')
+          post :create, params: parameters.merge('admin_key' => 'abcd')
         end
 
         it do
-          post :create, parameters
+          post :create, params: parameters
           expect(response).to be_success
+        end
+
+        it 'Redirects a non authorized request' do
+          post :create, params: parameters
+          expect(response).not_to be_a_redirect
         end
       end
     end
 
     it do
-      post :create, parameters
+      post :create, params: parameters
       expect(response).to be_success
     end
 
     it do
       expect do
-        post :create, parameters
+        post :create, params: parameters
       end.to change { cookies.signed[:admin_key] }.to('1234')
     end
 
     it do
       expect do
-        post :create, parameters
+        post :create, params: parameters
       end.to change(Marriage::Gift, :count)
     end
 
     it 'creates a gift for the given parameters' do
-      post :create, parameters
+      post :create, params: parameters
 
       expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
         'image_url' => 'http://image_url.com',
@@ -77,12 +80,12 @@ describe Admin::Marriage::GiftsController do
 
     it do
       expect do
-        post :create, parameters
+        post :create, params: parameters
       end.to change(Marriage::GiftLink, :count)
     end
 
     it 'creates the correct gift link' do
-      post :create, parameters
+      post :create, params: parameters
 
       expect(last_link_attributes).to eq({
         'url' => 'http://gifturl',
@@ -96,7 +99,7 @@ describe Admin::Marriage::GiftsController do
       let(:parameters_key) { 'create_smaller_package' }
 
       it 'save the total price correctly' do
-        post :create, parameters
+        post :create, params: parameters
 
         expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
           'image_url' => 'http://image_url.com',
@@ -111,18 +114,18 @@ describe Admin::Marriage::GiftsController do
 
     context 'when gift already exists' do
       before do
-        post :create, parameters
+        post :create, params: parameters
       end
 
       it do
         expect do
-          post :create, parameters
+          post :create, params: parameters
         end.not_to change(Marriage::GiftLink, :count)
       end
 
       it do
         expect do
-          post :create, parameters
+          post :create, params: parameters
         end.not_to change(Marriage::Gift, :count)
       end
 
@@ -131,19 +134,19 @@ describe Admin::Marriage::GiftsController do
 
         it do
           expect do
-            post :create, new_request_parameters
+            post :create, params: new_request_parameters
           end.to change(Marriage::GiftLink, :count)
         end
 
         it do
           expect do
-            post :create, new_request_parameters
+            post :create, params: new_request_parameters
           end.not_to change(Marriage::Gift, :count)
         end
 
         it 'updates min and max price for the gift' do
 
-          post :create, new_request_parameters
+          post :create, params: new_request_parameters
 
           expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
             'image_url' => 'http://image_url.com',

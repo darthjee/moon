@@ -1,0 +1,52 @@
+version: '2'
+services:
+  moon_postgres:
+    image: postgres:9.5
+    container_name: moon_postgres
+    environment:
+      POSTGRES_USER: moon
+      POSTGRES_PASSWORD: moon
+    ports:
+      - :5432:5432
+  #################### Base  ####################
+
+  base: &base
+    build: .
+    env_file: .env
+    links:
+      - moon_postgres:postgres
+    volumes:
+      - .:/home/app/moon
+      - moon_gems_2_4_0:/usr/local/bundle
+
+  #################### CONTAINERS ####################
+
+  moon_app:
+    <<: *base
+    container_name: moon_app
+    command: /bin/bash bin/server.sh
+    ports:
+      - :3000:3000
+    environment:
+      - RAILS_ENV=development
+
+  moon_tests:
+    <<: *base
+    container_name: moon_tests
+    command: /bin/bash bin/tests.sh
+    environment:
+      - RAILS_ENV=test
+
+  moon_root:
+    <<: *base
+    user: root
+    container_name: moon_root
+    command: /bin/bash
+
+networks:
+  default:
+    external:
+      name: moon
+
+volumes:
+  moon_gems_2_4_0:

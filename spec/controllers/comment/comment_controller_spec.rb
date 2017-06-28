@@ -13,18 +13,18 @@ describe Comment::CommentsController do
       let(:user) { users(:first) }
       it 'updates users name' do
         expect do
-          post :create, parameters
+          post :create, params: parameters
         end.to change { User.find(user.id).name }
       end
 
       it 'creates a new comment' do
         expect do
-          post :create, parameters
+          post :create, params: parameters
         end.to change { Comment::Thread.find(thread.id).comments.count }
       end
 
       it 'associates user with comment' do
-        post :create, parameters
+        post :create, params: parameters
         expect(thread.comments.unscoped.order(id: :asc).last.user).to eq(user)
       end
     end
@@ -34,13 +34,13 @@ describe Comment::CommentsController do
 
       it 'creates a new user' do
         expect do
-          post :create, parameters
+          post :create, params: parameters
         end.to change(User, :count)
       end
 
       it 'creates a new comment' do
         expect do
-          post :create, parameters
+          post :create, params: parameters
         end.to change { Comment::Thread.find(thread.id).comments.count }
       end
     end
@@ -50,25 +50,25 @@ describe Comment::CommentsController do
 
       it 'does not create a new user' do
         expect do
-          post :create, parameters
+          post :create, params: parameters
         end.not_to change(User, :count)
       end
 
       it 'does not create a new comment' do
         expect do
-          post :create, parameters
+          post :create, params: parameters
         end.not_to change(Comment::Comment, :count)
       end
 
        it 'returns error' do
-         patch :create, parameters
+         patch :create, params: parameters
          expect(response_json).to have_key('errors')
          expect(response_json['errors']).to have_key('user')
          expect(response_json['errors']['user']).to have_key('email')
        end
 
        it do
-         patch :create, parameters
+         patch :create, params: parameters
          expect(response).not_to be_success
        end
     end
