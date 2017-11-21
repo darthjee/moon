@@ -11,7 +11,7 @@ describe Marriage::AlbumsController do
     let(:albums_json) { albums.as_json.map(&:stringify_keys) }
 
     it 'returns all the albums for the given marriage' do
-      get :index, parameters
+      get :index, params: parameters
       expect(response_json).to eq({ 'page' => 1, 'pages' => 1, 'albums' => albums_json })
     end
 
@@ -26,7 +26,7 @@ describe Marriage::AlbumsController do
       end
 
       it 'returns all the albums for the given marriage' do
-        get :index, parameters
+        get :index, params: parameters
         expect(response_json).to eq({ 'page' => 1, 'pages' => 1, 'albums' => albums_json })
       end
     end
