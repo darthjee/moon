@@ -4,7 +4,7 @@
     "/var/run/mysql5/mysqld.sock",
     "/tmp/mysql.sock"
   ].detect { |f| f && File.exist?(f) }
-  port = 5432
+  port = ENV["MOON_POSTGRES_PORT"]
 %>
 
 development: &development
