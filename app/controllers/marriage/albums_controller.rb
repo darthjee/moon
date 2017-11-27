@@ -13,7 +13,23 @@ module Marriage
     end
 
     def albums
+      album_id ? sub_albums : top_album
+    end
+
+    def sub_albums
+      album.albums
+    end
+
+    def top_album
       marriage.albums.top_album
+    end
+
+    def album
+      @album ||= Album.find(album_id)
+    end
+
+    def album_id
+      params[:album_id]
     end
   end
 end

@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     end
 
     resources :albums, path: '/album/', only: [:index], concerns: :paginated, defaults: { format: :html } do
+      resources :albums, path: '/albums/', only: [:index], concerns: :paginated
       resources :pictures, path: '/fotos', only: [:index], concerns: :paginated
     end
 

@@ -25,9 +25,22 @@ describe Marriage::AlbumsController do
         end
       end
 
-      it 'returns all the albums for the given marriage' do
+      it 'returns all the top albuns' do
         get :index, params: parameters
         expect(response_json).to eq({ 'page' => 1, 'pages' => 1, 'albums' => albums_json })
+      end
+
+      context 'when requesting the content of the album' do
+        before do
+          parameters.merge!(album_id: album.id)
+        end
+        let(:subalbuns) { album.albums }
+        let(:albums_json) { subalbuns.as_json.map(&:stringify_keys) }
+
+        it 'returns all the sub albums' do
+          get :index, params: parameters
+          expect(response_json).to eq({ 'page' => 1, 'pages' => 1, 'albums' => albums_json })
+      end
       end
     end
   end
