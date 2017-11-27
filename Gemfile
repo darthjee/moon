@@ -38,6 +38,8 @@ gem 'recursive-open-struct'
 gem 'mandrill-api'
 
 group :development, :test do
+  gem 'jasmine'
+  gem 'jasmine-core'
   gem 'factory_girl', '~> 4.0'
   gem 'rspec-rails'
   gem 'pry-rails'

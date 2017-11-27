@@ -73,6 +73,12 @@ GEM
       activesupport (>= 4.2.0)
     hashdiff (0.3.4)
     i18n (0.8.4)
+    jasmine (2.8.0)
+      jasmine-core (>= 2.8.0, < 3.0.0)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+    jasmine-core (2.8.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -101,6 +107,7 @@ GEM
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     pg (0.21.0)
+    phantomjs (2.1.1.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -228,6 +235,8 @@ DEPENDENCIES
   concern_builder
   darthjee-active_ext
   factory_girl (~> 4.0)
+  jasmine
+  jasmine-core
   jbuilder (~> 2.0)
   jquery-rails
   mandrill-api
@@ -257,4 +266,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.15.1
+   1.16.0
