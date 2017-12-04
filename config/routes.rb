@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  concern :paginated do
+    get '/pagina/:page' => :index, on: :collection, as: :paginated
+  end
+
   namespace :marriage, path: '/' do
     get '/' => 'marriage#show', as: :home
 
@@ -39,9 +43,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :gifts, path: '/presentes', only: [:index, :show], defaults: { format: :html } do
-      get '/pagina/:page' => :index, on: :collection, as: :paginated
-
+    resources :gifts, path: '/presentes', only: [:index, :show], concerns: :paginated, defaults: { format: :html } do
       resources :gift_links, path: '/descricao', only: [:show]
     end
 
@@ -54,12 +56,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :albums, path: '/album/', only: [:index], defaults: { format: :html } do
-      get '/pagina/:page' => :index, on: :collection, as: :paginated
-
-      resources :pictures, path: '/fotos', only: [:index] do
-        get '/pagina/:page' => :index, on: :collection, as: :paginated
-      end
+    resources :albums, path: '/album/', only: [:index], concerns: :paginated, defaults: { format: :html } do
+      resources :albums, path: '/albums/', only: [:index], concerns: :paginated
+      resources :pictures, path: '/fotos', only: [:index], concerns: :paginated
     end
 
     resources :events, path: '/eventos/', only: [:index], defaults: { format: :json } do
