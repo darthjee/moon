@@ -1,4 +1,4 @@
-class MigrateEventLocation < ActiveRecord::Migration
+class MigrateEventLocation < ActiveRecord::Migration[4.2]
   def up
     rename_column :marriage_events, :location, :location_name
     add_column :marriage_events, :location_id, :integer

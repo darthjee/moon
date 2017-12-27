@@ -1,4 +1,4 @@
-class CreateMandrillEmailSettings < ActiveRecord::Migration
+class CreateMandrillEmailSettings < ActiveRecord::Migration[4.2]
   def change
     create_table :mandrill_email_settings do |t|
       t.string :mandrill_email_settings

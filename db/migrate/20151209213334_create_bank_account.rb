@@ -1,4 +1,4 @@
-class CreateBankAccount < ActiveRecord::Migration
+class CreateBankAccount < ActiveRecord::Migration[4.2]
   def change
     create_table :bank_accounts do |t|
       t.integer :bank_id

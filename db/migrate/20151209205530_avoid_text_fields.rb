@@ -1,4 +1,4 @@
-class AvoidTextFields < ActiveRecord::Migration
+class AvoidTextFields < ActiveRecord::Migration[4.2]
   def up
     change_column :marriage_guests, :color, :string, limit: 7
     change_column :marriage_guests, :role, :string, limit: 20

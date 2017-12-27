@@ -1,4 +1,4 @@
-class CreateCommentThread < ActiveRecord::Migration
+class CreateCommentThread < ActiveRecord::Migration[4.2]
   def change
     create_table :comment_threads do |t|
       t.integer :marriage_id

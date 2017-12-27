@@ -1,4 +1,4 @@
-class AddBestManAndMaidToInvite < ActiveRecord::Migration
+class AddBestManAndMaidToInvite < ActiveRecord::Migration[4.2]
   def change
     add_column :marriage_invites, :invite_honor, :boolean
     add_column :marriage_invites, :authentication_token, :string, limit: 16

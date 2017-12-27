@@ -1,4 +1,4 @@
-class CreateMarriageStore < ActiveRecord::Migration
+class CreateMarriageStore < ActiveRecord::Migration[4.2]
   def change
     create_table :marriage_stores do |t|
       t.string :name

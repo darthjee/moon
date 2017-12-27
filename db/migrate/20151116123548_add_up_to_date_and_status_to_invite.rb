@@ -1,4 +1,4 @@
-class AddUpToDateAndStatusToInvite < ActiveRecord::Migration
+class AddUpToDateAndStatusToInvite < ActiveRecord::Migration[4.2]
   def up
     add_column :marriage_invites, :status, :string
     add_column :marriage_invites, :up_to_date, :boolean

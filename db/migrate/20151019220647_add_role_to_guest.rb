@@ -1,4 +1,4 @@
-class AddRoleToGuest < ActiveRecord::Migration
+class AddRoleToGuest < ActiveRecord::Migration[4.2]
   def up
     add_column :marriage_guests, :role, :text
     %w(best_man maid_honor).each do |role|

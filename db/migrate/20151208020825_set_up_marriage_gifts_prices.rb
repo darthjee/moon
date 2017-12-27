@@ -1,4 +1,4 @@
-class SetUpMarriageGiftsPrices < ActiveRecord::Migration
+class SetUpMarriageGiftsPrices < ActiveRecord::Migration[4.2]
   def up
     remove_column :marriage_gifts, :price
     add_column :marriage_gifts, :min_price, :float, null: false, default: 0

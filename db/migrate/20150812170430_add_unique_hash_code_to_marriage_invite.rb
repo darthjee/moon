@@ -1,4 +1,4 @@
-class AddUniqueHashCodeToMarriageInvite < ActiveRecord::Migration
+class AddUniqueHashCodeToMarriageInvite < ActiveRecord::Migration[4.2]
   def up
     add_column :marriage_invites, :code, :string, limit: 10
     add_index :marriage_invites, [:marriage_id, :code]

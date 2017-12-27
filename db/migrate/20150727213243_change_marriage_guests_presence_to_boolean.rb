@@ -1,4 +1,4 @@
-class ChangeMarriageGuestsPresenceToBoolean < ActiveRecord::Migration
+class ChangeMarriageGuestsPresenceToBoolean < ActiveRecord::Migration[4.2]
   def up
     rename_column :marriage_guests, :presence, :old_presence
     add_column :marriage_guests, :presence, :boolean

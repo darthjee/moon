@@ -1,4 +1,4 @@
-class AddEventAddress < ActiveRecord::Migration
+class AddEventAddress < ActiveRecord::Migration[4.2]
   def change
     add_column :marriage_events, :address, :string
   end

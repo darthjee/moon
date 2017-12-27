@@ -1,4 +1,4 @@
-class CreateMarriageAlbums < ActiveRecord::Migration
+class CreateMarriageAlbums < ActiveRecord::Migration[4.2]
   def change
     create_table :marriage_albums do |t|
       t.integer :marriage_id

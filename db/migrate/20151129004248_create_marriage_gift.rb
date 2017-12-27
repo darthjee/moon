@@ -1,4 +1,4 @@
-class CreateMarriageGift < ActiveRecord::Migration
+class CreateMarriageGift < ActiveRecord::Migration[4.2]
   def change
     create_table :marriage_gifts do |t|
       t.string :name

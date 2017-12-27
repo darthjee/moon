@@ -1,4 +1,4 @@
-class AddPasswordToUser < ActiveRecord::Migration
+class AddPasswordToUser < ActiveRecord::Migration[4.2]
   def up
     add_column :users, :password, :string, limit: 64
 

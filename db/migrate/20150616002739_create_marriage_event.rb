@@ -1,4 +1,4 @@
-class CreateMarriageEvent < ActiveRecord::Migration
+class CreateMarriageEvent < ActiveRecord::Migration[4.2]
   def change
     create_table :marriage_events do |t|
       t.time :time

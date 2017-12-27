@@ -1,4 +1,4 @@
-class AddAlbumIdToMarriageAlbum < ActiveRecord::Migration
+class AddAlbumIdToMarriageAlbum < ActiveRecord::Migration[4.2]
   def change
     add_column :marriage_albums, :album_id, :integer
   end

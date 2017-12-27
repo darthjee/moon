@@ -1,4 +1,4 @@
-class CreateMarriageLocations < ActiveRecord::Migration
+class CreateMarriageLocations < ActiveRecord::Migration[4.2]
   def change
     create_table :marriage_locations do |t|
       t.string :name

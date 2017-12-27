@@ -1,4 +1,4 @@
-class AddMissingAttributesToMarriageGifts < ActiveRecord::Migration
+class AddMissingAttributesToMarriageGifts < ActiveRecord::Migration[4.2]
   def change
     add_column :marriage_gifts, :package, :integer, default: 1, null: false
     add_column :marriage_gifts, :bought, :integer, default: 0, null: false
