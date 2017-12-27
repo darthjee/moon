@@ -36,6 +36,7 @@ gem 'tarquinn', '0.1.0'
 gem 'mini_magick'
 gem 'recursive-open-struct'
 gem 'mandrill-api'
+gem 'sentry-raven'
 
 group :development, :test do
   gem 'factory_girl', '~> 4.0'

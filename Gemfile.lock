@@ -69,6 +69,8 @@ GEM
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
+    faraday (0.13.1)
+      multipart-post (>= 1.2, < 3)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashdiff (0.3.4)
@@ -96,6 +98,7 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.2)
     multi_json (1.12.1)
+    multipart-post (2.0.0)
     newrelic_rpm (4.2.0.334)
     nio4r (2.1.0)
     nokogiri (1.8.0)
@@ -183,6 +186,8 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sentry-raven (2.7.1)
+      faraday (>= 0.7.6, < 1.0)
     simplecov (0.14.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -245,6 +250,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sentry-raven
   simplecov
   spring
   tarquinn (= 0.1.0)
@@ -257,4 +263,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.15.1
+   1.15.3
