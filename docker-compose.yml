@@ -32,6 +32,9 @@ services:
     environment:
       - RAILS_ENV=development
       - MOON_POSTGRES_PORT=5432
+      - MOON_SENTRY_KEY
+      - MOON_SENTRY_SECRET
+      - MOON_SENTRY_ID
 
   moon_tests:
     <<: *base
