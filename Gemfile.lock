@@ -151,6 +151,8 @@ GEM
     rake (12.0.0)
     rdoc (4.3.0)
     recursive-open-struct (1.0.5)
+    rollbar (2.15.5)
+      multi_json
     rqrcode (0.10.1)
       chunky_png (~> 1.0)
     rqrcode_png (0.1.5)
@@ -245,6 +247,7 @@ DEPENDENCIES
   rails-controller-testing
   rails_12factor
   recursive-open-struct
+  rollbar
   rqrcode_png
   rspec-collection_matchers
   rspec-rails
@@ -263,4 +266,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.15.3
+   1.16.0

@@ -37,6 +37,7 @@ gem 'mini_magick'
 gem 'recursive-open-struct'
 gem 'mandrill-api'
 gem 'sentry-raven'
+gem 'rollbar'
 
 group :development, :test do
   gem 'factory_girl', '~> 4.0'
