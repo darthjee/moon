@@ -3,11 +3,13 @@ services:
   moon_postgres:
     image: postgres:9.5
     container_name: moon_postgres
+    env_file: .env
     environment:
       POSTGRES_USER: moon
       POSTGRES_PASSWORD: moon
     ports:
-      - :5432:5432
+      - localhost:$MOON_POSTGRES_PORT:5432
+
   #################### Base  ####################
 
   base: &base
@@ -29,6 +31,7 @@ services:
       - :3000:3000
     environment:
       - RAILS_ENV=development
+      - MOON_POSTGRES_PORT=5432
 
   moon_tests:
     <<: *base
