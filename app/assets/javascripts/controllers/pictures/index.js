@@ -24,11 +24,11 @@
       ]);
 
   fn._loadPictures = function() {
-    this.service.index(this.page, this.album_id, this.params).success(this._parsePictures);
+    this.service.index(this.page, this.album_id, this.params).then(this._parsePictures);
   };
 
   fn._loadAlbums = function() {
-    this.albumsService.all().success(this._parseAlbums);
+    this.albumsService.all().then(this._parseAlbums);
   };
 
   fn._parseAlbums = function(data) {
@@ -39,7 +39,7 @@
     var id = picture.id,
         promisse = this.service.update(this.album_id, id, picture);
 
-    promisse.success(this._loadPictures);
+    promisse.then(this._loadPictures);
   };
 
   fn.cancel = function(picture) {

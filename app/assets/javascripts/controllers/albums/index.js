@@ -21,7 +21,7 @@
       ]);
 
   fn._loadAlbums = function() {
-    this.service.index(this.page, this.album_id, this.params).success(this._parseAlbums);
+    this.service.index(this.page, this.album_id, this.params).then(this._parseAlbums);
   };
 
   fn._parseAlbums = function(data) {

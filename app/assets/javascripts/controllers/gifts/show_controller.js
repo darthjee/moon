@@ -21,7 +21,7 @@
   fn.load = function() {
     this.gift_id = this.params.id;
     var promisse = this.service.loadGift(this.gift_id);
-    promisse.success(this._parseGift);
+    promisse.then(this._parseGift);
   };
 
   fn._parseGift = function(data) {

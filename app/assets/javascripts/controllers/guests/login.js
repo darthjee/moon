@@ -18,7 +18,7 @@
     this.error = null;
     var promisse = this.service.login(this.login);
 
-    promisse.success(this._redirect);
+    promisse.then(this._redirect);
     promisse.error(this._fail);
   };
 

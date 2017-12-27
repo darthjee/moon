@@ -17,7 +17,7 @@
     this.error = null;
     this.success = false;
 
-    promisse.success(this._emailSent);
+    promisse.then(this._emailSent);
     promisse.error(this._emailNotSent);
   };
 

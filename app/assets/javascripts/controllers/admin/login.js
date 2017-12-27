@@ -16,14 +16,14 @@
   fn._load = function() {
     var promisse = this.service.check();
 
-    promisse.success(this._markLogged);
+    promisse.then(this._markLogged);
     promisse.error(this._markNotLogged);
   };
 
   fn.performLogin = function() {
     var promisse = this.service.login(this.login.password);
 
-    promisse.success(this._markLogged);
+    promisse.then(this._markLogged);
     promisse.error(this._markNotLogged);
   };
 

@@ -20,7 +20,7 @@
     promisse.error(function () {
       that.location.url('/login?redirect_to=/padrinhos/informativo');
     });
-    promisse.success(function() {
+    promisse.then(function() {
       that.loadData();
     });
   };
@@ -34,7 +34,7 @@
   };
 
   fn.loadData = function() {
-    this.service.getFromSession().success(this._parseInvite);
+    this.service.getFromSession().then(this._parseInvite);
   };
 
   fn._parseInvite = function(data) {
@@ -59,7 +59,7 @@
           hasPeople: !people.empty()
         };
 
-    this.service.listFromRole(role).success(this._parseAllFromRole(roleData));
+    this.service.listFromRole(role).then(this._parseAllFromRole(roleData));
     return roleData;
   };
 

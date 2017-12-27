@@ -12,7 +12,7 @@
       app = angular.module('events/maps_controller', ['events/service']);
 
   fn._loadEvents = function() {
-    this.service.index().success(this._parseEvents);
+    this.service.index().then(this._parseEvents);
   };
 
   fn._parseEvents = function(data) {
