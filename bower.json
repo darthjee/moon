@@ -9,6 +9,7 @@
     "angular-route": "latest",
     "angular-bootstrap-colorpicker": "latest",
     "querystring": "latest",
-    "md5": "latest"
+    "md5": "latest",
+    "rollbar": "latest"
   }
 }
