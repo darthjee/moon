@@ -1,5 +1,5 @@
 {
-  "name": "dsl-generated dependencies",
+  "name": "moon",
   "dependencies": {
     "angular": "latest",
     "angular-route": "latest",
