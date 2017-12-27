@@ -35,6 +35,8 @@ services:
       - MOON_SENTRY_KEY
       - MOON_SENTRY_SECRET
       - MOON_SENTRY_ID
+      - ROLLBAR_ACCESS_TOKEN
+      - ROLLBAR_CLIENT_TOKEN
 
   moon_tests:
     <<: *base
