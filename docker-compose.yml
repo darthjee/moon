@@ -38,6 +38,7 @@ services:
       - MOON_NEWRELIC_LICENSE
       - ROLLBAR_ACCESS_TOKEN
       - ROLLBAR_CLIENT_TOKEN
+      - MOON_NEWRELIC_APP
 
   moon_tests:
     <<: *base
