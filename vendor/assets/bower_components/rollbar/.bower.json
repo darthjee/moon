@@ -1,0 +1,38 @@
+{
+  "name": "rollbar",
+  "dependencies": {},
+  "main": [
+    "dist/rollbar.umd.js"
+  ],
+  "ignore": [
+    "dist/*.nojson*",
+    "dist/*.named-amd*",
+    "docs",
+    "src",
+    "vendor",
+    "examples",
+    "release",
+    "test",
+    "karma.conf.js",
+    ".gitignore",
+    ".gitmodules",
+    ".travis.yml",
+    "Gruntfile.js",
+    "Makefile",
+    "travis.yml",
+    "package.json",
+    "webpack.config.js",
+    "browserstack*"
+  ],
+  "homepage": "https://github.com/rollbar/rollbar.js",
+  "version": "2.3.3",
+  "_release": "2.3.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.3.3",
+    "commit": "ab287208e26870c842f4422fa6a16f019b214a13"
+  },
+  "_source": "https://github.com/rollbar/rollbar.js.git",
+  "_target": "2.3.3",
+  "_originalSource": "rollbar"
+}
