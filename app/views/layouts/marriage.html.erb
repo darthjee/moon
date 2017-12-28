@@ -8,6 +8,8 @@
     <title><%= marriage.display_name %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= render 'layouts/raven' %>
+
     <%= csrf_meta_tags %>
   </head>
   <body ng-app="moon">

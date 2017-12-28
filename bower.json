@@ -10,6 +10,7 @@
     "angular-bootstrap-colorpicker": "3.0.22",
     "querystring": "3.46.1",
     "md5": "0.3.0",
-    "rollbar": "2.3.3"
+    "rollbar": "2.3.3",
+    "angular-ravenjs":"1.0"
   }
 }
