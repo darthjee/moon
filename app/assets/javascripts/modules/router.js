@@ -1,6 +1,8 @@
 (function(_, angular, undefined) {
 
   function RouterBuilder($routeProvider) {
+    x = {};
+    x.a();
     new Router($routeProvider).bindRoutes();
   }
 
