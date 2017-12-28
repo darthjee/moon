@@ -25,7 +25,7 @@
 
   fn.loadThisComments = function() {
     var promisse = this.service.loadComments(this.thread_id);
-    promisse.then(this._parseComments);
+    promisse.success(this._parseComments);
   };
 
   fn._parseComments = function(comments) {
@@ -45,7 +45,7 @@
     this.errors = {};
 
     var promisse = this.service.create(this.thread_id, this.comment);
-    promisse.then(this._addComment);
+    promisse.success(this._addComment);
     promisse.error(this._parseError);
   };
 

@@ -22,7 +22,7 @@
   fn._checkAdmin = function() {
     var promisse = this.adminService.check();
 
-    promisse.then(this.loginAdmin);
+    promisse.success(this.loginAdmin);
   };
 
   fn.loginAdmin = function() {

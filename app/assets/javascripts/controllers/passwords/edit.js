@@ -14,7 +14,7 @@
       ]);
 
   fn.load = function() {
-    this.loginService.getUser().then(this._parseUser);
+    this.loginService.getUser().success(this._parseUser);
   };
 
   fn.update = function() {
@@ -34,7 +34,7 @@
     this.error = null;
     promisse = this.service.update(this.user.password);
 
-    promisse.then(this._success);
+    promisse.success(this._success);
     promisse.error(this._fail);
   };
 

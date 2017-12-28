@@ -13,7 +13,7 @@
   fn.search = function(query) {
     var controller = this;
 
-    this.service.search(query.term).then(function(data) {
+    this.service.search(query.term).success(function(data) {
       var results = controller._parseGuests(data);
       query.callback({ results: results });
     });

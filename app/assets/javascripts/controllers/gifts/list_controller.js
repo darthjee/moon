@@ -20,7 +20,7 @@
       ]);
 
   fn.loadGifts = function() {
-    this.service.loadGifts(this.page, this.params).then(this._parseGifts);
+    this.service.loadGifts(this.page, this.params).success(this._parseGifts);
   };
 
   fn.orderBy = function(param) {

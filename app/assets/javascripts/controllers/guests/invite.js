@@ -41,7 +41,7 @@
 
     promisse = this.service.update(id, invite, this.removed);
     promisse.error(this._showErrors);
-    promisse.then(this._updateSuccess);
+    promisse.success(this._updateSuccess);
   };
 
   fn._showErrors = function(data) {
@@ -67,11 +67,11 @@
   };
 
   fn._fetchById = function(id) {
-    this.service.getByGuestId(id).then(this._parseResponse);
+    this.service.getByGuestId(id).success(this._parseResponse);
   };
 
   fn._fetchByCode = function(code) {
-    this.service.getByCode(code).then(this._parseResponse);
+    this.service.getByCode(code).success(this._parseResponse);
   };
 
   fn.updateGuest = function(index) {
