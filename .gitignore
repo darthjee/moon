@@ -5,14 +5,12 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
-
 # Ignore the default SQLite database.
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
-/coverage
-/vendor/assets/bower_components/
-/pictures
+/source/log/*.log
+/source/tmp
+/source/coverage
+/source/vendor/assets/bower_components/
+/source/pictures
 /.env.secret

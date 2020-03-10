@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   moon_postgres:
     image: postgres:9.5
@@ -9,41 +9,53 @@ services:
       POSTGRES_PASSWORD: moon
     ports:
       - 127.0.0.1:$MOON_POSTGRES_PORT:5432
-
   #################### Base  ####################
 
   base: &base
-    build: .
-    env_file: .env
+    image: darthjee/moon
+    volumes:
+      - ./source:/home/app/app
     links:
       - moon_postgres:postgres
-    volumes:
-      - .:/home/app/app
-      - moon_gems_2_4_0:/usr/local/bundle
+    env_file: .env
 
+
+  base_build:
+    <<: *base
+    build:
+      context: .
+      dockerfile: Dockerfile.moon
+    command: echo done
+
+  production_base_build:
+    image: darthjee/production_moon
+    env_file: .env
+    environment:
+      RAILS_ENV: production
+    build:
+      context: .
+      dockerfile: Dockerfile.production_moon
+    links:
+      - moon_postgres:postgres
+    command: echo done
   #################### CONTAINERS ####################
 
   moon_app:
     <<: *base
     container_name: moon_app
     command: /bin/bash bin/server.sh
+    depends_on: [base_build]
     ports:
       - 127.0.0.1:3000:3000
     environment:
       - RAILS_ENV=development
-      - MOON_POSTGRES_PORT=5432
-      - MOON_SENTRY_KEY
-      - MOON_SENTRY_SECRET
-      - MOON_SENTRY_ID
-      - MOON_NEWRELIC_LICENSE
-      - ROLLBAR_ACCESS_TOKEN
-      - ROLLBAR_CLIENT_TOKEN
-      - MOON_NEWRELIC_APP
+      - DR_MARIO_MYSQL_PORT=3306
 
   moon_tests:
     <<: *base
     container_name: moon_tests
     command: /bin/bash bin/tests.sh
+    depends_on: [base_build]
     environment:
       - RAILS_ENV=test
 
@@ -52,11 +64,14 @@ services:
     user: root
     container_name: moon_root
     command: /bin/bash
+    depends_on: [base_build]
 
-networks:
-  default:
-    external:
-      name: moon
-
-volumes:
-  moon_gems_2_4_0:
+  moon_production:
+    depends_on: [production_base_build, moon_postgres]
+    container_name: moon_production
+    image: darthjee/production_moon
+    links:
+      - moon_postgres:postgres
+    env_file: .env
+    environment:
+      RAILS_ENV: production
