@@ -18,7 +18,7 @@ services:
     links:
       - moon_postgres:postgres
     volumes:
-      - .:/home/app/moon
+      - .:/home/app/app
       - moon_gems_2_4_0:/usr/local/bundle
 
   #################### CONTAINERS ####################
