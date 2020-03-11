@@ -37,9 +37,6 @@ jobs:
           name: Bower Install
           command: bundle exec rake bower:install
       - run:
-          name: Rubocop
-          command: rubocop
-      - run:
           name: Wait for database
           command: scripts/wait_for_db.sh
       - run:
