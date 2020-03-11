@@ -1,0 +1,47 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: darthjee/circleci_moon-base:0.1.0
+        environment:
+          MOON_POSTGRES_HOST: postgres
+          MOON_POSTGRES_PORT: 5432
+          MOON_POSTGRES_USER: moon
+          MOON_POSTGRES_NAME: moon
+          MOON_POSTGRES_PASSWORD: moon
+          MOON_SENTRY_KEY: key
+          MOON_SENTRY_SECRET: secret
+          MOON_SENTRY_ID: id
+          MOON_NEWRELIC_LICENSE: license
+          MOON_NEWRELIC_APP: Moon Dev
+          ROLLBAR_ACCESS_TOKEN: token
+          ROLLBAR_CLIENT_TOKEN: token
+      - image: circleci/postgres:9.5
+        name: postgres
+        environment:
+          POSTGRES_USER: moon
+          POSTGRES_PASSWORD: moon
+          POSTGRES_DB: moon_test
+    steps:
+      - checkout
+      - run:
+          name: Set folder
+          command: cp source/* source/.??* ./ -r; rm source -rf
+      - run:
+          name: Prepare Coverage Test Report
+          command: cc-test-reporter before-build
+      - run:
+          name: Bundle Install
+          command: bundle install
+      - run:
+          name: Bower Install
+          command: bundle exec rake bower:install
+      - run:
+          name: Migrate
+          command: RAILS_ENV=test bundle exec rake db:schema:load
+      - run:
+          name: RSpec
+          command: bundle exec rspec
+      - run:
+          name: Coverage Test Report
+          command: cc-test-reporter after-build --exit-code $?
