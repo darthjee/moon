@@ -1,6 +1,22 @@
 version: 2
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /.*/
+      - build-and-release:
+          requires: [test]
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only:
+                - master
 jobs:
-  build:
+  test:
     docker:
       - image: darthjee/circleci_moon-base:0.1.0
         environment:
@@ -45,3 +61,31 @@ jobs:
       - run:
           name: Coverage Test Report
           command: cc-test-reporter after-build --exit-code $?
+  build-and-release:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Make Build
+          command: scripts/release.sh build
+      - run:
+          name: Install Heroku
+          command: scripts/release.sh install
+      - run:
+          name: set heroku app
+          command: scripts/release.sh set-app
+      - run:
+          name: Heroku docker login
+          command: scripts/release.sh signin
+      - run:
+          name: Build heroku image
+          command: scripts/release.sh build-heroku
+      - run:
+          name: Release
+          command: scripts/release.sh release
+      - run:
+          name: Migrate
+          command: scripts/release.sh migrate
+      - run:
+          name: Populate fields
+          command: scripts/release.sh populate
