@@ -96,9 +96,6 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle install
-      - run:
-          name: Rubocop
-          command: rubocop
   build-and-release:
     machine: true
     steps:
