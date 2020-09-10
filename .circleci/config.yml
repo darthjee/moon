@@ -20,7 +20,7 @@ workflows:
               only:
                 - master
 jobs:
-  build:
+  test:
     docker:
       - image: darthjee/circleci_moon-base:0.1.0
         environment:
