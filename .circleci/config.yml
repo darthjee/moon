@@ -20,11 +20,11 @@ jobs:
     docker:
       - image: darthjee/circleci_moon-base:0.1.0
         environment:
-          MOON_POSTGRES_HOST: postgres
-          MOON_POSTGRES_PORT: 5432
-          MOON_POSTGRES_USER: moon
-          MOON_POSTGRES_NAME: moon
-          MOON_POSTGRES_PASSWORD: moon
+          MOON_MYSQL_HOST: mysql
+          MOON_MYSQL_PORT: 3306
+          MOON_MYSQL_USER: moon
+          MOON_MYSQL_NAME: moon
+          MOON_MYSQL_PASSWORD: moon
           MOON_SENTRY_KEY: key
           MOON_SENTRY_SECRET: secret
           MOON_SENTRY_ID: id
@@ -32,12 +32,12 @@ jobs:
           MOON_NEWRELIC_APP: Moon Dev
           ROLLBAR_ACCESS_TOKEN: token
           ROLLBAR_CLIENT_TOKEN: token
-      - image: circleci/postgres:9.5
-        name: postgres
+      - image: circleci/mysql:5.7
+        name: mysql
         environment:
-          POSTGRES_USER: moon
-          POSTGRES_PASSWORD: moon
-          POSTGRES_DB: moon_test
+          MYSQL_DATABASE: moon_test
+          MYSQL_USER: moon
+          MYSQL_PASSWORD: moon
     steps:
       - checkout
       - run:
