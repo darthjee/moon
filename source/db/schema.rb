@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2016_03_26_025100) do
 
-  create_table "bank_accounts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "bank_accounts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "bank_id"
     t.integer "marriage_id"
     t.string "agency"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.string "account_type", limit: 10, default: "savings"
   end
 
-  create_table "bank_banks", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "bank_banks", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
     t.datetime "created_at"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.string "bg_color", limit: 7, default: "#fff"
   end
 
-  create_table "comment_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "comment_comments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "text"
     t.integer "thread_id"
     t.integer "user_id"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.datetime "updated_at"
   end
 
-  create_table "comment_threads", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "comment_threads", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "marriage_id"
     t.string "name"
     t.string "status", limit: 14, default: "active"
@@ -48,21 +48,21 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.datetime "updated_at"
   end
 
-  create_table "mandrill_email_settings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "mandrill_email_settings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "key"
     t.string "template_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "marriage_albums", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "marriage_albums", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "marriage_id"
     t.string "name", limit: 14
     t.string "status", limit: 10, default: "display"
     t.integer "album_id"
   end
 
-  create_table "marriage_events", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "marriage_events", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.time "time"
     t.integer "marriage_id"
     t.string "description"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.integer "location_id"
   end
 
-  create_table "marriage_gift_links", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "marriage_gift_links", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "gift_id"
     t.integer "store_list_id"
     t.string "url"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.string "status", default: "open"
   end
 
-  create_table "marriage_gifts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "marriage_gifts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
     t.string "description"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.integer "thread_id"
   end
 
-  create_table "marriage_guests", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "marriage_guests", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "invite_id"
     t.string "name"
     t.datetime "created_at"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.boolean "active", default: true, null: false
   end
 
-  create_table "marriage_invites", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "marriage_invites", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "marriage_id"
     t.string "label"
     t.integer "invites"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.index ["marriage_id", "code"], name: "index_marriage_invites_on_marriage_id_and_code"
   end
 
-  create_table "marriage_locations", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "marriage_locations", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.text "map_url"
@@ -141,14 +141,14 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.datetime "updated_at"
   end
 
-  create_table "marriage_marriages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "marriage_marriages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.date "date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "display_name"
   end
 
-  create_table "marriage_pictures", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "marriage_pictures", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "album_id"
     t.string "name", limit: 14
     t.string "url"
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.string "status", limit: 10, default: "display"
   end
 
-  create_table "store_lists", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "store_lists", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "store_id"
     t.integer "marriage_id"
     t.string "url"
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.datetime "updated_at"
   end
 
-  create_table "store_stores", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "store_stores", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
     t.string "url"
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
     t.string "bg_color", limit: 7, default: "#fff"
   end
 
-  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "authentication_token"
