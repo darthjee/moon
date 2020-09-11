@@ -2,7 +2,7 @@ class ChangeMarriageGuestsPresenceToBoolean < ActiveRecord::Migration[4.2]
   def up
     rename_column :marriage_guests, :presence, :old_presence
     add_column :marriage_guests, :presence, :boolean
-    Marriage::Guest.all.each do |guest|
+    Marriage::Guest.unscoped.all.each do |guest|
       guest.presence = guest.old_presence?
     end
     remove_column :marriage_guests, :old_presence
@@ -11,7 +11,7 @@ class ChangeMarriageGuestsPresenceToBoolean < ActiveRecord::Migration[4.2]
   def down
     rename_column :marriage_guests, :presence, :old_presence
     add_column :marriage_guests, :presence, :string
-    Marriage::Guest.all.each do |guest|
+    Marriage::Guest.unscoped.all.each do |guest|
       guest.presence = guest.old_presence?
     end
     remove_column :marriage_guests, :old_presence
