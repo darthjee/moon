@@ -9,8 +9,6 @@ services:
       POSTGRES_PASSWORD: moon
     ports:
       - 127.0.0.1:$MOON_POSTGRES_PORT:5432
-    volumes:
-      - ./source:/aux
   moon_mysql:
     image: mysql:5.7
     container_name: moon_mysql
