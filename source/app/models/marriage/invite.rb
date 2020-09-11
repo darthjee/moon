@@ -5,7 +5,7 @@ class Marriage::Invite < ActiveRecord::Base
 
   validates_associated :user
 
-  scope :search_label, proc { |label| where('label ILIKE ?', "%#{label}%") }
+  scope :search_label, proc { |label| where('label LIKE ?', "%#{label}%") }
   scope :created, proc { where(status: :created) }
   default_scope { where.not(status: :cancelled) }
 
