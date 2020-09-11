@@ -3,11 +3,11 @@ class AddUpToDateAndStatusToInvite < ActiveRecord::Migration[4.2]
     add_column :marriage_invites, :status, :string
     add_column :marriage_invites, :up_to_date, :boolean
 
-    Marriage::Invite.update_all(
+    Marriage::Invite.unscoped.update_all(
       status: :created,
       up_to_date: true
     )
-    ids = Marriage::Guest.all.distinct.pluck(:invite_id)
+    ids = Marriage::Guest.unscoped.all.distinct.pluck(:invite_id)
     Marriage::Invite.where(id: ids).update_all(
       status: :confirmed
     )

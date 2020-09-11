@@ -4,7 +4,7 @@ class ChangeMarriageInviteCodeSize < ActiveRecord::Migration[4.2]
 
     change_column :marriage_invites, :code, :string, limit: 4
 
-    Marriage::Invite.all.find_each do |invite|
+    Marriage::Invite.unscoped.all.find_each do |invite|
       invite.start_code(2)
     end
   end
@@ -12,7 +12,7 @@ class ChangeMarriageInviteCodeSize < ActiveRecord::Migration[4.2]
   def down
     change_column :marriage_invites, :code, :string, limit: 10
 
-    Marriage::Invite.all.find_each do |invite|
+    Marriage::Invite.unscoped.all.find_each do |invite|
       invite.code = nil
       invite.start_code(5)
     end

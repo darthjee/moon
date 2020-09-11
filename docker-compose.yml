@@ -9,6 +9,14 @@ services:
       POSTGRES_PASSWORD: moon
     ports:
       - 127.0.0.1:$MOON_POSTGRES_PORT:5432
+  moon_mysql:
+    image: mysql:5.7
+    container_name: moon_mysql
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: moon
+    ports:
+      - 127.0.0.1:$MOON_MYSQL_PORT:3306
   #################### Base  ####################
 
   base: &base
@@ -17,6 +25,7 @@ services:
       - ./source:/home/app/app
     links:
       - moon_postgres:postgres
+      - moon_mysql:mysql
     env_file: .env
 
 
@@ -37,6 +46,7 @@ services:
       dockerfile: Dockerfile.production_moon
     links:
       - moon_postgres:postgres
+      - moon_mysql:mysql
     command: echo done
   #################### CONTAINERS ####################
 
@@ -49,7 +59,7 @@ services:
       - 127.0.0.1:3000:3000
     environment:
       - RAILS_ENV=development
-      - DR_MARIO_MYSQL_PORT=3306
+      - MOON_MYSQL_PORT=3306
 
   moon_tests:
     <<: *base
@@ -72,6 +82,7 @@ services:
     image: darthjee/production_moon
     links:
       - moon_postgres:postgres
+      - moon_mysql:mysql
     env_file: .env
     environment:
       RAILS_ENV: production
