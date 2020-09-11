@@ -19,7 +19,7 @@ class Comment::CommentsController < ApplicationController
     if creator.valid?
       creator.save
     else
-      render json: creation_errors, status: :error
+      render json: creation_errors, status: :unprocessable_entity
     end
   end
 

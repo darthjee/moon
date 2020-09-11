@@ -10,7 +10,7 @@ module Marriage::Invite::Update
     if invite_updater.valid?
       invite_updater.save
     else
-      render json: { errors: invite_errors }, status: :error
+      render json: { errors: invite_errors }, status: :unprocessable_entity
     end
   end
 
