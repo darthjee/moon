@@ -1,39 +1,27 @@
-<%
-  socket = [
-    ENV["BOXEN_MYSQL_SOCKET"],
-    "/var/run/mysql5/mysqld.sock",
-    "/tmp/mysql.sock"
-  ].detect { |f| f && File.exist?(f) }
-  port = 5432
-%>
-
 development: &development
-  adapter: postgresql
+  adapter: mysql2
   encoding: utf8
-  database: <%= ENV["MOON_POSTGRES_NAME"] %>_development
+  database: <%= ENV["MOON_MYSQL_NAME"] %>_development
   pool: 5
-  username: <%= ENV["MOON_POSTGRES_USER"] %>
-  password: <%= ENV["MOON_POSTGRES_PASSWORD"] %>
-  host: <%= ENV["MOON_POSTGRES_HOST"] %>
-<% if socket %>
-  socket: <%= socket %>
-<% else %>
-  port: <%= ENV["MOON_POSTGRES_PORT"] %>
-<% end %>
+  username: <%= ENV["MOON_MYSQL_USER"] %>
+  password: <%= ENV["MOON_MYSQL_PASSWORD"] %>
+  host: <%= ENV["MOON_MYSQL_HOST"] %>
+  port: <%= ENV["MOON_MYSQL_PORT"] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test: &test
   <<: *development
-  database: <%= ENV["MOON_POSTGRES_NAME"] %>_test
+  database: <%= ENV["MOON_MYSQL_NAME"] %>_test
 
 test_readonly:
   <<: *test
 
 production: &production
   <<: *development
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  host: <%= ENV['DB_HOST'] %>
-  database: <%= ENV['DB_DATABASE'] %>
+  username: <%= ENV["MOON_MYSQL_USER"] %>
+  password: <%= ENV["MOON_MYSQL_PASSWORD"] %>
+  host: <%= ENV["MOON_MYSQL_HOST"] %>
+  port: <%= ENV["MOON_MYSQL_PORT"] %>
+  database: <%= ENV["MOON_MYSQL_NAME"] %>
