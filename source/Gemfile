@@ -45,6 +45,7 @@ gem 'tarquinn',     '~> 0.1.0'
 gem 'turbolinks',   '5.2.1'
 
 gem 'darthjee-core_ext', '>= 2.0.0'
+gem 'darthjee-active_ext', '>= 1.3.2'
 gem 'magicka', '~> 0.5.4'
 
 gem 'rqrcode_png'
