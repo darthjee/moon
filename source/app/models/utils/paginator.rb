@@ -79,6 +79,8 @@ class Utils::Paginator
 
   def fetch_per_page
     value = [ params[:per_page], 8 ].compact.first.to_i
-    [ value, list.count, 8 ].find { |n| n > 0 }
+    [ value, list.count, Settings.default_pagination_size ].find do |n|
+      n > 0
+    end
   end
 end
