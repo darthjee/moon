@@ -7,7 +7,7 @@ class Marriage::Album < ActiveRecord::Base
   scope :displayable, proc { where.not(status: :cancelled) }
   scope :from_album, proc { |album_id| where(album_id: album_id) }
   scope :top_album, proc { where(album_id: nil) }
-  default_scope { displayable }
+  default_scope { displayable.order(:order, :id) }
 
   def as_json(*args)
     options = args.extract_options!
