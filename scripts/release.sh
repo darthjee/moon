@@ -15,7 +15,7 @@ if $(isLatestCommit); then
   echo "latest commit";
 else
   echo "Not last commit"
-  exit 0
+  return 0
 fi
 
 ACTION=$1
