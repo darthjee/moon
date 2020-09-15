@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2016_03_26_025100) do
+ActiveRecord::Schema.define(version: 2020_09_15_174620) do
 
   create_table "bank_accounts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "bank_id"
@@ -57,9 +57,10 @@ ActiveRecord::Schema.define(version: 2016_03_26_025100) do
 
   create_table "marriage_albums", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "marriage_id"
-    t.string "name", limit: 14
+    t.string "name", limit: 30
     t.string "status", limit: 10, default: "display"
     t.integer "album_id"
+    t.integer "order", limit: 1, default: 0, null: false
   end
 
   create_table "marriage_events", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
