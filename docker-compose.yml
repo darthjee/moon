@@ -1,14 +1,5 @@
 version: '3'
 services:
-  moon_postgres:
-    image: postgres:11.9
-    container_name: moon_postgres
-    env_file: .env
-    environment:
-      POSTGRES_USER: moon
-      POSTGRES_PASSWORD: moon
-    ports:
-      - 127.0.0.1:$MOON_POSTGRES_PORT:5432
   moon_mysql:
     image: mysql:5.7
     container_name: moon_mysql
@@ -24,7 +15,6 @@ services:
     volumes:
       - ./source:/home/app/app
     links:
-      - moon_postgres:postgres
       - moon_mysql:mysql
     env_file: .env
 
@@ -45,7 +35,6 @@ services:
       context: .
       dockerfile: Dockerfile.production_moon
     links:
-      - moon_postgres:postgres
       - moon_mysql:mysql
     command: echo done
   #################### CONTAINERS ####################
@@ -77,11 +66,10 @@ services:
     depends_on: [base_build]
 
   moon_production:
-    depends_on: [production_base_build, moon_postgres]
+    depends_on: [production_base_build]
     container_name: moon_production
     image: darthjee/production_moon
     links:
-      - moon_postgres:postgres
       - moon_mysql:mysql
     env_file: .env
     environment:
