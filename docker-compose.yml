@@ -26,17 +26,6 @@ services:
       dockerfile: Dockerfile.moon
     command: echo done
 
-  production_base_build:
-    image: darthjee/production_moon
-    env_file: .env
-    environment:
-      RAILS_ENV: production
-    build:
-      context: .
-      dockerfile: Dockerfile.production_moon
-    links:
-      - moon_mysql:mysql
-    command: echo done
   #################### CONTAINERS ####################
 
   moon_app:
@@ -66,11 +55,6 @@ services:
     depends_on: [base_build]
 
   moon_production:
-    depends_on: [production_base_build]
+    env_file: .env.production
     container_name: moon_production
     image: darthjee/production_moon
-    links:
-      - moon_mysql:mysql
-    env_file: .env
-    environment:
-      RAILS_ENV: production
