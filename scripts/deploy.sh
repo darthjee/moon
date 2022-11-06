@@ -61,12 +61,14 @@ function watch_deployment() {
 }
 
 function run_deploy() {
+  checkLastVersion
   SERVICE_ID=$(service_id)
   DEPLOYMENT_ID=$(deploy "$SERVICE_ID" | jq '.id' | sed -e 's/"//g')
   watch_deployment "$SERVICE_ID" "$DEPLOYMENT_ID"
 }
 
 function watch_last_deployment() {
+  checkLastVersion
   SERVICE_ID=$(service_id)
   DEPLOYMENT_ID=$(last_deployment "$SERVICE_ID" | jq '.deploy.id' | sed -e 's/"//g')
   watch_deployment "$SERVICE_ID" "$DEPLOYMENT_ID"
@@ -74,14 +76,15 @@ function watch_last_deployment() {
 
 ACTION=$1
 
-checkLastVersion
-
 case $ACTION in
   "deploy")
     run_deploy
     ;;
   "watch")
     watch_last_deployment
+    ;;
+  "service_id")
+    service_id
     ;;
   *)
     $ACTION
