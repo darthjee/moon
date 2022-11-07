@@ -1,47 +1,51 @@
 # frozen_string_literal: true
 
-module Marriage::Invite::Common
-  extend ActiveSupport::Concern
+module Marriage
+  class Invite < ActiveRecord::Base
+    module Common
+      extend ActiveSupport::Concern
 
-  include Marriage::Common
+      include ::Marriage::Common
 
-  def invite
-    @invite ||= find_invite
-  end
+      def invite
+        @invite ||= find_invite
+      end
 
-  private
+      private
 
-  def find_invite
-    return invite_by_id if invite_id
+      def find_invite
+        return invite_by_id if invite_id
 
-    invite_code ? invite_by_code : guest_invite
-  end
+        invite_code ? invite_by_code : guest_invite
+      end
 
-  def invite_by_id
-    Marriage::Invite.find(invite_id)
-  end
+      def invite_by_id
+        ::Marriage::Invite.find(invite_id)
+      end
 
-  def invite_by_code
-    User.find_by(code: invite_code).invite
-  end
+      def invite_by_code
+        User.find_by(code: invite_code).invite
+      end
 
-  def invite_id
-    params[:id]
-  end
+      def invite_id
+        params[:id]
+      end
 
-  def invite_code
-    params[:code]
-  end
+      def invite_code
+        params[:code]
+      end
 
-  def guest_invite
-    guest.invite
-  end
+      def guest_invite
+        guest.invite
+      end
 
-  def guest
-    marriage.guests.find(guest_id)
-  end
+      def guest
+        marriage.guests.find(guest_id)
+      end
 
-  def guest_id
-    params[:guest_id]
+      def guest_id
+        params[:guest_id]
+      end
+    end
   end
 end

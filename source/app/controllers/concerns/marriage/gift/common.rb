@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
-module Marriage::Gift::Common
-  extend ActiveSupport::Concern
+module Marriage
+  class Gift < ActiveRecord::Base
+    module Common
+      extend ActiveSupport::Concern
 
-  include Marriage::Common
+      include ::Marriage::Common
 
-  def gift
-    marriage.gifts.find(params[:id])
+      def gift
+        marriage.gifts.find(params[:id])
+      end
+    end
   end
 end

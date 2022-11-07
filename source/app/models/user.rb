@@ -6,13 +6,22 @@ class User < ActiveRecord::Base
 
   validates :email, email: true, if: -> { email.present? }
 
+  scope(:authenticated, -> { where.not(authentication_token: nil) })
+  scope(:with_login, -> { where.not(email: nil, password: nil) })
+
   class << self
     def for_invite(invite)
       invite.user
     end
 
     def login(email, password)
-      where.not(email: nil, password: nil).find_by(email: email, password: encrypt(password))
+      with_login.find_by(email: email, password: encrypt(password))
+    end
+
+    def encrypt(pass)
+      return unless pass.present?
+
+      Digest::SHA256.hexdigest pass
     end
   end
 
@@ -38,7 +47,9 @@ class User < ActiveRecord::Base
   end
 
   def start_random_attribute(attribute, length)
-    public_send("#{attribute}=", build_code(length)) until unique_attribute?(attribute)
+    until unique_attribute?(attribute)
+      public_send("#{attribute}=", build_code(length))
+    end
   end
 
   def build_code(length)
@@ -52,11 +63,5 @@ class User < ActiveRecord::Base
 
   def other_users
     self.class.where('id != ?', id)
-  end
-
-  def self.encrypt(pass)
-    return unless pass.present?
-
-    Digest::SHA256.hexdigest pass
   end
 end

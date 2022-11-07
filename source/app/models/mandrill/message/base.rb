@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
-class Mandrill::Message::Base < Mandrill::Message
-  attr_reader :user
-  delegate :name, :email, to: :user
+module Mandrill
+  class Message
+    class Base < Mandrill::Message
+      attr_reader :user
+      delegate :name, :email, to: :user
 
-  def initialize(user, root_url)
-    @user = user
+      def initialize(user, root_url)
+        @user = user
 
-    super(
-      recepient: { email: email, name: name },
-      data: { name: name, root_url: root_url }
-    )
+        super(
+          recepient: { email: email, name: name },
+          data: { name: name, root_url: root_url }
+        )
+      end
+    end
   end
 end

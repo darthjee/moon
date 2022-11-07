@@ -23,7 +23,8 @@ describe Mandrill::Request do
   describe '#recepients' do
     context 'when email is allowed' do
       it 'returns mandrill formatted message' do
-        expect(subject.recepients.map(&:symbolize_keys)).to eq([{ email: email, name: name }])
+        expect(subject.recepients.map(&:symbolize_keys))
+          .to eq([{ email: email, name: name }])
       end
     end
 
@@ -36,10 +37,10 @@ describe Mandrill::Request do
     end
   end
 
-  describe '#has_recepients?' do
+  describe '#recepients?' do
     context 'when email is allowed' do
       it 'returns mandrill formatted message' do
-        expect(subject.has_recepients?).to be_truthy
+        expect(subject.recepients?).to be_truthy
       end
     end
 
@@ -47,7 +48,7 @@ describe Mandrill::Request do
       include_context 'email is not allowed'
 
       it 'returns mandrill formatted message' do
-        expect(subject.has_recepients?).to be_falsey
+        expect(subject.recepients?).to be_falsey
       end
     end
   end

@@ -1,1 +1,31 @@
 inherit_from: .rubocop_todo.yml
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'config/routes.rb'
+    - 'db/schema.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/*.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'db/seeds.rb'
+    - 'db/schema.rb'
+    - 'db/migrate/*.rb'
+    - 'config/routes.rb'
+    - 'config/initializers/*.rb'
+    - 'config/environments/*.rb'
+    - 'config/application.rb'
+    - 'Rakefile'
+    - 'bin/spring'

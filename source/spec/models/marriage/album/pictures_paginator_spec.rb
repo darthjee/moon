@@ -16,12 +16,14 @@ describe Marriage::Album::PicturesPaginator do
       let(:documents) { subalbums }
       let(:documents_with_10_itens) do
         album.tap do |album|
-          10.times.each { create(:album, marriage: marriage, album: album) }
+          create_list(:album, 10, marriage: marriage, album: album)
         end.albums
       end
       let(:documents_with_more_pages) do
         album.tap do |album|
-          (per_page * 2 + 2).times.each { create(:album, marriage: marriage, album: album) }
+          create_list(
+            :album, (per_page * 2 + 2), marriage: marriage, album: album
+          )
         end.albums
       end
       let(:empty_documents) { create(:album).albums }
@@ -34,12 +36,12 @@ describe Marriage::Album::PicturesPaginator do
       let(:documents) { pictures }
       let(:documents_with_10_itens) do
         album.tap do |album|
-          10.times.each { create(:picture, album: album) }
+          create_list(:picture, 10, album: album)
         end.pictures
       end
       let(:documents_with_more_pages) do
         album.tap do |album|
-          (per_page * 2 + 2).times.each { create(:picture, album: album) }
+          create_list(:picture, (per_page * 2 + 2), album: album)
         end.pictures
       end
       let(:empty_documents) { create(:album).pictures }
@@ -50,12 +52,12 @@ describe Marriage::Album::PicturesPaginator do
     let(:subject) { described_class.new(subalbums, documents, params) }
     let(:pictures) do
       album.tap do |album|
-        pictures_count.times.each { create(:picture, album: album) }
+        create_list(:picture, pictures_count, album: album)
       end.pictures
     end
     let(:subalbums) do
       album.tap do |album|
-        albums_count.times.each { create(:album, marriage: marriage, album: album) }
+        create_list(:album, albums_count, marriage: marriage, album: album)
       end.albums
     end
     let(:documents_json) { subject.as_json[:itens] }
@@ -195,7 +197,8 @@ describe Marriage::Album::PicturesPaginator do
         let(:page) { 4 }
 
         it 'returns the last pictures' do
-          expect(documents_json).to eq(pictures.offset(per_page * 3 / 2 - 1).as_json)
+          expect(documents_json)
+            .to eq(pictures.offset(per_page * 3 / 2 - 1).as_json)
         end
 
         it 'returns one page count' do

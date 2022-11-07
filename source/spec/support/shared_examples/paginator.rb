@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-shared_examples 'a paginator extending utils paginator' do |described_class, key|
+shared_examples 'a paginator extending utils paginator' do |klass, key|
   let(:params) { {} }
-  let(:subject) { described_class.new(documents, params) }
+  let(:subject) { klass.new(documents, params) }
 
   describe '#next_page_offset' do
     let(:per_page) { 8 }
@@ -73,8 +73,8 @@ shared_examples 'a paginator extending utils paginator' do |described_class, key
     end
   end
 
-  it_behaves_like 'a paginator', described_class, key
-  it_behaves_like 'a paginator that accepts offset', described_class, key
+  it_behaves_like 'a paginator', klass, key
+  it_behaves_like 'a paginator that accepts offset', klass, key
 end
 
 shared_examples 'a paginator' do |described_class, key|
@@ -92,7 +92,7 @@ shared_examples 'a paginator' do |described_class, key|
       expect(documents_json).to eq(documents.as_json)
     end
 
-    context 'when not specifying per page param and having more than one page' do
+    context 'when not specifying per page param and more than one page' do
       let(:documents) { documents_with_10_itens }
 
       it 'returns only the first 8 documents' do
@@ -222,7 +222,7 @@ shared_examples 'a paginator that accepts offset' do |described_class, key|
             end
           end
 
-          context 'when requesting for a page that is after the offsetted documents' do
+          context 'when requesting for a page that is after the offset' do
             let(:page) { 4 }
 
             it 'return last documents' do

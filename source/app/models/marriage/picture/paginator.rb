@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
-class Marriage::Picture::Paginator < Utils::Paginator
-  private
+module Marriage
+  class Picture < ActiveRecord::Base
+    class Paginator < Utils::Paginator
+      private
 
-  def ordered_list
-    paginated_list.order(:id)
-  end
+      def ordered_list
+        paginated_list.order(:id)
+      end
 
-  def key
-    :pictures
+      def key
+        :pictures
+      end
+    end
   end
 end

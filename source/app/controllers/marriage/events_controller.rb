@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
-class Marriage::EventsController < ApplicationController
-  include Marriage::Common
+module Marriage
+  class EventsController < ApplicationController
+    include ::Marriage::Common
 
-  def index
-    render_basic
-  end
+    def index
+      render_basic
+    end
 
-  def maps; end
+    def maps; end
 
-  private
+    private
 
-  def index_json
-    events.as_json
-  end
+    def index_json
+      events.as_json
+    end
 
-  def events
-    marriage.events
+    def events
+      marriage.events
+    end
   end
 end

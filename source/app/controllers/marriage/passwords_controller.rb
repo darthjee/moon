@@ -1,36 +1,38 @@
 # frozen_string_literal: true
 
-class Marriage::PasswordsController < ApplicationController
-  include Marriage::Common
-  include Marriage::Services
+module Marriage
+  class PasswordsController < ApplicationController
+    include ::Marriage::Common
+    include ::Marriage::Services
 
-  protect_from_forgery except: %i[create update]
+    protect_from_forgery except: %i[create update]
 
-  def recovery; end
+    def recovery; end
 
-  def create
-    mandrill_service.recover_password(user, request.base_url)
-    render head: :ok, body: nil
-  end
+    def create
+      mandrill_service.recover_password(user, request.base_url)
+      render head: :ok, body: nil
+    end
 
-  def edit; end
+    def edit; end
 
-  def update
-    user_from_credential.update(password: new_password)
-    render json: {}
-  end
+    def update
+      user_from_credential.update(password: new_password)
+      render json: {}
+    end
 
-  private
+    private
 
-  def new_password
-    params.require(:password)
-  end
+    def new_password
+      params.require(:password)
+    end
 
-  def user
-    User.find_by!(email: email)
-  end
+    def user
+      User.find_by!(email: email)
+    end
 
-  def email
-    params.require(:email)
+    def email
+      params.require(:email)
+    end
   end
 end

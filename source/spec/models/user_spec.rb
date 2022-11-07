@@ -25,7 +25,8 @@ describe User do
     end
   end
 
-  it_behaves_like 'an object that has a secure random code start up', :code, :authentication_token
+  it_behaves_like 'an object that has a secure random code start up',
+                  :code, :authentication_token
 
   describe 'create' do
     let(:user) { build(:user, code: nil, authentication_token: nil) }

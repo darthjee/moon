@@ -15,7 +15,8 @@ shared_context 'an object that has a secure random code start up' do |*methods|
         let(:user) { build(:user, method => 'aaaa') }
 
         it do
-          expect { user.public_send("start_#{method}") }.not_to change(user, method)
+          expect { user.public_send("start_#{method}") }
+            .not_to change(user, method)
         end
       end
     end

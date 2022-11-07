@@ -51,11 +51,13 @@ describe Marriage::GiftLink do
     let(:link_with_store) { build(:gift_link, store_list: store_list) }
 
     it 'returns the same structure for store and account link' do
-      expect(link_with_account.as_json[:bank].keys).to eq(link_with_store.as_json[:store].keys)
+      expect(link_with_account.as_json[:bank].keys)
+        .to eq(link_with_store.as_json[:store].keys)
     end
 
     it 'returns the diffrent_jsons for store and account link' do
-      expect(link_with_account.as_json[:bank]).not_to eq(link_with_store.as_json[:store])
+      expect(link_with_account.as_json[:bank])
+        .not_to eq(link_with_store.as_json[:store])
     end
   end
 end

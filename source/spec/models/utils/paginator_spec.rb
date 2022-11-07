@@ -9,7 +9,8 @@ describe Utils::Paginator do
     end
   end
 
-  it_behaves_like 'a paginator extending utils paginator', described_class::DummyPaginator, :documents do
+  it_behaves_like 'a paginator extending utils paginator',
+                  described_class::DummyPaginator, :documents do
     let(:album) { marriage_albums(:first) }
     let(:documents) { album.pictures }
     let(:documents_with_10_itens) do

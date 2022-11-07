@@ -2,32 +2,34 @@
 
 require 'csv'
 
-class Marriage::InvitesImporter
-  attr_accessor :file, :marriage_id
+module Marriage
+  class InvitesImporter
+    attr_accessor :file, :marriage_id
 
-  def initialize(file, marriage_id)
-    @file = file
-    @marriage_id = marriage_id
-  end
-
-  def import
-    file.each do |line|
-      args = CSV.parse(line).flatten
-      create_invite(*args).start_code
+    def initialize(file, marriage_id)
+      @file = file
+      @marriage_id = marriage_id
     end
-  end
 
-  private
+    def import
+      file.each do |line|
+        args = CSV.parse(line).flatten
+        create_invite(*args).start_code
+      end
+    end
 
-  def create_invite(label, invites, expected)
-    marriage.invites.create(
-      label: label,
-      invites: invites,
-      expected: expected
-    )
-  end
+    private
 
-  def marriage
-    Marriage::Marriage.find(marriage_id)
+    def create_invite(label, invites, expected)
+      marriage.invites.create(
+        label: label,
+        invites: invites,
+        expected: expected
+      )
+    end
+
+    def marriage
+      Marriage::Marriage.find(marriage_id)
+    end
   end
 end

@@ -3,7 +3,8 @@
 require 'spec_helper'
 
 describe Marriage::Picture::Paginator do
-  it_behaves_like 'a paginator extending utils paginator', described_class, :pictures do
+  it_behaves_like 'a paginator extending utils paginator',
+                  described_class, :pictures do
     let(:album) { marriage_albums(:first) }
     let(:documents) { album.pictures }
     let(:documents_with_10_itens) do

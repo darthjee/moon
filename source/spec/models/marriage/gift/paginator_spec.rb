@@ -3,17 +3,20 @@
 require 'spec_helper'
 
 describe Marriage::Gift::Paginator do
-  it_behaves_like 'a paginator extending utils paginator', described_class, :gifts do
+  it_behaves_like 'a paginator extending utils paginator',
+                  described_class, :gifts do
     let(:marriage) { marriage_marriages(:first) }
     let(:documents) { marriage.gifts.order(:name).tap { |l| l.each(&:thread) } }
     let(:documents_with_10_itens) do
       create(:marriage).tap do |marriage|
-        10.times.map { create(:gift, marriage: marriage) }.each(&:thread)
+        create_list(:gift, 10, marriage: marriage).each(&:thread)
       end.gifts
     end
     let(:documents_with_more_pages) do
       create(:marriage).tap do |marriage|
-        (per_page * 2 + 2).times.map { create(:gift, marriage: marriage) }.each(&:thread)
+        (per_page * 2 + 2).times.map do
+          create(:gift, marriage: marriage)
+        end.each(&:thread)
       end.gifts
     end
     let(:empty_documents) { create(:marriage).gifts }
@@ -31,21 +34,25 @@ describe Marriage::Gift::Paginator do
     let(:gifts) { Marriage::Gift.where(marriage_id: marriage) }
 
     context 'when marriage has more gifts than each page can hold' do
-      let(:last_gifts) { 2.times.map { create(:gift, marriage: marriage) } }
-      let(:first_gifts) { per_page.times.map { create(:gift, marriage: marriage) } }
+      let(:last_gifts) { create_list(:gift, 2, marriage: marriage) }
+      let(:first_gifts) { create_list(:gift, per_page, marriage: marriage) }
       let(:per_page) { 8 }
       let(:page) { nil }
       let(:params) { { per_page: per_page, page: page } }
 
       before do
         first_gifts.each(&:thread)
-        per_page.times.map { create(:gift, marriage: marriage) }.each(&:thread)
+        create_list(:gift, per_page, marriage: marriage).each(&:thread)
         last_gifts.each(&:thread)
       end
 
       context 'when there are gifts to be ordered by name' do
-        let(:real_first_gifts) { per_page.times.map { create(:gift, marriage: marriage, name: 'aaa') } }
-        let(:last_gifts) { 2.times.map { create(:gift, marriage: marriage, name: 'zzz') } }
+        let(:real_first_gifts) do
+          create_list(:gift, per_page, marriage: marriage, name: 'aaa')
+        end
+        let(:last_gifts) do
+          create_list(:gift, 2, marriage: marriage, name: 'zzz')
+        end
 
         before do
           real_first_gifts.each(&:thread)
@@ -65,7 +72,12 @@ describe Marriage::Gift::Paginator do
 
         context 'when requesting for specific ordering' do
           let(:params) do
-            { per_page: per_page, page: page, sort_direction: direction, sort_by: sort_by }
+            {
+              per_page: per_page,
+              page: page,
+              sort_direction: direction,
+              sort_by: sort_by
+            }
           end
 
           context 'when oredering by name' do
