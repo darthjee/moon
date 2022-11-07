@@ -95,8 +95,18 @@ module Utils
     end
 
     def fetch_per_page
-      value = [params[:per_page], Settings.default_pagination_size.to_i].compact.first.to_i
-      [value, list.count, Settings.default_pagination_size.to_i].find(&:positive?)
+      [
+        per_page_from_request,
+        list.count,
+        Settings.default_pagination_size.to_i
+      ].find(&:positive?)
+    end
+
+    def per_page_from_request
+      [
+        params[:per_page],
+        Settings.default_pagination_size.to_i
+      ].compact.first.to_i
     end
   end
 end

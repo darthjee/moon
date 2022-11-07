@@ -66,11 +66,17 @@ module Marriage
       end
 
       def invite_params
-        @invite_params ||= params.require(:invite).permit(:removed, guests: %i[id name presence], user: :email)
+        @invite_params ||= fetch_invite_params
       end
 
       def removed_guests_id
         params[:removed]
+      end
+
+      def fetch_invite_params
+        params
+          .require(:invite)
+          .permit(:removed, guests: %i[id name presence], user: :email)
       end
     end
   end

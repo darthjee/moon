@@ -21,7 +21,11 @@ module Marriage
     end
 
     def invites_found
-      @invites_found ||= marriage.invites.search_label(name).where.not(id: guest_invites_ids)
+      @invites_found ||= fetch_invites
+    end
+
+    def fetch_invites
+      marriage.invites.search_label(name).where.not(id: guest_invites_ids)
     end
 
     def guest_invites_ids

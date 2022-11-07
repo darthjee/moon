@@ -27,7 +27,9 @@ module Marriage
       end
 
       def ordered_list
-        paginated_list.order(order_by => sort_direction.to_sym).order(name: :asc)
+        paginated_list
+          .order(order_by => sort_direction.to_sym)
+          .order(name: :asc)
       end
     end
   end

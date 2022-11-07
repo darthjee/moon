@@ -128,8 +128,10 @@ describe Marriage::Gift::Creator do
       end
 
       context 'and we are updating the bought quantity' do
-        let(:update_gifts_creator) { described_class.new(marriage, update_request_parameters) }
         let(:gift) { Marriage::Gift.last }
+        let(:update_gifts_creator) do
+          described_class.new(marriage, update_request_parameters)
+        end
         let(:update_request_parameters) do
           ActionController::Parameters.new tests_json['update']
         end
@@ -152,7 +154,9 @@ describe Marriage::Gift::Creator do
       end
 
       context 'but for another store' do
-        let(:new_gifts_creator) { described_class.new(marriage, new_request_parameters) }
+        let(:new_gifts_creator) do
+          described_class.new(marriage, new_request_parameters)
+        end
         let(:new_request_parameters) do
           ActionController::Parameters.new tests_json['create_new_store']
         end

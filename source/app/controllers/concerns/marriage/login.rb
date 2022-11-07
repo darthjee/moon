@@ -49,7 +49,7 @@ module Marriage
     end
 
     def find_user_from_credential
-      User.where.not(authentication_token: nil).find_by!(authentication_token: credential)
+      User.authenticated.find_by!(authentication_token: credential)
     end
 
     def token_parameter

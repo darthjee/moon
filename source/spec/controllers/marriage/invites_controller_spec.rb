@@ -3,13 +3,15 @@
 require 'spec_helper'
 
 describe Marriage::InvitesController do
-  let(:requests_json) { load_json_fixture_file('requests/marriage/invites.json') }
   let(:marriage) { marriage_marriages(:first) }
   let(:invite) { marriage.invites.first }
   let(:user) { invite.user }
   let(:guest) { marriage.invites.first.guests.first }
   let(:parameters) { requests_json[parameters_key] }
   let(:response_json) { JSON.parse(response.body) }
+  let(:requests_json) do
+    load_json_fixture_file('requests/marriage/invites.json')
+  end
 
   describe 'GET show' do
     let(:response_json) { JSON.parse response.body }
@@ -76,9 +78,9 @@ describe Marriage::InvitesController do
       end
 
       it 'updates the invite email' do
-        expect do
-          patch :update, params: parameters
-        end.to change { Marriage::Invite.find(invite.id).user.email }.to('new_user@server.com')
+        expect { patch :update, params: parameters }
+          .to change { Marriage::Invite.find(invite.id).user.email }
+          .to('new_user@server.com')
       end
 
       it 'does not return error' do

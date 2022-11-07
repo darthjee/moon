@@ -11,7 +11,7 @@ module Marriage
     has_many :threads, class_name: 'Comment::Thread'
 
     def guests
-      ::Marriage::Guest.joins(:invite).where(marriage_invites: { marriage_id: id })
+      Guest.joins(:invite).where(marriage_invites: { marriage_id: id })
     end
   end
 end

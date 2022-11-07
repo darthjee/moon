@@ -25,7 +25,9 @@ module Marriage
       end
 
       def picture_paginator
-        @picture_paginator ||= Picture::Paginator.new(pictures, picture_paginator_params)
+        @picture_paginator ||= Picture::Paginator.new(
+          pictures, picture_paginator_params
+        )
       end
 
       def picture_paginator_params

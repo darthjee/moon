@@ -3,9 +3,11 @@
 require 'spec_helper'
 
 describe Comment::CommentsController do
-  let(:requests_json) { load_json_fixture_file('requests/comment/comments.json') }
   let(:parameters) { requests_json[parameters_key] }
   let(:response_json) { JSON.parse response.body }
+  let(:requests_json) do
+    load_json_fixture_file('requests/comment/comments.json')
+  end
 
   describe '#POST create' do
     let(:parameters_key) { 'create' }

@@ -23,7 +23,9 @@ module Marriage
       end
 
       def show_path
-        show_marriage_invites_url(invite.code, token: invite.user.authentication_token)
+        show_marriage_invites_url(
+          invite.code, token: invite.user.authentication_token
+        )
       end
     end
   end

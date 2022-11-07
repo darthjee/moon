@@ -19,7 +19,7 @@ module Marriage
       end
 
       def invite_updater
-        @invite_updater ||= ::Marriage::Invite::Updater.new(invite, user, params)
+        @invite_updater ||= Invite::Updater.new(invite, user, params)
       end
 
       def send_welcome_email

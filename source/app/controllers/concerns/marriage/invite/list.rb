@@ -8,7 +8,11 @@ module Marriage
       include ::Marriage::Invite::Common
 
       def invites
-        @invites ||= marriage.invites.created.where(filters).limit(per_page).offset(offset)
+        @invites ||= scoped_invites.limit(per_page).offset(offset)
+      end
+
+      def scoped_invites
+        marriage.invites.created.where(filters)
       end
 
       private

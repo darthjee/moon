@@ -27,10 +27,3 @@ Style/FormatStringToken:
 Style/MissingRespondToMissing:
   Exclude:
     - 'app/helpers/application_helper.rb'
-
-# Offense count: 122
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 132

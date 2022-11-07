@@ -12,17 +12,19 @@ describe Mandrill::Service do
 
   before do
     allow(Mandrill).to receive(:key) { 'key' }
-    allow_any_instance_of(Mandrill::API).to receive(:messages) { mandrill_messages }
+    allow_any_instance_of(Mandrill::API)
+      .to receive(:messages) { mandrill_messages }
     allow(mandrill_messages).to receive(:send_template)
   end
 
   describe '#send_request' do
     it 'sends to mandrill' do
-      expect(mandrill_messages).to receive(:send_template) do |template, template_content, message|
-        expect(template).to eq(template_name)
-        expect(template_content).to eq([])
-        expect(message.deep_stringify_keys).to eq(fixture['output'])
-      end
+      expect(mandrill_messages)
+        .to receive(:send_template) do |template, template_content, message|
+          expect(template).to eq(template_name)
+          expect(template_content).to eq([])
+          expect(message.deep_stringify_keys).to eq(fixture['output'])
+        end
       subject.send_request(request)
     end
   end

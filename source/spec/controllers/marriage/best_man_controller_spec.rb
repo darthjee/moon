@@ -68,7 +68,8 @@ describe Marriage::BestManController do
 
       it 'returns all the maids' do
         get :show_maids, params: parameters
-        expect(response_json.map { |g| g['role'] }).to eq(marriage.invites.count.times.map { role })
+        expect(response_json.map { |g| g['role'] })
+          .to eq(marriage.invites.count.times.map { role })
       end
     end
 

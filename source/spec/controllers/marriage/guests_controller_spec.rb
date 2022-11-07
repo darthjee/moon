@@ -3,7 +3,9 @@
 require 'spec_helper'
 
 describe Marriage::GuestsController do
-  let(:requests_json) { load_json_fixture_file('requests/marriage/guests.json') }
+  let(:requests_json) do
+    load_json_fixture_file('requests/marriage/guests.json')
+  end
   let(:parameters) { requests_json[parameters_key] }
   let(:response_json) { JSON.parse(response.body) }
 

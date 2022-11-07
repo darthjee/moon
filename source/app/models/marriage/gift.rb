@@ -74,9 +74,13 @@ module Marriage
     private
 
     def create_thread
-      Comment::Thread.create(marriage_id: marriage_id, name: name).tap do |thread|
+      Comment::Thread.create(thread_attributes).tap do |thread|
         update(thread_id: thread.id)
       end
+    end
+
+    def thread_attributes
+      { marriage_id: marriage_id, name: name }
     end
   end
 end
