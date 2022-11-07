@@ -21,7 +21,7 @@ class Path::SafePath::PathCaller
   private
 
   def key_names
-    @keys ||= args.keys.map { |k| "_#{k}" }
+    @key_names ||= args.keys.map { |k| "_#{k}" }
   end
 
   def keys_map

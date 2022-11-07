@@ -13,13 +13,6 @@ Lint/SuppressedException:
     - 'bin/rails'
     - 'bin/rake'
 
-# Offense count: 1
-# Configuration parameters: EnforcedStyleForLeadingUnderscores.
-# SupportedStylesForLeadingUnderscores: disallowed, required, optional
-Naming/MemoizedInstanceVariableName:
-  Exclude:
-    - 'app/helpers/path/safe_path/path_caller.rb'
-
 # Offense count: 6
 # Configuration parameters: NamePrefix, ForbiddenPrefixes, AllowedMethods, MethodDefinitionMacros.
 # NamePrefix: is_, has_, have_
