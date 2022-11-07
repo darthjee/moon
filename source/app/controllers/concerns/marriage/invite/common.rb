@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Marriage::Invite::Common
   extend ActiveSupport::Concern
 
@@ -11,6 +13,7 @@ module Marriage::Invite::Common
 
   def find_invite
     return invite_by_id if invite_id
+
     invite_code ? invite_by_code : guest_invite
   end
 

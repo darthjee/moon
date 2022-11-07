@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeMarriageGuestsPresenceToBoolean < ActiveRecord::Migration[4.2]
   def up
     rename_column :marriage_guests, :presence, :old_presence

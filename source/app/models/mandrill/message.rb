@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
   attr_reader :recepient
 
@@ -7,7 +9,7 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
     super(@message)
   end
 
-  def as_json(*args)
+  def as_json(*_args)
     {
       rcpt: recepient.email,
       vars: vars
@@ -20,6 +22,7 @@ class Mandrill::Message < DelegateClass(RecursiveOpenStruct)
 
   def ==(other)
     return false unless other.class == self.class
+
     as_json == other.as_json
   end
 

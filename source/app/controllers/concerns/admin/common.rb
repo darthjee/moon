@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin::Common
   extend ActiveSupport::Concern
   include ::Marriage::Common
@@ -17,7 +19,7 @@ module Admin::Common
   end
 
   def lack_admin?
-    ! is_admin?
+    !is_admin?
   end
 
   def admin_key_from_request

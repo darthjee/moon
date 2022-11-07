@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Admin::Marriage
   class GiftsController < ApplicationController
     include Admin::Common
     include ::Marriage::Gift::Common
 
-    protect_from_forgery except: [:create, :update]
+    protect_from_forgery except: %i[create update]
 
     def create
       render json: created_gift_links

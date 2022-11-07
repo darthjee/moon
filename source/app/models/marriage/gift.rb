@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::Gift < ActiveRecord::Base
   has_many :gift_links
   belongs_to :marriage
@@ -12,7 +14,7 @@ class Marriage::Gift < ActiveRecord::Base
   def as_json(*args)
     options = args.extract_options!
     options = {
-      except: [:created_at, :updated_at]
+      except: %i[created_at updated_at]
     }.merge(options)
 
     super(*args, options).merge(
@@ -56,9 +58,7 @@ class Marriage::Gift < ActiveRecord::Base
   def update_bought(bought = nil)
     update(bought: bought) if bought
 
-    if self.bought == self.quantity
-      update(status: :bought)
-    end
+    update(status: :bought) if self.bought == quantity
   end
 
   def update_prices(price = nil)

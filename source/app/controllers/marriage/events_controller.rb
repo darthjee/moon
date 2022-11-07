@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::EventsController < ApplicationController
   include Marriage::Common
 
@@ -5,8 +7,7 @@ class Marriage::EventsController < ApplicationController
     render_basic
   end
 
-  def maps
-  end
+  def maps; end
 
   private
 
@@ -18,4 +19,3 @@ class Marriage::EventsController < ApplicationController
     marriage.events
   end
 end
-

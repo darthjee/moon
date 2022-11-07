@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QRCodeBuilder
   attr_reader :url, :overlay
 
@@ -32,5 +34,4 @@ class QRCodeBuilder
   def overlay_image
     @overlay_image ||= MiniMagick::Image.open(overlay)
   end
-
 end

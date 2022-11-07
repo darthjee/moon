@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Marriage::InvitesController do
@@ -78,7 +80,7 @@ describe Marriage::InvitesController do
       it 'updates the invite email' do
         expect do
           patch :update, params: parameters
-        end.to change{ Marriage::Invite.find(invite.id).user.email }.to('new_user@server.com')
+        end.to change { Marriage::Invite.find(invite.id).user.email }.to('new_user@server.com')
       end
 
       it 'does not return error' do
@@ -111,7 +113,7 @@ describe Marriage::InvitesController do
       it 'does not update the e-mail' do
         expect do
           patch :update, params: parameters
-        end.not_to change{ Marriage::Invite.find(invite.id).email }
+        end.not_to change { Marriage::Invite.find(invite.id).email }
       end
 
       it 'does not change the confirmed count for the invite' do

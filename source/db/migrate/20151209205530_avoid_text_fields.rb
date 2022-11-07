@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AvoidTextFields < ActiveRecord::Migration[4.2]
   def up
     change_column :marriage_guests, :color, :string, limit: 7

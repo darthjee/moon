@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe User do
@@ -16,7 +18,7 @@ describe User do
       end
 
       context 'and is invalid ' do
-        before{ user.email = 'wrong_email' }
+        before { user.email = 'wrong_email' }
 
         it { expect(user).to be_invalid }
       end

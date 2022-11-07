@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mandrill::Config < DelegateClass(RecursiveOpenStruct)
   class << self
     def default_config

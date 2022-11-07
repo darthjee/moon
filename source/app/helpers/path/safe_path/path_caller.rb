@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Path::SafePath::PathCaller
   attr_reader :controller, :method, :args
 

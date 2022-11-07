@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin::Marriage
   class PicturesController < ApplicationController
     include Admin::Common

@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 class Utils::TimeElapsed
   attr_reader :time, :amount
 
   TIME_BLOCKS = {
-    year: 3600*24*365,
-    day: 3600*24,
+    year: 3600 * 24 * 365,
+    day: 3600 * 24,
     hour: 3600,
     minute: 60,
     second: 1
-  }
-
+  }.freeze
 
   def initialize(time)
     @time = time
@@ -28,6 +29,7 @@ class Utils::TimeElapsed
   def calculate_amount
     @amount ||= Time.now - time
     return if amount.zero?
+
     @amount /= TIME_BLOCKS[unit]
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUpToDateAndStatusToInvite < ActiveRecord::Migration[4.2]
   def up
     add_column :marriage_invites, :status, :string

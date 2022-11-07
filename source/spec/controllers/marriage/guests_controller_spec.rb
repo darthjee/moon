@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Marriage::GuestsController do
@@ -7,7 +9,7 @@ describe Marriage::GuestsController do
 
   describe 'GET search' do
     let(:parameters_key) { 'search' }
-    let(:expected) { [ { id: 1, name:  'Mr. Test' } ].map(&:stringify_keys) }
+    let(:expected) { [{ id: 1, name: 'Mr. Test' }].map(&:stringify_keys) }
 
     it 'returns the jsons of the found guests' do
       get :search, params: parameters
@@ -48,7 +50,7 @@ describe Marriage::GuestsController do
 
       it 'returns all matched guests' do
         get :search, params: parameters
-        expect(response_json.first.keys).to eq(%w(code label))
+        expect(response_json.first.keys).to eq(%w[code label])
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddEmailToInvite < ActiveRecord::Migration[4.2]
   def change
     add_column :marriage_invites, :email, :string

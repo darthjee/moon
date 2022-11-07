@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Marriage::Gift::Creator do
@@ -13,7 +15,7 @@ describe Marriage::Gift::Creator do
     let(:last_link_attributes) do
       last_link.attributes.slice('url', 'store_list_id', 'gift_id', 'price')
     end
-    let(:gift_attributes) { %w(image_url name quantity min_price max_price) }
+    let(:gift_attributes) { %w[image_url name quantity min_price max_price] }
 
     it do
       expect do
@@ -49,11 +51,11 @@ describe Marriage::Gift::Creator do
       subject.create
 
       expect(last_link_attributes).to eq({
-        'url' => 'http://gifturl',
-        'store_list_id' => 1,
-        'gift_id' => Marriage::Gift.last.id,
-        'price' => 10.0
-      })
+                                           'url' => 'http://gifturl',
+                                           'store_list_id' => 1,
+                                           'gift_id' => Marriage::Gift.last.id,
+                                           'price' => 10.0
+                                         })
     end
 
     context 'when sending a different size package' do
@@ -69,7 +71,6 @@ describe Marriage::Gift::Creator do
           'min_price' => 20.0,
           'max_price' => 20.0
         )
-
       end
     end
 
@@ -171,7 +172,6 @@ describe Marriage::Gift::Creator do
         end
 
         it 'updates min and max price for the gift' do
-
           new_gifts_creator.create
 
           expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(

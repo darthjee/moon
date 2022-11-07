@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mandrill::Request
   class Error < StandardError; end
   class NoRecepients < Error; end
@@ -13,7 +15,7 @@ class Mandrill::Request
     filter_recepients
   end
 
-  def as_json(*args)
+  def as_json(*_args)
     settings.merge(
       to: recepients,
       merge_vars: messages.map(&:as_json)
@@ -38,6 +40,7 @@ class Mandrill::Request
 
   def ==(other)
     return false unless other.class == self.class
+
     messages == other.messages
   end
 

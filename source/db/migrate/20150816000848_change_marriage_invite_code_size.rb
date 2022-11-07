@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeMarriageInviteCodeSize < ActiveRecord::Migration[4.2]
   def up
     execute 'UPDATE marriage_invites SET code = NULL'

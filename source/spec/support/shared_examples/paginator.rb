@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 shared_examples 'a paginator extending utils paginator' do |described_class, key|
@@ -63,7 +65,7 @@ shared_examples 'a paginator extending utils paginator' do |described_class, key
       end
 
       context 'when passing offset to fill the page' do
-        let(:params) { { page: 2, offset: -6} }
+        let(:params) { { page: 2, offset: -6 } }
         it do
           expect(subject.full_page?).to be_truthy
         end
@@ -165,7 +167,6 @@ shared_examples 'a paginator' do |described_class, key|
   end
 end
 
-
 shared_examples 'a paginator that accepts offset' do |described_class, key|
   let(:subject) { described_class.new(documents, params) }
   let(:documents_json) { subject.as_json[key] }
@@ -178,7 +179,7 @@ shared_examples 'a paginator that accepts offset' do |described_class, key|
     context 'when passing offset as argument' do
       context 'when the offset is negative' do
         context 'and its module is bigger than per_page argument' do
-          let(:offset) { - (per_page + 2)  }
+          let(:offset) { - (per_page + 2) }
           let(:params) { { per_page: per_page, page: page, offset: offset } }
 
           context 'when requesting the first page' do
@@ -249,4 +250,3 @@ shared_examples 'a paginator that accepts offset' do |described_class, key|
     end
   end
 end
-

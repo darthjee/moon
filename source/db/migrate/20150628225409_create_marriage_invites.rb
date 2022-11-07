@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateMarriageInvites < ActiveRecord::Migration[4.2]
   def change
     create_table :marriage_invites do |t|

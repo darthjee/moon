@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Marriage
   class Album::PicturesPaginator
-
     attr_reader :albums, :pictures, :params
 
     def initialize(albums, pictures, params)
@@ -12,7 +13,7 @@ module Marriage
     def as_json
       pictures_json.tap do |json|
         json[:itens] = albums_json[:itens] + json[:itens]
-        json[:pages] = [ albums_json[:pages], json[:pages] ].max
+        json[:pages] = [albums_json[:pages], json[:pages]].max
       end
     end
 

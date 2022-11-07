@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MigrateEventLocation < ActiveRecord::Migration[4.2]
   def up
     rename_column :marriage_events, :location, :location_name

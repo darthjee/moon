@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 module FixtureHelpers
   def load_fixture_file(filename)
-    FixtureHelpers.fixture_file_cache["#{filename}"] ||=
+    FixtureHelpers.fixture_file_cache[filename.to_s] ||=
       Rails.root.join('spec', 'fixtures', filename).read
   end
 
   def load_json_fixture_file(filename)
-    FixtureHelpers.json_fixture_file_cache["#{filename}"] ||=
+    FixtureHelpers.json_fixture_file_cache[filename.to_s] ||=
       ActiveSupport::JSON.decode(load_fixture_file(filename))
   end
 

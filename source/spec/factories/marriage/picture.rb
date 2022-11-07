@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :picture, class: Marriage::Picture do
     sequence(:name) { |n| "Pic #{n}" }

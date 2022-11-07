@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::Invite < ActiveRecord::Base
   belongs_to :marriage
   has_many :guests
@@ -11,6 +13,5 @@ class Marriage::Invite < ActiveRecord::Base
 
   accepts_nested_attributes_for :user
 
-  #delegate :code, :authentication_token, :email, :name, to: :user
-
+  # delegate :code, :authentication_token, :email, :name, to: :user
 end

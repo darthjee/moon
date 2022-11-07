@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ActiveRecord::Base
   has_one :invite, class_name: 'Marriage::Invite', foreign_key: :user_id
   before_create :start_codesss
@@ -54,6 +56,7 @@ class User < ActiveRecord::Base
 
   def self.encrypt(pass)
     return unless pass.present?
+
     Digest::SHA256.hexdigest pass
   end
 end

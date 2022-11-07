@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Utils::TimeElapsed do
@@ -34,4 +36,3 @@ describe Utils::TimeElapsed do
     ]
   end
 end
-

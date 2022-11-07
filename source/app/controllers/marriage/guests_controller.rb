@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 class Marriage::GuestsController < ApplicationController
   include Marriage::Common
 
-  def index
-  end
+  def index; end
 
   def search
     render json: guests_found_json + invites_found_json

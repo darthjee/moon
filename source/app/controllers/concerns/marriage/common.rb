@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Marriage::Common
   extend ActiveSupport::Concern
   include Marriage::Login

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::InvitesController < ApplicationController
   include Marriage::Invite::Update
   include Marriage::Invite::Show
@@ -22,6 +24,6 @@ class Marriage::InvitesController < ApplicationController
   def update
     invite_updater.update
     send_welcome_email
-    render json: invite.as_json(include: [:guests, :user])
+    render json: invite.as_json(include: %i[guests user])
   end
 end
