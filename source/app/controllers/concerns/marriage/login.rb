@@ -25,7 +25,7 @@ module Marriage::Login
     User.find_by(authentication_token: token_parameter)
   end
 
-  def is_logged?
+  def logged?
     logged_user.present?
   end
 

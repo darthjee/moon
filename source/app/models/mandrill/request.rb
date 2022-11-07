@@ -26,7 +26,7 @@ class Mandrill::Request
     messages.map(&:recepient).map(&:as_json)
   end
 
-  def has_recepients?
+  def recepients?
     recepients.present?
   end
 

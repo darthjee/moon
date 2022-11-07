@@ -8,7 +8,7 @@ class Marriage::LoginController < ApplicationController
   def index; end
 
   def check
-    if is_logged?
+    if logged?
       render json: {}
     else
       render json: {}, status: :not_found

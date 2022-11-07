@@ -7,7 +7,7 @@ module Admin::Common
 
   included do
     redirection_rule :forbidden_path, :lack_admin?
-    skip_redirection_rule :forbidden_path, :is_html?, :is_home?
+    skip_redirection_rule :forbidden_path, :html?, :home?
   end
 
   def forbidden_path
@@ -19,7 +19,7 @@ module Admin::Common
   end
 
   def lack_admin?
-    !is_admin?
+    !admin?
   end
 
   def admin_key_from_request
@@ -34,7 +34,7 @@ module Admin::Common
     [admin_key_from_cookies, admin_key_from_request]
   end
 
-  def is_admin?
+  def admin?
     if admin_keys.include? admin_key
       cookies.signed[:admin_key] = admin_key
       true

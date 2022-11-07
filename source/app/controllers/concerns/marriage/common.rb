@@ -9,7 +9,7 @@ module Marriage::Common
     helper_method :marriage
     layout :layout_for_page
     redirection_rule :render_root, :perform_angular_redirect?
-    skip_redirection_rule :render_root, :is_ajax?, :is_home?
+    skip_redirection_rule :render_root, :ajax?, :home?
   end
 
   private
@@ -18,24 +18,24 @@ module Marriage::Common
     "##{request.path}"
   end
 
-  def is_home?
+  def home?
     request.path == '/'
   end
 
-  def is_ajax?
+  def ajax?
     params[:ajax]
   end
 
   def perform_angular_redirect?
-    is_html?
+    html?
   end
 
-  def is_html?
+  def html?
     request.format.html?
   end
 
   def layout_for_page
-    is_ajax? ? false : 'marriage'
+    ajax? ? false : 'marriage'
   end
 
   def marriage

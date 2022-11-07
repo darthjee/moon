@@ -7,7 +7,7 @@ class Mandrill::Service
   delegate :send_template, to: :messages
 
   def send_request(request)
-    raise Mandrill::Request::NoRecepients unless request.has_recepients?
+    raise Mandrill::Request::NoRecepients unless request.recepients?
 
     send_template request.template_name, [], request.as_json
   end

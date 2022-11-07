@@ -8,12 +8,12 @@ describe Marriage::Login do
     include Marriage::Login
 
     def index
-      render json: { is_logged: is_logged?, user_id: logged_user.try(:id) }
+      render json: { logged: logged?, user_id: logged_user.try(:id) }
     end
   end
 
   let(:response_json) { JSON.parse response.body }
-  let(:is_logged) { response_json['is_logged'] }
+  let(:logged) { response_json['logged'] }
   let(:logged_id) { response_json['user_id'] }
   let(:user) { users(:first) }
 
@@ -26,7 +26,7 @@ describe Marriage::Login do
       end
 
       it 'logs the user' do
-        expect(is_logged).to be_truthy
+        expect(logged).to be_truthy
       end
 
       it 'changes logged in user' do
@@ -44,7 +44,7 @@ describe Marriage::Login do
       end
 
       it 'logs the user' do
-        expect(is_logged).to be_truthy
+        expect(logged).to be_truthy
       end
 
       it 'changes logged in user' do
@@ -61,7 +61,7 @@ describe Marriage::Login do
       end
 
       it 'keeps user logged off' do
-        expect(is_logged).to be_falsey
+        expect(logged).to be_falsey
       end
 
       it 'keeps the user as nil' do
@@ -77,7 +77,7 @@ describe Marriage::Login do
       end
 
       it 'logs off the user' do
-        expect(is_logged).to be_falsey
+        expect(logged).to be_falsey
       end
 
       it 'changes logged in user to nil' do
@@ -97,7 +97,7 @@ describe Marriage::Login do
         before { get :index, params: parameters }
 
         it 'logs the user' do
-          expect(is_logged).to be_truthy
+          expect(logged).to be_truthy
         end
 
         it 'changes logged in user' do
@@ -109,7 +109,7 @@ describe Marriage::Login do
         before { get :index, params: parameters }
 
         it 'does not log the user' do
-          expect(is_logged).to be_falsey
+          expect(logged).to be_falsey
         end
 
         it 'does not change logged in user' do
@@ -130,7 +130,7 @@ describe Marriage::Login do
         before { get :index, params: parameters }
 
         it 'logs in the user' do
-          expect(is_logged).to be_truthy
+          expect(logged).to be_truthy
         end
 
         it 'changes logged in user' do
@@ -142,7 +142,7 @@ describe Marriage::Login do
         before { get :index, params: parameters }
 
         it 'does not change logged in state' do
-          expect(is_logged).to be_truthy
+          expect(logged).to be_truthy
         end
 
         it 'does not change logged in user' do

@@ -14,7 +14,7 @@ class Admin::LoginController < ApplicationController
   end
 
   def check
-    if is_admin?
+    if admin?
       render json: {}
     else
       render json: {}, status: :not_found
