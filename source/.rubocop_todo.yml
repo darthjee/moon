@@ -24,12 +24,6 @@ Style/FormatStringToken:
   EnforcedStyle: unannotated
 
 # Offense count: 1
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'app/models/marriage/gift/creator.rb'
-
-# Offense count: 1
 # Cop supports --auto-correct.
 Style/IfUnlessModifier:
   Exclude:

@@ -28,11 +28,12 @@ module Marriage
       end
 
       def try_add_link(gift, gift_link_json)
-        if gift_link_json[:url] && !gift_link_exists?(gift_link_json[:url])
-          gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
-          gift.update_prices
-          gift.as_json
-        end
+        return unless gift_link_json[:url]
+        return if gift_link_exists?(gift_link_json[:url])
+
+        gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
+        gift.update_prices
+        gift.as_json
       end
 
       def find_or_create_gift(gift_json)
