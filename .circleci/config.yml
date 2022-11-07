@@ -73,7 +73,6 @@ jobs:
     docker:
       - image: darthjee/circleci_moon-base:0.1.0
         environment:
-        environment:
           MOON_MYSQL_HOST: mysql
           MOON_MYSQL_PORT: 3306
           MOON_MYSQL_USER: moon
