@@ -1,33 +1,35 @@
 # frozen_string_literal: true
 
-class EmailValidator::Matcher
-  PRELIMINARREGEXP = /^(?<user>.*)@(?<server>.*)$/.freeze
-  USERREGEXP = /^[a-z]+(([_.][a-z])?[a-z0-9]*)*(\+\w+)*$/.freeze
-  SERVERREGEXP = /^[\w]+([._]?[a-z0-9]+)*(\.[a-z0-9]{2,3}){1,2}/i.freeze
-  attr_reader :value
+class EmailValidator < ActiveModel::EachValidator
+  class Matcher
+    PRELIMINARREGEXP = /^(?<user>.*)@(?<server>.*)$/.freeze
+    USERREGEXP = /^[a-z]+(([_.][a-z])?[a-z0-9]*)*(\+\w+)*$/.freeze
+    SERVERREGEXP = /^[\w]+([._]?[a-z0-9]+)*(\.[a-z0-9]{2,3}){1,2}/i.freeze
+    attr_reader :value
 
-  def initialize(value)
-    @value = value.downcase
-  end
+    def initialize(value)
+      @value = value.downcase
+    end
 
-  def match
-    return false unless value =~ PRELIMINARREGEXP
-    return false unless user =~ USERREGEXP
+    def match
+      return false unless value =~ PRELIMINARREGEXP
+      return false unless user =~ USERREGEXP
 
-    server =~ SERVERREGEXP
-  end
+      server =~ SERVERREGEXP
+    end
 
-  private
+    private
 
-  def matches
-    @matches ||= PRELIMINARREGEXP.match(@value)
-  end
+    def matches
+      @matches ||= PRELIMINARREGEXP.match(@value)
+    end
 
-  def user
-    matches[:user]
-  end
+    def user
+      matches[:user]
+    end
 
-  def server
-    matches[:server]
+    def server
+      matches[:server]
+    end
   end
 end

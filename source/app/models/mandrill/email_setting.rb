@@ -1,4 +1,6 @@
 # frozen_string_literal: true
 
-class Mandrill::EmailSetting < ActiveRecord::Base
+module Mandrill
+  class EmailSetting < ActiveRecord::Base
+  end
 end

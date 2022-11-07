@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-class Marriage::MarriageController < ApplicationController
-  include Marriage::Common
+module Marriage
+  class MarriageController < ApplicationController
+    include ::Marriage::Common
 
-  def show
-    render :show
+    def show
+      render :show
+    end
   end
 end

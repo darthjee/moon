@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
-class Mandrill::Message::Password < Mandrill::Message::Access
-  private
+module Mandrill
+  class Message
+    class Password < Mandrill::Message::Access
+      private
 
-  def data_json
-    super.merge(
-      code: user.code
-    )
+      def data_json
+        super.merge(
+          code: user.code
+        )
+      end
+    end
   end
 end

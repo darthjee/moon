@@ -13,13 +13,6 @@ Lint/SuppressedException:
     - 'bin/rails'
     - 'bin/rake'
 
-# Offense count: 64
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
-  Enabled: false
-
 # Offense count: 138
 Style/Documentation:
   Enabled: false

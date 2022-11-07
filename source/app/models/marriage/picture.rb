@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-class Marriage::Picture < ActiveRecord::Base
-  belongs_to :album
+module Marriage
+  class Picture < ActiveRecord::Base
+    belongs_to :album
 
-  scope(:displayable, proc { where.not(status: :cancelled) })
-  default_scope { displayable }
+    scope(:displayable, proc { where.not(status: :cancelled) })
+    default_scope { displayable }
+  end
 end
