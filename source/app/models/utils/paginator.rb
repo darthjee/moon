@@ -96,9 +96,7 @@ module Utils
 
     def fetch_per_page
       value = [params[:per_page], Settings.default_pagination_size.to_i].compact.first.to_i
-      [value, list.count, Settings.default_pagination_size.to_i].find do |n|
-        n > 0
-      end
+      [value, list.count, Settings.default_pagination_size.to_i].find(&:positive?)
     end
   end
 end

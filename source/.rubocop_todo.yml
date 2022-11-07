@@ -28,16 +28,6 @@ Style/MissingRespondToMissing:
   Exclude:
     - 'app/helpers/application_helper.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle, IgnoredMethods.
-# SupportedStyles: predicate, comparison
-Style/NumericPredicate:
-  Exclude:
-    - 'spec/**/*'
-    - 'app/models/utils/paginator.rb'
-    - 'app/models/utils/time_elapsed.rb'
-
 # Offense count: 122
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.

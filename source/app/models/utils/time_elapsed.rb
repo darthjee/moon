@@ -39,8 +39,8 @@ module Utils
     end
 
     def find_unit
-      TIME_BLOCKS.map_and_find do |u, size|
-        u if (amount / size).to_i > 0
+      TIME_BLOCKS.map_and_find do |label, size|
+        label if (amount / size).to_i.positive?
       end
     end
   end
