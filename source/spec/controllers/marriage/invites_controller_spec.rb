@@ -32,9 +32,8 @@ describe Marriage::InvitesController do
       end
 
       it do
-        expect do
-          get :show, params: parameters
-        end.to change { Marriage::Invite.find(invite.id).last_view_date }
+        expect { get :show, params: parameters }
+          .to(change { Marriage::Invite.find(invite.id).last_view_date })
       end
     end
 
@@ -66,15 +65,14 @@ describe Marriage::InvitesController do
       end
 
       it 'changes the confirmed count for the invite' do
-        expect do
-          patch :update, params: parameters
-        end.to change { Marriage::Invite.find(invite.id).confirmed }.by(2)
+        expect { patch :update, params: parameters }
+          .to change { Marriage::Invite.find(invite.id).confirmed }
+          .by(2)
       end
 
       it 'changes the name of the guests' do
-        expect do
-          patch :update, params: parameters
-        end.to change { invite.guests.pluck(:name) }
+        expect { patch :update, params: parameters }
+          .to(change { invite.guests.pluck(:name) })
       end
 
       it 'updates the invite email' do
@@ -101,9 +99,8 @@ describe Marriage::InvitesController do
       end
 
       it 'does not change the user name' do
-        expect do
-          patch :update, params: parameters
-        end.not_to change { User.find(user.id).name }
+        expect { patch :update, params: parameters }
+          .not_to(change { User.find(user.id).name })
       end
     end
 
@@ -111,27 +108,23 @@ describe Marriage::InvitesController do
       let(:parameters_key) { 'update_wrong_email' }
 
       it 'does not update the e-mail' do
-        expect do
-          patch :update, params: parameters
-        end.not_to change { Marriage::Invite.find(invite.id).email }
+        expect { patch :update, params: parameters }
+          .not_to(change { Marriage::Invite.find(invite.id).email })
       end
 
       it 'does not change the confirmed count for the invite' do
-        expect do
-          patch :update, params: parameters
-        end.not_to change { Marriage::Invite.find(invite.id).confirmed }
+        expect { patch :update, params: parameters }
+          .not_to(change { Marriage::Invite.find(invite.id).confirmed })
       end
 
       it 'does not change any guest' do
-        expect do
-          patch :update, params: parameters
-        end.not_to change { Marriage::Guest.find(guest.id).name }
+        expect { patch :update, params: parameters }
+          .not_to(change { Marriage::Guest.find(guest.id).name })
       end
 
       it 'does not create new guests' do
-        expect do
-          patch :update, params: parameters
-        end.not_to change { Marriage::Guest.where(invite_id: invite.id).count }
+        expect { patch :update, params: parameters }
+          .not_to(change { Marriage::Guest.where(invite_id: invite.id).count })
       end
 
       it 'returns error' do
@@ -181,9 +174,8 @@ describe Marriage::InvitesController do
       end
 
       it 'does not really removes the guests' do
-        expect do
-          patch :update, params: parameters
-        end.not_to change { Marriage::Guest.unscoped.count }
+        expect { patch :update, params: parameters }
+          .not_to(change { Marriage::Guest.unscoped.count })
       end
 
       context 'when the guest id given does not belong to the invite' do
@@ -192,9 +184,8 @@ describe Marriage::InvitesController do
         end
 
         it do
-          expect do
-            patch :update, params: parameters
-          end.not_to change { Marriage::Guest.count }
+          expect { patch :update, params: parameters }
+            .not_to change(Marriage::Guest, :count)
         end
       end
 
@@ -207,9 +198,8 @@ describe Marriage::InvitesController do
         end
 
         it 'marks user as e-mail received' do
-          expect do
-            patch :update, params: parameters
-          end.to change { Marriage::Invite.find(5).welcome_sent }
+          expect { patch :update, params: parameters }
+            .to(change { Marriage::Invite.find(5).welcome_sent })
         end
 
         context 'but user has already received an e-mail' do

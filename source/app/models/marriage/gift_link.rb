@@ -5,7 +5,7 @@ class Marriage::GiftLink < ActiveRecord::Base
   belongs_to :store_list, class_name: 'Store::List', foreign_key: :store_list_id
   belongs_to :account, class_name: 'Bank::Account'
 
-  scope :not_hidden, -> { where.not(status: :hidden) }
+  scope(:not_hidden, -> { where.not(status: :hidden) })
 
   default_scope do
     where.not(status: :canceled)

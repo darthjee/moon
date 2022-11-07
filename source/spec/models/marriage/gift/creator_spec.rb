@@ -135,21 +135,19 @@ describe Marriage::Gift::Creator do
         end
 
         it 'updates the bought quantity' do
-          expect do
-            update_gifts_creator.create
-          end.to change { Marriage::Gift.find(gift.id).bought }
+          expect { update_gifts_creator.create }
+            .to(change { Marriage::Gift.find(gift.id).bought })
         end
 
         it 'updates the bought status' do
-          expect do
-            update_gifts_creator.create
-          end.to change { Marriage::Gift.find(gift.id).status }.to('bought')
+          expect { update_gifts_creator.create }
+            .to change { Marriage::Gift.find(gift.id).status }
+            .to('bought')
         end
 
         it do
-          expect do
-            update_gifts_creator.create
-          end.not_to change(Marriage::GiftLink.unscoped, :count)
+          expect { update_gifts_creator.create }
+            .not_to change(Marriage::GiftLink.unscoped, :count)
         end
       end
 

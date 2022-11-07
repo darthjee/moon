@@ -5,7 +5,7 @@ class Marriage::Gift < ActiveRecord::Base
   belongs_to :marriage
   belongs_to :thread, class_name: 'Comment::Thread'
 
-  scope :not_hidden, -> { where.not(status: :hidden) }
+  scope(:not_hidden, -> { where.not(status: :hidden) })
 
   default_scope do
     where.not(status: :canceled)

@@ -14,15 +14,13 @@ describe Comment::CommentsController do
     context 'when user do exist' do
       let(:user) { users(:first) }
       it 'updates users name' do
-        expect do
-          post :create, params: parameters
-        end.to change { User.find(user.id).name }
+        expect { post :create, params: parameters }
+          .to(change { User.find(user.id).name })
       end
 
       it 'creates a new comment' do
-        expect do
-          post :create, params: parameters
-        end.to change { Comment::Thread.find(thread.id).comments.count }
+        expect { post :create, params: parameters }
+          .to(change { Comment::Thread.find(thread.id).comments.count })
       end
 
       it 'associates user with comment' do
@@ -41,9 +39,8 @@ describe Comment::CommentsController do
       end
 
       it 'creates a new comment' do
-        expect do
-          post :create, params: parameters
-        end.to change { Comment::Thread.find(thread.id).comments.count }
+        expect { post :create, params: parameters }
+          .to(change { Comment::Thread.find(thread.id).comments.count })
       end
     end
 

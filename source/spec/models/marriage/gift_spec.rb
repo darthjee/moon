@@ -10,7 +10,7 @@ describe Marriage::Gift do
     it do
       expect do
         gift.cancel
-      end.to change { Marriage::GiftLink.where(id: gift_links_ids).count }
+      end.to(change { Marriage::GiftLink.where(id: gift_links_ids).count })
     end
 
     it 'clears the links as well' do
