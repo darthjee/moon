@@ -17,12 +17,6 @@ Lint/SuppressedException:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 6
-# Configuration parameters: .
-# SupportedStyles: annotated, template, unannotated
-Style/FormatStringToken:
-  EnforcedStyle: unannotated
-
 # Offense count: 1
 # Configuration parameters: MinBodyLength.
 Style/GuardClause:
