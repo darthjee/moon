@@ -5,7 +5,7 @@ require 'mandrill/config'
 
 module Mandrill
   class << self
-    attr_accessor :config
+    attr_writer :config
 
     delegate :key, :allowed_emails, :reply_to, :return_path_domain, to: :config
 

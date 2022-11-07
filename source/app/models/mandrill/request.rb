@@ -5,7 +5,7 @@ class Mandrill::Request
   class NoRecepients < Error; end
   class NoConfig < Error; end
 
-  attr_reader :messages_hash, :template_key, :settings
+  attr_reader :messages_hash, :template_key
   delegate :template_name, to: :email_setting
 
   def initialize(messages_hash, template_key, settings = {})
