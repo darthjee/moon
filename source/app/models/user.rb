@@ -14,6 +14,14 @@ class User < ActiveRecord::Base
     def login(email, password)
       where.not(email: nil, password: nil).find_by(email: email, password: encrypt(password))
     end
+
+    private
+
+    def encrypt(pass)
+      return unless pass.present?
+
+      Digest::SHA256.hexdigest pass
+    end
   end
 
   def password=(pass)
@@ -52,11 +60,5 @@ class User < ActiveRecord::Base
 
   def other_users
     self.class.where('id != ?', id)
-  end
-
-  def self.encrypt(pass)
-    return unless pass.present?
-
-    Digest::SHA256.hexdigest pass
   end
 end
