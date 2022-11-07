@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Admin::Marriage::GiftsController do
@@ -11,7 +13,7 @@ describe Admin::Marriage::GiftsController do
     let(:last_link_attributes) do
       last_link.attributes.slice('url', 'store_list_id', 'gift_id', 'price')
     end
-    let(:gift_attributes) { %w(image_url name quantity min_price max_price) }
+    let(:gift_attributes) { %w[image_url name quantity min_price max_price] }
 
     before do
       cookies.delete(:admin_key)
@@ -88,11 +90,11 @@ describe Admin::Marriage::GiftsController do
       post :create, params: parameters
 
       expect(last_link_attributes).to eq({
-        'url' => 'http://gifturl',
-        'store_list_id' => 1,
-        'gift_id' => Marriage::Gift.last.id,
-        'price' => 10.0
-      })
+                                           'url' => 'http://gifturl',
+                                           'store_list_id' => 1,
+                                           'gift_id' => Marriage::Gift.last.id,
+                                           'price' => 10.0
+                                         })
     end
 
     context 'when sending a different size package' do
@@ -108,7 +110,6 @@ describe Admin::Marriage::GiftsController do
           'min_price' => 20.0,
           'max_price' => 20.0
         )
-
       end
     end
 
@@ -145,7 +146,6 @@ describe Admin::Marriage::GiftsController do
         end
 
         it 'updates min and max price for the gift' do
-
           post :create, params: new_request_parameters
 
           expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(

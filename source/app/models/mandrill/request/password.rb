@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mandrill/message'
 
 class Mandrill::Request::Password < Mandrill::Request::Base

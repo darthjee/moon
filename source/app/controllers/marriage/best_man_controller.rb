@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::BestManController < ApplicationController
   include Marriage::Common
 
@@ -26,7 +28,7 @@ class Marriage::BestManController < ApplicationController
   def list_honors
     render :list_honors, locals: {
       maids: marriage.guests.where(role: :maid_honor),
-      best_men: marriage.guests.where(role: :best_man),
+      best_men: marriage.guests.where(role: :best_man)
     }, layout: 'blank'
   end
 

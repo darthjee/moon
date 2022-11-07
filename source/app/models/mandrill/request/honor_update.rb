@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mandrill/message'
 
 class Mandrill::Request::HonorUpdate < Mandrill::Request::Base

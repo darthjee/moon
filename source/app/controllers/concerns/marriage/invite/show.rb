@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Marriage::Invite::Show
   extend ActiveSupport::Concern
 
@@ -5,7 +7,7 @@ module Marriage::Invite::Show
 
   def show_json_invite
     invite.update(last_view_date: Time.zone.now)
-    render json: invite.as_json(include: [:guests, :user])
+    render json: invite.as_json(include: %i[guests user])
   end
 
   def show_png_invite

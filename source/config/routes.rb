@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   namespace :marriage, path: '/' do
     get '/' => 'marriage#show', as: :home
 
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :gifts, path: '/presentes', only: [:index, :show], defaults: { format: :html } do
+    resources :gifts, path: '/presentes', only: %i[index show], defaults: { format: :html } do
       get '/pagina/:page' => :index, on: :collection, as: :paginated
 
       resources :gift_links, path: '/descricao', only: [:show]
@@ -50,7 +51,7 @@ Rails.application.routes.draw do
 
       scope defaults: { format: :html }, on: :collection do
         get '/recuperar' => :recovery, as: :recovery
-        get  '/:code' => :edit, as: :edit
+        get '/:code' => :edit, as: :edit
       end
     end
 
@@ -69,7 +70,7 @@ Rails.application.routes.draw do
 
   namespace :comment, path: '/', defaults: { format: :json } do
     resources :threads, only: [] do
-      resources :comments, only: [:index, :create]
+      resources :comments, only: %i[index create]
     end
   end
 
@@ -80,7 +81,7 @@ Rails.application.routes.draw do
     end
 
     namespace :marriage, path: '/' do
-      resources :gifts, path: '/presentes', only: [:create, :update]
+      resources :gifts, path: '/presentes', only: %i[create update]
 
       resources :albums, path: '/album/', only: [] do
         resources :pictures, path: '/fotos', only: [:update]

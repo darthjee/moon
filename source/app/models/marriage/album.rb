@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::Album < ActiveRecord::Base
   belongs_to :marriage
   belongs_to :album
@@ -12,7 +14,7 @@ class Marriage::Album < ActiveRecord::Base
   def as_json(*args)
     options = args.extract_options!
     options = {
-      except: [:created_at, :updated_at]
+      except: %i[created_at updated_at]
     }.merge(options)
 
     super(*args, options).merge(
@@ -20,4 +22,3 @@ class Marriage::Album < ActiveRecord::Base
     )
   end
 end
-

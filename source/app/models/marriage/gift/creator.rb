@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::Gift::Creator
   attr_reader :params, :marriage
 
@@ -17,6 +19,7 @@ class Marriage::Gift::Creator
   def create_or_update(gift_link_json)
     gift = find_or_create_gift(gift_link_json[:gift])
     return unless gift
+
     gift.update(gift_update_json(gift_link_json[:gift]))
     gift.update_bought
 

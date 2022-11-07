@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class Marriage::LoginController < ApplicationController
   include Marriage::Common
 
   protect_from_forgery except: :create
 
-  def index
-  end
+  def index; end
 
   def check
     if is_logged?

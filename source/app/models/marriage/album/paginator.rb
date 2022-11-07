@@ -1,5 +1,6 @@
-class Marriage::Album::Paginator < Utils::Paginator
+# frozen_string_literal: true
 
+class Marriage::Album::Paginator < Utils::Paginator
   private
 
   def ordered_list

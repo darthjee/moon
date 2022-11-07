@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mandrill::Service
   include Singleton
 
@@ -6,6 +8,7 @@ class Mandrill::Service
 
   def send_request(request)
     raise Mandrill::Request::NoRecepients unless request.has_recepients?
+
     send_template request.template_name, [], request.as_json
   end
 

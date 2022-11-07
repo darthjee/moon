@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Mandrill::Request::Welcome do
@@ -17,8 +19,9 @@ describe Mandrill::Request::Welcome do
     let(:vars) { subject.as_json[:merge_vars].first['vars'] }
     let(:expected) do
       [
-        {"name"=>"NAME", "content"=>"Mr. Test"},
-        {"name"=>"ROOT_URL", "content"=> root_url}]
+        { 'name' => 'NAME', 'content' => 'Mr. Test' },
+        { 'name' => 'ROOT_URL', 'content' => root_url }
+      ]
     end
 
     it 'returns the correct data' do

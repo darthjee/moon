@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUsers < ActiveRecord::Migration[4.2]
   def change
     create_table :users do |t|
@@ -11,9 +13,7 @@ class CreateUsers < ActiveRecord::Migration[4.2]
     add_column :marriage_invites, :user_id, :integer
 
     Marriage::Invite.all.each do |invite|
-      attributes = invite.attributes.slice(*%w(
-        email authentication_token code
-      ))
+      attributes = invite.attributes.slice('email', 'authentication_token', 'code')
       attributes.merge!(
         name: invite.guests.last.try(:name)
       )

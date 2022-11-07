@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Utils::Paginator
   attr_reader :params, :list
 
@@ -17,7 +19,8 @@ class Utils::Paginator
   end
 
   def next_page_offset
-    return  list.count - params[:offset].to_i if empty?
+    return list.count - params[:offset].to_i if empty?
+
     offset + list_json.length - params[:offset].to_i
   end
 
@@ -49,11 +52,15 @@ class Utils::Paginator
 
   def limit
     return per_page if calculated_offset >= 0
-    [ calculated_offset + per_page, 0 ].max
+
+    [calculated_offset + per_page, 0].max
   end
 
   def pages
-    return 1 if params[:per_page].to_i == 0 && ! params[:per_page].nil? || list.empty?
+    if params[:per_page].to_i == 0 && !params[:per_page].nil? || list.empty?
+      return 1
+    end
+
     ((list.count - offset_param) * 1.0 / per_page).ceil
   end
 
@@ -78,8 +85,8 @@ class Utils::Paginator
   end
 
   def fetch_per_page
-    value = [ params[:per_page], Settings.default_pagination_size.to_i ].compact.first.to_i
-    [ value, list.count, Settings.default_pagination_size.to_i ].find do |n|
+    value = [params[:per_page], Settings.default_pagination_size.to_i].compact.first.to_i
+    [value, list.count, Settings.default_pagination_size.to_i].find do |n|
       n > 0
     end
   end

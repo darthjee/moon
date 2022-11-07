@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Comment::Comment < ActiveRecord::Base
   belongs_to :thread
   belongs_to :user, class_name: 'User'

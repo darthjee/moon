@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Comment::CommentsController < ApplicationController
   include Marriage::Common
 

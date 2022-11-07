@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mandrill::Message::Base < Mandrill::Message
   attr_reader :user
   delegate :name, :email, to: :user

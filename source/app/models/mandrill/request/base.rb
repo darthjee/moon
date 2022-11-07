@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mandrill::Request::Base < Mandrill::Request
   attr_reader :user, :root_url
   delegate :name, :email, to: :user

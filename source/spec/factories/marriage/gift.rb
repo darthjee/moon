@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :gift, class: Marriage::Gift do
     sequence(:name) { |n| 'The Gift %04d' % n }

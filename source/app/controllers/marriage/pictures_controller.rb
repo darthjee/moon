@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Marriage
   class PicturesController < ApplicationController
     include Picture::Common

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Comment::CommentsController do
@@ -60,17 +62,17 @@ describe Comment::CommentsController do
         end.not_to change(Comment::Comment, :count)
       end
 
-       it 'returns error' do
-         patch :create, params: parameters
-         expect(response_json).to have_key('errors')
-         expect(response_json['errors']).to have_key('user')
-         expect(response_json['errors']['user']).to have_key('email')
-       end
+      it 'returns error' do
+        patch :create, params: parameters
+        expect(response_json).to have_key('errors')
+        expect(response_json['errors']).to have_key('user')
+        expect(response_json['errors']['user']).to have_key('email')
+      end
 
-       it do
-         patch :create, params: parameters
-         expect(response).not_to be_success
-       end
+      it do
+        patch :create, params: parameters
+        expect(response).not_to be_success
+      end
     end
   end
 end

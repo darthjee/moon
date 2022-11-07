@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :gift_link, class: Marriage::GiftLink do
     gift

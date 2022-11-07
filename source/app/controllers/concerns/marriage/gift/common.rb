@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Marriage::Gift::Common
   extend ActiveSupport::Concern
 

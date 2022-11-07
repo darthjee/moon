@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :invite, class: Marriage::Invite do
     sequence(:code) { |n| '%04d' % n }

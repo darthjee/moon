@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def angular_link_to(text, path, *args)
     link_to(text, angular_path_to(path), *args)
@@ -6,7 +8,7 @@ module ApplicationHelper
   def angular_safe_link_to(path_method, path_args = {}, *args)
     link_to(
       angular_path_to(
-        public_send("#{path_method.to_s.gsub(/(_path)?$/, '_safe_path')}", path_args)
+        public_send(path_method.to_s.gsub(/(_path)?$/, '_safe_path').to_s, path_args)
       ),
       *args
     ) do
@@ -24,6 +26,7 @@ module ApplicationHelper
 
   def respond_to?(method)
     return true if Path::SafePath.new(self, method).does_respond_to?
+
     super
   end
 end

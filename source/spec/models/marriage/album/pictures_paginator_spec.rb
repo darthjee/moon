@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Marriage::Album::PicturesPaginator do
@@ -25,7 +27,7 @@ describe Marriage::Album::PicturesPaginator do
       let(:empty_documents) { create(:album).albums }
     end
   end
-    
+
   context 'when album has only pictures' do
     it_behaves_like 'a paginator', described_class, :itens do
       let(:subject) { described_class.new(subalbums, documents, params) }
@@ -56,10 +58,10 @@ describe Marriage::Album::PicturesPaginator do
         albums_count.times.each { create(:album, marriage: marriage, album: album) }
       end.albums
     end
-    let(:documents_json) { subject.as_json[:itens]  }
+    let(:documents_json) { subject.as_json[:itens] }
     let(:per_page) { 8 }
     let(:page) { 1 }
-    let(:params) { { per_page: per_page, page: page }  }
+    let(:params) { { per_page: per_page, page: page } }
     let(:subject) { described_class.new(subalbums, pictures, params) }
 
     context 'when pictures and albums fit in a single page' do
@@ -98,7 +100,7 @@ describe Marriage::Album::PicturesPaginator do
           end
 
           it 'returns the page as given' do
-             expect(subject.as_json[:page]).to eq(page)
+            expect(subject.as_json[:page]).to eq(page)
           end
         end
 

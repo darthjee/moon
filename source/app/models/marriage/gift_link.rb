@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::GiftLink < ActiveRecord::Base
   belongs_to :gift
   belongs_to :store_list, class_name: 'Store::List', foreign_key: :store_list_id
@@ -11,8 +13,8 @@ class Marriage::GiftLink < ActiveRecord::Base
 
   def as_json(*args)
     super(*args).merge(
-      store: store.as_json(only: [:image_url, :name, :bg_color]),
-      bank: bank.as_json(only: [:image_url, :name, :bg_color]),
+      store: store.as_json(only: %i[image_url name bg_color]),
+      bank: bank.as_json(only: %i[image_url name bg_color]),
       account: account.as_json
     )
   end

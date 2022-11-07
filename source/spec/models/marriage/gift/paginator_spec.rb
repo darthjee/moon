@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Marriage::Gift::Paginator do
@@ -63,7 +65,7 @@ describe Marriage::Gift::Paginator do
 
         context 'when requesting for specific ordering' do
           let(:params) do
-            { per_page: per_page, page: page, sort_direction: direction, sort_by: sort_by}
+            { per_page: per_page, page: page, sort_direction: direction, sort_by: sort_by }
           end
 
           context 'when oredering by name' do

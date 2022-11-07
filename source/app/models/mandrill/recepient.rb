@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mandrill::Recepient < DelegateClass(RecursiveOpenStruct)
   def initialize(recepient)
     @recepient = recepient.is_a?(Hash) ? RecursiveOpenStruct.new(recepient) : recepient

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::Invite::Updater
   attr_reader :invite, :user, :params
 
@@ -30,6 +32,7 @@ class Marriage::Invite::Updater
 
   def update_user
     return if user.name.present?
+
     user.update(name: invite.guests.first.try(:name))
   end
 
@@ -61,7 +64,7 @@ class Marriage::Invite::Updater
   end
 
   def invite_params
-    @invite_params ||= params.require(:invite).permit(:removed, guests: [:id, :name, :presence], user: :email)
+    @invite_params ||= params.require(:invite).permit(:removed, guests: %i[id name presence], user: :email)
   end
 
   def removed_guests_id

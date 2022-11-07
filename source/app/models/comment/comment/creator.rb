@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Comment::Comment::Creator
   attr_reader :thread, :params
 
@@ -54,4 +56,3 @@ class Comment::Comment::Creator
     params.require(:comment)
   end
 end
-

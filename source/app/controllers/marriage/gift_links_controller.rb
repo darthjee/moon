@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Marriage::GiftLinksController < ApplicationController
   include Marriage::Common
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Marriage::Invite::Update
   extend ActiveSupport::Concern
 

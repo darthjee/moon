@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateMandrillEmailSettings < ActiveRecord::Migration[4.2]
   def change
     create_table :mandrill_email_settings do |t|

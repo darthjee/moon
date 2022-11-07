@@ -7,8 +7,12 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - checks:
+          filters:
+            tags:
+              only: /.*/
       - build-and-release:
-          requires: [test]
+          requires: [test, checks]
           filters:
             tags:
               only: /.*/
@@ -53,6 +57,9 @@ jobs:
           name: Bower Install
           command: bundle exec rake bower:install
       - run:
+          name: Wait for database
+          command: scripts/wait_for_db.sh
+      - run:
           name: Migrate
           command: RAILS_ENV=test bundle exec rake db:schema:load
       - run:
@@ -61,31 +68,44 @@ jobs:
       - run:
           name: Coverage Test Report
           command: cc-test-reporter after-build --exit-code $?
+
+  checks:
+    docker:
+      - image: darthjee/circleci_moon-base:0.1.0
+        environment:
+          MOON_MYSQL_HOST: mysql
+          MOON_MYSQL_PORT: 3306
+          MOON_MYSQL_USER: moon
+          MOON_MYSQL_NAME: moon
+          MOON_MYSQL_PASSWORD: moon
+          MOON_SENTRY_KEY: key
+          MOON_SENTRY_SECRET: secret
+          MOON_SENTRY_ID: id
+          MOON_NEWRELIC_LICENSE: license
+          MOON_NEWRELIC_APP: Moon Dev
+          ROLLBAR_ACCESS_TOKEN: token
+          ROLLBAR_CLIENT_TOKEN: token
+      - image: circleci/mysql:5.7
+        name: mysql
+        environment:
+          MYSQL_DATABASE: moon_test
+          MYSQL_USER: moon
+          MYSQL_PASSWORD: moon
+    steps:
+      - checkout
+      - run:
+          name: Set folder
+          command: cp source/* source/.??* ./ -r; rm source -rf
+      - run:
+          name: Bundle Install
+          command: bundle install
+      - run:
+          name: Rubocop
+          command: rubocop
   build-and-release:
     machine: true
     steps:
       - checkout
       - run:
-          name: Make Build
-          command: scripts/release.sh build
-      - run:
-          name: Install Heroku
-          command: scripts/release.sh install
-      - run:
-          name: set heroku app
-          command: scripts/release.sh set-app
-      - run:
-          name: Heroku docker login
-          command: scripts/release.sh signin
-      - run:
-          name: Build heroku image
-          command: scripts/release.sh build-heroku
-      - run:
-          name: Release
-          command: scripts/release.sh release
-      - run:
-          name: Migrate
-          command: scripts/release.sh migrate
-      - run:
-          name: Populate fields
-          command: scripts/release.sh populate
+          name: Trigger Deploy
+          command: scripts/deploy.sh deploy
