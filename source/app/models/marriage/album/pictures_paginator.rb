@@ -37,6 +37,6 @@ module Marriage
 
     def album_paginator
       @album_paginator ||= Album::Paginator.new(albums, params)
-   end
+    end
   end
 end
