@@ -18,17 +18,6 @@ Style/Documentation:
   Enabled: false
 
 # Offense count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: format, sprintf, percent
-Style/FormatString:
-  Exclude:
-    - 'spec/factories/marriage/gift.rb'
-    - 'spec/factories/marriage/invite.rb'
-    - 'spec/factories/marriage/marriage.rb'
-    - 'spec/factories/user.rb'
-
-# Offense count: 6
 # Configuration parameters: .
 # SupportedStyles: annotated, template, unannotated
 Style/FormatStringToken:
