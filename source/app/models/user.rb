@@ -15,8 +15,6 @@ class User < ActiveRecord::Base
       where.not(email: nil, password: nil).find_by(email: email, password: encrypt(password))
     end
 
-    private
-
     def encrypt(pass)
       return unless pass.present?
 
