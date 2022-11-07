@@ -19,9 +19,9 @@ class Utils::Paginator
   end
 
   def next_page_offset
-    return list.count - params[:offset].to_i if empty?
+    return list.count - params_offset if empty?
 
-    offset + list_json.length - params[:offset].to_i
+    offset + list_json.length - params_offset
   end
 
   def full_page?
@@ -29,6 +29,10 @@ class Utils::Paginator
   end
 
   private
+
+  def params_offset
+    params[:offset].to_i
+  end
 
   def list_json
     @list_json ||= ordered_list.as_json
@@ -57,11 +61,16 @@ class Utils::Paginator
   end
 
   def pages
-    if params[:per_page].to_i == 0 && !params[:per_page].nil? || list.empty?
-      return 1
-    end
+    return 1 if single_page?
 
     ((list.count - offset_param) * 1.0 / per_page).ceil
+  end
+
+  def single_page?
+    return true if list.empty?
+    return false if params[:per_page].nil?
+
+    params[:per_page].to_i.zero?
   end
 
   def offset

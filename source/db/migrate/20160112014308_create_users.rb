@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize
 class CreateUsers < ActiveRecord::Migration[4.2]
   def change
     create_table :users do |t|
@@ -29,3 +30,4 @@ class CreateUsers < ActiveRecord::Migration[4.2]
     remove_column :marriage_invites, :user_id, :integer
   end
 end
+# rubocop:enable Metrics/AbcSize

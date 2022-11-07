@@ -22,7 +22,10 @@ class Marriage::Gift::Creator
 
     gift.update(gift_update_json(gift_link_json[:gift]))
     gift.update_bought
+    try_add_link(gift, gift_link_json)
+  end
 
+  def try_add_link(gift, gift_link_json)
     if gift_link_json[:url] && !gift_link_exists?(gift_link_json[:url])
       gift.add_link(gift_link_json.permit(:url, :price).merge(store_list: store_list))
       gift.update_prices
