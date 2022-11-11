@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'mandrill'
-require 'mandrill/config'
-
 module Mandrill
   class << self
     attr_writer :config
