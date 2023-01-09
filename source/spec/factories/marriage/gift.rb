@@ -6,6 +6,6 @@ FactoryBot.define do
     image_url   { 'http://store.com/gifts/images/gift.gif' }
     description { 'The awesome gift' }
     marriage
-    quantity    { 2 }
+    quantity { 2 }
   end
 end
