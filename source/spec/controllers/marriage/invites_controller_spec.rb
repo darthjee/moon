@@ -54,10 +54,6 @@ describe Marriage::InvitesController do
 
   describe 'PATCH update' do
     let(:parameters_key) { 'update' }
-    let(:mandrill_service) { Mandrill::Service.instance }
-    before do
-      allow(mandrill_service).to receive(:send_request)
-    end
 
     context 'when updating the guests that already exist' do
       it 'changes the presence for the guests' do
@@ -93,11 +89,6 @@ describe Marriage::InvitesController do
         patch :update, params: parameters
 
         expect(response_json).to have_key('guests')
-      end
-
-      it 'sends welcome e-mail' do
-        expect(mandrill_service).to receive(:send_request)
-        patch :update, params: parameters
       end
 
       it 'does not change the user name' do
@@ -188,49 +179,6 @@ describe Marriage::InvitesController do
         it do
           expect { patch :update, params: parameters }
             .not_to change(Marriage::Guest, :count)
-        end
-      end
-
-      context 'but that has not an received welcome yet' do
-        let(:parameters_key) { 'create_email' }
-
-        it 'sends welcome e-mail' do
-          expect(mandrill_service).to receive(:send_request)
-          patch :update, params: parameters
-        end
-
-        it 'marks user as e-mail received' do
-          expect { patch :update, params: parameters }
-            .to(change { Marriage::Invite.find(5).welcome_sent })
-        end
-
-        context 'but user has already received an e-mail' do
-          before do
-            Marriage::Invite.update_all(welcome_sent: true)
-          end
-
-          it 'sends welcome e-mail' do
-            expect(mandrill_service).not_to receive(:send_request)
-            patch :update, params: parameters
-          end
-        end
-
-        context 'but no guest name has been provided' do
-          let(:parameters_key) { 'update_no_name' }
-
-          it 'does not send welcome e-mail' do
-            expect(mandrill_service).not_to receive(:send_request)
-            patch :update, params: parameters
-          end
-
-          context 'but there was a guest already registered' do
-            let(:parameters_key) { 'update_no_name_already_existing' }
-
-            it 'sends welcome e-mail' do
-              expect(mandrill_service).to receive(:send_request)
-              patch :update, params: parameters
-            end
-          end
         end
       end
     end

@@ -24,7 +24,6 @@ module Marriage
 
     def update
       invite_updater.update
-      send_welcome_email
       render json: invite.as_json(include: %i[guests user])
     end
   end
