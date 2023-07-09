@@ -1,40 +1,67 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
-  validates_presence_of :name, :login, :email, :encrypted_password
-  has_many :sessions
+class User < ActiveRecord::Base
+  has_one :invite, class_name: 'Marriage::Invite', foreign_key: :user_id
+  before_create :start_codesss
 
-  validates :login,
-            presence: true,
-            length: { maximum: 50 }
-  validates :email,
-            presence: true,
-            length: { maximum: 100 }
-  validates :name,
-            presence: true,
-            length: { maximum: 100 }
+  validates :email, email: true, if: -> { email.present? }
 
-  def self.login(login:, password:)
-    User.find_by!(login: login).verify_password!(password)
-  rescue ActiveRecord::RecordNotFound
-    raise Moon::Exception::LoginFailed
+  scope(:authenticated, -> { where.not(authentication_token: nil) })
+  scope(:with_login, -> { where.not(email: nil, password: nil) })
+
+  class << self
+    def for_invite(invite)
+      invite.user
+    end
+
+    def login(email, password)
+      with_login.find_by(email: email, password: encrypt(password))
+    end
+
+    def encrypt(pass)
+      return unless pass.present?
+
+      Digest::SHA256.hexdigest pass
+    end
   end
 
   def password=(pass)
-    self.salt = SecureRandom.hex
-    self.encrypted_password = encrypt_password(pass)
+    super(self.class.encrypt(pass))
   end
 
-  def verify_password!(pass)
-    return self if encrypted_password == encrypt_password(pass)
+  def start_code(length = 2)
+    start_random_attribute(:code, length)
+    save
+  end
 
-    raise Moon::Exception::LoginFailed
+  def start_authentication_token(length = 8)
+    start_random_attribute(:authentication_token, length)
+    save
   end
 
   private
 
-  def encrypt_password(pass)
-    plain = salt + pass + Settings.password_salt
-    Digest::SHA256.hexdigest(plain)
+  def start_codesss
+    start_random_attribute(:code, 2)
+    start_random_attribute(:authentication_token, 8)
+  end
+
+  def start_random_attribute(attribute, length)
+    until unique_attribute?(attribute)
+      public_send("#{attribute}=", build_code(length))
+    end
+  end
+
+  def build_code(length)
+    SecureRandom.hex(length)
+  end
+
+  def unique_attribute?(attribute)
+    value = public_send(attribute)
+    !other_users.exists?(attribute => value) if value
+  end
+
+  def other_users
+    self.class.where('id != ?', id)
   end
 end
