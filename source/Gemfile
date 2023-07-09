@@ -29,6 +29,7 @@ gem 'nokogiri', '1.14.4'
 gem 'sinclair', '~> 2.0.1'
 gem 'tarquinn', '~> 0.2.0'
 gem 'zyra',     '1.2.0'
+gem 'newrelic_rpm', '9.3.0'
 
 group :development, :test do
   gem 'factory_bot',        '6.2.1'
