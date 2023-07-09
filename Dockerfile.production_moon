@@ -1,4 +1,4 @@
-FROM darthjee/production_moon-base:1.1.1 as base
+FROM darthjee/production_moon-base:0.0.1 as base
 
 ####################################
 
