@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Marriage
-  class Marriage < ActiveRecord::Base
+  class Marriage < ApplicationRecord
     has_many :events
     has_many :invites
     has_many :albums

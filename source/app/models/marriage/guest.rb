@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Marriage
-  class Guest < ActiveRecord::Base
+  class Guest < ApplicationRecord
     belongs_to :invite
     belongs_to :marriage
 

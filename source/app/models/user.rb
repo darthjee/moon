@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_one :invite, class_name: 'Marriage::Invite', foreign_key: :user_id
   before_create :start_codesss
 

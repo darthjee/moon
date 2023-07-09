@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Marriage
-  class GiftLink < ActiveRecord::Base
+  class GiftLink < ApplicationRecord
     belongs_to :gift
     belongs_to :account, class_name: 'Bank::Account'
     belongs_to :store_list,
