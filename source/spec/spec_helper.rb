@@ -9,6 +9,7 @@ SimpleCov.start 'rails'
 require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 require 'factory_bot'
+require 'pry'
 
 require 'webmock/rspec'
 

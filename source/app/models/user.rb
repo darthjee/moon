@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
       invite.user
     end
 
-    def login(email, password)
-      User.find_by!(email: email).verify_password!(password)
+    def login(login:, password:)
+      User.find_by!(login: login).verify_password!(password)
     rescue ActiveRecord::RecordNotFound
       raise Moon::Exception::LoginFailed
     end
