@@ -11,6 +11,7 @@ class Settings
     session_period: 2.days,
     cache_age: 10.seconds,
     title: 'Moon',
-    favicon: '/favicon.ico'
+    favicon: '/favicon.ico',
+    default_pagination_size: 8
   )
 end
