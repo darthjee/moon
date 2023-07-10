@@ -46,15 +46,11 @@ module Marriage
     end
 
     def login
-      login_params[:login]
+      params[:login]
     end
 
     def password
-      login_params[:password]
-    end
-
-    def login_params
-      params.require(:login)
+      params[:password]
     end
   end
 end
