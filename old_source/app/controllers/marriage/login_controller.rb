@@ -42,19 +42,15 @@ module Marriage
     end
 
     def user_from_login
-      @user_from_login = User.login(email, password)
+      @user_from_login = User.login(login: login, password: password)
     end
 
-    def email
-      login_params[:email]
+    def login
+      params[:login]
     end
 
     def password
-      login_params[:password]
-    end
-
-    def login_params
-      params.require(:login)
+      params[:password]
     end
   end
 end

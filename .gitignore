@@ -16,3 +16,4 @@
 /.env.secret
 /.env.production
 **/*.swp
+**/*.orig
