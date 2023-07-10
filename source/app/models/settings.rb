@@ -7,6 +7,7 @@ class Settings
   settings_prefix 'MOON'
 
   with_settings(
+    :password_salt,
     default_pagination_size: 8
   )
 end
