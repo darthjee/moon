@@ -3,6 +3,7 @@ first:
   code: aaaa
   authentication_token: token
   email: 'user@server.com'
+  login: 'user'
   name: Mr. Test
 second_second:
   id: 2
@@ -15,6 +16,7 @@ with_email:
   id: 4
   code: aaad
   email: 'email@server.com'
+  login: 'the_usr'
 without_welcome:
   id: 5
   code: aaae
