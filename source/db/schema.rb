@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2020_09_15_174620) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_10_121922) do
   create_table "bank_accounts", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "bank_id"
     t.integer "marriage_id"
@@ -128,7 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2020_09_15_174620) do
     t.boolean "up_to_date"
     t.boolean "welcome_sent", default: false
     t.integer "user_id"
-    t.index ["marriage_id", "code"], name: "index_marriage_invites_on_marriage_id_and_code"
+    t.index %w[marriage_id code], name: "index_marriage_invites_on_marriage_id_and_code"
   end
 
   create_table "marriage_locations", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -181,6 +181,10 @@ ActiveRecord::Schema[7.0].define(version: 2020_09_15_174620) do
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.string "password", limit: 64
+    t.string "login"
+    t.string "encrypted_password", limit: 64
+    t.string "salt", limit: 64
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["login"], name: "index_users_on_login", unique: true
   end
-
 end
