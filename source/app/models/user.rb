@@ -15,18 +15,23 @@ class User < ActiveRecord::Base
     end
 
     def login(email, password)
-      with_login.find_by(email: email, password: encrypt(password))
-    end
-
-    def encrypt(pass)
-      return unless pass.present?
-
-      Digest::SHA256.hexdigest pass
+      User.find_by!(email: email).verify_password!(password)
+    rescue ActiveRecord::RecordNotFound
+      raise Moon::Exception::LoginFailed
     end
   end
 
   def password=(pass)
-    super(self.class.encrypt(pass))
+    self.salt = SecureRandom.hex
+
+    super(encrypt(pass))
+    self.encrypted_password = self.password
+  end
+
+  def verify_password!(pass)
+    return self if encrypted_password == encrypt(pass)
+
+    raise Moon::Exception::LoginFailed
   end
 
   def start_code(length = 2)
@@ -40,6 +45,14 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def encrypt(pass)
+    return unless pass.present?
+
+    plain = salt + pass# + Settings.password_salt
+
+    Digest::SHA256.hexdigest(plain)
+  end
 
   def start_codesss
     start_random_attribute(:code, 2)
