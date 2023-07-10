@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AvoidDuplicationLogin < ActiveRecord::Migration[5.2]
   def up
     inner_query = <<-SQL
@@ -27,7 +29,7 @@ class AvoidDuplicationLogin < ActiveRecord::Migration[5.2]
     SQL
 
     execute(query).each do |id, email|
-      login = email.gsub(/@.*/,'')
+      login = email.gsub(/@.*/, '')
 
       update_query = <<-SQL
         UPDATE users

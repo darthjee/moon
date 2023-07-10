@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PopulateNewUserFields < ActiveRecord::Migration[5.2]
   def up
     query = <<-SQL
