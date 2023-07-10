@@ -48,16 +48,17 @@ describe Marriage::LoginController do
   end
 
   describe 'POST create' do
-    let(:email) { user.email }
+    let(:login)    { user.login }
     let(:password) { 'pass_code' }
     let(:parameters) do
       {
-        login: { email: email, password: password },
+        login: login,
+        password: password,
         format: :json
       }
     end
 
-    context 'when use has a password' do
+    context 'when user has a password' do
       before do
         user.password = 'pass_code'
         user.save
@@ -75,7 +76,7 @@ describe Marriage::LoginController do
         end
       end
 
-      context 'when requesting with incorrect email and password' do
+      context 'when requesting with incorrect login and password' do
         let(:password) { 'wrong pass_code' }
 
         it do
@@ -90,11 +91,11 @@ describe Marriage::LoginController do
     end
 
     context 'when trying to login with an invite without email or password' do
-      let(:email) { nil }
       let(:password) { nil }
+      let(:login)    { nil }
 
       before do
-        user.update(password: nil, email: nil)
+        user.update(password: nil, login: nil)
         post :create, params: parameters
       end
 

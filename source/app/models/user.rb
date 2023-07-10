@@ -14,19 +14,17 @@ class User < ApplicationRecord
       invite.user
     end
 
-    def login(email, password)
-      with_login.find_by(email: email, password: encrypt(password))
-    end
-
-    def encrypt(pass)
-      return unless pass.present?
-
-      Digest::SHA256.hexdigest pass
+    def login(login:, password:)
+    User.find_by!(login: login).verify_password!(password)
+  rescue ActiveRecord::RecordNotFound
+    raise Moon::Exception::LoginFailed
     end
   end
 
   def password=(pass)
-    super(self.class.encrypt(pass))
+    self.salt = SecureRandom.hex
+    self.encrypted_password = encrypt_password(pass)
+    super(self.encrypted_password)
   end
 
   def start_code(length = 2)
@@ -39,7 +37,18 @@ class User < ApplicationRecord
     save
   end
 
+  def verify_password!(pass)
+    return self if encrypted_password == encrypt_password(pass)
+
+    raise Moon::Exception::LoginFailed
+  end
+
   private
+
+  def encrypt_password(pass)
+    plain = salt + pass + Settings.password_salt
+    Digest::SHA256.hexdigest(plain)
+  end
 
   def start_codesss
     start_random_attribute(:code, 2)
