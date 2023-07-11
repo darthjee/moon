@@ -6,7 +6,8 @@ module Marriage
     belongs_to :account, class_name: 'Bank::Account', optional: true
     belongs_to :store_list,
                class_name: 'Store::List',
-               foreign_key: :store_list_id
+               foreign_key: :store_list_id,
+               optional: true
 
     scope(:not_hidden, -> { where.not(status: :hidden) })
 
