@@ -51,7 +51,7 @@ describe User::Decorator do
           login: user.login,
           email: user.email,
           errors: {
-            email: ["can't be blank"]
+            email: ["is invalid"]
           }
         }.deep_stringify_keys
       end
