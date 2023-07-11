@@ -182,7 +182,7 @@ describe Admin::UsersController do
 
         let(:user_attributes) do
           user.attributes.reject do |key, _|
-            %w[id created_at updated_at encrypted_password salt code authentication_token password]
+            %w[id created_at updated_at encrypted_password salt code authentication_token]
               .include? key
           end
         end
