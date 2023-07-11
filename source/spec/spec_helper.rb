@@ -115,7 +115,7 @@ RSpec.configure do |config|
   #   Kernel.srand config.seed
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with(:transaction)
 
     ActiveRecord::Migration.check_pending!
     ActiveRecord::Migration.maintain_test_schema!
