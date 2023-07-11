@@ -3,7 +3,7 @@
 module Marriage
   class GiftLink < ApplicationRecord
     belongs_to :gift
-    belongs_to :account, class_name: 'Bank::Account'
+    belongs_to :account, class_name: 'Bank::Account', optional: true
     belongs_to :store_list,
                class_name: 'Store::List',
                foreign_key: :store_list_id
