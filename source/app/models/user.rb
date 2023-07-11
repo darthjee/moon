@@ -24,6 +24,7 @@ class User < ApplicationRecord
 
   def password=(pass)
     self.salt = SecureRandom.hex
+    
     self.encrypted_password = encrypt_password(pass)
     super(self.encrypted_password)
   end
