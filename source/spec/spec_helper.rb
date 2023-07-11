@@ -29,6 +29,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.fixture_path = "#{Rails.root}/spec/fixtures"
   config.infer_spec_type_from_file_location!
+  config.use_transactional_fixtures = true
+  config.global_fixtures = :all
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -113,7 +115,6 @@ RSpec.configure do |config|
   #   Kernel.srand config.seed
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
 
     ActiveRecord::Migration.check_pending!
     ActiveRecord::Migration.maintain_test_schema!

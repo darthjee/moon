@@ -26,14 +26,11 @@ describe User::Decorator do
       let(:object) { User.all }
 
       let(:expected_json) do
-        [
-          {
-            id: user.id,
-            name: user.name,
-            login: user.login,
-            email: user.email
-          }
-        ].map(&:stringify_keys)
+        object.map do |obj|
+          obj.attributes.select do |key, _|
+            %w[email id login name].include?(key)
+          end
+        end
       end
 
       it 'returns meta data defined json' do
