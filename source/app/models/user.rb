@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   has_one :invite, class_name: 'Marriage::Invite', foreign_key: :user_id
   before_create :start_codesss
+  has_many :sessions
 
   validates :email, email: true, if: -> { email.present? }
 
