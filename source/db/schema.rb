@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_11_105338) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_133251) do
   create_table "bank_accounts", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "bank_id"
     t.integer "marriage_id"
@@ -188,7 +188,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_105338) do
     t.string "code"
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
-    t.string "password", limit: 64
     t.string "login"
     t.string "encrypted_password", limit: 64
     t.string "salt", limit: 64

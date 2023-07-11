@@ -26,7 +26,6 @@ class User < ApplicationRecord
     self.salt = SecureRandom.hex
     
     self.encrypted_password = encrypt_password(pass)
-    super(self.encrypted_password)
   end
 
   def start_code(length = 2)
