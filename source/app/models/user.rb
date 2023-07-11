@@ -15,9 +15,9 @@ class User < ApplicationRecord
     end
 
     def login(login:, password:)
-    User.find_by!(login: login).verify_password!(password)
-  rescue ActiveRecord::RecordNotFound
-    raise Moon::Exception::LoginFailed
+      User.find_by!(login: login).verify_password!(password)
+    rescue ActiveRecord::RecordNotFound
+      raise Moon::Exception::LoginFailed
     end
   end
 
@@ -46,7 +46,7 @@ class User < ApplicationRecord
   private
 
   def encrypt_password(pass)
-    plain = salt + pass + Settings.password_salt
+    plain = [salt, pass, Settings.password_salt].join
     Digest::SHA256.hexdigest(plain)
   end
 
