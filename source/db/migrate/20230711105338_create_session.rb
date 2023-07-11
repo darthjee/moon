@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
-class CreateSessions < ActiveRecord::Migration[5.2]
+class CreateSession < ActiveRecord::Migration[7.0]
   def change
     create_table :sessions do |t|
-      t.bigint :user_id, null: false
+      t.integer :user_id, null: false, size: 11
       t.datetime :expiration
       t.string :token, limit: 64, null: false
 

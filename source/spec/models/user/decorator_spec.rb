@@ -42,7 +42,7 @@ describe User::Decorator do
     end
 
     context 'when user is invalid' do
-      let!(:user) { build(:user, login: nil) }
+      let!(:user) { build(:user, email: 'wrong') }
 
       let(:expected_json) do
         {
@@ -51,7 +51,7 @@ describe User::Decorator do
           login: user.login,
           email: user.email,
           errors: {
-            login: ["can't be blank"]
+            email: ["is invalid"]
           }
         }.deep_stringify_keys
       end
