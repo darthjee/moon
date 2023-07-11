@@ -24,8 +24,7 @@ class User < ActiveRecord::Base
   def password=(pass)
     self.salt = SecureRandom.hex
 
-    super(encrypt(pass))
-    self.encrypted_password = password
+    self.encrypted_password = encrypt(pass)
   end
 
   def verify_password!(pass)

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_230_710_121_922) do
+ActiveRecord::Schema.define(version: 20_230_711_133_251) do
   create_table 'bank_accounts', id: :integer, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.integer 'bank_id'
     t.integer 'marriage_id'
@@ -182,7 +182,6 @@ ActiveRecord::Schema.define(version: 20_230_710_121_922) do
     t.string 'code'
     t.datetime 'created_at'
     t.datetime 'updated_at'
-    t.string 'password', limit: 64
     t.string 'login'
     t.string 'encrypted_password', limit: 64
     t.string 'salt', limit: 64
