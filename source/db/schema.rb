@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_10_121922) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_105338) do
   create_table "bank_accounts", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "bank_id"
     t.integer "marriage_id"
@@ -128,7 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_121922) do
     t.boolean "up_to_date"
     t.boolean "welcome_sent", default: false
     t.integer "user_id"
-    t.index %w[marriage_id code], name: "index_marriage_invites_on_marriage_id_and_code"
+    t.index ["marriage_id", "code"], name: "index_marriage_invites_on_marriage_id_and_code"
   end
 
   create_table "marriage_locations", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -154,6 +154,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_121922) do
     t.string "url"
     t.string "snap_url"
     t.string "status", limit: 10, default: "display"
+  end
+
+  create_table "sessions", charset: "utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "expiration"
+    t.string "token", limit: 64, null: false
+    t.index ["token"], name: "index_sessions_on_token", unique: true
+    t.index ["user_id"], name: "fk_rails_758836b4f0"
   end
 
   create_table "store_lists", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -187,4 +195,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_121922) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["login"], name: "index_users_on_login", unique: true
   end
+
+  add_foreign_key "sessions", "users"
 end
