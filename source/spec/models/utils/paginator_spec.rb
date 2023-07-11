@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-xdescribe Utils::Paginator do
+describe Utils::Paginator do
   class Utils::Paginator::DummyPaginator < Utils::Paginator
     def key
       :documents
