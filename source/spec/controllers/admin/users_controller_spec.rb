@@ -204,7 +204,7 @@ describe Admin::UsersController do
       end
 
       context 'when there are validation errors' do
-        let(:payload) { { name: '' } }
+        let(:payload) { { email: 'wrong' } }
 
         let(:user_attributes) do
           payload
