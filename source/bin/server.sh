@@ -8,6 +8,10 @@ if [ "$RACK_ENV" != "production" ]; then
   bundle exec rake db:create
 fi
 
-bundle exec rake db:migrate db:seed
+bundle exec rake db:migrate
+
+if [ "$RACK_ENV" != "production" ]; then
+  bundle exec db:seed
+fi
 
 bundle exec rails s -b 0.0.0.0
