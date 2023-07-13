@@ -57,21 +57,23 @@ describe User do
   end
 
   describe 'validations' do
-    let(:user) { users(:second_second) }
+    let(:user) { build(:user, email: email) }
 
     context 'when email is nil' do
+      let(:email) { nil }
+
       it { expect(user).to be_valid }
     end
 
     context 'when email is not nil' do
-      let(:invite) { users(:with_email) }
-
       context 'and is valid' do
+        let(:email) { 'user@srv.com' }
+
         it { expect(user).to be_valid }
       end
 
       context 'and is invalid ' do
-        before { user.email = 'wrong_email' }
+        let(:email) { 'wrong_email' }
 
         it { expect(user).to be_invalid }
       end
