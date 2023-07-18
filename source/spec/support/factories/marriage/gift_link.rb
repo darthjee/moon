@@ -6,5 +6,10 @@ FactoryBot.define do
     store_list
     url   { 'http://store.com/prod/1' }
     price { 10.0 }
+
+    trait :with_account do
+      account
+      url { nil }
+    end
   end
 end
