@@ -8,9 +8,6 @@ describe Marriage::Gift::Creator do
   let(:subject) { described_class.new(marriage, parameters) }
   let(:store)   { create(:store) }
   let!(:store_list) { create(:store_list, marriage: marriage, store: store) }
-  let(:parameters_json) do
-    create(:marriage_gift_create, marriage: marriage, gift_links: gift_links, store: store)
-  end
   let(:gift) { build(:gift) }
   let(:gift_links) { [gift_link] }
   let(:gift_link) do
@@ -18,6 +15,9 @@ describe Marriage::Gift::Creator do
   end
 
   describe '#create' do
+    let(:parameters_json) do
+      create(:marriage_gift_create, marriage: marriage, gift_links: gift_links, store: store)
+    end
     let(:last_link) { Marriage::GiftLink.last }
     let(:last_link_attributes) do
       last_link.attributes.slice('url', 'store_list_id', 'gift_id', 'price')
@@ -136,12 +136,19 @@ describe Marriage::Gift::Creator do
       end
 
       context 'and we are updating the bought quantity' do
-        let(:gift) { Marriage::Gift.last }
+        let(:gift) { create(:gift, marriage: marriage, bought: 0, quantity: 4) }
         let(:update_gifts_creator) do
           described_class.new(marriage, update_request_parameters)
         end
         let(:update_request_parameters) do
-          ActionController::Parameters.new tests_json['update']
+          ActionController::Parameters.new update_parameters_json
+        end
+        let(:update_parameters_json) do
+          create(
+            :marriage_gift_update,
+            marriage: marriage, gift_links: gift_links, store: store,
+            bought: 4
+          )
         end
 
         it 'updates the bought quantity' do
