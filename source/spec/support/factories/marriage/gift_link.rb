@@ -9,7 +9,8 @@ FactoryBot.define do
 
     trait :with_account do
       account
-      url { nil }
+      url        { nil }
+      store_list { nil }
     end
   end
 end
