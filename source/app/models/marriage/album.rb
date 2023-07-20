@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Marriage
-  class Album < ActiveRecord::Base
+  class Album < ApplicationRecord
     belongs_to :marriage
-    belongs_to :album
+    belongs_to :album, optional: true
     has_many :pictures
     has_many :albums
 

@@ -1,4 +1,4 @@
-FROM darthjee/moon-base:1.1.1
+FROM darthjee/moon-base:2.0.0
 
 WORKDIR /home/app/app
 COPY --chown=app:app source/Gemfile* /home/app/app/

@@ -16,17 +16,17 @@ module Path
     end
 
     def does_respond_to?
-      controller.respond_to?(path_method) if MATCHER =~ method
+      controller.respond_to?(path_method) if MATCHER.match?(method)
     end
 
     private
 
     def path_method
-      @path_method ||= MATCHER.match(method)[1] + '_path'
+      @path_method ||= "#{MATCHER.match(method)[1]}_path"
     end
 
-    def safe_path(args)
-      PathCaller.new(controller, path_method, args).path
+    def safe_path(*args)
+      PathCaller.new(controller, path_method, *args).path
     end
   end
 end

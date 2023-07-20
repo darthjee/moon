@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Marriage
-  class Invite < ActiveRecord::Base
+  class Invite < ApplicationRecord
     module Show
       extend ActiveSupport::Concern
 

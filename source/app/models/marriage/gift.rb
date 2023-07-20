@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Marriage
-  class Gift < ActiveRecord::Base
+  class Gift < ApplicationRecord
     has_many :gift_links
     belongs_to :marriage
-    belongs_to :thread, class_name: 'Comment::Thread'
+    belongs_to :thread, class_name: 'Comment::Thread', optional: true
 
     scope(:not_hidden, -> { where.not(status: :hidden) })
 

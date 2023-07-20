@@ -4,8 +4,13 @@ require 'spec_helper'
 
 describe Marriage::Gift do
   describe '#cancel' do
-    let(:gift) { marriage_gifts(:first_gift) }
+    let(:gift) { create(:gift) }
     let(:gift_links_ids) { gift.gift_links.pluck(:id) }
+
+    before do
+      create(:gift_link, gift: gift)
+      create(:gift_link, :with_account, gift: gift)
+    end
 
     it do
       expect do

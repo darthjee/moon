@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 module Marriage
-  class Guest < ActiveRecord::Base
+  class Guest < ApplicationRecord
     belongs_to :invite
-    belongs_to :marriage
 
     scope(:confirmed, proc { where(presence: true) })
     scope(:search_name, proc { |name| where('name LIKE ?', "%#{name}%") })

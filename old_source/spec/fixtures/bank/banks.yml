@@ -1,0 +1,4 @@
+first_bank:
+  id: 1
+  name: 'bank'
+  image_url: 'http://bank.com/image.png'

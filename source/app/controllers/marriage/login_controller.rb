@@ -5,7 +5,6 @@ module Marriage
     include ::Marriage::Common
 
     protect_from_forgery except: :create
-    rescue_from Moon::Exception::LoginFailed, with: :not_found
 
     def index; end
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Marriage
-  class Picture < ActiveRecord::Base
+  class Picture < ApplicationRecord
     belongs_to :album
 
     scope(:displayable, proc { where.not(status: :cancelled) })

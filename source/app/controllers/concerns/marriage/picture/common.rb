@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Marriage
-  class Picture < ActiveRecord::Base
+  class Picture < ApplicationRecord
     module Common
       extend ActiveSupport::Concern
       include ::Marriage::Common

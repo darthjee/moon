@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Marriage
-  class Gift < ActiveRecord::Base
+  class Gift < ApplicationRecord
     class Creator
       attr_reader :params, :marriage
 

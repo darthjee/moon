@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Comment
-  class Comment < ActiveRecord::Base
+  class Comment < ApplicationRecord
     belongs_to :thread
     belongs_to :user, class_name: 'User'
 

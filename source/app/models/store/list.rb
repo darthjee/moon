@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Store
-  class List < ActiveRecord::Base
+  class List < ApplicationRecord
     belongs_to :marriage, class_name: 'Marriage::Marriage'
     belongs_to :store
     has_many :gift_links,
