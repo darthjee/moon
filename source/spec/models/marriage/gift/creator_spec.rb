@@ -173,7 +173,14 @@ describe Marriage::Gift::Creator do
           described_class.new(marriage, new_request_parameters)
         end
         let(:new_request_parameters) do
-          ActionController::Parameters.new tests_json['create_new_store']
+          ActionController::Parameters.new(create_new_parameters_json)
+        end
+        let(:new_store) { create(:store) }
+        let(:create_new_parameters_json) do
+          create(
+            :marriage_gift_create,
+            marriage: marriage, gift_links: gift_links, store: new_store
+          )
         end
 
         it do
@@ -192,11 +199,11 @@ describe Marriage::Gift::Creator do
           new_gifts_creator.create
 
           expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
-            'image_url' => 'http://image_url.com',
-            'name' => 'Gift Name',
-            'quantity' => 4,
-            'min_price' => 40.0,
-            'max_price' => 80.0
+            'image_url' => gift.image_url,
+            'name' => gift.name,
+            'quantity' => gift.quantity,
+            'min_price' => gift_link.price,
+            'max_price' => gift_link.price
           )
         end
       end
