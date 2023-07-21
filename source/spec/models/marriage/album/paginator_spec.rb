@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Marriage::Album::Paginator do
   it_behaves_like 'a paginator extending utils paginator',
                   described_class, :albums do
-    let(:marriage) { marriage_marriages(:first) }
+    let(:marriage) { create(:marriage) }
     let(:documents) { marriage.albums }
     let(:documents_with_10_itens) do
       create(:marriage).tap do |marriage|
@@ -20,5 +20,7 @@ describe Marriage::Album::Paginator do
     let(:empty_documents) { create(:marriage).albums }
     let(:first_documents) { documents.limit(per_page) }
     let(:last_documents) { documents.last(documents.count % per_page) }
+
+    before { create_list(:album, 1, marriage: marriage) }
   end
 end

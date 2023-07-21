@@ -11,7 +11,7 @@ describe Utils::Paginator do
 
   it_behaves_like 'a paginator extending utils paginator',
                   described_class::DummyPaginator, :documents do
-    let(:album) { marriage_albums(:first) }
+    let(:album) { create(:album) }
     let(:documents) { album.pictures }
     let(:documents_with_10_itens) do
       create(:album).tap do |album|
@@ -26,5 +26,9 @@ describe Utils::Paginator do
     let(:empty_documents) { create(:album).pictures }
     let(:first_documents) { documents.limit(per_page) }
     let(:last_documents) { documents.last(documents.count % per_page) }
+
+    before do
+      create_list(:picture, 2, album: album)
+    end
   end
 end
