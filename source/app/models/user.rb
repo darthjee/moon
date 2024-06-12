@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_one :invite, class_name: 'Marriage::Invite', foreign_key: :user_id
   before_create :start_codesss
+  has_many :sessions
 
   validates :email, email: true, if: -> { email.present? }
 
@@ -23,14 +24,8 @@ class User < ActiveRecord::Base
 
   def password=(pass)
     self.salt = SecureRandom.hex
-
-    self.encrypted_password = encrypt(pass)
-  end
-
-  def verify_password!(pass)
-    return self if encrypted_password == encrypt(pass)
-
-    raise Moon::Exception::LoginFailed
+    
+    self.encrypted_password = encrypt_password(pass)
   end
 
   def start_code(length = 2)
@@ -43,13 +38,16 @@ class User < ActiveRecord::Base
     save
   end
 
+  def verify_password!(pass)
+    return self if encrypted_password == encrypt_password(pass)
+
+    raise Moon::Exception::LoginFailed
+  end
+
   private
 
-  def encrypt(pass)
-    return unless pass.present?
-
-    plain = salt + pass # + Settings.password_salt
-
+  def encrypt_password(pass)
+    plain = [salt, pass, Settings.password_salt].join
     Digest::SHA256.hexdigest(plain)
   end
 

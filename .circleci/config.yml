@@ -22,13 +22,14 @@ workflows:
 jobs:
   test:
     docker:
-      - image: darthjee/circleci_moon-base:1.1.1
+      - image: darthjee/circleci_moon-base:2.0.0
         environment:
           MOON_MYSQL_HOST: mysql
           MOON_MYSQL_PORT: 3306
           MOON_MYSQL_USER: moon
           MOON_MYSQL_NAME: moon
           MOON_MYSQL_PASSWORD: moon
+          MOON_PASSWORD_SALT: abcd
           MOON_SENTRY_KEY: key
           MOON_SENTRY_SECRET: secret
           MOON_SENTRY_ID: id
@@ -46,7 +47,7 @@ jobs:
       - checkout
       - run:
           name: Set folder
-          command: cp source/* source/.??* ./ -r; rm source -rf
+          command: cp source/* source/.??* ./ -r; rm source -rf; rm -rf old_source
       - run:
           name: Prepare Coverage Test Report
           command: cc-test-reporter before-build
@@ -55,29 +56,30 @@ jobs:
           command: bundle install
       - run:
           name: Bower Install
-          command: bundle exec rake bower:install
+          command: rake bower:install
       - run:
           name: Wait for database
           command: scripts/wait_for_db.sh
       - run:
           name: Migrate
-          command: RAILS_ENV=test bundle exec rake db:schema:load
+          command: RAILS_ENV=test rake db:schema:load
       - run:
           name: RSpec
-          command: bundle exec rspec
+          command: rspec
       - run:
           name: Coverage Test Report
-          command: cc-test-reporter after-build --exit-code $?
+          command: cc-test-reporter after-build -t simplecov --exit-code $?
 
   checks:
     docker:
-      - image: darthjee/circleci_moon-base:1.1.1
+      - image: darthjee/circleci_moon-base:2.0.0
         environment:
           MOON_MYSQL_HOST: mysql
           MOON_MYSQL_PORT: 3306
           MOON_MYSQL_USER: moon
           MOON_MYSQL_NAME: moon
           MOON_MYSQL_PASSWORD: moon
+          MOON_PASSWORD_SALT: abcd
           MOON_SENTRY_KEY: key
           MOON_SENTRY_SECRET: secret
           MOON_SENTRY_ID: id
@@ -95,7 +97,7 @@ jobs:
       - checkout
       - run:
           name: Set folder
-          command: cp source/* source/.??* ./ -r; rm source -rf
+          command: cp source/* source/.??* ./ -r; rm source -rf; rm -rf old_source
       - run:
           name: Bundle Install
           command: bundle install

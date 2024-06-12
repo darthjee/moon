@@ -1,0 +1,7 @@
+default_template:
+  key: 'template'
+  template_name: 'mandrill_template'
+
+welcome:
+  key: 'welcome'
+  template_name: 'welcome_template'

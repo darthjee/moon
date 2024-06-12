@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :users, only: [:index] do
+    collection do
+      resources :login, only: [:create] do
+        get '/' => :check, on: :collection
+      end
+      delete '/logoff' => 'login#logoff'
+    end
+  end
+
   namespace :marriage, path: '/' do
     get '/' => 'marriage#show', as: :home
 
@@ -87,5 +96,7 @@ Rails.application.routes.draw do
         resources :pictures, path: '/fotos', only: [:update]
       end
     end
+
+    resources :users
   end
 end

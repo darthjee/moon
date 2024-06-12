@@ -3,14 +3,21 @@
 require 'spec_helper'
 
 describe Marriage::Gift::Creator do
-  let(:tests_json) { load_json_fixture_file('requests/marriage/gifts.json') }
-  let(:parameters_json) { tests_json[test_key].slice('gift_links', 'store_id') }
   let(:parameters) { ActionController::Parameters.new(parameters_json) }
-  let(:marriage) { marriage_marriages(:first) }
+  let(:marriage) { create(:marriage) }
   let(:subject) { described_class.new(marriage, parameters) }
+  let(:store)   { create(:store) }
+  let!(:store_list) { create(:store_list, marriage: marriage, store: store) }
+  let(:gift) { build(:gift) }
+  let(:gift_links) { [gift_link] }
+  let(:gift_link) do
+    build(:gift_link, gift: gift)
+  end
 
   describe '#create' do
-    let(:test_key) { 'create' }
+    let(:parameters_json) do
+      create(:marriage_gift_create, marriage: marriage, gift_links: gift_links, store: store)
+    end
     let(:last_link) { Marriage::GiftLink.last }
     let(:last_link_attributes) do
       last_link.attributes.slice('url', 'store_list_id', 'gift_id', 'price')
@@ -27,11 +34,11 @@ describe Marriage::Gift::Creator do
       subject.create
 
       expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
-        'image_url' => 'http://image_url.com',
-        'name' => 'Gift Name',
-        'quantity' => 4,
-        'min_price' => 40.0,
-        'max_price' => 40.0
+        'image_url' => gift.image_url,
+        'name' => gift.name,
+        'quantity' => gift.quantity,
+        'min_price' => gift_link.price,
+        'max_price' => gift_link.price
       )
     end
 
@@ -50,26 +57,27 @@ describe Marriage::Gift::Creator do
     it 'creates the correct gift link' do
       subject.create
 
-      expect(last_link_attributes).to eq({
-                                           'url' => 'http://gifturl',
-                                           'store_list_id' => 1,
-                                           'gift_id' => Marriage::Gift.last.id,
-                                           'price' => 10.0
-                                         })
+      expect(last_link_attributes)
+        .to eq({
+          'url' => gift_link.url,
+          'store_list_id' => store_list.id,
+          'gift_id' => Marriage::Gift.last.id,
+          'price' => gift_link.price
+        })
     end
 
     context 'when sending a different size package' do
-      let(:test_key) { 'create_smaller_package' }
+      let(:gift) { build(:gift, package: 10) }
 
       it 'save the total price correctly' do
         subject.create
 
         expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
-          'image_url' => 'http://image_url.com',
-          'name' => 'Gift Name',
-          'quantity' => 4,
-          'min_price' => 20.0,
-          'max_price' => 20.0
+          'image_url' => gift.image_url,
+          'name' => gift.name,
+          'quantity' => gift.quantity,
+          'min_price' => gift_link.price * gift.package,
+          'max_price' => gift_link.price * gift.package,
         )
       end
     end
@@ -128,12 +136,19 @@ describe Marriage::Gift::Creator do
       end
 
       context 'and we are updating the bought quantity' do
-        let(:gift) { Marriage::Gift.last }
+        let(:gift) { create(:gift, marriage: marriage, bought: 0, quantity: 4) }
         let(:update_gifts_creator) do
           described_class.new(marriage, update_request_parameters)
         end
         let(:update_request_parameters) do
-          ActionController::Parameters.new tests_json['update']
+          ActionController::Parameters.new update_parameters_json
+        end
+        let(:update_parameters_json) do
+          create(
+            :marriage_gift_update,
+            marriage: marriage, gift_links: gift_links, store: store,
+            bought: 4
+          )
         end
 
         it 'updates the bought quantity' do
@@ -158,7 +173,14 @@ describe Marriage::Gift::Creator do
           described_class.new(marriage, new_request_parameters)
         end
         let(:new_request_parameters) do
-          ActionController::Parameters.new tests_json['create_new_store']
+          ActionController::Parameters.new(create_new_parameters_json)
+        end
+        let(:new_store) { create(:store) }
+        let(:create_new_parameters_json) do
+          create(
+            :marriage_gift_create,
+            marriage: marriage, gift_links: gift_links, store: new_store
+          )
         end
 
         it do
@@ -177,11 +199,11 @@ describe Marriage::Gift::Creator do
           new_gifts_creator.create
 
           expect(Marriage::Gift.last.attributes.slice(*gift_attributes)).to eq(
-            'image_url' => 'http://image_url.com',
-            'name' => 'Gift Name',
-            'quantity' => 4,
-            'min_price' => 40.0,
-            'max_price' => 80.0
+            'image_url' => gift.image_url,
+            'name' => gift.name,
+            'quantity' => gift.quantity,
+            'min_price' => gift_link.price,
+            'max_price' => gift_link.price
           )
         end
       end
