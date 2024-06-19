@@ -22,26 +22,20 @@ workflows:
 jobs:
   test:
     docker:
-      - image: darthjee/circleci_moon-base:1.1.1
+      - image: darthjee/circleci_stalchild-base:1.2.0
         environment:
-          MOON_MYSQL_HOST: mysql
-          MOON_MYSQL_PORT: 3306
-          MOON_MYSQL_USER: moon
-          MOON_MYSQL_NAME: moon
-          MOON_MYSQL_PASSWORD: moon
-          MOON_SENTRY_KEY: key
-          MOON_SENTRY_SECRET: secret
-          MOON_SENTRY_ID: id
-          MOON_NEWRELIC_LICENSE: license
-          MOON_NEWRELIC_APP: Moon Dev
-          ROLLBAR_ACCESS_TOKEN: token
-          ROLLBAR_CLIENT_TOKEN: token
+          STALCHILD_MYSQL_HOST: mysql
+          STALCHILD_MYSQL_PORT: 3306
+          STALCHILD_MYSQL_USER: stalchild
+          STALCHILD_MYSQL_NAME: stalchild
+          STALCHILD_MYSQL_PASSWORD: stalchild
+          STALCHILD_PASSWORD_SALT: abcd
       - image: circleci/mysql:5.7
         name: mysql
         environment:
-          MYSQL_DATABASE: moon_test
-          MYSQL_USER: moon
-          MYSQL_PASSWORD: moon
+          MYSQL_DATABASE: stalchild_test
+          MYSQL_USER: stalchild
+          MYSQL_PASSWORD: stalchild
     steps:
       - checkout
       - run:
@@ -51,11 +45,8 @@ jobs:
           name: Prepare Coverage Test Report
           command: cc-test-reporter before-build
       - run:
-          name: Bundle Install
-          command: bundle install
-      - run:
-          name: Bower Install
-          command: bundle exec rake bower:install
+          name: Yarn Install
+          command: yarn install
       - run:
           name: Wait for database
           command: scripts/wait_for_db.sh
@@ -71,26 +62,20 @@ jobs:
 
   checks:
     docker:
-      - image: darthjee/circleci_moon-base:1.1.1
+      - image: darthjee/circleci_stalchild-base:1.2.0
         environment:
-          MOON_MYSQL_HOST: mysql
-          MOON_MYSQL_PORT: 3306
-          MOON_MYSQL_USER: moon
-          MOON_MYSQL_NAME: moon
-          MOON_MYSQL_PASSWORD: moon
-          MOON_SENTRY_KEY: key
-          MOON_SENTRY_SECRET: secret
-          MOON_SENTRY_ID: id
-          MOON_NEWRELIC_LICENSE: license
-          MOON_NEWRELIC_APP: Moon Dev
-          ROLLBAR_ACCESS_TOKEN: token
-          ROLLBAR_CLIENT_TOKEN: token
+          STALCHILD_MYSQL_HOST: mysql
+          STALCHILD_MYSQL_PORT: 3306
+          STALCHILD_MYSQL_USER: stalchild
+          STALCHILD_MYSQL_NAME: stalchild
+          STALCHILD_MYSQL_PASSWORD: stalchild
+          STALCHILD_PASSWORD_SALT: abcd
       - image: circleci/mysql:5.7
         name: mysql
         environment:
-          MYSQL_DATABASE: moon_test
-          MYSQL_USER: moon
-          MYSQL_PASSWORD: moon
+          MYSQL_DATABASE: stalchild_test
+          MYSQL_USER: stalchild
+          MYSQL_PASSWORD: stalchild
     steps:
       - checkout
       - run:
