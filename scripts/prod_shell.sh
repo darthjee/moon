@@ -3,12 +3,14 @@
 source "scripts/render.sh"
 
 function run() {
-  setup_env
+  SERVICE_ID=$(service_id)
+
+  setup_env $SERVICE_ID
   clean_env & run_docker
 }
 
 function run_docker() {
-  docker-compose run moon_production /bin/bash
+  docker-compose run paperboy_production /bin/bash
 }
 
 function clean_env() {
@@ -17,7 +19,7 @@ function clean_env() {
 }
 
 function setup_env() {
-  get_env_vars | \
+  get_env_vars $1 | \
     jq 'map([.key, .value] | join("=")) | .[]' | \
     sed -e 's/^ *"//g' -e 's/" *$//g'  > .env.production
 }
