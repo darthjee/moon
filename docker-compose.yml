@@ -58,3 +58,6 @@ services:
     env_file: .env.production
     container_name: moon_production
     image: darthjee/production_moon
+    build:
+      context: .
+      dockerfile: Dockerfile.production_moon
