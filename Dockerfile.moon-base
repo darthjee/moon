@@ -12,7 +12,8 @@ USER app
 FROM base as builder
 
 ADD source/Gemfile* /home/app/app/
-ADD source/package.json /home/app/app/
+ADD source/bower.json /home/app/app/
+# ADD source/package.json /home/app/app/
 
 ENV HOME_DIR /home/app
 
