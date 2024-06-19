@@ -21,10 +21,13 @@ COPY --chown=circleci:circleci --from=scripts /home/scripts/builder/bundle_build
 ENV BUNDLE_FOLDER /home/circleci/.rubygems
 RUN /bin/bash bundle_builder.sh
 
-USER root
-COPY --chown=circleci:circleci --from=scripts /home/scripts/builder/yarn_builder.sh /usr/local/sbin/yarn_builder.sh
-RUN /bin/bash yarn_builder.sh
-USER circleci
+# USER root
+# COPY --chown=circleci:circleci --from=scripts /home/scripts/builder/yarn_builder.sh /usr/local/sbin/yarn_builder.sh
+# RUN /bin/bash yarn_builder.sh
+# USER circleci
+
+COPY --chown=circleci:circleci --from=scripts /home/scripts/builder/bower_builder.sh /usr/local/sbin/bower_builder.sh
+RUN /bin/bash bower_builder.sh
 
 #######################
 #FINAL IMAGE
