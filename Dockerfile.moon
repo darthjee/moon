@@ -5,5 +5,5 @@ COPY --chown=app:app source/Gemfile* /home/app/app/
 COPY --chown=app:app source/package.json /home/app/app/
 
 RUN bundle install
-RUN rake bower:install
+RUN bower install
 # RUN yarn install
