@@ -7,24 +7,15 @@ module ApplicationHelper
   end
 
   def angular_safe_link_to(path_method, path_args = {}, *, &)
+    path = angular_path_to(path_method, path_args)
+    link_to(path, *, &)
+  end
+
+  def angular_path_to(path_method, path_args = {})
     path = public_send(
       path_method.to_s.gsub(/(_path)?$/, '_safe_path').to_s, path_args
     )
-
-    link_to(
-      angular_path_to(path), *, &
-    )
-  end
-
-  def angular_path_to(path_method, **path_args)
-    if path_method.is_a?(String)
-      "##{path_method}"
-    else
-      path = public_send(
-        "#{path_method}_safe_path", path_args
-      )
-      angular_path_to(path)
-    end
+    "##{path}"
   end
 
   def method_missing(method, *)
