@@ -4,13 +4,15 @@ require 'spec_helper'
 
 describe Marriage::Common do
   let(:parameters) { {} }
-  controller do
-    include Marriage::Common
+  let(:controller) do
+    class CommonController < ApplicationController
+      include Marriage::Common
 
-    def index
-      respond_to do |format|
-        format.html { render('marriage/marriage/show') }
-        format.json { render body: nil }
+      def index
+        respond_to do |format|
+          format.html { render('marriage/marriage/show') }
+          format.json { render body: nil }
+        end
       end
     end
   end
