@@ -1,0 +1,25 @@
+<div class="panel panel-default gift-block show-block debug-container">
+  <div class="panel-heading show-name">
+    {{ gift.name }}
+    <span class="debug-hide debug-float">{{ gift.id }}</span>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <a href="<%= angular_path_to marriage_gift_safe_path(id: '{{ gift.id }}') %>">
+        <div class="col-sm-12 wrap-image" ng-show="gift.given">
+          <img src="/assets/wrap-small.png" />
+        </div>
+        <div class="col-sm-12">
+          <div class="show-image-block">
+            <img src="{{ gift.image_url }}" class="gift-image" />
+          </div>
+        </div>
+      </a>
+    </div>
+    <%= render partial: 'marriage/gifts/index/gift_tools' %>
+    <%= render partial: 'marriage/gifts/index/gift_price' %>
+    <div class="gift-links">
+      <%= render partial: 'marriage/gifts/index/gift_links' %>
+    </div>
+  </div>
+</div>

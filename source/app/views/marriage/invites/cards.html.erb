@@ -1,0 +1,11 @@
+<% invites.each.with_index do |invite, index| %>
+  <% if index.even? %>
+    <div class="row">
+  <% end %>
+  <div class="col-md-6 card">
+    <%= render partial: 'card', locals: { invite: invite } %>
+  </div>
+  <% if index.odd? %>
+    </div>
+  <% end %>
+<% end %>
