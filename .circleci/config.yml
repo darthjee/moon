@@ -22,20 +22,20 @@ workflows:
 jobs:
   test:
     docker:
-      - image: darthjee/circleci_stalchild-base:1.2.0
+      - image: darthjee/circleci_moon-base:1.2.0
         environment:
-          STALCHILD_MYSQL_HOST: mysql
-          STALCHILD_MYSQL_PORT: 3306
-          STALCHILD_MYSQL_USER: stalchild
-          STALCHILD_MYSQL_NAME: stalchild
-          STALCHILD_MYSQL_PASSWORD: stalchild
-          STALCHILD_PASSWORD_SALT: abcd
+          MOON_MYSQL_HOST: mysql
+          MOON_MYSQL_PORT: 3306
+          MOON_MYSQL_USER: moon
+          MOON_MYSQL_NAME: moon
+          MOON_MYSQL_PASSWORD: moon
+          MOON_PASSWORD_SALT: abcd
       - image: circleci/mysql:5.7
         name: mysql
         environment:
-          MYSQL_DATABASE: stalchild_test
-          MYSQL_USER: stalchild
-          MYSQL_PASSWORD: stalchild
+          MYSQL_DATABASE: moon_test
+          MYSQL_USER: moon
+          MYSQL_PASSWORD: moon
     steps:
       - checkout
       - run:
@@ -65,20 +65,20 @@ jobs:
 
   checks:
     docker:
-      - image: darthjee/circleci_stalchild-base:1.2.0
+      - image: darthjee/circleci_moon-base:1.2.0
         environment:
-          STALCHILD_MYSQL_HOST: mysql
-          STALCHILD_MYSQL_PORT: 3306
-          STALCHILD_MYSQL_USER: stalchild
-          STALCHILD_MYSQL_NAME: stalchild
-          STALCHILD_MYSQL_PASSWORD: stalchild
-          STALCHILD_PASSWORD_SALT: abcd
+          MOON_MYSQL_HOST: mysql
+          MOON_MYSQL_PORT: 3306
+          MOON_MYSQL_USER: moon
+          MOON_MYSQL_NAME: moon
+          MOON_MYSQL_PASSWORD: moon
+          MOON_PASSWORD_SALT: abcd
       - image: circleci/mysql:5.7
         name: mysql
         environment:
-          MYSQL_DATABASE: stalchild_test
-          MYSQL_USER: stalchild
-          MYSQL_PASSWORD: stalchild
+          MYSQL_DATABASE: moon_test
+          MYSQL_USER: moon
+          MYSQL_PASSWORD: moon
     steps:
       - checkout
       - run:
