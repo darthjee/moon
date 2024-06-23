@@ -4,6 +4,7 @@ require 'spec_helper'
 
 describe Marriage::Login do
   let(:parameters) { {} }
+
   controller(ApplicationController) do
     include Marriage::Login
 
