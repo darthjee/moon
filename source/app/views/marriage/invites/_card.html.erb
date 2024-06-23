@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12 card">
+    <div class="thumbnail">
+      <h3><%= invite.label %></h3>
+      <%= image_tag show_marriage_invites_url(invite.code, format: :png), class: 'pull-right' %>
+      <div class="caption">
+        <p>Elaboramos um site com informações importantes, como confirmação de presença e lista de presentes. Entre no nosso site!</p>
+        <p><strong><%= marriage_home_url %></strong>
+        <p>Confirme sua presença entrando diretamente no endereço abaixo ou usando um leitor de QR Code:</p>
+        <p class="clear-fix"><strong><%= show_marriage_invites_url(invite.code) %></strong></p>
+
+        <p>Desde já agradecemos sua presença.</p>
+        <p>Cristina e Fernando</p>
+      </div>
+    </div>
+  </div>
+</div>
