@@ -30,6 +30,7 @@ jobs:
           MOON_MYSQL_NAME: moon
           MOON_MYSQL_PASSWORD: moon
           MOON_PASSWORD_SALT: abcd
+          ADMIN_KEY: 1234
       - image: circleci/mysql:5.7
         name: mysql
         environment:
