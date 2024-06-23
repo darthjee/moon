@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper Magicka::Helper
 
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
   def render_basic
     action = params[:action]
     respond_to do |format|
@@ -15,5 +17,15 @@ class ApplicationController < ActionController::Base
 
   def forbidden
     head :forbidden
+  end
+
+  def not_found
+    head :not_found
+  end
+
+  def cached_render(view)
+    Rails.cache.fetch "render:#{params[:controller]}:#{view}" do
+      render view
+    end
   end
 end
