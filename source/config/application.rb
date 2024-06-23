@@ -30,7 +30,7 @@ module Moon
     ].each do |path|
       config.assets.paths << Rails.root.join(*path.split('/'))
     end
-    config.assets.precompile += [/.*?\.(eot|svg|ttf|woff)$/]
-    config.assets.precompile += [/.*?\.(png)$/]
+    #config.assets.precompile += [/.*?\.(eot|svg|ttf|woff)$/]
+    #config.assets.precompile += [/.*?\.(png)$/]
   end
 end
