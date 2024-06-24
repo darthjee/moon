@@ -118,10 +118,6 @@ GEM
     execjs (2.8.1)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
-    faraday (2.9.2)
-      faraday-net_http (>= 2.0, < 3.2)
-    faraday-net_http (3.1.0)
-      net-http
     ffi (1.15.5)
     flay (2.13.3)
       erubi (~> 1.10)
@@ -168,8 +164,6 @@ GEM
     minitest (5.23.0)
     msgpack (1.7.0)
     mysql2 (0.5.5)
-    net-http (0.4.1)
-      uri
     net-imap (0.3.4)
       date
       net-protocol
@@ -302,8 +296,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sentry-raven (3.1.2)
-      faraday (>= 1.0)
     sexp_processor (4.17.1)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
@@ -344,7 +336,6 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.5.0)
-    uri (0.13.0)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -407,7 +398,6 @@ DEPENDENCIES
   rubocop-rspec (= 3.0.0)
   rubycritic (= 4.9.1)
   sassc-rails (>= 2.1.2)
-  sentry-raven (= 3.1.2)
   shoulda-matchers (= 5.3.0)
   simplecov (= 0.22.0)
   sinclair (~> 2.1.1)
