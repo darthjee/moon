@@ -10,5 +10,6 @@ Zyra
 Zyra.find_or_create(
   :marriage_marriage,
   id: 1,
-  display_name: "Test Marriage"
+  display_name: "Test Marriage",
+  date: Date.today
 )
