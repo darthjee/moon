@@ -14,10 +14,10 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><a href="<%= angular_path_to(:maps_marriage_events) %>">Mapas</a></li>
-        <li><%= angular_link_to 'Presença', marriage_guests_path %></li>
-        <li><%= angular_link_to 'Padrinhos', marriage_best_man_index_path %></li>
+        <li><%= angular_link_to 'Presença', :marriage_guests %></li>
+        <li><%= angular_link_to 'Padrinhos', :marriage_best_man_index %></li>
         <li><a href="#" class="disabled">Mensagens</a></li>
-        <li><%= angular_link_to 'Presentes', marriage_gifts_path %></li>
+        <li><%= angular_link_to 'Presentes', :marriage_gifts %></li>
         <li><a href="<%= angular_path_to(:marriage_albums) %>">Fotos</a></li>
       </ul>
     </div>
