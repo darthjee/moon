@@ -1,17 +1,37 @@
-(function(_, angular, Global) {
-  var app = angular.module("global/controller", [
-    "cyberhawk/notifier",
-  ]);
-
-  function Controller(notifier) {
+(function(_, angular) {
+  function GlobalController(adminService, notifier) {
+    this.adminService = adminService;
     this.notifier = notifier;
+
+    _.bindAll(this, 'loginAdmin');
+
+    this.start();
   }
 
-  app.controller("Global.Controller", [
-    "cyberhawk_notifier",
-    Controller
+  var fn = GlobalController.prototype,
+      app = angular.module('global/controller', [
+        'admin/service', 'global/notifier'
+      ]);
+
+  fn.start = function() {
+    this.notifier.register('login-admin', this.loginAdmin);
+
+    this._checkAdmin();
+  };
+
+  fn._checkAdmin = function() {
+    var promisse = this.adminService.check();
+
+    promisse.success(this.loginAdmin);
+  };
+
+  fn.loginAdmin = function() {
+    this.admin = {
+      name: 'Admin'
+    };
+  };
+
+  app.controller('GlobalController', [
+    'adminService', 'notifier', GlobalController
   ]);
-
-  Global.Controller = Controller;
-}(window._, window.angular, window.Global));
-
+})(window._, window.angular);
