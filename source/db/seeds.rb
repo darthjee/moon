@@ -7,6 +7,7 @@
 Zyra.register(Marriage::Marriage, find_by: :id)
 Zyra.register(Marriage::Picture, find_by: :name)
 Zyra.register(Marriage::Album, find_by: :name)
+Zyra.register(Marriage::Gift, find_by: :name)
 
 marriage = Zyra.find_or_create(
   :marriage_marriage,
@@ -46,3 +47,11 @@ end
     snap_url: "http://localhost:3001/snap.png"
   )
 end
+
+Zyra.find_or_create(
+  :marriage_gift,
+  marriage: marriage,
+  name: "First gift",
+  image_url: "http://localhost:3001/gift.png",
+  description: "My first gift"
+)
