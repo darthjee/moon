@@ -53,5 +53,15 @@ Zyra.find_or_create(
   marriage: marriage,
   name: "First gift",
   image_url: "http://localhost:3001/gift.png",
-  description: "My first gift"
+  description: "My first gift",
+
+)
+
+Zyra.find_or_create(
+  :marriage_gift,
+  marriage: marriage,
+  name: "Secondg ift",
+  image_url: "http://localhost:3001/gift.png",
+  description: "My first gift",
+  bought: 1
 )
