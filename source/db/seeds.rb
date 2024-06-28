@@ -80,7 +80,9 @@ end
     :marriage_giftlink,
     gift: account_gift,
     account: account,
-    price: Random.rand(100..1000) / 10.0
+    price: Random.rand(100..1000) / 10.0,
+    quantity: Random.rand(2) + 1,
+    bought: Random.rand(2)
   )
 
   store_gift = Zyra.find_or_create(
@@ -89,6 +91,7 @@ end
     name: "Store gift #{i}",
     image_url: "http://localhost:3001/gift.png",
     description: "My first gift",
-    bought: 1
+    quantity: Random.rand(2) + 1,
+    bought: Random.rand(2)
   )
 end
