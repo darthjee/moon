@@ -8,6 +8,7 @@ Zyra.register(Marriage::Marriage, find_by: :id)
 Zyra.register(Marriage::Picture, find_by: :name)
 Zyra.register(Marriage::Album, find_by: :name)
 Zyra.register(Marriage::Gift, find_by: :name)
+Zyra.register(Marriage::GiftLink, find_by: %i[gift url store_list account])
 
 marriage = Zyra.find_or_create(
   :marriage_marriage,
@@ -48,20 +49,21 @@ end
   )
 end
 
-Zyra.find_or_create(
-  :marriage_gift,
-  marriage: marriage,
-  name: "First gift",
-  image_url: "http://localhost:3001/gift.png",
-  description: "My first gift",
+20.times do |i|
+  account_gift = Zyra.find_or_create(
+    :marriage_gift,
+    marriage: marriage,
+    name: "Account gift #{i}",
+    image_url: "http://localhost:3001/gift.png",
+    description: "My first gift",
+  )
 
-)
-
-Zyra.find_or_create(
-  :marriage_gift,
-  marriage: marriage,
-  name: "Secondg ift",
-  image_url: "http://localhost:3001/gift.png",
-  description: "My first gift",
-  bought: 1
-)
+  store_gift = Zyra.find_or_create(
+    :marriage_gift,
+    marriage: marriage,
+    name: "Store gift #{i}",
+    image_url: "http://localhost:3001/gift.png",
+    description: "My first gift",
+    bought: 1
+  )
+end
