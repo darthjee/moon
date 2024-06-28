@@ -72,7 +72,7 @@ end
   account_gift = Zyra.find_or_create(
     :marriage_gift,
     marriage: marriage,
-    name: "Account gift #{i}",
+    name: "Gift #{i} - Account",
     image_url: "http://localhost:3001/gift.png",
     description: "My first gift",
   )
@@ -88,7 +88,7 @@ end
   store_gift = Zyra.find_or_create(
     :marriage_gift,
     marriage: marriage,
-    name: "Store gift #{i}",
+    name: "Gift #{i} - Store",
     image_url: "http://localhost:3001/gift.png",
     description: "My first gift",
     quantity: Random.rand(2) + 1,
