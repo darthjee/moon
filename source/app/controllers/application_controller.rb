@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  include Azeroth::Resourceable
+
+  helper Magicka::Helper
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
       format.json { render json: send("#{action}_json") }
       format.html { cached_render action }
     end
+  end
+
+  def forbidden
+    head :forbidden
   end
 
   def not_found

@@ -22,20 +22,15 @@ workflows:
 jobs:
   test:
     docker:
-      - image: darthjee/circleci_moon-base:1.1.1
+      - image: darthjee/circleci_moon-base:1.2.0
         environment:
           MOON_MYSQL_HOST: mysql
           MOON_MYSQL_PORT: 3306
           MOON_MYSQL_USER: moon
           MOON_MYSQL_NAME: moon
           MOON_MYSQL_PASSWORD: moon
-          MOON_SENTRY_KEY: key
-          MOON_SENTRY_SECRET: secret
-          MOON_SENTRY_ID: id
-          MOON_NEWRELIC_LICENSE: license
-          MOON_NEWRELIC_APP: Moon Dev
-          ROLLBAR_ACCESS_TOKEN: token
-          ROLLBAR_CLIENT_TOKEN: token
+          MOON_PASSWORD_SALT: abcd
+          ADMIN_KEY: 1234
       - image: circleci/mysql:5.7
         name: mysql
         environment:
@@ -71,20 +66,14 @@ jobs:
 
   checks:
     docker:
-      - image: darthjee/circleci_moon-base:1.1.1
+      - image: darthjee/circleci_moon-base:1.2.0
         environment:
           MOON_MYSQL_HOST: mysql
           MOON_MYSQL_PORT: 3306
           MOON_MYSQL_USER: moon
           MOON_MYSQL_NAME: moon
           MOON_MYSQL_PASSWORD: moon
-          MOON_SENTRY_KEY: key
-          MOON_SENTRY_SECRET: secret
-          MOON_SENTRY_ID: id
-          MOON_NEWRELIC_LICENSE: license
-          MOON_NEWRELIC_APP: Moon Dev
-          ROLLBAR_ACCESS_TOKEN: token
-          ROLLBAR_CLIENT_TOKEN: token
+          MOON_PASSWORD_SALT: abcd
       - image: circleci/mysql:5.7
         name: mysql
         environment:

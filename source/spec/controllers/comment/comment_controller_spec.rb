@@ -70,7 +70,7 @@ describe Comment::CommentsController do
 
       it do
         patch :create, params: parameters
-        expect(response).not_to be_success
+        expect(response).not_to be_successful
       end
     end
   end

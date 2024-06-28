@@ -1,0 +1,26 @@
+<div class="debug-hide debug-float col-sm-8">
+  <div class="panel-heading">
+    {{ picture.id }}
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <input ng-model="picture.name">
+      </div>
+
+      <div class="col-sm-12">
+        <select ng-model="picture.album_id">
+          <option ng-repeat="album in pc.albums" value="{{ album.id }}">
+            {{ album.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-6">
+        <button ng-click="pc.update(picture)">Atualizar</button>
+      </div>
+      <div class="col-sm-6">
+        <button ng-click="pc.cancel(picture)">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

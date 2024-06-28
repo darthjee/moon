@@ -26,7 +26,7 @@ describe Admin::Marriage::GiftsController do
 
       it do
         post :create, params: parameters
-        expect(response).not_to be_success
+        expect(response).not_to be_successful
       end
 
       it 'Redirects a non authorized request' do
@@ -41,7 +41,7 @@ describe Admin::Marriage::GiftsController do
 
         it do
           post :create, params: parameters
-          expect(response).to be_success
+          expect(response).to be_successful
         end
 
         it 'Redirects a non authorized request' do
@@ -53,7 +53,7 @@ describe Admin::Marriage::GiftsController do
 
     it do
       post :create, params: parameters
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it do

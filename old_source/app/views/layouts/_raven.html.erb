@@ -1,0 +1,10 @@
+<script>
+(function(){
+  var key = '<%= ENV['MOON_SENTRY_KEY'] %>',
+  secret = '<%= ENV['MOON_SENTRY_SECRET'] %>',
+  id = '<%= ENV['MOON_SENTRY_ID'] %>',
+  url = ['https://', key, ':', secret, '@sentry.io/', id].join('');
+
+  Raven.config(url).install();
+})();
+</script>

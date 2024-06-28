@@ -4,7 +4,8 @@ require 'spec_helper'
 
 describe Marriage::Common do
   let(:parameters) { {} }
-  controller do
+
+  controller(ApplicationController) do
     include Marriage::Common
 
     def index

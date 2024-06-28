@@ -42,7 +42,7 @@ describe Marriage::LoginController do
 
       it do
         get :check, format: :json
-        expect(response).to be_a_success
+        expect(response).to be_successful
       end
     end
   end
@@ -67,12 +67,12 @@ describe Marriage::LoginController do
 
       context 'when requesting with correct email and password' do
         it do
-          expect(response).to be_a_success
+          expect(response).to be_successful
         end
 
         it 'sets the user as logged' do
           get :check, format: :json
-          expect(response).to be_a_success
+          expect(response).to be_successful
         end
       end
 

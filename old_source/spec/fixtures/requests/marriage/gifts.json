@@ -1,0 +1,64 @@
+{
+  "create": {
+    "format": "json",
+    "store_id": 1,
+    "admin_key": "1234",
+    "gift_links": [
+      {
+        "gift": {
+          "image_url": "http://image_url.com",
+          "name": "Gift Name",
+          "quantity": 4
+        },
+        "url": "http://gifturl",
+        "price": 10.0
+      }
+    ]
+  },
+  "update": {
+    "format": "json",
+    "store_id": 1,
+    "admin_key": "1234",
+    "gift_links": [
+      {
+        "gift": {
+          "name": "Gift Name",
+          "bought": 4
+        }
+      }
+    ]
+  },
+  "create_smaller_package": {
+    "format": "json",
+    "store_id": 1,
+    "admin_key": "1234",
+    "gift_links": [
+      {
+        "gift": {
+          "image_url": "http://image_url.com",
+          "name": "Gift Name",
+          "quantity": 4,
+          "package": 2
+        },
+        "url": "http://gifturl",
+        "price": 10.0
+      }
+    ]
+  },
+  "create_new_store": {
+    "format": "json",
+    "store_id": 2,
+    "admin_key": "1234",
+    "gift_links": [
+      {
+        "gift": {
+          "image_url": "http://another_image.com",
+          "name": "Gift Name",
+          "quantity": 2
+        },
+        "url": "http://new_sotore/gift",
+        "price": 20.0
+      }
+    ]
+  }
+}

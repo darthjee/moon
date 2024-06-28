@@ -1,0 +1,32 @@
+<div class="bg-primary form-box">
+  <form id="login-form" class="form-horizontal">
+    <div id="div-login-msg">
+      <div class="glyphicon glyphicon-chevron-right" id="icon-login-msg"></div>
+      <span id="text-login-msg">Digite seu login e senha para fazer login.</span>
+    </div>
+
+    <div class="input-error" ng-show="lc.error">{{ lc.error }}</div>
+
+    <div class="form-group">
+      <label for="login-email" class="col-md-2 control-label">Login</label>
+      <div class="col-md-10">
+        <input type="text" name="login-email" class="form-control" ng-model="lc.login.login" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="login-password" class="col-md-2 control-label">Senha</label>
+      <div class="col-md-10">
+        <input type="password" name="login-password" class="form-control" ng-model="lc.login.password" />
+      </div>
+    </div>
+
+    <div class="form-group text-center">
+      <button type="submit" class="btn btn-default" ng-click="lc.performLogin()">Fazer Login</button>
+    </div>
+
+    <div class="form-group text-center">
+      <%= angular_link_to 'Esqueci / Não sei minha senha', recovery_marriage_passwords_path %>
+    </div>
+  </form>
+</div>

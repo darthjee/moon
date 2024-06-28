@@ -19,7 +19,7 @@ describe Marriage::InvitesController do
     shared_examples 'responds with the correct invite' do
       it do
         get :show, params: parameters
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it 'returns the invite' do
@@ -130,7 +130,7 @@ describe Marriage::InvitesController do
 
       it do
         patch :update, params: parameters
-        expect(response).not_to be_success
+        expect(response).not_to be_successful
       end
     end
 

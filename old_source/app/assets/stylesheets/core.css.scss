@@ -1,0 +1,64 @@
+.clear-fix {
+  clear: both;
+}
+
+.sub-navbar {
+  margin-top: -20px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.input-error {
+  background: #f85555;
+  color: #fff;
+  text-align: center;
+}
+
+.form-box {
+  border-radius: 0.8em;
+  padding: 20px 20px 5px;
+}
+
+.loading:not(.loaded) {
+  display: none;
+}
+
+dl.description {
+  margin-bottom: 0.1em;
+
+  dt {
+    clear: both;
+    float: left;
+    margin-right: 0.6em;
+
+    &:after {
+      content: ":"
+    }
+  }
+}
+
+.no-link {
+  cursor: default;
+}
+
+.aglutination-block {
+  margin-bottom: 1.5em;
+}
+
+.show-block {
+  .show-name {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .show-image-block {
+    height: 165px;
+    overflow: hidden;
+    text-align: center;
+
+    img {
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}

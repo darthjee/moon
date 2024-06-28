@@ -1,0 +1,12 @@
+first:
+  id: 1
+  album_id: 1
+  name: 'nice pic'
+  url: 'pic.jpg'
+  snap_url: 'snap_pic.jpg'
+second:
+  id: 2
+  album_id: 1
+  name: 'nice pic 2'
+  url: 'pic2.jpg'
+  snap_url: 'snap_pic2.jpg'

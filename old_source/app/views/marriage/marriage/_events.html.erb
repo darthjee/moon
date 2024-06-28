@@ -1,0 +1,11 @@
+<% events.each do |event| %>
+  <p><%= event.description %></p>
+  <dl class="in-line">
+    <dt>Horário</dt>
+    <dd><%= event.time.strftime('%H:%M') %></dd>
+    <dt>Local</dt>
+    <dd><%= event.location.name %></dd>
+    <dt>Endereço</dt>
+    <dd><%= event.location.address %></dd>
+  </dl>
+<% end %>

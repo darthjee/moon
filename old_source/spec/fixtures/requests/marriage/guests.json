@@ -1,0 +1,14 @@
+{
+  "search": {
+    "format": "json",
+    "name": "Mr. Test"
+  },
+  "partial_search": {
+    "format": "json",
+    "name": "test"
+  },
+  "invite_label_search": {
+    "format": "json",
+    "name": "My Label"
+  }
+}
