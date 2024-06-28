@@ -10,11 +10,30 @@ Zyra.register(Marriage::Album, find_by: :name)
 Zyra.register(Marriage::Gift, find_by: :name)
 Zyra.register(Marriage::GiftLink, find_by: %i[gift url store_list account])
 
+Zyra.register(Bank::Bank, find_by: :name)
+Zyra.register(Bank::Account, find_by: %i[account agency number])
+
 marriage = Zyra.find_or_create(
   :marriage_marriage,
   id: 1,
   display_name: "Test Marriage",
   date: Date.today
+)
+
+bank = Zyra.find_or_create(
+  :bank_bank,
+  name: "Green Bank",
+  image_url: "http://localhost:3001/bank.png",
+  bg_color: "green"
+)
+
+account = Zyra.find_or_create(
+  :bank_account,
+  name: "Account",
+  bank: bank,
+  agency: "0001",
+  number: "12345-1",
+  marriage: marriage
 )
 
 album = Zyra.find_or_create(
@@ -56,6 +75,12 @@ end
     name: "Account gift #{i}",
     image_url: "http://localhost:3001/gift.png",
     description: "My first gift",
+  )
+  Zyra.find_or_create(
+    :marriage_giftlink,
+    gift: account_gift,
+    account: account,
+    price: Random.rand(100..1000) / 10.0
   )
 
   store_gift = Zyra.find_or_create(
