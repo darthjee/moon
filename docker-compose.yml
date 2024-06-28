@@ -8,6 +8,13 @@ services:
       MYSQL_ROOT_PASSWORD: moon
     ports:
       - 127.0.0.1:$MOON_MYSQL_PORT:3306
+
+  moon_files:
+    image: httpd:latest
+    volumes:
+      - ./dev_public_files:/usr/local/apache2/htdocs
+    ports:
+      - 127.0.0.1:3001:80
   #################### Base  ####################
 
   base: &base
