@@ -69,6 +69,8 @@ end
 end
 
 20.times do |i|
+  price = Random.rand(100..1000) / 10.0
+
   account_gift = Zyra.find_or_create(
     :marriage_gift,
     marriage: marriage,
@@ -76,13 +78,15 @@ end
     image_url: "http://localhost:3001/gift.png",
     description: "My first gift",
     quantity: Random.rand(2) + 1,
-    bought: Random.rand(2)
+    bought: Random.rand(2),
+    min_price: price,
+    max_price: price
   )
   Zyra.find_or_create(
     :marriage_giftlink,
     gift: account_gift,
     account: account,
-    price: Random.rand(100..1000) / 10.0,
+    price: price,
   )
 
   store_gift = Zyra.find_or_create(
@@ -92,6 +96,8 @@ end
     image_url: "http://localhost:3001/gift.png",
     description: "My first gift",
     quantity: Random.rand(2) + 1,
-    bought: Random.rand(2)
+    bought: Random.rand(2),
+    min_price: price,
+    max_price: price
   )
 end
