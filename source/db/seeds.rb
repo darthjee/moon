@@ -7,12 +7,16 @@
 Zyra.register(Marriage::Marriage, find_by: :id)
 Zyra.register(Marriage::Picture, find_by: :name)
 Zyra.register(Marriage::Album, find_by: :name)
-Zyra.register(Marriage::Gift, find_by: :name)
+
+Zyra.register(Marriage::Gift, find_by: %i[name marriage])
 Zyra.register(Marriage::GiftLink, find_by: %i[gift url store_list account])
 
 Zyra.register(Bank::Bank, find_by: :name)
 Zyra.register(Bank::Account, find_by: %i[account agency number])
 
+Zyra.register(Marriage::Invite, find_by: %i[mariage label])
+
+# Setup
 marriage = Zyra.find_or_create(
   :marriage_marriage,
   id: 1,
@@ -36,6 +40,7 @@ account = Zyra.find_or_create(
   marriage: marriage
 )
 
+# Pictures
 album = Zyra.find_or_create(
   :marriage_album,
   name: "Main album",
@@ -68,6 +73,7 @@ end
   )
 end
 
+# Gifts
 20.times do |i|
   price = Random.rand(100..1000) / 10.0
 
@@ -101,3 +107,13 @@ end
     max_price: price
   )
 end
+
+# Invites
+
+invite = Zyra.find_or_create(
+  :marriage_invite,
+  marriage: marriage,
+  label: "Family test",
+  invites: 4,
+  expected: 3
+)
