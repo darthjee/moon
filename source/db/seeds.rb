@@ -115,7 +115,8 @@ invite = Zyra.find_or_create(
   marriage: marriage,
   label: "Family test",
   invites: 4,
-  expected: 3
+  expected: 3,
+  code: SecureRandom.hex(2)
 )
 
 Zyra.find_or_create(
@@ -123,5 +124,6 @@ Zyra.find_or_create(
   marriage: marriage,
   label: "Family test 2",
   invites: 10,
-  expected: 3
+  expected: 3,
+  code: SecureRandom.hex(2)
 )
