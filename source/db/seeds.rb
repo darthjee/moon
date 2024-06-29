@@ -117,3 +117,11 @@ invite = Zyra.find_or_create(
   invites: 4,
   expected: 3
 )
+
+Zyra.find_or_create(
+  :marriage_invite,
+  marriage: marriage,
+  label: "Family test 2",
+  invites: 10,
+  expected: 3
+)
