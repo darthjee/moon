@@ -32,7 +32,7 @@
       };
     } else {
       return {
-        text: data.name,
+        text: data.label,
         id: data.id
       };
     }
