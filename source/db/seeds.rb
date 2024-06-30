@@ -17,6 +17,7 @@ Zyra.register(Bank::Bank, find_by: :name)
 Zyra.register(Bank::Account, find_by: %i[account agency number])
 
 Zyra.register(Marriage::Invite, find_by: %i[mariage label])
+Zyra.register(Marriage::Guest, find_by: %i[invite name])
 
 # Setup
 marriage = Zyra.find_or_create(
@@ -141,7 +142,7 @@ end
     password: '123456'
   )
 
-  Zyra.find_or_create(
+  invite = Zyra.find_or_create(
     :marriage_invite,
     marriage: marriage,
     label: "Honor test #{i}",
@@ -150,5 +151,19 @@ end
     code: user.code,
     user: user,
     invite_honor: true
+  )
+
+  Zyra.find_or_create(
+    :marriage_guest,
+    name: "Maiden #{i}",
+    invite: invite,
+    role: :maiden_honor
+  )
+
+  Zyra.find_or_create(
+    :marriage_guest,
+    name: "Best Man #{i}",
+    invite: invite,
+    role: :best_man
   )
 end
