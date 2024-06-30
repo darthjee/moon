@@ -4,9 +4,7 @@
 # The data can then be loaded with the rails db:seed
 # command (or created alongside the database with db:setup).
 
-Zyra
-  .register(User, find_by: :email)
-  .on(:build) { |user| user.password = SecureRandom.hex(10) }
+Zyra.register(User, find_by: :email)
 
 Zyra.register(Marriage::Marriage, find_by: :id)
 Zyra.register(Marriage::Picture, find_by: :name)
@@ -122,7 +120,7 @@ end
     password: '123456'
   )
 
-  invite = Zyra.find_or_create(
+  Zyra.find_or_create(
     :marriage_invite,
     marriage: marriage,
     label: "Family test #{i}",
@@ -130,5 +128,27 @@ end
     expected: 3,
     code: user.code,
     user: user
+  )
+end
+
+# Maid of Honor 
+10.times do |i|
+  user = Zyra.find_or_create(
+    :user,
+    email: "honor#{i}@srv.com",
+    login: "honor#{i}",
+    name: "honor #{i}",
+    password: '123456'
+  )
+
+  Zyra.find_or_create(
+    :marriage_invite,
+    marriage: marriage,
+    label: "Honor test #{i}",
+    invites: 2,
+    expected: 2,
+    code: user.code,
+    user: user,
+    invite_honor: true
   )
 end
