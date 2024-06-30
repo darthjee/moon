@@ -164,6 +164,7 @@ end
     :marriage_guest,
     name: "Best Man #{i}",
     invite: invite,
+    marriage: marriage,
     role: :best_man
   )
 end
