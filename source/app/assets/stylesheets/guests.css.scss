@@ -1,0 +1,36 @@
+.select-search {
+  width: 100%;
+}
+
+.panel-body {
+  p {
+    margin: 10px 0 0;
+  }
+
+  .guests-invited-list {
+    padding-bottom: 10px;
+
+    .input-group.agregated-block {
+
+      & > .form-control, & > .input-group-addon {
+        border-top-width: 0px;
+      }
+
+      & > .form-control.guest-name-0,
+      & > .input-group-addon.presence-box-0 {
+        border-top-width: 1px;
+      }
+    }
+  }
+}
+
+.invite-search {
+  margin-bottom: 20px;
+}
+
+.dress-picker {
+  height: 58px;
+  width:40px;
+  margin: 0px;
+  padding: 0px;
+}
