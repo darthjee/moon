@@ -50,7 +50,7 @@ store = Zyra.find_or_create(
   :store_store,
   name: "The store"
   image_url: "http://localhost:3001/store.png",
-  bg_color: "yellow"
+  bg_color: "yellow",
   url: "http://localhost:3001/store/"
 )
 
