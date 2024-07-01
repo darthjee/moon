@@ -132,6 +132,7 @@ end
     gift: store_gift,
     store_list: store_list,
     price: price,
+    url: "http://localhost:3001/store/product.html?price=#{price}&name=#{"Gift #{i} - Store"}"
   )
 
 end
