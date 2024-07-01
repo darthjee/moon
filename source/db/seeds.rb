@@ -51,6 +51,15 @@ store = Zyra.find_or_create(
   name: "The store"
   image_url: "http://localhost:3001/store.png",
   bg_color: "yellow"
+  url: "http://localhost:3001/store/"
+)
+
+store_list = Zyra.find_or_create(
+  :store_list,
+  marriage: marriage,
+  store: store,
+  url: "http://localhost:3001/store/"
+)
 
 # Pictures
 album = Zyra.find_or_create(
@@ -118,6 +127,13 @@ end
     min_price: price,
     max_price: price
   )
+  Zyra.find_or_create(
+    :marriage_giftlink,
+    gift: account_gift,
+    store_list: store_list,
+    price: price,
+  )
+
 end
 
 # Invites
