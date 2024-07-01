@@ -16,6 +16,9 @@ Zyra.register(Marriage::GiftLink, find_by: %i[gift url store_list account])
 Zyra.register(Bank::Bank, find_by: :name)
 Zyra.register(Bank::Account, find_by: %i[account agency number])
 
+Zyra.register(Store::Store, find_by: :name)
+Zyra.register(Store::List, find_by: %i[marriage store])
+
 Zyra.register(Marriage::Invite, find_by: %i[mariage label])
 Zyra.register(Marriage::Guest, find_by: %i[invite name])
 
@@ -42,6 +45,12 @@ account = Zyra.find_or_create(
   number: "12345-1",
   marriage: marriage
 )
+
+store = Zyra.find_or_create(
+  :store_store,
+  name: "The store"
+  image_url: "http://localhost:3001/store.png",
+  bg_color: "yellow"
 
 # Pictures
 album = Zyra.find_or_create(
