@@ -157,14 +157,13 @@ end
     :marriage_guest,
     name: "Maiden #{i}",
     invite: invite,
-    role: :maiden_honor
+    role: :maid_honor
   )
 
   Zyra.find_or_create(
     :marriage_guest,
     name: "Best Man #{i}",
     invite: invite,
-    marriage: marriage,
     role: :best_man
   )
 end
