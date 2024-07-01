@@ -48,7 +48,7 @@ account = Zyra.find_or_create(
 
 store = Zyra.find_or_create(
   :store_store,
-  name: "The store"
+  name: "The store",
   image_url: "http://localhost:3001/store.png",
   bg_color: "yellow",
   url: "http://localhost:3001/store/"
@@ -129,7 +129,7 @@ end
   )
   Zyra.find_or_create(
     :marriage_giftlink,
-    gift: account_gift,
+    gift: store_gift,
     store_list: store_list,
     price: price,
   )
