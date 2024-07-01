@@ -157,7 +157,8 @@ end
     :marriage_guest,
     name: "Maiden #{i}",
     invite: invite,
-    role: :maid_honor
+    role: :maid_honor,
+    color: "##{SecureRandom.hex(3)}"
   )
 
   Zyra.find_or_create(
