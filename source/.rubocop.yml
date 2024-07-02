@@ -52,3 +52,6 @@ Style/ClassAndModuleChildren:
   Enabled: true
   Exclude:
     - spec/**/*_spec.rb
+
+RSpec/NamedSubject:
+  Enabled: false
