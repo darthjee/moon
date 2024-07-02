@@ -64,3 +64,6 @@ RSpec/ExampleLength:
 
 RSpec/PendingWithoutReason:
   Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
