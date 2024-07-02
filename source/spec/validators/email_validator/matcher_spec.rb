@@ -19,7 +19,7 @@ describe EmailValidator::Matcher do
 
         it { expect(subject.match).to be_truthy }
 
-        context 'and the parts are very small' do
+        context 'when the parts are very small' do
           let(:user) { 'a.b.c' }
 
           it { expect(subject.match).to be_truthy }
@@ -42,55 +42,55 @@ describe EmailValidator::Matcher do
     end
 
     context 'when user is invalid' do
-      context 'and it starts with a number' do
+      context 'when it starts with a number' do
         let(:user) { '1user' }
 
         it { expect(subject.match).to be_falsey }
       end
 
-      context 'and it has many dots and underscores' do
+      context 'when it has many dots and underscores' do
         let(:user) { 'aaa..bbb_.ccc' }
 
         it { expect(subject.match).to be_falsey }
       end
 
-      context 'and after each dot there is a number' do
+      context 'when after each dot there is a number' do
         let(:user) { 'aaa.1aaa' }
 
         it { expect(subject.match).to be_falsey }
       end
 
-      context 'and after each underscore there is a number' do
+      context 'when after each underscore there is a number' do
         let(:user) { 'aaa_1aaa' }
 
         it { expect(subject.match).to be_falsey }
       end
 
-      context 'and after each dot there is nothing' do
+      context 'when after each dot there is nothing' do
         let(:user) { 'aaa.' }
 
         it { expect(subject.match).to be_falsey }
       end
 
-      context 'and after each underscore there is nothing' do
+      context 'when after each underscore there is nothing' do
         let(:user) { 'aaa_' }
 
         it { expect(subject.match).to be_falsey }
       end
 
-      context 'and it starts with a number' do
+      context 'when it starts with a number' do
         let(:user) { '1user' }
 
         it { expect(subject.match).to be_falsey }
       end
 
-      context 'and it starts with a dash' do
+      context 'when it starts with a dash' do
         let(:user) { '_user' }
 
         it { expect(subject.match).to be_falsey }
       end
 
-      context 'and it starts with a dot' do
+      context 'when it starts with a dot' do
         let(:user) { '.user' }
 
         it { expect(subject.match).to be_falsey }
