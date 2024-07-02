@@ -11,6 +11,15 @@ Metrics/BlockLength:
     - 'db/**/*.rb'
     - 'spec/**/*_spec.rb'
     - 'spec/support/**/*.rb'
+    - 'config/routes.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'db/**/*.rb'
 
 Style/Documentation:
   Enabled: false
