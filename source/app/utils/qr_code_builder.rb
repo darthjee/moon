@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class QRCodeBuilder
+class QrCodeBuilder
   attr_reader :url, :overlay
 
   def initialize(url, overlay)

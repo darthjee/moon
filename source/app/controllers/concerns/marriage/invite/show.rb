@@ -19,7 +19,7 @@ module Marriage
       private
 
       def show_path_qr_code
-        QRCodeBuilder.new(show_path, 'public/icon.png').build
+        ::QrCodeBuilder.new(show_path, 'public/icon.png').build
       end
 
       def show_path
