@@ -6,7 +6,7 @@ describe Marriage::LoginController do
   let(:user) { users(:first) }
 
   describe 'GET check' do
-    context 'User is not logged' do
+    context 'when user is not logged' do
       it do
         get :check, format: :json
         expect(response).to be_a_not_found
@@ -35,7 +35,7 @@ describe Marriage::LoginController do
       end
     end
 
-    context 'User is logged' do
+    context 'when user is logged' do
       before do
         cookies.signed[:credentials] = user.authentication_token
       end
