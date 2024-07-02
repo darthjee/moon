@@ -51,7 +51,7 @@ describe Marriage::GuestsController do
         expect(response_json.length).to eq(1)
       end
 
-      it 'returns all matched guests' do
+      it 'returns all matched guests information' do
         get :search, params: parameters
         expect(response_json.first.keys).to eq(%w[code label])
       end
