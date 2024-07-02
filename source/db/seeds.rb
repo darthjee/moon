@@ -134,7 +134,6 @@ end
     price: price,
     url: "http://localhost:3001/store/product.html?price=#{price}&name=#{"Gift #{i} - Store"}"
   )
-
 end
 
 # Invites
