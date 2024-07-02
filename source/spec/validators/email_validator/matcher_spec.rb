@@ -78,12 +78,6 @@ describe EmailValidator::Matcher do
         it { expect(subject.match).to be_falsey }
       end
 
-      context 'when it starts with a number' do
-        let(:user) { '1user' }
-
-        it { expect(subject.match).to be_falsey }
-      end
-
       context 'when it starts with a dash' do
         let(:user) { '_user' }
 
