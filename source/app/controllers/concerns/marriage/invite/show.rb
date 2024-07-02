@@ -13,13 +13,13 @@ module Marriage
       end
 
       def show_png_invite
-        render text: show_path_qr_code
+        render plain: show_path_qr_code
       end
 
       private
 
       def show_path_qr_code
-        QRCodeBuilder.new(show_path, 'public/icon.png').build
+        ::QrCodeBuilder.new(show_path, 'public/icon.png').build
       end
 
       def show_path
