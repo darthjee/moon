@@ -13,7 +13,7 @@ module Marriage
       end
 
       def show_png_invite
-        render text: show_path_qr_code
+        render plain: show_path_qr_code
       end
 
       private
