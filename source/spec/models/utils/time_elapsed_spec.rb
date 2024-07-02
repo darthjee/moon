@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Utils::TimeElapsed do
-  let(:subject) { described_class.new(time) }
+  subject { described_class.new(time) }
 
   describe '#as_json' do
     shared_examples 'an object that can calculate time ago' do |examples|

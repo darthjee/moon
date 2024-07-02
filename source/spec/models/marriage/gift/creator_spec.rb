@@ -3,11 +3,12 @@
 require 'spec_helper'
 
 describe Marriage::Gift::Creator do
+  subject { described_class.new(marriage, parameters) }
+
   let(:tests_json) { load_json_fixture_file('requests/marriage/gifts.json') }
   let(:parameters_json) { tests_json[test_key].slice('gift_links', 'store_id') }
   let(:parameters) { ActionController::Parameters.new(parameters_json) }
   let(:marriage) { marriage_marriages(:first) }
-  let(:subject) { described_class.new(marriage, parameters) }
 
   describe '#create' do
     let(:test_key) { 'create' }

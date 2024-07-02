@@ -21,7 +21,7 @@ describe Marriage::Gift do
   end
 
   describe '#thread' do
-    let(:subject) { create :gift }
+    subject { create :gift }
 
     context 'when gift does not have a thread' do
       it 'creates a new thread' do

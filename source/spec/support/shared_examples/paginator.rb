@@ -3,8 +3,9 @@
 require 'spec_helper'
 
 shared_examples 'a paginator extending utils paginator' do |klass, key|
+  subject { klass.new(documents, params) }
+
   let(:params) { {} }
-  let(:subject) { klass.new(documents, params) }
 
   describe '#next_page_offset' do
     let(:per_page) { 8 }
@@ -83,8 +84,9 @@ shared_examples 'a paginator extending utils paginator' do |klass, key|
 end
 
 shared_examples 'a paginator' do |described_class, key|
+  subject { described_class.new(documents, params) }
+
   let(:params) { {} }
-  let(:subject) { described_class.new(documents, params) }
 
   describe '#as_json' do
     let(:documents_json) { subject.as_json[key] }
@@ -173,7 +175,8 @@ shared_examples 'a paginator' do |described_class, key|
 end
 
 shared_examples 'a paginator that accepts offset' do |described_class, key|
-  let(:subject) { described_class.new(documents, params) }
+  subject { described_class.new(documents, params) }
+
   let(:documents_json) { subject.as_json[key] }
   let(:documents) { documents_with_more_pages }
   let(:per_page) { 8 }

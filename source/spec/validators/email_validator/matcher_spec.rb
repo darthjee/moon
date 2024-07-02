@@ -3,10 +3,11 @@
 require 'spec_helper'
 
 describe EmailValidator::Matcher do
+  subject { described_class.new(email) }
+
   let(:user) { 'user' }
   let(:server) { 'server.com' }
   let(:email) { "#{user}@#{server}" }
-  let(:subject) { described_class.new(email) }
 
   describe '#match' do
     context 'when e-mail is valid' do

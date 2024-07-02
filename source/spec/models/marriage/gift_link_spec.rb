@@ -5,7 +5,8 @@ require 'spec_helper'
 describe Marriage::GiftLink do
   describe '#store' do
     context 'when link has an account' do
-      let(:subject) { marriage_gift_links(:link_with_account) }
+      subject { marriage_gift_links(:link_with_account) }
+
       let(:bank) { bank_banks(:first_bank) }
 
       it 'returns the account' do
@@ -14,7 +15,8 @@ describe Marriage::GiftLink do
     end
 
     context 'when link does not have an account' do
-      let(:subject) { marriage_gift_links(:first_link) }
+      subject { marriage_gift_links(:first_link) }
+
       let(:store) { store_stores(:first_store) }
 
       it 'returns the store' do
@@ -25,7 +27,8 @@ describe Marriage::GiftLink do
 
   describe '#bank' do
     context 'when link has an account' do
-      let(:subject) { marriage_gift_links(:link_with_account) }
+      subject { marriage_gift_links(:link_with_account) }
+
       let(:bank) { bank_banks(:first_bank) }
 
       it 'returns the account' do
@@ -34,7 +37,8 @@ describe Marriage::GiftLink do
     end
 
     context 'when link does not have an account' do
-      let(:subject) { marriage_gift_links(:first_link) }
+      subject { marriage_gift_links(:first_link) }
+
       let(:store) { store_stores(:first_store) }
 
       it 'returns the store' do

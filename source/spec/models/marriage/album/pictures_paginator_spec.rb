@@ -12,7 +12,8 @@ describe Marriage::Album::PicturesPaginator do
 
   context 'when album has only subalbums' do
     it_behaves_like 'a paginator', described_class, :itens do
-      let(:subject) { described_class.new(documents, pictures, params) }
+      subject { described_class.new(documents, pictures, params) }
+
       let(:documents) { subalbums }
       let(:documents_with_10_itens) do
         album.tap do |album|
@@ -32,7 +33,8 @@ describe Marriage::Album::PicturesPaginator do
 
   context 'when album has only pictures' do
     it_behaves_like 'a paginator', described_class, :itens do
-      let(:subject) { described_class.new(subalbums, documents, params) }
+      subject { described_class.new(subalbums, documents, params) }
+
       let(:documents) { pictures }
       let(:documents_with_10_itens) do
         album.tap do |album|
@@ -49,7 +51,8 @@ describe Marriage::Album::PicturesPaginator do
   end
 
   context 'when album has both subalbums and pictures' do
-    let(:subject) { described_class.new(subalbums, documents, params) }
+    subject { described_class.new(subalbums, pictures, params) }
+
     let(:pictures) do
       album.tap do |album|
         create_list(:picture, pictures_count, album:)
@@ -64,7 +67,6 @@ describe Marriage::Album::PicturesPaginator do
     let(:per_page) { 8 }
     let(:page) { 1 }
     let(:params) { { per_page:, page: } }
-    let(:subject) { described_class.new(subalbums, pictures, params) }
 
     context 'when pictures and albums fit in a single page' do
       let(:pictures_count) { per_page / 2 }

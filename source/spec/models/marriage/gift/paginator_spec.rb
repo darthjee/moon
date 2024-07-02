@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe Marriage::Gift::Paginator do
+  subject { described_class.new(gifts, params) }
+
   it_behaves_like 'a paginator extending utils paginator',
                   described_class, :gifts do
     let(:marriage) { marriage_marriages(:first) }
@@ -27,7 +29,6 @@ describe Marriage::Gift::Paginator do
   let(:params) { {} }
   let(:marriage) { create(:marriage) }
   let(:gifts) { marriage.gifts }
-  let(:subject) { described_class.new(gifts, params) }
 
   describe '#as_json' do
     let(:gifts_json) { subject.as_json[:gifts] }
