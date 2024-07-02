@@ -10,6 +10,9 @@ Zyra.register(Marriage::Marriage, find_by: :id)
 Zyra.register(Marriage::Picture, find_by: :name)
 Zyra.register(Marriage::Album, find_by: :name)
 
+Zyra.register(Marriage::Location, find_by: %i[name])
+Zyra.register(Marriage::Event, find_by: %i[marriage location])
+
 Zyra.register(Marriage::Gift, find_by: %i[name marriage])
 Zyra.register(Marriage::GiftLink, find_by: %i[gift url store_list account])
 
@@ -59,6 +62,34 @@ store_list = Zyra.find_or_create(
   marriage: marriage,
   store: store,
   url: "http://localhost:3001/store/"
+)
+
+church = Zyra.find_or_create(
+  :marriage_location,
+  name: "Church",
+  address: "Street name, 169",
+  marriage: marriage
+)
+Zyra.find_or_create(
+  :marriage_event,
+  location: church,
+  time: "17:45",
+  description: "Marriage",
+  marriage: marriage
+)
+
+party = Zyra.find_or_create(
+  :marriage_location,
+  name: "Party",
+  address: "Avenue name, 132",
+  marriage: marriage
+)
+Zyra.find_or_create(
+  :marriage_event,
+  location: party,
+  time: "19:00",
+  description: "Party",
+  marriage: marriage
 )
 
 # Pictures
