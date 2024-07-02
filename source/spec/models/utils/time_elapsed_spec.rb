@@ -5,13 +5,14 @@ require 'spec_helper'
 describe Utils::TimeElapsed do
   subject { described_class.new(time) }
 
+  # rubocop:disable RSpec/LetSetup
   describe '#as_json' do
     shared_examples 'an object that can calculate time ago' do |examples|
       examples.each do |example|
         context 'when time is 10 seconds ago' do
           let(:amount) { example[:amount] }
           let(:unit) { example[:unit] }
-          let(:time) { example.delete(:time).ago }
+          let!(:time) { example.delete(:time).ago }
           let(:expected) { example }
 
           it 'returns the correct time ago' do
@@ -35,4 +36,5 @@ describe Utils::TimeElapsed do
       { amount: 1, unit: :year, time: 380.days }
     ]
   end
+  # rubocop:enable RSpec/LetSetup
 end
