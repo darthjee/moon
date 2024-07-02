@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_context 'an object that has a secure random code start up' do |*methods|
+shared_context 'with an object that has a secure random code start up' do |*methods|
   methods.each do |method|
     describe "##{method}" do
       let(:user) { build(:user, method => nil) }

@@ -33,7 +33,7 @@ module Marriage
 
         link_json = gift_link_json
                     .permit(:url, :price)
-                    .merge(store_list: store_list)
+                    .merge(store_list:)
 
         gift.add_link(link_json)
         gift.update_prices
@@ -41,8 +41,8 @@ module Marriage
       end
 
       def find_or_create_gift(gift_json)
-        find(gift_json, :name) || \
-          find(gift_json, :image_url) || \
+        find(gift_json, :name) ||
+          find(gift_json, :image_url) ||
           create_gift(gift_json)
       end
 
@@ -52,7 +52,7 @@ module Marriage
 
       def find(gift_json, key)
         Gift
-          .unscoped.where(marriage: marriage)
+          .unscoped.where(marriage:)
           .find_by(gift_json.permit(key))
       end
 
@@ -70,12 +70,12 @@ module Marriage
 
       def gift_link_exists?(url)
         GiftLink
-          .unscoped.where(store_list: store_list)
-          .where(account_id: nil).where(url: url).any?
+          .unscoped.where(store_list:)
+          .where(account_id: nil).where(url:).any?
       end
 
       def store_list
-        @store_list ||= marriage.store_lists.find_by(store_id: store_id)
+        @store_list ||= marriage.store_lists.find_by(store_id:)
       end
 
       def store_id

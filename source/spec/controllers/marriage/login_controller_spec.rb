@@ -6,13 +6,13 @@ describe Marriage::LoginController do
   let(:user) { users(:first) }
 
   describe 'GET check' do
-    context 'User is not logged' do
+    context 'when user is not logged' do
       it do
         get :check, format: :json
         expect(response).to be_a_not_found
       end
 
-      context 'Because user has the wrong credentials' do
+      context 'when user has the wrong credentials' do
         before do
           cookies.signed[:credentials] = 'wrong'
         end
@@ -23,7 +23,7 @@ describe Marriage::LoginController do
         end
       end
 
-      context 'Because user has a fake credential' do
+      context 'when user has a fake credential' do
         before do
           cookies[:credentials] = user.authentication_token
         end
@@ -35,7 +35,7 @@ describe Marriage::LoginController do
       end
     end
 
-    context 'User is logged' do
+    context 'when user is logged' do
       before do
         cookies.signed[:credentials] = user.authentication_token
       end
@@ -52,8 +52,8 @@ describe Marriage::LoginController do
     let(:password) { 'pass_code' }
     let(:parameters) do
       {
-        login: login,
-        password: password,
+        login:,
+        password:,
         format: :json
       }
     end

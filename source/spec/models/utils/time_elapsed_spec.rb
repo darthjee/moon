@@ -3,8 +3,9 @@
 require 'spec_helper'
 
 describe Utils::TimeElapsed do
-  let(:subject) { described_class.new(time) }
+  subject { described_class.new(time) }
 
+  # rubocop:disable RSpec/LetSetup
   describe '#as_json' do
     shared_examples 'an object that can calculate time ago' do |examples|
       examples.each do |example|
@@ -35,4 +36,5 @@ describe Utils::TimeElapsed do
       { amount: 1, unit: :year, time: 380.days }
     ]
   end
+  # rubocop:enable RSpec/LetSetup
 end

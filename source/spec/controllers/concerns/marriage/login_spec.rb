@@ -4,7 +4,12 @@ require 'spec_helper'
 
 describe Marriage::Login do
   let(:parameters) { {} }
+  let(:response_json) { JSON.parse response.body }
+  let(:logged) { response_json['logged'] }
+  let(:logged_id) { response_json['user_id'] }
+  let(:user) { users(:first) }
 
+  # rubocop:disable RSpec/DescribedClass
   controller(ApplicationController) do
     include Marriage::Login
 
@@ -12,11 +17,7 @@ describe Marriage::Login do
       render json: { logged: logged?, user_id: logged_user.try(:id) }
     end
   end
-
-  let(:response_json) { JSON.parse response.body }
-  let(:logged) { response_json['logged'] }
-  let(:logged_id) { response_json['user_id'] }
-  let(:user) { users(:first) }
+  # rubocop:enable RSpec/DescribedClass
 
   describe '#sign_in' do
     context 'when no one is signed in' do
@@ -90,11 +91,12 @@ describe Marriage::Login do
   describe '#login_from_parameters' do
     let(:token) { user.authentication_token }
 
-    context 'user is not logged' do
+    context 'when user is not logged' do
       before { cookies.delete(:credentials) }
 
-      context 'the request contains a token' do
-        let(:parameters) { { token: token } }
+      context 'with the request contains a token' do
+        let(:parameters) { { token: } }
+
         before { get :index, params: parameters }
 
         it 'logs the user' do
@@ -106,7 +108,7 @@ describe Marriage::Login do
         end
       end
 
-      context 'the request does not contain a token' do
+      context 'with the request does not contain a token' do
         before { get :index, params: parameters }
 
         it 'does not log the user' do
@@ -119,15 +121,16 @@ describe Marriage::Login do
       end
     end
 
-    context 'user is already logged as another user' do
+    context 'when user is already logged as another user' do
       let(:old_user) { users(:empty) }
 
       before do
         cookies.signed[:credentials] = old_user.authentication_token
       end
 
-      context 'the request contains a token' do
-        let(:parameters) { { token: token } }
+      context 'with the request contains a token' do
+        let(:parameters) { { token: } }
+
         before { get :index, params: parameters }
 
         it 'logs in the user' do
@@ -139,7 +142,7 @@ describe Marriage::Login do
         end
       end
 
-      context 'the request does not contain a token' do
+      context 'with the request does not contain a token' do
         before { get :index, params: parameters }
 
         it 'does not change logged in state' do

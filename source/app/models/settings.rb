@@ -12,7 +12,7 @@ class Settings
   extend Sinclair::ChainSettable
 
   source :env, EnvSettings
-  #source :db,  ActiveSettings
+  # source :db,  ActiveSettings
 
   setting_with_options(:password_salt)
   setting_with_options(:default_pagination_size, default: 8)

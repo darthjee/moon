@@ -42,7 +42,7 @@ module Marriage
     end
 
     def user_from_login
-      @user_from_login = User.login(login: login, password: password)
+      @user_from_login = User.login(login:, password:)
     end
 
     def login

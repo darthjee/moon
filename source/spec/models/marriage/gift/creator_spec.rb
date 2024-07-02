@@ -3,11 +3,12 @@
 require 'spec_helper'
 
 describe Marriage::Gift::Creator do
+  subject { described_class.new(marriage, parameters) }
+
   let(:tests_json) { load_json_fixture_file('requests/marriage/gifts.json') }
   let(:parameters_json) { tests_json[test_key].slice('gift_links', 'store_id') }
   let(:parameters) { ActionController::Parameters.new(parameters_json) }
   let(:marriage) { marriage_marriages(:first) }
-  let(:subject) { described_class.new(marriage, parameters) }
 
   describe '#create' do
     let(:test_key) { 'create' }
@@ -91,7 +92,7 @@ describe Marriage::Gift::Creator do
         end.not_to change(Marriage::Gift.unscoped, :count)
       end
 
-      context 'but it has changed its name' do
+      context 'when it has changed its name' do
         before do
           Marriage::Gift.last.update(name: 'new gift name')
         end
@@ -109,7 +110,7 @@ describe Marriage::Gift::Creator do
         end
       end
 
-      context 'but it has been already canceled' do
+      context 'when it has been already canceled' do
         before do
           Marriage::Gift.last.cancel
         end
@@ -127,7 +128,7 @@ describe Marriage::Gift::Creator do
         end
       end
 
-      context 'and we are updating the bought quantity' do
+      context 'when we are updating the bought quantity' do
         let(:gift) { Marriage::Gift.last }
         let(:update_gifts_creator) do
           described_class.new(marriage, update_request_parameters)
@@ -153,7 +154,7 @@ describe Marriage::Gift::Creator do
         end
       end
 
-      context 'but for another store' do
+      context 'when for another store' do
         let(:new_gifts_creator) do
           described_class.new(marriage, new_request_parameters)
         end

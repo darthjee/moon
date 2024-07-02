@@ -5,7 +5,7 @@ class AddRoleToGuest < ActiveRecord::Migration[4.2]
     add_column :marriage_guests, :role, :text
     %w[best_man maid_honor].each do |role|
       Marriage::Guest.unscoped.where(role => true).each do |guest|
-        guest.update(role: role)
+        guest.update(role:)
       end
       remove_column :marriage_guests, role
     end

@@ -51,7 +51,7 @@ module Comment
       end
 
       def comment_creation_params
-        comment_params.permit(:text).merge(user: user)
+        comment_params.permit(:text).merge(user:)
       end
 
       def comment_params

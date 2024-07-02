@@ -36,7 +36,7 @@ module Marriage
     private
 
     def guests
-      marriage.guests.where(role: role)
+      marriage.guests.where(role:)
     end
 
     def role

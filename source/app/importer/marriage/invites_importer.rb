@@ -22,9 +22,9 @@ module Marriage
 
     def create_invite(label, invites, expected)
       marriage.invites.create(
-        label: label,
-        invites: invites,
-        expected: expected
+        label:,
+        invites:,
+        expected:
       )
     end
 

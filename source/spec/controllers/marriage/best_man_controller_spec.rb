@@ -8,9 +8,9 @@ describe Marriage::BestManController do
   describe 'GET index' do
     let(:user) { users(:first) }
     let(:invite) { user }
-    let(:parameters) { { format: format } }
+    let(:parameters) { { format: } }
 
-    context 'When user is logged' do
+    context 'when user is logged' do
       before do
         cookies.signed[:credentials] = user.authentication_token
       end
@@ -30,7 +30,7 @@ describe Marriage::BestManController do
       end
     end
 
-    context 'When user is not logged' do
+    context 'when user is not logged' do
       before do
         cookies.delete(:credentials)
       end
@@ -50,14 +50,15 @@ describe Marriage::BestManController do
     let(:parameters) do
       {
         format: :json,
-        role: role
+        role:
       }
     end
     let(:marriage) { marriage_marriages(:first) }
+
     before do
       Marriage::Guest.update_all(role: nil)
       marriage.invites.each do |invite|
-        create(:guest, role: 'maid_honor', invite: invite)
+        create(:guest, role: 'maid_honor', invite:)
       end
       create(:guest, role: 'best_man', invite: marriage.invites.first)
       2.times { create(:guest, role: 'mother', invite: marriage.invites.first) }

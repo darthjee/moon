@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe Marriage::Album::PicturesPaginator do
   let(:marriage) { create(:marriage) }
-  let(:album) { create(:album, marriage: marriage) }
+  let(:album) { create(:album, marriage:) }
   let(:subalbums) { album.albums }
   let(:pictures) { album.pictures }
   let(:first_documents) { documents.limit(per_page) }
@@ -12,17 +12,18 @@ describe Marriage::Album::PicturesPaginator do
 
   context 'when album has only subalbums' do
     it_behaves_like 'a paginator', described_class, :itens do
-      let(:subject) { described_class.new(documents, pictures, params) }
+      subject { described_class.new(documents, pictures, params) }
+
       let(:documents) { subalbums }
       let(:documents_with_10_itens) do
         album.tap do |album|
-          create_list(:album, 10, marriage: marriage, album: album)
+          create_list(:album, 10, marriage:, album:)
         end.albums
       end
       let(:documents_with_more_pages) do
         album.tap do |album|
           create_list(
-            :album, (per_page * 2 + 2), marriage: marriage, album: album
+            :album, ((per_page * 2) + 2), marriage:, album:
           )
         end.albums
       end
@@ -32,16 +33,17 @@ describe Marriage::Album::PicturesPaginator do
 
   context 'when album has only pictures' do
     it_behaves_like 'a paginator', described_class, :itens do
-      let(:subject) { described_class.new(subalbums, documents, params) }
+      subject { described_class.new(subalbums, documents, params) }
+
       let(:documents) { pictures }
       let(:documents_with_10_itens) do
         album.tap do |album|
-          create_list(:picture, 10, album: album)
+          create_list(:picture, 10, album:)
         end.pictures
       end
       let(:documents_with_more_pages) do
         album.tap do |album|
-          create_list(:picture, (per_page * 2 + 2), album: album)
+          create_list(:picture, ((per_page * 2) + 2), album:)
         end.pictures
       end
       let(:empty_documents) { create(:album).pictures }
@@ -49,22 +51,22 @@ describe Marriage::Album::PicturesPaginator do
   end
 
   context 'when album has both subalbums and pictures' do
-    let(:subject) { described_class.new(subalbums, documents, params) }
+    subject { described_class.new(subalbums, pictures, params) }
+
     let(:pictures) do
       album.tap do |album|
-        create_list(:picture, pictures_count, album: album)
+        create_list(:picture, pictures_count, album:)
       end.pictures
     end
     let(:subalbums) do
       album.tap do |album|
-        create_list(:album, albums_count, marriage: marriage, album: album)
+        create_list(:album, albums_count, marriage:, album:)
       end.albums
     end
     let(:documents_json) { subject.as_json[:itens] }
     let(:per_page) { 8 }
     let(:page) { 1 }
-    let(:params) { { per_page: per_page, page: page } }
-    let(:subject) { described_class.new(subalbums, pictures, params) }
+    let(:params) { { per_page:, page: } }
 
     context 'when pictures and albums fit in a single page' do
       let(:pictures_count) { per_page / 2 }
@@ -84,7 +86,7 @@ describe Marriage::Album::PicturesPaginator do
     end
 
     context 'when they do not fit in a single page' do
-      context 'fiting in one page each' do
+      context 'when fiting in one page each' do
         let(:pictures_count) { per_page }
         let(:albums_count) { per_page }
 
@@ -108,6 +110,7 @@ describe Marriage::Album::PicturesPaginator do
 
         context 'when requesting the second page' do
           let(:page) { 2 }
+
           it 'returns the pictures' do
             expect(documents_json).to eq(pictures.as_json)
           end
@@ -122,7 +125,7 @@ describe Marriage::Album::PicturesPaginator do
         end
       end
 
-      context 'fiting in a total of 3 pages' do
+      context 'when fiting in a total of 3 pages' do
         let(:pictures_count) { per_page * 3 / 2 }
         let(:albums_count) { per_page * 3 / 2 }
 
@@ -191,14 +194,15 @@ describe Marriage::Album::PicturesPaginator do
           end
         end
       end
-      context 'fiting in a total of 4 not fully pagespages' do
-        let(:pictures_count) { per_page * 3 / 2 + 1 }
-        let(:albums_count) { per_page * 3 / 2 + 1 }
+
+      context 'when fiting in a total of 4 not fully pagespages' do
+        let(:pictures_count) { (per_page * 3 / 2) + 1 }
+        let(:albums_count) { (per_page * 3 / 2) + 1 }
         let(:page) { 4 }
 
         it 'returns the last pictures' do
           expect(documents_json)
-            .to eq(pictures.offset(per_page * 3 / 2 - 1).as_json)
+            .to eq(pictures.offset((per_page * 3 / 2) - 1).as_json)
         end
 
         it 'returns one page count' do

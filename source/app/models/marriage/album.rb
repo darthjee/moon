@@ -8,7 +8,7 @@ module Marriage
     has_many :albums
 
     scope(:displayable, proc { where.not(status: :cancelled) })
-    scope(:from_album, proc { |album_id| where(album_id: album_id) })
+    scope(:from_album, proc { |album_id| where(album_id:) })
     scope(:top_album, proc { where(album_id: nil) })
     default_scope { displayable.order(:order, :id) }
 
