@@ -5,6 +5,7 @@ require 'spec_helper'
 describe Marriage::Common do
   let(:parameters) { {} }
 
+  # rubocop:disable RSpec/DescribedClass
   controller(ApplicationController) do
     include Marriage::Common
 
@@ -15,10 +16,11 @@ describe Marriage::Common do
       end
     end
   end
+  # rubocop:enabled RSpec/DescribedClass
 
   describe 'layout' do
     before do
-      allow(controller).to receive(:home?) { true }
+      allow(controller).to receive(:home?).and_return(true)
       get :index, params: parameters
     end
 

@@ -4,7 +4,12 @@ require 'spec_helper'
 
 describe Marriage::Login do
   let(:parameters) { {} }
+  let(:response_json) { JSON.parse response.body }
+  let(:logged) { response_json['logged'] }
+  let(:logged_id) { response_json['user_id'] }
+  let(:user) { users(:first) }
 
+  # rubocop:disable RSpec/DescribedClass
   controller(ApplicationController) do
     include Marriage::Login
 
@@ -12,11 +17,7 @@ describe Marriage::Login do
       render json: { logged: logged?, user_id: logged_user.try(:id) }
     end
   end
-
-  let(:response_json) { JSON.parse response.body }
-  let(:logged) { response_json['logged'] }
-  let(:logged_id) { response_json['user_id'] }
-  let(:user) { users(:first) }
+  # rubocop:enabled RSpec/DescribedClass
 
   describe '#sign_in' do
     context 'when no one is signed in' do
@@ -94,7 +95,8 @@ describe Marriage::Login do
       before { cookies.delete(:credentials) }
 
       context 'the request contains a token' do
-        let(:parameters) { { token: token } }
+        let(:parameters) { { token: } }
+
         before { get :index, params: parameters }
 
         it 'logs the user' do
@@ -127,7 +129,8 @@ describe Marriage::Login do
       end
 
       context 'the request contains a token' do
-        let(:parameters) { { token: token } }
+        let(:parameters) { { token: } }
+
         before { get :index, params: parameters }
 
         it 'logs in the user' do
