@@ -186,7 +186,7 @@ shared_examples 'a paginator that accepts offset' do |described_class, key|
   describe '#as_json' do
     context 'when passing offset as argument' do
       context 'when the offset is negative' do
-        context 'and its module is bigger than per_page argument' do
+        context 'when its module is bigger than per_page argument' do
           let(:offset) { - (per_page + 2) }
           let(:params) { { per_page:, page:, offset: } }
 
@@ -245,7 +245,7 @@ shared_examples 'a paginator that accepts offset' do |described_class, key|
           context 'when document list is empty' do
             let(:documents) { empty_documents }
 
-            context 'and requesting for an unlimited per page list' do
+            context 'when requesting for an unlimited per page list' do
               let(:params) { { per_page: 0, page: 1, offset: } }
 
               it do

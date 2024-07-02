@@ -13,11 +13,11 @@ describe User do
     context 'when email is not nil' do
       let(:invite) { users(:with_email) }
 
-      context 'and is valid' do
+      context 'when is valid' do
         it { expect(user).to be_valid }
       end
 
-      context 'and is invalid' do
+      context 'when is invalid' do
         before { user.email = 'wrong_email' }
 
         it { expect(user).to be_invalid }

@@ -113,7 +113,7 @@ describe Marriage::Gift::Paginator do
               last_gifts.each(&:reload)
             end
 
-            context 'descending' do
+            context 'when descending' do
               let(:direction) { 'desc' }
 
               it 'returns first page ordered by name' do
@@ -121,7 +121,7 @@ describe Marriage::Gift::Paginator do
               end
             end
 
-            context 'ascending' do
+            context 'when ascending' do
               let(:direction) { 'asc' }
 
               it 'returns first page ordered by name' do

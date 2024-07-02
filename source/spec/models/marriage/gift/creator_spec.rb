@@ -128,7 +128,7 @@ describe Marriage::Gift::Creator do
         end
       end
 
-      context 'and we are updating the bought quantity' do
+      context 'when we are updating the bought quantity' do
         let(:gift) { Marriage::Gift.last }
         let(:update_gifts_creator) do
           described_class.new(marriage, update_request_parameters)
