@@ -2,6 +2,8 @@
 
 source "scripts/render.sh"
 
+IMAGE="$RENDER_SERVICE_NAME"_production
+
 function run() {
   SERVICE_ID=$(service_id)
 
@@ -10,7 +12,7 @@ function run() {
 }
 
 function run_docker() {
-  docker-compose run moon_production /bin/bash
+  docker-compose run $IMAGE /bin/bash
 }
 
 function up() {
@@ -21,7 +23,7 @@ function up() {
 }
 
 function up_docker() {
-  docker-compose up moon_production
+  docker-compose up $IMAGE
 }
 
 function clean_env() {
