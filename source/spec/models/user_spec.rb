@@ -25,7 +25,7 @@ describe User do
     end
   end
 
-  it_behaves_like 'an object that has a secure random code start up',
+  it_behaves_like 'with an object that has a secure random code start up',
                   :code, :authentication_token
 
   describe 'create' do
