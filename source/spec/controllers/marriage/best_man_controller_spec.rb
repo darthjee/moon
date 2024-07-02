@@ -10,7 +10,7 @@ describe Marriage::BestManController do
     let(:invite) { user }
     let(:parameters) { { format: } }
 
-    context 'When user is logged' do
+    context 'when user is logged' do
       before do
         cookies.signed[:credentials] = user.authentication_token
       end
@@ -30,7 +30,7 @@ describe Marriage::BestManController do
       end
     end
 
-    context 'When user is not logged' do
+    context 'when user is not logged' do
       before do
         cookies.delete(:credentials)
       end

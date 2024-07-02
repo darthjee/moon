@@ -91,10 +91,10 @@ describe Marriage::Login do
   describe '#login_from_parameters' do
     let(:token) { user.authentication_token }
 
-    context 'user is not logged' do
+    context 'when user is not logged' do
       before { cookies.delete(:credentials) }
 
-      context 'the request contains a token' do
+      context 'with the request contains a token' do
         let(:parameters) { { token: } }
 
         before { get :index, params: parameters }
@@ -108,7 +108,7 @@ describe Marriage::Login do
         end
       end
 
-      context 'the request does not contain a token' do
+      context 'with the request does not contain a token' do
         before { get :index, params: parameters }
 
         it 'does not log the user' do
@@ -121,14 +121,14 @@ describe Marriage::Login do
       end
     end
 
-    context 'user is already logged as another user' do
+    context 'when user is already logged as another user' do
       let(:old_user) { users(:empty) }
 
       before do
         cookies.signed[:credentials] = old_user.authentication_token
       end
 
-      context 'the request contains a token' do
+      context 'with the request contains a token' do
         let(:parameters) { { token: } }
 
         before { get :index, params: parameters }
@@ -142,7 +142,7 @@ describe Marriage::Login do
         end
       end
 
-      context 'the request does not contain a token' do
+      context 'with the request does not contain a token' do
         before { get :index, params: parameters }
 
         it 'does not change logged in state' do
