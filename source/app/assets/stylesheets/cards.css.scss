@@ -1,0 +1,9 @@
+.card {
+  width: 500px;
+  text-align: justify;
+  page-break-inside: avoid;
+
+  .thumbnail {
+    margin: 10px 0 10px;
+  }
+}

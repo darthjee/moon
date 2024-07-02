@@ -1,0 +1,72 @@
+.gift-block {
+  .gift-quantity {
+    text-align: right;
+  }
+
+  .gift-price, .gift-quantity {
+    height: 1.2em;
+    font-size: 1.3em;
+    margin-bottom:.5em;
+
+    strong {
+      font-size: 0.7em;
+    }
+  }
+
+  .gift-links {
+    height: 70px;
+    width: 300px;
+  }
+}
+
+
+.wrap-image {
+  position: absolute;
+  z-index: 2;
+
+  img {
+    border: 1px solid red;
+  }
+}
+
+
+.gift-block, .gift-show {
+  .store-link, .bank-logo {
+    background-repeat: no-repeat;
+    background-position: center;
+
+    div {
+      width: 80px;
+      height: 20px;
+      text-indent: -99999px;
+    }
+  }
+
+  .gift-image {
+    max-width: 60%;
+    width: 60%;
+    height: auto;
+    margin: 0px 20% 10%;
+    max-height: 163px;
+    object-fit: contain;
+  }
+}
+
+.gift-show {
+  .gift-details {
+    font-size: 2rem;
+
+    .gift-description {
+      font-size: 1.4em;
+    }
+  }
+
+  .gift-image-block {
+    height: 310px;
+  }
+}
+
+
+.gift-image-block {
+  overflow: hidden;
+}

@@ -21,11 +21,16 @@ module Moon
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     %w[
-      node_modules
-      node_modules/bootstrap/dist/css
-      node_modules/bootstrap/dist/js
+      vendor/assets/bower_components
+      vendor/assets/bower_components/bootstrap/dist/css
+      vendor/assets/bower_components/bootstrap/dist/js
+      vendor/assets/bower_components/select2
+      vendor/assets/bower_components/bootstrap-sass/assets/fonts/bootstrap
+      vendor/assets/bower_components/bootstrap-sass/assets/javascripts
     ].each do |path|
       config.assets.paths << Rails.root.join(*path.split('/'))
     end
+    #config.assets.precompile += [/.*?\.(eot|svg|ttf|woff)$/]
+    #config.assets.precompile += [/.*?\.(png)$/]
   end
 end

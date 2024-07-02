@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Loading</title>
+    <script language="javascript">
+      var query = window.location.search,
+        price = query.match(/[?&]price=([^&]*)/)[1],
+        name = decodeURI(query.match(/[?&]name=([^&]*)/)[1]);
+
+      document.title = name;
+    </script>
+  </head>
+  <body>
+    <h1>
+      <script language="javascript">document.write(name);</script>
+    </h1>
+    <script language="javascript">document.write(price);</script>
+  </body>
+</html>
