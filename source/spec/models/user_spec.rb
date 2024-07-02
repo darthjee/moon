@@ -17,7 +17,7 @@ describe User do
         it { expect(user).to be_valid }
       end
 
-      context 'and is invalid ' do
+      context 'and is invalid' do
         before { user.email = 'wrong_email' }
 
         it { expect(user).to be_invalid }

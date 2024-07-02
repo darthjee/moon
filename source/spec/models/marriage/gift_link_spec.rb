@@ -47,8 +47,8 @@ describe Marriage::GiftLink do
     let(:account) { build(:account) }
     let(:store) { store_list.store }
     let(:store_list) { build(:store_list) }
-    let(:link_with_account) { build(:gift_link, account: account) }
-    let(:link_with_store) { build(:gift_link, store_list: store_list) }
+    let(:link_with_account) { build(:gift_link, account:) }
+    let(:link_with_store) { build(:gift_link, store_list:) }
 
     it 'returns the same structure for store and account link' do
       expect(link_with_account.as_json[:bank].keys)

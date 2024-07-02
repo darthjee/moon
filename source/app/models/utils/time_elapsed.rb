@@ -21,7 +21,7 @@ module Utils
 
       {
         amount: amount.to_i,
-        unit: unit
+        unit:
       }
     end
 

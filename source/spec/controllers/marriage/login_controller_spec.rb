@@ -52,8 +52,8 @@ describe Marriage::LoginController do
     let(:password) { 'pass_code' }
     let(:parameters) do
       {
-        login: login,
-        password: password,
+        login:,
+        password:,
         format: :json
       }
     end

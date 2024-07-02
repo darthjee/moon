@@ -45,7 +45,7 @@ describe Marriage::InvitesController do
       it_behaves_like 'responds with the correct invite'
     end
 
-    context 'when requesting for an existing invite by guest id ' do
+    context 'when requesting for an existing invite by guest id' do
       let(:parameters) { { guest_id: guest.id, format: :json } }
 
       it_behaves_like 'responds with the correct invite'
@@ -163,7 +163,7 @@ describe Marriage::InvitesController do
       it do
         expect do
           patch :update, params: parameters
-        end.to change { Marriage::Guest.count }.by(-2)
+        end.to change(Marriage::Guest, :count).by(-2)
       end
 
       it 'does not really removes the guests' do

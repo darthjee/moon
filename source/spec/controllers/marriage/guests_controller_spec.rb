@@ -20,9 +20,10 @@ describe Marriage::GuestsController do
 
     context 'when names clash with another from another marriage' do
       let(:invite) { marriage_invites(:second_second) }
+
       before do
         Marriage::Guest.create(
-          invite: invite,
+          invite:,
           name: 'Mr. Test'
         )
       end

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     end
 
     def login(login:, password:)
-      User.find_by!(login: login).verify_password!(password)
+      User.find_by!(login:).verify_password!(password)
     rescue ActiveRecord::RecordNotFound
       raise Moon::Exception::LoginFailed
     end
@@ -59,9 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def start_random_attribute(attribute, length)
-    until unique_attribute?(attribute)
-      public_send("#{attribute}=", build_code(length))
-    end
+    public_send("#{attribute}=", build_code(length)) until unique_attribute?(attribute)
   end
 
   def build_code(length)

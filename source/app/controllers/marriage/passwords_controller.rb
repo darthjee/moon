@@ -28,7 +28,7 @@ module Marriage
     end
 
     def user
-      User.find_by!(email: email)
+      User.find_by!(email:)
     end
 
     def email

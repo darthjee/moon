@@ -15,6 +15,7 @@ describe Comment::CommentsController do
 
     context 'when user do exist' do
       let(:user) { users(:first) }
+
       it 'updates users name' do
         expect { post :create, params: parameters }
           .to(change { User.find(user.id).name })

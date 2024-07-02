@@ -9,13 +9,13 @@ describe Marriage::Gift::Paginator do
     let(:documents) { marriage.gifts.order(:name).tap { |l| l.each(&:thread) } }
     let(:documents_with_10_itens) do
       create(:marriage).tap do |marriage|
-        create_list(:gift, 10, marriage: marriage).each(&:thread)
+        create_list(:gift, 10, marriage:).each(&:thread)
       end.gifts
     end
     let(:documents_with_more_pages) do
       create(:marriage).tap do |marriage|
-        (per_page * 2 + 2).times.map do
-          create(:gift, marriage: marriage)
+        ((per_page * 2) + 2).times.map do
+          create(:gift, marriage:)
         end.each(&:thread)
       end.gifts
     end
@@ -34,24 +34,24 @@ describe Marriage::Gift::Paginator do
     let(:gifts) { Marriage::Gift.where(marriage_id: marriage) }
 
     context 'when marriage has more gifts than each page can hold' do
-      let(:last_gifts) { create_list(:gift, 2, marriage: marriage) }
-      let(:first_gifts) { create_list(:gift, per_page, marriage: marriage) }
+      let(:last_gifts) { create_list(:gift, 2, marriage:) }
+      let(:first_gifts) { create_list(:gift, per_page, marriage:) }
       let(:per_page) { 8 }
       let(:page) { nil }
-      let(:params) { { per_page: per_page, page: page } }
+      let(:params) { { per_page:, page: } }
 
       before do
         first_gifts.each(&:thread)
-        create_list(:gift, per_page, marriage: marriage).each(&:thread)
+        create_list(:gift, per_page, marriage:).each(&:thread)
         last_gifts.each(&:thread)
       end
 
       context 'when there are gifts to be ordered by name' do
         let(:real_first_gifts) do
-          create_list(:gift, per_page, marriage: marriage, name: 'aaa')
+          create_list(:gift, per_page, marriage:, name: 'aaa')
         end
         let(:last_gifts) do
-          create_list(:gift, 2, marriage: marriage, name: 'zzz')
+          create_list(:gift, 2, marriage:, name: 'zzz')
         end
 
         before do
@@ -73,10 +73,10 @@ describe Marriage::Gift::Paginator do
         context 'when requesting for specific ordering' do
           let(:params) do
             {
-              per_page: per_page,
-              page: page,
+              per_page:,
+              page:,
               sort_direction: direction,
-              sort_by: sort_by
+              sort_by:
             }
           end
 
@@ -103,6 +103,7 @@ describe Marriage::Gift::Paginator do
 
           context 'when oredering by price' do
             let(:sort_by) { 'price' }
+
             before do
               marriage.gifts.order(:id).each.with_index do |g, i|
                 g.update(min_price: i, max_price: 1000 - i)

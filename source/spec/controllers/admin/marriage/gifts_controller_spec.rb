@@ -21,7 +21,7 @@ describe Admin::Marriage::GiftsController do
 
     context 'when admin key is wrong' do
       before do
-        allow(controller).to receive(:admin_key) { 'abcd' }
+        allow(controller).to receive(:admin_key).and_return('abcd')
       end
 
       it do
