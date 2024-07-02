@@ -161,6 +161,7 @@ GEM
       net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
+    mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.23.0)
     msgpack (1.7.0)
@@ -384,6 +385,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   magicka (~> 1.1.0)
+  mini_magick (= 4.12.0)
   mysql2
   nokogiri (= 1.16.5)
   pry (>= 0.14.2)
