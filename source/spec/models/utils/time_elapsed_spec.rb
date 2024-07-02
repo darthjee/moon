@@ -11,7 +11,7 @@ describe Utils::TimeElapsed do
         context 'when time is 10 seconds ago' do
           let(:amount) { example[:amount] }
           let(:unit) { example[:unit] }
-          let!(:time) { example.delete(:time).ago }
+          let(:time) { example.delete(:time).ago }
           let(:expected) { example }
 
           it 'returns the correct time ago' do
