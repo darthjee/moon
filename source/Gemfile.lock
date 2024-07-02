@@ -235,10 +235,8 @@ GEM
     regexp_parser (2.9.2)
     rexml (3.3.0)
       strscan
-    rqrcode (2.2.0)
+    rqrcode (0.10.1)
       chunky_png (~> 1.0)
-      rqrcode_core (~> 1.0)
-    rqrcode_core (1.2.0)
     rqrcode_png (0.1.5)
       chunky_png
       rqrcode
@@ -376,6 +374,7 @@ DEPENDENCIES
   azeroth (>= 1.1.0)
   bootsnap
   bower-rails (~> 0.12.0)
+  chunky_png (= 1.4.0)
   coffee-rails (= 4.2.2)
   darthjee-active_ext (>= 1.3.2)
   darthjee-core_ext (>= 2.0.0)
@@ -395,7 +394,8 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.3)
   rails-controller-testing (= 1.0.5)
   reek (>= 6.1.4)
-  rqrcode_png
+  rqrcode (< 1.0.0)
+  rqrcode_png (= 0.1.5)
   rspec (>= 3.12.0)
   rspec-collection_matchers (= 1.2.0)
   rspec-core (= 3.12.2)
