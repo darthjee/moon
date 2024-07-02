@@ -16,7 +16,7 @@ describe Marriage::Common do
       end
     end
   end
-  # rubocop:enabled RSpec/DescribedClass
+  # rubocop:enable RSpec/DescribedClass
 
   describe 'layout' do
     before do

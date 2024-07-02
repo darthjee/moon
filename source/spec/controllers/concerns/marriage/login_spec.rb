@@ -17,7 +17,7 @@ describe Marriage::Login do
       render json: { logged: logged?, user_id: logged_user.try(:id) }
     end
   end
-  # rubocop:enabled RSpec/DescribedClass
+  # rubocop:enable RSpec/DescribedClass
 
   describe '#sign_in' do
     context 'when no one is signed in' do
