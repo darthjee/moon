@@ -84,7 +84,7 @@ describe Marriage::Gift::Paginator do
           context 'when oredering by name' do
             let(:sort_by) { 'name' }
 
-            context 'descending' do
+            context 'when descending' do
               let(:direction) { 'desc' }
               let(:per_page) { 2 }
 
@@ -93,7 +93,7 @@ describe Marriage::Gift::Paginator do
               end
             end
 
-            context 'ascending' do
+            context 'when ascending' do
               let(:direction) { 'asc' }
 
               it 'returns first page ordered by name' do
