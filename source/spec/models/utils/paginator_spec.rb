@@ -3,12 +3,6 @@
 require 'spec_helper'
 
 describe Utils::Paginator do
-  class Utils::Paginator::DummyPaginator < Utils::Paginator
-    def key
-      :documents
-    end
-  end
-
   it_behaves_like 'a paginator extending utils paginator',
                   described_class::DummyPaginator, :documents do
     let(:album) { marriage_albums(:first) }
