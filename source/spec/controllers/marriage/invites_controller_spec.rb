@@ -146,11 +146,6 @@ describe Marriage::InvitesController do
         end.to change { invite.guests.count }.by(1)
       end
 
-      it 'creates a new guest for the marriage' do
-        patch :update, params: parameters
-        expect(invite.guests.pluck(:name)).to match_array(names_expected)
-      end
-
       it 'associates the new guests with the invite' do
         patch :update, params: parameters
         expect(invite.guests.pluck(:name)).to match_array(names_expected)
