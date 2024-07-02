@@ -40,7 +40,7 @@ module Marriage
 
       def create_invite_guests
         new_guests_params.each do |guest_params|
-          attributes = guest_params.merge(invite: invite)
+          attributes = guest_params.merge(invite:)
           ::Marriage::Guest.create(attributes)
         end
       end

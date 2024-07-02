@@ -9,12 +9,12 @@ describe Marriage::Picture::Paginator do
     let(:documents) { album.pictures }
     let(:documents_with_10_itens) do
       create(:album).tap do |album|
-        10.times.each { create(:picture, album: album) }
+        10.times.each { create(:picture, album:) }
       end.pictures
     end
     let(:documents_with_more_pages) do
       create(:album).tap do |album|
-        (per_page * 2 + 2).times.each { create(:picture, album: album) }
+        ((per_page * 2) + 2).times.each { create(:picture, album:) }
       end.pictures
     end
     let(:empty_documents) { create(:album).pictures }

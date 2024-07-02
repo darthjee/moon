@@ -5,6 +5,6 @@ class EmailValidator < ActiveModel::EachValidator
     return if EmailValidator::Matcher.new(value).match
 
     key = options[:message] || 'errors.messages.invalid'
-    record.errors[attribute] << I18n.t(key)
+    record.errors.add(attribute, :invalid_email, message: I18n.t(key))
   end
 end

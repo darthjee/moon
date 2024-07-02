@@ -14,7 +14,7 @@ module Utils
     def as_json
       {
         key => list_json,
-        pages: pages,
+        pages:,
         page: page_param
       }
     end
@@ -79,7 +79,7 @@ module Utils
     end
 
     def calculated_offset
-      (page_param - 1) * per_page + offset_param
+      ((page_param - 1) * per_page) + offset_param
     end
 
     def offset_param

@@ -15,7 +15,7 @@ module Marriage
     end
 
     def gift_link
-      Marriage::GiftLink.find(link_id).as_json(include: :gift)
+      GiftLink.find(link_id).as_json(include: :gift)
     end
 
     def link_id

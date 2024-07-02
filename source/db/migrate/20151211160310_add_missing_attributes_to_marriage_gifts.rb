@@ -9,7 +9,7 @@ class AddMissingAttributesToMarriageGifts < ActiveRecord::Migration[4.2]
 
   def up
     Marriage::Gift.where.not(quantity: nil).uniq.pluck(:quantity).each do |quantity|
-      Marriage::Gift.where(quantity: quantity).update_all(package: quantity)
+      Marriage::Gift.where(quantity:).update_all(package: quantity)
     end
   end
 end

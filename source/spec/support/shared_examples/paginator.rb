@@ -3,12 +3,13 @@
 require 'spec_helper'
 
 shared_examples 'a paginator extending utils paginator' do |klass, key|
+  subject { klass.new(documents, params) }
+
   let(:params) { {} }
-  let(:subject) { klass.new(documents, params) }
 
   describe '#next_page_offset' do
     let(:per_page) { 8 }
-    let(:params) { { per_page: per_page } }
+    let(:params) { { per_page: } }
     let(:documents) { documents_with_10_itens }
 
     context 'when requesting not the last page' do
@@ -18,14 +19,16 @@ shared_examples 'a paginator extending utils paginator' do |klass, key|
     end
 
     context 'when requesting a page that is not full (the last page)' do
-      let(:params) { { page: 2, per_page: per_page } }
+      let(:params) { { page: 2, per_page: } }
+
       it 'returns the total nunber of documents' do
         expect(subject.next_page_offset).to eq(documents.length)
       end
 
       context 'when passing offset to fill the page' do
         let(:offset) { 6 }
-        let(:params) { { page: 2, offset: -offset, per_page: per_page } }
+        let(:params) { { page: 2, offset: -offset, per_page: } }
+
         it 'returns the real offset plus the given offset' do
           expect(subject.next_page_offset).to eq(documents.length + offset)
         end
@@ -33,7 +36,7 @@ shared_examples 'a paginator extending utils paginator' do |klass, key|
     end
 
     context 'when requesting a page that is after the limits' do
-      let(:params) { { page: 3, per_page: per_page } }
+      let(:params) { { page: 3, per_page: } }
 
       it 'returns the total nunber of documents' do
         expect(subject.next_page_offset).to eq(documents.length)
@@ -41,7 +44,8 @@ shared_examples 'a paginator extending utils paginator' do |klass, key|
 
       context 'when passing offset to fill the page' do
         let(:offset) { 6 }
-        let(:params) { { page: 3, offset: -offset, per_page: per_page } }
+        let(:params) { { page: 3, offset: -offset, per_page: } }
+
         it 'returns the real offset plus the given offset' do
           expect(subject.next_page_offset).to eq(documents.length + offset)
         end
@@ -54,20 +58,22 @@ shared_examples 'a paginator extending utils paginator' do |klass, key|
 
     context 'when requesting not the last page' do
       it do
-        expect(subject.full_page?).to be_truthy
+        expect(subject).to be_full_page
       end
     end
 
     context 'when requesting a page that is not full (the last page)' do
       let(:params) { { page: 2 } }
+
       it do
-        expect(subject.full_page?).to be_falsey
+        expect(subject).not_to be_full_page
       end
 
       context 'when passing offset to fill the page' do
         let(:params) { { page: 2, offset: -6 } }
+
         it do
-          expect(subject.full_page?).to be_truthy
+          expect(subject).to be_full_page
         end
       end
     end
@@ -78,8 +84,9 @@ shared_examples 'a paginator extending utils paginator' do |klass, key|
 end
 
 shared_examples 'a paginator' do |described_class, key|
+  subject { described_class.new(documents, params) }
+
   let(:params) { {} }
-  let(:subject) { described_class.new(documents, params) }
 
   describe '#as_json' do
     let(:documents_json) { subject.as_json[key] }
@@ -118,7 +125,7 @@ shared_examples 'a paginator' do |described_class, key|
 
     context 'when asking for 0 documents per page' do
       let(:per_page) { 0 }
-      let(:params) { { per_page: per_page } }
+      let(:params) { { per_page: } }
       let(:documents) { documents_with_10_itens }
 
       it 'returns all the documents with no limit' do
@@ -150,7 +157,7 @@ shared_examples 'a paginator' do |described_class, key|
       let(:documents) { documents_with_more_pages }
       let(:per_page) { 8 }
       let(:page) { nil }
-      let(:params) { { per_page: per_page, page: page } }
+      let(:params) { { per_page:, page: } }
 
       it 'returns the first page documents only' do
         expect(documents_json).to eq(first_documents.as_json)
@@ -168,19 +175,20 @@ shared_examples 'a paginator' do |described_class, key|
 end
 
 shared_examples 'a paginator that accepts offset' do |described_class, key|
-  let(:subject) { described_class.new(documents, params) }
+  subject { described_class.new(documents, params) }
+
   let(:documents_json) { subject.as_json[key] }
   let(:documents) { documents_with_more_pages }
   let(:per_page) { 8 }
   let(:page) { nil }
-  let(:params) { { per_page: per_page, page: page } }
+  let(:params) { { per_page:, page: } }
 
   describe '#as_json' do
     context 'when passing offset as argument' do
       context 'when the offset is negative' do
-        context 'and its module is bigger than per_page argument' do
+        context 'when its module is bigger than per_page argument' do
           let(:offset) { - (per_page + 2) }
-          let(:params) { { per_page: per_page, page: page, offset: offset } }
+          let(:params) { { per_page:, page:, offset: } }
 
           context 'when requesting the first page' do
             let(:page) { 1 }
@@ -237,8 +245,8 @@ shared_examples 'a paginator that accepts offset' do |described_class, key|
           context 'when document list is empty' do
             let(:documents) { empty_documents }
 
-            context 'and requesting for an unlimited per page list' do
-              let(:params) { { per_page: 0, page: 1, offset: offset } }
+            context 'when requesting for an unlimited per page list' do
+              let(:params) { { per_page: 0, page: 1, offset: } }
 
               it do
                 expect(subject.as_json[:pages]).to eq(1)

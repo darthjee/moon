@@ -16,7 +16,7 @@ module Admin
     end
 
     def admin_key
-      ENV['ADMIN_KEY']
+      ENV.fetch('ADMIN_KEY', nil)
     end
 
     def lack_admin?

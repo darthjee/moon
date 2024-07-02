@@ -4,7 +4,7 @@ module Marriage
   class Invite < ActiveRecord::Base
     belongs_to :marriage
     has_many :guests
-    belongs_to :user, class_name: 'User'
+    belongs_to :user, class_name: 'User', optional: true
 
     validates_associated :user
 

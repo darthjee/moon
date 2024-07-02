@@ -1,31 +1,78 @@
 inherit_from: .rubocop_todo.yml
 
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.3
+  NewCops: enable
+
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*.rb'
+    - 'db/**/*.rb'
+    - 'spec/**/*_spec.rb'
+    - 'spec/support/**/*.rb'
     - 'config/routes.rb'
-    - 'db/schema.rb'
-
-Metrics/AbcSize:
-  Exclude:
-    - 'db/migrate/*.rb'
 
 Metrics/MethodLength:
   Exclude:
-    - 'db/migrate/*.rb'
+    - 'db/**/*.rb'
 
-Style/ClassAndModuleChildren:
+Metrics/AbcSize:
   Exclude:
-    - 'spec/**/*.rb'
+    - 'db/**/*.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'db/schema.rb'
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'bin/bundle'
+
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
+Style/StringLiterals:
+  Exclude:
+    - 'db/schema.rb'
 
 Layout/LineLength:
   Exclude:
-    - 'db/seeds.rb'
-    - 'db/schema.rb'
-    - 'db/migrate/*.rb'
-    - 'config/routes.rb'
-    - 'config/initializers/*.rb'
-    - 'config/environments/*.rb'
-    - 'config/application.rb'
-    - 'Rakefile'
-    - 'bin/spring'
+    - 'bin/bundle'
+
+Style/FetchEnvVar:
+  Enabled: true
+  Exclude:
+    - 'bin/bundle'
+
+Style/RedundantConstantBase:
+  Enabled: true
+  Exclude:
+    - config/environments/production.rb
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: true
+  Exclude:
+    - spec/**/*_spec.rb
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 7
+
+RSpec/ExampleLength:
+  Max: 8
+
+RSpec/PendingWithoutReason:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false

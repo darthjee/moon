@@ -4,7 +4,7 @@ module Marriage
   class Gift < ActiveRecord::Base
     has_many :gift_links
     belongs_to :marriage
-    belongs_to :thread, class_name: 'Comment::Thread'
+    belongs_to :thread, class_name: 'Comment::Thread', optional: true
 
     scope(:not_hidden, -> { where.not(status: :hidden) })
 
@@ -20,7 +20,7 @@ module Marriage
 
       super(*args, options).merge(
         price_range: [min_price, max_price].uniq.compact,
-        packages_quantity: packages_quantity,
+        packages_quantity:,
         gift_links: gift_links.not_hidden.map(&:as_json),
         comments: thread.comments.count
       )
@@ -57,13 +57,13 @@ module Marriage
     end
 
     def update_bought(bought = nil)
-      update(bought: bought) if bought
+      update(bought:) if bought
 
       update(status: :bought) if self.bought == quantity
     end
 
     def update_prices(price = nil)
-      gift_links.update_all(price: price) if price
+      gift_links.update_all(price:) if price
 
       update(
         min_price: min_link_price.to_f * package,
@@ -80,7 +80,7 @@ module Marriage
     end
 
     def thread_attributes
-      { marriage_id: marriage_id, name: name }
+      { marriage_id:, name: }
     end
   end
 end

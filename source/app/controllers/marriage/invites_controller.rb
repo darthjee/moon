@@ -19,7 +19,7 @@ module Marriage
     end
 
     def cards
-      render :cards, locals: { invites: invites }, layout: 'blank'
+      render :cards, locals: { invites: }, layout: 'blank'
     end
 
     def update

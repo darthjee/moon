@@ -12,8 +12,6 @@
 //
 //= require rollbar
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
 //= require bootstrap
 //= require bootstrap/transition
 //= require bootstrap/collapse
@@ -26,4 +24,5 @@
 //= require angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module
 //= require querystring
 //= require md5
+//= require_tree ./modules/
 //= require_tree .

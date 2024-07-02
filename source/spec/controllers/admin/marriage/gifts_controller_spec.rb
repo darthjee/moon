@@ -21,12 +21,12 @@ describe Admin::Marriage::GiftsController do
 
     context 'when admin key is wrong' do
       before do
-        allow(controller).to receive(:admin_key) { 'abcd' }
+        allow(controller).to receive(:admin_key).and_return('abcd')
       end
 
       it do
         post :create, params: parameters
-        expect(response).not_to be_success
+        expect(response).not_to be_successful
       end
 
       it 'Redirects a non authorized request' do
@@ -34,14 +34,14 @@ describe Admin::Marriage::GiftsController do
         expect(response).to be_a_redirect
       end
 
-      context 'but user has admin key on its cookies' do
+      context 'when user has admin key on its cookies' do
         before do
           post :create, params: parameters.merge('admin_key' => 'abcd')
         end
 
         it do
           post :create, params: parameters
-          expect(response).to be_success
+          expect(response).to be_successful
         end
 
         it 'Redirects a non authorized request' do
@@ -53,7 +53,7 @@ describe Admin::Marriage::GiftsController do
 
     it do
       post :create, params: parameters
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it do
@@ -130,7 +130,7 @@ describe Admin::Marriage::GiftsController do
         end.not_to change(Marriage::Gift, :count)
       end
 
-      context 'but for another store' do
+      context 'when for another store' do
         let(:new_request_parameters) { requests_json['create_new_store'] }
 
         it do
