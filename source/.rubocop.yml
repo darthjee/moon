@@ -55,3 +55,6 @@ Style/ClassAndModuleChildren:
 
 RSpec/NamedSubject:
   Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
