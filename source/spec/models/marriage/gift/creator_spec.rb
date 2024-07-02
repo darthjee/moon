@@ -92,7 +92,7 @@ describe Marriage::Gift::Creator do
         end.not_to change(Marriage::Gift.unscoped, :count)
       end
 
-      context 'but it has changed its name' do
+      context 'when it has changed its name' do
         before do
           Marriage::Gift.last.update(name: 'new gift name')
         end
@@ -110,7 +110,7 @@ describe Marriage::Gift::Creator do
         end
       end
 
-      context 'but it has been already canceled' do
+      context 'when it has been already canceled' do
         before do
           Marriage::Gift.last.cancel
         end
@@ -154,7 +154,7 @@ describe Marriage::Gift::Creator do
         end
       end
 
-      context 'but for another store' do
+      context 'when for another store' do
         let(:new_gifts_creator) do
           described_class.new(marriage, new_request_parameters)
         end

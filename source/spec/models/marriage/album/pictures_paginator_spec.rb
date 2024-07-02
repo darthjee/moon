@@ -86,7 +86,7 @@ describe Marriage::Album::PicturesPaginator do
     end
 
     context 'when they do not fit in a single page' do
-      context 'fiting in one page each' do
+      context 'when fiting in one page each' do
         let(:pictures_count) { per_page }
         let(:albums_count) { per_page }
 
@@ -125,7 +125,7 @@ describe Marriage::Album::PicturesPaginator do
         end
       end
 
-      context 'fiting in a total of 3 pages' do
+      context 'when fiting in a total of 3 pages' do
         let(:pictures_count) { per_page * 3 / 2 }
         let(:albums_count) { per_page * 3 / 2 }
 
@@ -195,7 +195,7 @@ describe Marriage::Album::PicturesPaginator do
         end
       end
 
-      context 'fiting in a total of 4 not fully pagespages' do
+      context 'when fiting in a total of 4 not fully pagespages' do
         let(:pictures_count) { (per_page * 3 / 2) + 1 }
         let(:albums_count) { (per_page * 3 / 2) + 1 }
         let(:page) { 4 }
