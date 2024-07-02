@@ -12,7 +12,7 @@ describe Marriage::LoginController do
         expect(response).to be_a_not_found
       end
 
-      context 'Because user has the wrong credentials' do
+      context 'when user has the wrong credentials' do
         before do
           cookies.signed[:credentials] = 'wrong'
         end
@@ -23,7 +23,7 @@ describe Marriage::LoginController do
         end
       end
 
-      context 'Because user has a fake credential' do
+      context 'when user has a fake credential' do
         before do
           cookies[:credentials] = user.authentication_token
         end
