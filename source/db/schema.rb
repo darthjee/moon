@@ -128,7 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_133251) do
     t.boolean "up_to_date"
     t.boolean "welcome_sent", default: false
     t.integer "user_id"
-    t.index %w[marriage_id code], name: "index_marriage_invites_on_marriage_id_and_code"
+    t.index ["marriage_id", "code"], name: "index_marriage_invites_on_marriage_id_and_code"
   end
 
   create_table "marriage_locations", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -186,4 +186,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_133251) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["login"], name: "index_users_on_login", unique: true
   end
+
 end
